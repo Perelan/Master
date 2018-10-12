@@ -3,19 +3,42 @@ package com.sensordroid.flow;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
+import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothGattService;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
 import android.os.Parcelable;
+import android.util.Log;
 
+import com.sensordroid.flow.Handlers.CommunicationHandler;
+import com.sensordroid.flow.util.GattAttributes;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.ShortBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class MainActivity extends Activity {
+    private static final String TAG ="MainClass";
+
     public static final String sharedKey = "com.sensordroid.flow";
     public static final String channelKey = sharedKey + ".channels";
     public static final String macKey = sharedKey + ".mac";
@@ -26,94 +49,76 @@ public class MainActivity extends Activity {
 
     private String flow = "E7:B4:33:F2:ED:52";
 
-    private final UUID BATTERY_LIFE = UUID.fromString("0000180F-0000-1000-8000-00805F9B34FB");
+    private static final long SCAN_PERIOD = 10_000; // 10 sec
 
-    BluetoothAdapter mBluetoothAdapter;
+    private CommunicationHandler mComHandler = new CommunicationHandler();
+
+    private boolean mScanning;
+    private Handler mHandler = new Handler();
+
+    // Stops scanning after 10 seconds.
+    private void scanLeDevice(final boolean enable) {
+        if (enable) {
+            // Stops scanning after a pre-defined scan period.
+            mHandler.postDelayed(() -> {
+                mScanning = false;
+                mComHandler.mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            }, SCAN_PERIOD);
+
+            mScanning = true;
+            mComHandler.mBluetoothAdapter.startLeScan(mLeScanCallback);
+        } else {
+            mScanning = false;
+            mComHandler.mBluetoothAdapter.stopLeScan(mLeScanCallback);
+        }
+    }
+
+    // Device scan callback.
+    private BluetoothAdapter.LeScanCallback mLeScanCallback =
+        (BluetoothDevice device, int rssi, byte[] scanRecord) -> runOnUiThread(() -> {
+            System.out.println(">>> Device: " + device.getName());
+            if (device.getName() != null && device.getName().equals("OarZpot")) {
+                mComHandler.selectedFlowSensor = device;
+                mComHandler.connect();
+
+                scanLeDevice(false);
+            }
+    });
+
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder service) {
+            Log.i(TAG, "onServiceConnected");
+
+            mComHandler = ((CommunicationHandler.LocalBinder) service).getService();
+
+            if (!mComHandler.init()) {
+                Log.e(TAG, "onServiceConnected: Unable to initialize Bluetooth");
+                finish();
+                return;
+            }
+
+            scanLeDevice(true);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            mComHandler = null;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final SharedPreferences preferences = getSharedPreferences(sharedKey, MODE_PRIVATE);
-
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-
-        if (pairedDevices.size() > 0) {
-            // There are paired devices. Get the name and address of each paired device.
-            for (BluetoothDevice device : pairedDevices) {
-                String deviceName = device.getName();
-                String deviceHardwareAddress = device.getAddress(); // MAC address
-                System.out.println(String.format("> Saved devices %s (%s)", deviceName, deviceHardwareAddress));
-            }
-        }
-
-
-        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        filter.addAction(BluetoothDevice.ACTION_UUID);
-        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-        registerReceiver(mReceiver, filter);
-
-        mBluetoothAdapter.startDiscovery();
-        //collectDataFromDevice(flow);
-
-    }
-
-    BluetoothDevice flowDevice = null;
-
-    // Create a BroadcastReceiver for ACTION_FOUND.
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                // Discovery has found a device. Get the BluetoothDevice
-                // object and its info from the Intent.
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String deviceName = device.getName();
-                String deviceHardwareAddress = device.getAddress(); // MAC address
-
-                System.out.println(String.format("> Discovered device %s (%s) - uuids: %s", deviceName, deviceHardwareAddress, Arrays.toString(device.getUuids())));
-
-               if (deviceName != null && deviceName.equals("OarZpot")) {
-                   mBluetoothAdapter.cancelDiscovery();
-                   flowDevice = device;
-
-                   final BluetoothDevice dev = mBluetoothAdapter.getRemoteDevice(deviceHardwareAddress);
-
-                   System.out.println("Hha " + dev);
-               }
-            }
-            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                System.out.println("Finished ");
-
-                if (flowDevice != null) {
-                    boolean result = flowDevice.fetchUuidsWithSdp();
-                    System.out.println("Result " + result);
-                }
-            }
-            else if (BluetoothDevice.ACTION_UUID.equals(action)) {
-                System.out.println("Action UUID");
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Parcelable[] uuidExtra = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID);
-
-                System.out.println(uuidExtra);
-
-                System.out.println(String.format("> Discovered device %s (%s) - uuids: %s", device.getName(), device.getAddress(), Arrays.toString(uuidExtra)));
-            }
-        }
-    };
-
-    private void collectDataFromDevice(String address) {
-        System.out.println("Inside");
-
-
+        Intent bindSensorIntent = new Intent(this, CommunicationHandler.class);
+        startService(bindSensorIntent);
+        bindService(bindSensorIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        unregisterReceiver(mReceiver);
     }
 }

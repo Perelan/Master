@@ -158,7 +158,7 @@ public class WrapperService extends Service {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             binder = MainServiceConnection.Stub.asInterface(iBinder);
-            connectionThread = new Thread(new CommunicationHandler(binder, name, driverId, getApplicationContext()));
+            //connectionThread = new Thread(new CommunicationHandler(binder, name, driverId, getApplicationContext()));
             connectionThread.start();
 
             if(!wakeLock.isHeld()){
