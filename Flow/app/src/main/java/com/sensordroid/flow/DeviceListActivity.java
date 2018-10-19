@@ -73,7 +73,6 @@ public class DeviceListActivity extends AppCompatActivity {
 
             setResult(Activity.RESULT_OK, result);
 
-            unbindService(mBluetoothServiceConnection);
             finish();
         }
     };
@@ -131,8 +130,16 @@ public class DeviceListActivity extends AppCompatActivity {
         };
 
         bindIntent = new Intent(this, CommunicationHandler.class);
-        //startService(bindIntent);
         bindService(bindIntent, mBluetoothServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mBluetoothServiceConnection != null) {
+            unbindService(mBluetoothServiceConnection);
+        }
+
+        super.onDestroy();
     }
 
     // Stops scanning after 10 seconds.
