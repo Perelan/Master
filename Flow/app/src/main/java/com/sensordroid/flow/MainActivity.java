@@ -8,10 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.sensordroid.flow.Handlers.CommunicationHandler;
@@ -19,8 +23,17 @@ import com.sensordroid.ripple.RippleEffect;
 
 import java.util.Locale;
 
-public class MainActivity extends Activity {
+// bgcolor: #44628e
+// iconcolor: #4572b6
+
+public class MainActivity extends Activity implements View.OnClickListener {
     private static final String TAG ="MainClass";
+
+    private static int sensorState = 0;
+    private static final int SENSOR_STATE_CONNECTING = 1;
+    private static final int SENSOR_STATE_CONNECTED = 2;
+    private static final int SENSOR_STATE_DISCONNECTED = 3;
+
     private static final int REQUEST_SELECT_SENSOR = 1;
     private static final int REQUEST_LOCATION_PERMISSION = 2;
 
@@ -40,9 +53,12 @@ public class MainActivity extends Activity {
     private boolean mScanning;
 
     private RippleEffect rp;
-    private TextView mSensorTitle, mSensorMac, mSensorBattery, mSensorFirmware;
+    private TextView mSensorTitle, mSensorMac, mSensorBattery, mSensorFirmware, mSensorState, mNewConnection, mIndicator;
 
-    private BroadcastReceiver mSensorStateListender = new BroadcastReceiver() {
+    private CardView mButton;
+    private TextView mButtonText;
+
+    private BroadcastReceiver mSensorStateListener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onReceive: Data " + context.getPackageName());
@@ -62,9 +78,19 @@ public class MainActivity extends Activity {
         mSensorMac      = findViewById(R.id.sensor_mac);
         mSensorBattery  = findViewById(R.id.sensor_battery);
         mSensorFirmware = findViewById(R.id.sensor_firmware);
+        mIndicator      = findViewById(R.id.sensor_state_indicator);
+
+
+        mNewConnection  = findViewById(R.id.sensor_new_device);
+        mNewConnection.setOnClickListener(this);
+
+        mSensorState    = findViewById(R.id.sensor_state);
+
+        mButtonText     = findViewById(R.id.info_text);
+        mButton         = findViewById(R.id.sensor_button);
+        mButton.setOnClickListener(this);
 
         mServiceConnection = new ServiceConnection() {
-
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder service) {
                 Log.i(TAG, "onServiceConnected");
@@ -89,7 +115,7 @@ public class MainActivity extends Activity {
         filter.addAction(CommunicationHandler.ACTION_DATA_AVAILABLE);
         filter.addAction(CommunicationHandler.ACTION_DEVICE_METADATA_COMPLETE);
         filter.addAction(CommunicationHandler.ACTION_DEVICE_METADATA_UPDATED);
-        registerReceiver(mSensorStateListender, filter);
+        registerReceiver(mSensorStateListener, filter);
 
         Intent i = new Intent(MainActivity.this, DeviceListActivity.class);
         startActivityForResult(i, REQUEST_SELECT_SENSOR);
@@ -111,8 +137,10 @@ public class MainActivity extends Activity {
 
         switch (action) {
             case CommunicationHandler.ACTION_GATT_CONNECTED:
+                setSensorState(SENSOR_STATE_CONNECTED);
                 break;
             case CommunicationHandler.ACTION_GATT_DISCONNECTED:
+                setSensorState(SENSOR_STATE_DISCONNECTED);
                 break;
             case CommunicationHandler.ACTION_GATT_SERVICES_DISCOVERED:
                 break;
@@ -122,6 +150,10 @@ public class MainActivity extends Activity {
 
                 rp.pulse(rp.BREATH);
                 Log.d(TAG, "handleBroadcastEvent: Respiration " + flowRespirationData);
+
+                // Get the data from the sensor and send it the the demuxer.
+
+
 
                 break;
             case CommunicationHandler.ACTION_DEVICE_METADATA_COMPLETE:
@@ -143,10 +175,9 @@ public class MainActivity extends Activity {
         }
     }
 
-
     @Override
     protected void onDestroy() {
-        unregisterReceiver(mSensorStateListender);
+        unregisterReceiver(mSensorStateListener);
 
         if (mServiceConnection != null) {
             unbindService(mServiceConnection);
@@ -168,14 +199,96 @@ public class MainActivity extends Activity {
                     BluetoothDevice device = data.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
                     System.out.println(" >>> " + device.getName());
+
+                    mSensorTitle.setText(device.getName());
+                    mSensorMac.setText(String.format("Mac: %s", device.getAddress()));
+
                     mComHandler.setSelectedFlowSensor(device);
 
-                    mComHandler.connect();
+                    connect();
                 }
                 break;
             default:
                 Log.w(TAG, "onActivityResult: wrong request code " + requestCode);
                 break;
         }
+    }
+
+    private void connect() {
+        if (mComHandler != null) {
+            setSensorState(SENSOR_STATE_CONNECTING);
+            mComHandler.connect();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.sensor_button:
+                Log.d(TAG, "onClick: Sensor Button " + sensorState);
+                handleSensorButton();
+                break;
+            case R.id.sensor_new_device:
+                Log.d(TAG, "onClick: Connect to new sensor");
+                Intent i = new Intent(MainActivity.this, DeviceListActivity.class);
+                startActivityForResult(i, REQUEST_SELECT_SENSOR);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Handle the button state on click.
+     *
+     * SENSOR_STATE_CONNECTED       -> SENSOR_STATE_DISCONNECTED & change text to reconnect.
+     * SENSOR_STATE_DISCONNECTED    -> SENSOR_STATE_CONNECTED & change text to disconnect.
+     *
+     * @states: connected | disconnected
+     */
+    private void handleSensorButton() {
+        switch (sensorState) {
+            case SENSOR_STATE_CONNECTED:
+                setSensorState(SENSOR_STATE_DISCONNECTED);
+                mComHandler.closeAndNotifyGattDisconnection();
+                break;
+            case SENSOR_STATE_DISCONNECTED:
+                setSensorState(SENSOR_STATE_CONNECTING);
+                connect();
+                break;
+        }
+    }
+
+    /**
+     * Following method changes the state of the button and the corresponding text.
+     *
+     * @param state
+     */
+    private void setSensorState(int state) {
+        switch (state) {
+            case SENSOR_STATE_CONNECTED:
+                mSensorState.setText("Connected");
+                mButtonText.setText("DISCONNECT");
+                mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorConnected), PorterDuff.Mode.SRC_ATOP);
+                mButton.setEnabled(true);
+                mNewConnection.setVisibility(View.INVISIBLE);
+                mButton.setCardBackgroundColor(getResources().getColor(R.color.colorButtonDisconnect));
+                break;
+            case SENSOR_STATE_DISCONNECTED:
+                mSensorState.setText("Disconnected");
+                mButtonText.setText("RECONNECT");
+                mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorDisconnected), PorterDuff.Mode.SRC_ATOP);
+                mButton.setEnabled(true);
+                mNewConnection.setVisibility(View.VISIBLE);
+                mButton.setCardBackgroundColor(getResources().getColor(R.color.colorButtonReconnect));
+                break;
+            case SENSOR_STATE_CONNECTING:
+                mSensorState.setText("Connecting...");
+                mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorConnecting), PorterDuff.Mode.SRC_ATOP);
+                mButton.setCardBackgroundColor(getResources().getColor(R.color.colorButtonConnecting));
+                mButton.setEnabled(false);
+        }
+
+        sensorState = state;
     }
 }

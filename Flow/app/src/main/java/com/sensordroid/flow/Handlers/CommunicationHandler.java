@@ -73,7 +73,7 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
 
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 mBluetoothGatt = gatt;
-                //setRespirationFlowNotification(true);
+                setRespirationFlowNotification(true);
                 //setBatteryNotification(true);
                 fetchSensorMetaData();
             } else {
@@ -201,6 +201,17 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
         }
 
         return true;
+    }
+
+    public void closeAndNotifyGattDisconnection() {
+        if (mBluetoothGatt != null) {
+            Log.w(TAG, "closeAndNotifyGattDisconnection: Closing GATT Connection");
+            mBluetoothGatt.disconnect();
+            mBluetoothGatt.close();
+            mBluetoothGatt = null;
+        }
+
+        sendBroadcast(new Intent(ACTION_GATT_DISCONNECTED));
     }
 
     // Stops scanning after 10 seconds.
@@ -461,14 +472,5 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
         }
     }
 
-    private void closeAndNotifyGattDisconnection() {
-        if (mBluetoothGatt != null) {
-            Log.w(TAG, "closeAndNotifyGattDisconnection: Closing GATT Connection");
-            mBluetoothGatt.disconnect();
-            mBluetoothGatt.close();
-            mBluetoothGatt = null;
-        }
 
-        sendBroadcast(new Intent(ACTION_GATT_DISCONNECTED));
-    }
 }

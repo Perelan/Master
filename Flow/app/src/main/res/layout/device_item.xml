@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="19dp"
-            android:layout_toEndOf="@+id/imageView"
+            android:layout_toEndOf="@+id/device_image"
             android:text="TextView"
             android:textSize="24sp"
             android:textStyle="bold"/>
@@ -41,7 +41,7 @@
             android:text="TextView"/>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/device_image"
             android:layout_width="92dp"
             android:layout_height="61dp"
             android:layout_alignParentStart="true"
@@ -50,7 +50,7 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="22dp"
             android:layout_marginBottom="17dp"
-            card_view:srcCompat="@drawable/flow"/>
+            card_view:srcCompat="@drawable/bluetooth"/>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

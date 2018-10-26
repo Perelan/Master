@@ -1,7 +1,6 @@
 package com.sensordroid.ripple;
 
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -12,8 +11,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RelativeLayout;
-
-import java.util.ArrayList;
 
 public class RippleEffect extends RelativeLayout {
 

@@ -54,6 +54,7 @@
         <service
             android:name=".WrapperService"
             android:exported="false"/>
+
         <service
             android:name=".Handlers.CommunicationHandler"
             android:enabled="true"/>

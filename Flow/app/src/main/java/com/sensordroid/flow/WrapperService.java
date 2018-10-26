@@ -54,7 +54,7 @@ public class WrapperService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent != null) {
+        if (intent != null) {
             String action = intent.getStringExtra("ACTION");
             if (action.compareTo(START_ACTION) == 0) {
                 driverId = intent.getIntExtra("DRIVER_ID", -1);
@@ -63,7 +63,7 @@ public class WrapperService extends Service {
                         intent.getStringExtra("SERVICE_NAME"),
                         intent.getIntExtra("CHANNEL", -1),
                         intent.getIntExtra("FREQUENCY", -1));
-            } else if(action.compareTo(STOP_ACTION) == 0) {
+            } else if (action.compareTo(STOP_ACTION) == 0) {
                 stop(intent.getIntExtra("CHANNEL", -1),
                         intent.getIntExtra("FREQUENCY", -1));
             }
@@ -78,15 +78,15 @@ public class WrapperService extends Service {
     public void start(String action, String pack, String name, int channel, int frequency) {
         Log.w(TAG, "Adding new channel: "+channel+", with freq: "+frequency);
         current_frequency = frequency;
-        if(!channelList.contains(channel)){
+        if (!channelList.contains(channel)){
             channelList.add(channel);
         }
-        if(binder == null) {
+        if (binder == null) {
             serviceConnection = new ServiceBackConnection();
             toForeground();
             Intent service = new Intent(action);
             service.setComponent(new ComponentName(pack, name));
-            getApplicationContext().bindService(service, serviceConnection, Service.BIND_AUTO_CREATE);
+            bindService(service, serviceConnection, Service.BIND_AUTO_CREATE);
         }
     }
 
@@ -161,9 +161,9 @@ public class WrapperService extends Service {
             //connectionThread = new Thread(new CommunicationHandler(binder, name, driverId, getApplicationContext()));
             connectionThread.start();
 
-            if(!wakeLock.isHeld()){
+            if (!wakeLock.isHeld()){
                 Log.w("WakeLock", "Acquire");
-                wakeLock.acquire();
+                wakeLock.acquire(10*60*1000L /*10 minutes*/);
             }
         }
 
@@ -180,7 +180,7 @@ public class WrapperService extends Service {
             Releases wakelock and interrupts the working thread
          */
         public void interruptThread() {
-            if(wakeLock.isHeld()){
+            if (wakeLock.isHeld()){
                 Log.w(TAG, "WakeLock released");
                 wakeLock.release();
             }

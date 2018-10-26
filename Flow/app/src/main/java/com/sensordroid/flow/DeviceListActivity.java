@@ -55,8 +55,6 @@ public class DeviceListActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    Intent bindIntent;
-
     private OnDeviceClickListener mListen = position -> {
         Log.d(TAG, "postion: " + position);
         scanLeDevice(false);
@@ -129,7 +127,7 @@ public class DeviceListActivity extends AppCompatActivity {
             }
         };
 
-        bindIntent = new Intent(this, CommunicationHandler.class);
+        Intent bindIntent = new Intent(this, CommunicationHandler.class);
         bindService(bindIntent, mBluetoothServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -182,15 +180,18 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
 
     private ArrayList<BluetoothDevice> mDataset;
     private OnDeviceClickListener mClickListener;
+    private Context mContext;
 
     class DeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView mDeviceTitle, mDeviceMac;
+        ImageView mDeviceImage;
 
         DeviceViewHolder(@NonNull View v) {
             super(v);
             mDeviceTitle = v.findViewById(R.id.device_title);
             mDeviceMac = v.findViewById(R.id.device_mac);
+            mDeviceImage = v.findViewById(R.id.device_image);
             v.setOnClickListener(this);
         }
 
@@ -206,6 +207,7 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
 
     @NonNull
     @Override
+
     public DeviceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.device_item, viewGroup, false);
@@ -217,6 +219,10 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
     public void onBindViewHolder(@NonNull DeviceViewHolder viewHolder, int i) {
         viewHolder.mDeviceTitle.setText(mDataset.get(i).getName());
         viewHolder.mDeviceMac.setText(mDataset.get(i).getAddress());
+
+        if (mDataset.get(i).getName().equalsIgnoreCase("oarzpot")) {
+            viewHolder.mDeviceImage.setImageResource(R.drawable.flow);
+        }
     }
 
     @Override

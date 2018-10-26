@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#dedede</color>
+    <color name="colorPrimary">#f0f0f0</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#e53f43</color>
+    <color name="colorAccent">#0099cc</color>
+
+    <color name="colorButtonReconnect">#bcb111</color>
+    <color name="colorButtonDisconnect">#f4171c</color>
+    <color name="colorButtonConnecting">#a1a1a1</color>
+
+    <color name="colorConnected">#0dff00</color>
+    <color name="colorConnecting">#ffe600</color>
+    <color name="colorDisconnected">#ff0000</color>
 </resources>
