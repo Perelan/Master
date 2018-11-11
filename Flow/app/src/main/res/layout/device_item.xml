@@ -3,13 +3,12 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sensor_button"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_gravity="center"
-    android:layout_margin="5dp"
-    card_view:cardBackgroundColor="@color/colorPrimary"
+    android:layout_margin="10dp"
+    card_view:cardBackgroundColor="@color/colorAccent"
     card_view:cardCornerRadius="4dp">
 
     <RelativeLayout
@@ -25,6 +24,7 @@
             android:layout_marginTop="19dp"
             android:layout_toEndOf="@+id/device_image"
             android:text="TextView"
+            android:textColor="@color/colorTitle"
             android:textSize="24sp"
             android:textStyle="bold"/>
 
@@ -38,6 +38,7 @@
             android:layout_marginStart="1dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="23dp"
+            android:textColor="@color/colorSubtitle"
             android:text="TextView"/>
 
         <ImageView

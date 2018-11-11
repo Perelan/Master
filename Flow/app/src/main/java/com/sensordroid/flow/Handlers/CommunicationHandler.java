@@ -214,20 +214,6 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
         sendBroadcast(new Intent(ACTION_GATT_DISCONNECTED));
     }
 
-    // Stops scanning after 10 seconds.
-    public void scanLeDevice(BluetoothAdapter.LeScanCallback callback, final boolean enable, final long SCAN_PERIOD) {
-        if (enable) {
-            // Stops scanning after a pre-defined scan period.
-            mHandler.postDelayed(() -> {
-                mBluetoothAdapter.stopLeScan(callback);
-            }, SCAN_PERIOD);
-
-            mBluetoothAdapter.startLeScan(callback);
-        } else {
-            mBluetoothAdapter.stopLeScan(callback);
-        }
-    }
-
     public void setSelectedFlowSensor(BluetoothDevice device) {
         selectedFlowSensor = device;
     }

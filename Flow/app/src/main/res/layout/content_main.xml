@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.sensordroid.ripple.RippleEffect
         android:id="@+id/ripple"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rb_radius="32dp">
@@ -32,8 +33,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:fontFamily="sans-serif"
-            android:text="OarZpot "
-            android:textSize="52sp"
+            android:text="OarZpot"
+            android:textColor="@color/colorTitle"
+            android:textSize="62sp"
             android:textStyle="bold"/>
 
         <TextView
@@ -42,7 +44,7 @@
             android:layout_height="15dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="144dp"
-            android:layout_marginTop="126dp"
+            android:layout_marginTop="140dp"
             android:background="@drawable/corners"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="128dp"/>
@@ -53,9 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="173dp"
-            android:layout_marginTop="124dp"
+            android:layout_marginStart="171dp"
+            android:layout_marginTop="138dp"
             android:text="Connecting..."
+            android:textColor="@color/colorSubtitle"
             android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.014"
@@ -82,14 +85,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="24dp"
         android:text="Connect to another device..."
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/breath"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/sensor_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <android.support.v7.widget.CardView
@@ -100,7 +105,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="25dp"
         android:clickable="true"
         android:elevation="5dp"
         android:focusable="true"
@@ -108,9 +113,9 @@
         card_view:cardBackgroundColor="@color/colorButtonDisconnect"
         card_view:cardCornerRadius="30dp"
         card_view:cardElevation="5dp"
-        card_view:layout_constraintBottom_toTopOf="@+id/sensor_firmware"
+        card_view:layout_constraintBottom_toTopOf="@+id/sensor_mac"
         card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintHorizontal_bias="0.497"
+        card_view:layout_constraintHorizontal_bias="0.492"
         card_view:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -128,27 +133,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="8dp"
-        android:text="Mac: E7:B4:33:F2:ED:52"
+        android:layout_marginStart="132dp"
+        android:layout_marginEnd="8dp"
+        android:text="Mac: FF:FF:FF:FF:FF:FF"
         android:textAlignment="center"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/colorSubtitle"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/sensor_firmware"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/sensor_firmware"/>
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/sensor_firmware"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="8dp"
-        android:text="Firmware:  --"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="5dp"
+        android:text="Firmware: --"
         android:textAllCaps="false"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/colorSubtitle"
+        android:textSize="10sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"/>
 
 

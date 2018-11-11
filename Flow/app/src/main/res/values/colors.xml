@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f0f0f0</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#0099cc</color>
+    <color name="colorPrimary">#2f4559</color>
+    <color name="colorPrimaryDark">#354f65</color>
+    <color name="colorAccent">#436380</color>
+    <color name="colorBackground">#1b2833</color>
+
+    <color name="colorTitle">#efefef</color>
+    <color name="colorSubtitle">#c0c0c0</color>
 
     <color name="colorButtonReconnect">#bcb111</color>
     <color name="colorButtonDisconnect">#f4171c</color>

@@ -1,5 +1,6 @@
 package com.sensordroid.flow;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -7,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +17,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,7 +29,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sensordroid.flow.Handlers.CommunicationHandler;
 
@@ -55,6 +61,13 @@ public class DeviceListActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
+    private TextView title;
+    private ProgressBar progress;
+    private ImageView refresh;
+
+    private final int REQUEST_ENABLE_BT = 1;
+    private final int REQUEST_ACCESS_LOC = 2;
+
     private OnDeviceClickListener mListen = position -> {
         Log.d(TAG, "postion: " + position);
         scanLeDevice(false);
@@ -81,6 +94,14 @@ public class DeviceListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
 
+        handlePrivileges();
+
+        title = findViewById(R.id.connect_title);
+        progress = findViewById(R.id.loading);
+        refresh = findViewById(R.id.refresh);
+
+        refresh.setOnClickListener(v -> refreshDeviceLoading());
+
         mSwipeRefreshLayout = findViewById(R.id.swipe_container);
 
         mRecyclerView = findViewById(R.id.devicelist);
@@ -96,11 +117,7 @@ public class DeviceListActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
-            scanLeDevice(false);
-            devicesDataset.clear();
-            mAdapter.notifyDataSetChanged();
-            scanLeDevice(true);
-
+            refreshDeviceLoading();
             mSwipeRefreshLayout.setRefreshing(false);
         });
 
@@ -132,6 +149,65 @@ public class DeviceListActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case REQUEST_ENABLE_BT:
+                System.out.println(">>>>>>>>> Here " + resultCode);
+
+                if (resultCode == RESULT_OK) {
+                    // Bluetooth toggle granted.
+                    refreshDeviceLoading();
+                } else {
+                    // Bluetooth toggle denied.
+                    title.setText("Enable Bluetooth and Restart the App!");
+                    Toast.makeText(this, "Please enable Bluetooth.", Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                Log.w(TAG, "onActivityResult: wrong request code: " +  requestCode);
+                break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_ACCESS_LOC) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                refreshDeviceLoading();
+            } else {
+
+            }
+        }
+    }
+
+    private void handlePrivileges() {
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+            Toast.makeText(this, "Bluetooth LE is not supported on this device", Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_LOC);
+        }
+
+        if (mComHandler.mBluetoothAdapter == null || !mComHandler.mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+    }
+
+    void refreshDeviceLoading() {
+        scanLeDevice(false);
+        devicesDataset.clear();
+        mAdapter.notifyDataSetChanged();
+        progress.setVisibility(View.VISIBLE);
+        refresh.setVisibility(View.INVISIBLE);
+        scanLeDevice(true);
+    }
+
+    @Override
     protected void onDestroy() {
         if (mBluetoothServiceConnection != null) {
             unbindService(mBluetoothServiceConnection);
@@ -147,6 +223,7 @@ public class DeviceListActivity extends AppCompatActivity {
             mHandler.postDelayed(() -> {
                 mScanning = false;
                 mComHandler.mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                showBluetoothDeviceResult();
             }, SCAN_PERIOD);
 
             mScanning = true;
@@ -154,6 +231,18 @@ public class DeviceListActivity extends AppCompatActivity {
         } else {
             mScanning = false;
             mComHandler.mBluetoothAdapter.stopLeScan(mLeScanCallback);
+        }
+    }
+
+    public void showBluetoothDeviceResult() {
+
+        if (devicesDataset.size() == 0) {
+            // Bluetooth scanning has terminated, and there are no device results.
+        } else {
+            // Bluetooth scanning has terminated, and there are results.
+            title.setText("Device results...");
+            progress.setVisibility(View.INVISIBLE);
+            refresh.setVisibility(View.VISIBLE);
         }
     }
 

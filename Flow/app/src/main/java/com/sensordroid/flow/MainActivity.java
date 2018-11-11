@@ -16,6 +16,7 @@ import android.os.IBinder;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sensordroid.flow.Handlers.CommunicationHandler;

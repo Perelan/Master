@@ -4,5 +4,5 @@
 <string name="title_activity_device_list">DeviceListActivity</string>
 <string name="textview">TextView</string>
 <string name="paring_description">Make sure your Flow sensor is close to your device.\nTurn on and grant location permissions to this application.</string>
-<string name="pairing_title">Searching for devices...</string>
+<string name="pairing_title">Searching for devices…</string>
 </resources>

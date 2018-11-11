@@ -29,6 +29,7 @@ public class WrapperService extends Service {
     public static final String name = mContext.getResources().getString(R.string.app_name);
 
     private static int driverId;
+
     private static MainServiceConnection binder;
     private ServiceBackConnection serviceConnection;
 
@@ -56,76 +57,52 @@ public class WrapperService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             String action = intent.getStringExtra("ACTION");
+
             if (action.compareTo(START_ACTION) == 0) {
-                driverId = intent.getIntExtra("DRIVER_ID", -1);
                 start(intent.getStringExtra("SERVICE_ACTION"),
                         intent.getStringExtra("SERVICE_PACKAGE"),
-                        intent.getStringExtra("SERVICE_NAME"),
-                        intent.getIntExtra("CHANNEL", -1),
-                        intent.getIntExtra("FREQUENCY", -1));
-            } else if (action.compareTo(STOP_ACTION) == 0) {
-                stop(intent.getIntExtra("CHANNEL", -1),
-                        intent.getIntExtra("FREQUENCY", -1));
+                        intent.getStringExtra("STRING_NAME"));
+            } else {
+                stop();
             }
         }
+
         return super.onStartCommand(intent, flags, startId);
     }
+
 
     /*
         Start data acquisition by binding to the Collector application
             - binds to service_name, which is located in service_package and is listening for service_action
      */
-    public void start(String action, String pack, String name, int channel, int frequency) {
-        Log.w(TAG, "Adding new channel: "+channel+", with freq: "+frequency);
-        current_frequency = frequency;
-        if (!channelList.contains(channel)){
-            channelList.add(channel);
-        }
+    public void start(String action, String pack, String name) {
+        Log.d(TAG, "start: event");
+
         if (binder == null) {
             serviceConnection = new ServiceBackConnection();
             toForeground();
             Intent service = new Intent(action);
             service.setComponent(new ComponentName(pack, name));
-            bindService(service, serviceConnection, Service.BIND_AUTO_CREATE);
+            mContext.bindService(service, serviceConnection, Service.BIND_AUTO_CREATE);
         }
     }
+
 
     /*
         Stop data acquisition, interrupt thread and unbind
      */
-    public void stop(int channel, int frequency) {
-        Log.w(TAG, "Stopping channel: "+channel+", new frequency: "+frequency);
-        if(binder != null) {
-            for(int i=0; i<channelList.size(); i++){
-                if(channelList.get(i).intValue() == channel){
-                    channelList.remove(i);
-                    current_frequency = frequency;
-                }
-            }
-
-            if(channelList.size() == 0){
-                try {
-                    serviceConnection.interruptThread();
-                    getApplicationContext().unbindService(serviceConnection);
-                    binder = null;
-                    current_frequency = -1;
-                    stopForeground(true);
-                } catch (IllegalArgumentException iae){
-                    iae.printStackTrace();
-                }
-            }
+    public void stop() {
+        Log.d(TAG, "stop: event");
+        if (binder != null) {
+            mContext.unbindService(serviceConnection);
+            binder = null;
+            stopForeground(true);
         }
     }
 
-    public static int[] getChannelList(){
-        int[] newOne = new int[channelList.size()];
-        int index = 0;
-        for(Integer i : channelList){
-            newOne[index++] = i;
-        }
-        return newOne;
-    }
-
+    /**
+     Sets the current service to the foreground
+     */
     public void toForeground() {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.stat_notify_chat);
@@ -144,7 +121,6 @@ public class WrapperService extends Service {
         startForeground(android.os.Process.myPid(), note);
     }
 
-
     private class ServiceBackConnection implements ServiceConnection {
         private Thread connectionThread;
 
@@ -159,7 +135,6 @@ public class WrapperService extends Service {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             binder = MainServiceConnection.Stub.asInterface(iBinder);
             //connectionThread = new Thread(new CommunicationHandler(binder, name, driverId, getApplicationContext()));
-            connectionThread.start();
 
             if (!wakeLock.isHeld()){
                 Log.w("WakeLock", "Acquire");
@@ -173,14 +148,7 @@ public class WrapperService extends Service {
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             Log.w(TAG, "Service disconnected!");
-            interruptThread();
-        }
-
-        /*
-            Releases wakelock and interrupts the working thread
-         */
-        public void interruptThread() {
-            if (wakeLock.isHeld()){
+             if (wakeLock.isHeld()){
                 Log.w(TAG, "WakeLock released");
                 wakeLock.release();
             }
@@ -188,10 +156,6 @@ public class WrapperService extends Service {
                 connectionThread.interrupt();
                 connectionThread = null;
             }
-        }
-
-        public void restartConnection(){
-
         }
     }
 }
