@@ -35,17 +35,15 @@ import java.util.UUID;
 public class CommunicationHandler extends Service implements IBluetoothLEService {
     private final static String TAG = "CommuncationHandler";
 
-    public BluetoothAdapter mBluetoothAdapter;
+    private BluetoothAdapter mBluetoothAdapter;
+
     private BluetoothManager mBluetoothManager;
     private BluetoothGatt mBluetoothGatt;
+    private BluetoothDevice selectedFlowSensor;
 
     public SensorMetadata mSensorMetadata = new SensorMetadata();
 
-    private BluetoothDevice selectedFlowSensor;
-
     private IBinder mBinder = new LocalBinder();
-
-    private Handler mHandler = new Handler();
 
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
@@ -73,8 +71,7 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
 
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 mBluetoothGatt = gatt;
-                setRespirationFlowNotification(true);
-                //setBatteryNotification(true);
+                setRespirationFlowNotification(true);       // For testing purposes.
                 fetchSensorMetaData();
             } else {
                 Log.w(TAG, "onServicesDiscovered received: " + status);
@@ -97,35 +94,12 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
     private void fetchSensorMetaData() {
         if (hasCharacteristic(GattAttributes.DEVICE_INFORMATION_SERVICE, GattAttributes.FIRMWARE_REVISION))
             mSensorMetadata.firmwareRevisionSupported = true;
-
         if (mSensorMetadata.manufacturerName == null) {
             readCharacteristic(GattAttributes.DEVICE_INFORMATION_SERVICE, GattAttributes.MANUFACTURER_NAME);
         } else if (mSensorMetadata.firmwareRevision == null && mSensorMetadata.firmwareRevisionSupported) {
             readCharacteristic(GattAttributes.DEVICE_INFORMATION_SERVICE, GattAttributes.FIRMWARE_REVISION);
         } else if (mSensorMetadata.batteryLevel == null) {
             readCharacteristic(GattAttributes.BATTERY_SERVICE, GattAttributes.BATTERY_LEVEL);
-        }
-    }
-
-    public void readCharacteristic(UUID serviceUUID, UUID characteristicUUID) {
-        if (mBluetoothGatt == null) {
-            Log.w(TAG, "readCharacteristic: No device connected");
-            return;
-        }
-
-        BluetoothGattService mDI = mBluetoothGatt.getService(serviceUUID);
-        if (mDI == null) {
-            Log.w(TAG, "readCharacteristic: Service not found: " + serviceUUID);
-            return;
-        }
-        BluetoothGattCharacteristic characteristic = mDI.getCharacteristic(characteristicUUID);
-        if (characteristic == null) {
-            Log.w(TAG, "readCharacteristic(): Characteristic not found: " + characteristicUUID);
-            return;
-        }
-        boolean ok = mBluetoothGatt.readCharacteristic(characteristic);
-        if (!ok) {
-            Log.w(TAG, "readCharacteristic() not OK: " + characteristicUUID);
         }
     }
 
@@ -175,11 +149,6 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
             return false;
         }
 
-/*        if (selectedFlowSensor == null) {
-            Log.w(TAG, "connect: No flow sensor selected");
-            return false;
-        }*/
-
         if (mBluetoothGatt != null) {
             if (mBluetoothGatt.getDevice().equals(selectedFlowSensor)) {
                 Log.d(TAG, "connect: Already connected to a device");
@@ -219,14 +188,39 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
     }
 
     public int getConnectionState(BluetoothDevice device) {
-        if (mBluetoothManager == null)
-            return BluetoothGatt.GATT_FAILURE;
+        if (mBluetoothManager == null) return BluetoothGatt.GATT_FAILURE;
 
         return mBluetoothManager.getConnectionState(device, BluetoothGatt.GATT);
     }
 
     public BluetoothDevice getConnectedSensor() {
         return mBluetoothGatt == null ? null : mBluetoothGatt.getDevice();
+    }
+
+    public BluetoothAdapter getBluetoothAdapter() {
+        return mBluetoothAdapter;
+    }
+
+    public void readCharacteristic(UUID serviceUUID, UUID characteristicUUID) {
+        if (mBluetoothGatt == null) {
+            Log.w(TAG, "readCharacteristic: No device connected");
+            return;
+        }
+
+        BluetoothGattService mDI = mBluetoothGatt.getService(serviceUUID);
+        if (mDI == null) {
+            Log.w(TAG, "readCharacteristic: Service not found: " + serviceUUID);
+            return;
+        }
+        BluetoothGattCharacteristic characteristic = mDI.getCharacteristic(characteristicUUID);
+        if (characteristic == null) {
+            Log.w(TAG, "readCharacteristic(): Characteristic not found: " + characteristicUUID);
+            return;
+        }
+        boolean ok = mBluetoothGatt.readCharacteristic(characteristic);
+        if (!ok) {
+            Log.w(TAG, "readCharacteristic() not OK: " + characteristicUUID);
+        }
     }
 
     private void decodeCharacteristic(final BluetoothGattCharacteristic characteristic, boolean store) {
@@ -385,9 +379,12 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
         if (mSensorMetadata.isComplete() && !mSensorMetadata.completeSent) {
             // We update them as the last field to make sure that all other communication is done
             // before letting the user start to use the services.
-            mSensorMetadata.batterySupported = hasCharacteristic(GattAttributes.BATTERY_SERVICE, GattAttributes.BATTERY_LEVEL);
-            mSensorMetadata.flowSupported = hasCharacteristic(GattAttributes.VENTILATION_SERVICE, GattAttributes.FLOW_MEASUREMENT);
-            mSensorMetadata.heartRateSupposted = hasCharacteristic(GattAttributes.HEART_RATE_SERVICE, GattAttributes.HEART_RATE_MEASUREMENT);
+            mSensorMetadata.batterySupported =
+                    hasCharacteristic(GattAttributes.BATTERY_SERVICE, GattAttributes.BATTERY_LEVEL);
+            mSensorMetadata.flowSupported =
+                    hasCharacteristic(GattAttributes.VENTILATION_SERVICE, GattAttributes.FLOW_MEASUREMENT);
+            mSensorMetadata.heartRateSupposted =
+                    hasCharacteristic(GattAttributes.HEART_RATE_SERVICE, GattAttributes.HEART_RATE_MEASUREMENT);
 
             sendBroadcast(new Intent(ACTION_DEVICE_METADATA_COMPLETE));  // Update GUI
             mSensorMetadata.completeSent = true;
@@ -457,6 +454,4 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
             Log.w(TAG, "EnableNotification(): mBluetoothGatt.writeDescriptor() failed");
         }
     }
-
-
 }

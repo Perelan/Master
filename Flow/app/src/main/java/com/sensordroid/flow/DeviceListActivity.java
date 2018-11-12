@@ -192,7 +192,9 @@ public class DeviceListActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_LOC);
         }
 
-        if (mComHandler.mBluetoothAdapter == null || !mComHandler.mBluetoothAdapter.isEnabled()) {
+        BluetoothAdapter adapter = mComHandler.getBluetoothAdapter();
+
+        if (adapter == null || !adapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
@@ -204,6 +206,7 @@ public class DeviceListActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
         progress.setVisibility(View.VISIBLE);
         refresh.setVisibility(View.INVISIBLE);
+        title.setText("Searching for devices...");
         scanLeDevice(true);
     }
 
@@ -218,32 +221,35 @@ public class DeviceListActivity extends AppCompatActivity {
 
     // Stops scanning after 10 seconds.
     private void scanLeDevice(final boolean enable) {
+        BluetoothAdapter adapter = mComHandler.getBluetoothAdapter();
+
         if (enable) {
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(() -> {
                 mScanning = false;
-                mComHandler.mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                adapter.stopLeScan(mLeScanCallback);
                 showBluetoothDeviceResult();
             }, SCAN_PERIOD);
 
             mScanning = true;
-            mComHandler.mBluetoothAdapter.startLeScan(mLeScanCallback);
+            adapter.startLeScan(mLeScanCallback);
         } else {
             mScanning = false;
-            mComHandler.mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            adapter.stopLeScan(mLeScanCallback);
         }
     }
 
     public void showBluetoothDeviceResult() {
-
         if (devicesDataset.size() == 0) {
             // Bluetooth scanning has terminated, and there are no device results.
+            title.setText("No devices found, try to refresh...");
         } else {
             // Bluetooth scanning has terminated, and there are results.
             title.setText("Device results...");
-            progress.setVisibility(View.INVISIBLE);
-            refresh.setVisibility(View.VISIBLE);
         }
+
+        progress.setVisibility(View.INVISIBLE);
+        refresh.setVisibility(View.VISIBLE);
     }
 
     // Device scan callback.
@@ -306,11 +312,15 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull DeviceViewHolder viewHolder, int i) {
-        viewHolder.mDeviceTitle.setText(mDataset.get(i).getName());
-        viewHolder.mDeviceMac.setText(mDataset.get(i).getAddress());
+        BluetoothDevice device = mDataset.get(i);
 
-        if (mDataset.get(i).getName().equalsIgnoreCase("oarzpot")) {
+        viewHolder.mDeviceTitle.setText(device.getName());
+        viewHolder.mDeviceMac.setText(device.getAddress());
+
+        if (device.getName().equalsIgnoreCase("oarzpot")) {
             viewHolder.mDeviceImage.setImageResource(R.drawable.flow);
+        } else {
+            viewHolder.mDeviceImage.setImageResource(R.drawable.bluetooth);
         }
     }
 
