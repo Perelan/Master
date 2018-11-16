@@ -1,12 +1,14 @@
-package no.uio.cesar;
+package no.uio.cesar.View;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import no.uio.cesar.R;
 import no.uio.ripple.RippleEffect;
 
 public class MonitorActivity extends AppCompatActivity {

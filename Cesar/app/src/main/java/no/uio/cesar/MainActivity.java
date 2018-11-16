@@ -2,15 +2,16 @@ package no.uio.cesar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
-import no.uio.cesar.Fragments.HomeFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import no.uio.cesar.View.MonitorActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,15 +53,5 @@ public class MainActivity extends AppCompatActivity {
 
         mStartButton = findViewById(R.id.start_monitor);
         mStartButton.setOnClickListener(view -> startActivity(new Intent(this, MonitorActivity.class)));
-
-        fragment = new HomeFragment();
-
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
-        ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.slide_out_right);
-        ft.replace(R.id.fragment, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
     }
-
 }
