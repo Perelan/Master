@@ -275,7 +275,6 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
 
     private ArrayList<BluetoothDevice> mDataset;
     private OnDeviceClickListener mClickListener;
-    private Context mContext;
 
     class DeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
