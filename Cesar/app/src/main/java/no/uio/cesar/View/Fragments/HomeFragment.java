@@ -1,4 +1,4 @@
-package no.uio.cesar.Fragments;
+package no.uio.cesar.View.Fragments;
 
 
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import no.uio.cesar.Fragments.Sensor;
 import no.uio.cesar.R;
 
 /**

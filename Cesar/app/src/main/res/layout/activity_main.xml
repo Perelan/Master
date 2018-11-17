@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="no.uio.cesar.Fragments.HomeFragment"
+        android:name="no.uio.cesar.View.Fragments.HomeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

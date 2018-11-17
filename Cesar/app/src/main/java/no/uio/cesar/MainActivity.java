@@ -8,10 +8,16 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import no.uio.cesar.Model.Record;
 import no.uio.cesar.View.MonitorActivity;
+import no.uio.cesar.ViewModel.RecordViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment;
 
     Button mStartButton;
+
+    private RecordViewModel recordViewModel;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
+        recordViewModel.getAllRecords().observe(this, records -> {
+            System.out.println(records.get(0));
+        });
 
         mTextMessage = findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);

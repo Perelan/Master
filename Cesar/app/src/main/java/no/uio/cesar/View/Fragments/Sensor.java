@@ -1,4 +1,4 @@
-package no.uio.cesar.Fragments;
+package no.uio.cesar.View.Fragments;
 
 public class Sensor {
 

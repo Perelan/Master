@@ -1,4 +1,4 @@
-package no.uio.cesar.Fragments;
+package no.uio.cesar.View.Fragments;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import no.uio.cesar.Fragments.Sensor;
 import no.uio.cesar.R;
 
 class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder> {
