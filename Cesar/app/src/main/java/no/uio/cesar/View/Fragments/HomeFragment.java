@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import no.uio.cesar.R;
 
@@ -36,7 +35,7 @@ public class HomeFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mDummyData = new ArrayList<>();
+        /*mDummyData = new ArrayList<>();
 
         mDummyData.add(new Sensor("OarZpot"));
         mDummyData.add(new Sensor("Bitalino"));
@@ -48,7 +47,7 @@ public class HomeFragment extends Fragment {
 
         mAdapter = new DeviceAdapter(mDummyData);
 
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);*/
 
         return v;
     }

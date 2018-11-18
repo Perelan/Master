@@ -53,8 +53,6 @@ public abstract class RecordDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            System.out.println("HERE");
-
             ArrayList<Sample> hr = new ArrayList<>();
             hr.add(new Sample(100, new Date()));
 
