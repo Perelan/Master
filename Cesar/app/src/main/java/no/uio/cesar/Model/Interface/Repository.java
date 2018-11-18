@@ -1,4 +1,4 @@
-package no.uio.cesar.Model;
+package no.uio.cesar.Model.Interface;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import no.uio.cesar.Model.Record;
 
 public class Repository {
     private RecordDao recordDao;

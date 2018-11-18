@@ -1,4 +1,4 @@
-package no.uio.cesar.View.Fragments;
+package no.uio.cesar.View.HomeView;
 
 
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import no.uio.cesar.R;
+import no.uio.cesar.View.Fragments.Sensor;
 
 /**
  * A simple {@link Fragment} subclass.

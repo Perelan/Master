@@ -1,4 +1,4 @@
-package no.uio.cesar.View.Fragments;
+package no.uio.cesar.View.RecordView;
 
 
 import android.os.Bundle;

@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import no.uio.cesar.Model.Record;
-import no.uio.cesar.Model.Repository;
+import no.uio.cesar.Model.Interface.Repository;
 
 public class RecordViewModel extends AndroidViewModel {
     private Repository repository;
