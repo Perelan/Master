@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "18499d5ec32c6c68b16a4deb03518a5e",
+    "identityHash": "08a93313a58fa38c85e6b087caf6ca4b",
     "entities": [
       {
         "tableName": "record_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `createdAt` INTEGER, `updatedAt` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `createdAt` INTEGER, `updatedAt` INTEGER, `hr` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,6 +31,12 @@
             "columnName": "updatedAt",
             "affinity": "INTEGER",
             "notNull": false
+          },
+          {
+            "fieldPath": "hr",
+            "columnName": "hr",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -46,7 +52,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"18499d5ec32c6c68b16a4deb03518a5e\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"08a93313a58fa38c85e6b087caf6ca4b\")"
     ]
   }
 }

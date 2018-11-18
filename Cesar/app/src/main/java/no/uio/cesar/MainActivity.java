@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         recordViewModel.getAllRecords().observe(this, records -> {
-            System.out.println(records.get(0));
+            System.out.println(">>> new data");
+
         });
 
         mTextMessage = findViewById(R.id.message);

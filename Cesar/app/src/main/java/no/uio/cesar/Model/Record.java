@@ -15,9 +15,12 @@ public class Record {
 
     private Date createdAt, updatedAt;
 
+    private ArrayList<Sample> hr;
 
-    public Record(String name) {
+    public Record(String name, ArrayList<Sample> hr) {
         this.name = name;
+        this.hr = new ArrayList<>();
+        this.hr = hr;
 
         createdAt = new Date();
         updatedAt = new Date();
@@ -49,5 +52,9 @@ public class Record {
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<Sample> getHr() {
+        return hr;
     }
 }

@@ -1,8 +1,13 @@
 package no.uio.cesar.Utils;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 import androidx.room.TypeConverter;
+import no.uio.cesar.Model.Sample;
 
 public class Converters {
 
@@ -15,4 +20,15 @@ public class Converters {
     public static Long dateToTimestamp(Date date) {
         return date == null ? null : date.getTime();
     }
+
+    @TypeConverter
+    public static String fromArrayList(ArrayList<Sample> list) {
+        return list == null ? null : new Gson().toJson(list);
+    }
+
+    @TypeConverter
+    public static ArrayList<Sample> fromString(String value) {
+        return new Gson().fromJson(value, new TypeToken<ArrayList<Sample>>(){}.getType());
+    }
+
 }

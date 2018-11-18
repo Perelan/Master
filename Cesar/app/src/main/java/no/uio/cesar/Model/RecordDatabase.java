@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -51,13 +52,13 @@ public abstract class RecordDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            ArrayList<Integer> hr = new ArrayList<>();
-            hr.add(100);
 
-            ArrayList<Integer> respiration = new ArrayList<>();
-            respiration.add(1000);
+            System.out.println("HERE");
 
-            recordDao.insert(new Record("test1"));
+            ArrayList<Sample> hr = new ArrayList<>();
+            hr.add(new Sample(100, new Date()));
+
+            recordDao.insert(new Record("test1", hr));
             return null;
         }
     }

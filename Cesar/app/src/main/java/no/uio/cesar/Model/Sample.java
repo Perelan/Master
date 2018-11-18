@@ -1,21 +1,22 @@
 package no.uio.cesar.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Sample {
-    private ArrayList<Integer> sample;
-    private Long timestamp;
+    private int sample;
+    private Date timestamp;
 
-    public Sample(ArrayList<Integer> sample, Long timestamp) {
+    public Sample(int sample, Date timestamp) {
         this.sample = sample;
         this.timestamp = timestamp;
     }
 
-    public ArrayList<Integer> getSample() {
+    public int getSample() {
         return sample;
     }
 
-    public Long getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 }
