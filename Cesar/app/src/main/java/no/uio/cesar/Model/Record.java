@@ -11,18 +11,16 @@ public class Record {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String name = "Sleep #" + id;
+    private String name;
 
-    private ArrayList<Integer> hr;
-    private ArrayList<Integer> respiration;
+    private Date createdAt, updatedAt;
 
-    private Date timestamp;
 
-    public Record(ArrayList<Integer> hr, ArrayList<Integer> respiration) {
-        this.hr = hr;
-        this.respiration = respiration;
-        hr = new ArrayList<>();
-        respiration = new ArrayList<>();
+    public Record(String name) {
+        this.name = name;
+
+        createdAt = new Date();
+        updatedAt = new Date();
     }
 
     public void setId(int id) {
@@ -33,19 +31,23 @@ public class Record {
         return id;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public String getName() {
         return name;
-    }
-
-    public ArrayList<Integer> getHr() {
-        return hr;
-    }
-
-    public ArrayList<Integer> getRespiration() {
-        return respiration;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
     }
 }

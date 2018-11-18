@@ -3,7 +3,6 @@ package no.uio.cesar.Model;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -12,6 +11,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+import no.uio.cesar.Utils.Converters;
 
 @Database(entities = {Record.class}, version = 1)
 @TypeConverters({Converters.class})
@@ -38,8 +38,6 @@ public abstract class RecordDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             new PopulateDummyDataAsyncTask(instance).execute();
-
-
         }
     };
 
@@ -59,7 +57,7 @@ public abstract class RecordDatabase extends RoomDatabase {
             ArrayList<Integer> respiration = new ArrayList<>();
             respiration.add(1000);
 
-            recordDao.insert(new Record(hr, respiration));
+            recordDao.insert(new Record("test1"));
             return null;
         }
     }

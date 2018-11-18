@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mStartButton = findViewById(R.id.start_monitor);
-        mStartButton.setOnClickListener(view -> startActivity(new Intent(this, MonitorActivity.class)));
+        mStartButton.setOnClickListener(view ->
+                startActivity(new Intent(this, MonitorActivity.class)));
     }
 }

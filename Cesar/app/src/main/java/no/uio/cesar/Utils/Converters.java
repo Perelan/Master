@@ -1,4 +1,4 @@
-package no.uio.cesar.Model;
+package no.uio.cesar.Utils;
 
 import java.util.Date;
 
