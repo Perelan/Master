@@ -1,4 +1,4 @@
-package no.uio.cesar.View.Fragments;
+package no.uio.cesar.View.HomeView;
 
 import android.view.LayoutInflater;
 import android.view.View;

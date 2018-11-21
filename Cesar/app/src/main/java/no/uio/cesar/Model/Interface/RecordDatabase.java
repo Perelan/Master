@@ -16,7 +16,7 @@ import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
 import no.uio.cesar.Utils.Converters;
 
-@Database(entities = {Record.class}, version = 1)
+@Database(entities = {Record.class}, version = 3)
 @TypeConverters({Converters.class})
 public abstract class RecordDatabase extends RoomDatabase {
 
@@ -27,7 +27,7 @@ public abstract class RecordDatabase extends RoomDatabase {
     public static synchronized RecordDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    RecordDatabase.class,"record_database")
+                    RecordDatabase.class,"record.db")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -42,6 +42,7 @@ public abstract class RecordDatabase extends RoomDatabase {
             super.onCreate(db);
             new PopulateDummyDataAsyncTask(instance).execute();
         }
+
     };
 
     private static class PopulateDummyDataAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -59,6 +60,7 @@ public abstract class RecordDatabase extends RoomDatabase {
             hr.add(new Sample(100, new Date()));
 
             recordDao.insert(new Record("test1", hr));
+
             return null;
         }
     }

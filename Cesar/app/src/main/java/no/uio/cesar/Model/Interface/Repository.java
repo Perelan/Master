@@ -47,6 +47,7 @@ public class Repository {
         protected Void doInBackground(Record... records) {
             // Single record passed, thus accessing the only element
             recordDao.insert(records[0]);
+
             return null;
         }
     }

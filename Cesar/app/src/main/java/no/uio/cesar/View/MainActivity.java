@@ -32,12 +32,15 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    setTitle("Home");
                     selectedFragment = new HomeFragment();
                     break;
                 case R.id.navigation_dashboard:
+                    setTitle("Records");
                     selectedFragment = new RecordFragment();
                     break;
                 case R.id.navigation_notifications:
+                    setTitle("Modules");
                     selectedFragment = new RecordFragment();
                     break;
             }
@@ -49,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         recordViewModel.getAllRecords().observe(this, records -> {
-            System.out.println(">>> new data");
-
+            System.out.println(">>> new data " + records.size());
         });
     }
 

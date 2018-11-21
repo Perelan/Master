@@ -30,17 +30,6 @@
 
     </no.uio.ripple.RippleEffect>
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ripple"/>
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
