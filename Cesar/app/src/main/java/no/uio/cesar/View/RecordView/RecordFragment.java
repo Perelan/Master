@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class RecordFragment extends Fragment {
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         recordViewModel.getAllRecords().observe(this, records -> {
             System.out.println(">>> new data " + records.size());
+
             adapter.insertRecord(records);
         });
 
