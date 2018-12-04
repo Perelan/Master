@@ -14,6 +14,7 @@
         android:layout_height="400dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:clickable="false"
         app:rb_radius="32dp">
 
         <ImageView
@@ -25,13 +26,6 @@
             android:gravity="center"
             android:src="@drawable/bluetooth"
             android:text="--\n--" />
-
-
     </no.uio.ripple.RippleEffect>
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
