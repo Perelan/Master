@@ -24,7 +24,10 @@
             android:name=".View.MonitorActivity"
             android:label="@string/title_activity_monitor"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".View.LandingActivity"></activity>
+        <activity
+            android:name=".View.LandingActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            ></activity>
     </application>
 
 </manifest>

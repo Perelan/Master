@@ -13,22 +13,22 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
-import no.uio.cesar.Model.User;
+import no.uio.cesar.Utils.Constant;
 import no.uio.cesar.Utils.Converters;
 
-@androidx.room.Database(entities = {Record.class, User.class}, version = 4)
+@androidx.room.Database(entities = {Record.class}, version = Constant.DATABASE_VERSION)
 @TypeConverters({Converters.class})
 public abstract class Database extends RoomDatabase {
 
     private static Database instance;
 
     public abstract RecordDao recordDao();
-    public abstract UserDao userDao();
 
     public static synchronized Database getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    Database.class,"record.db")
+                    Database.class,
+                    Constant.DATABASE_NAME)
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();

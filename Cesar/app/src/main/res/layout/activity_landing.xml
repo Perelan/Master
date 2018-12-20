@@ -12,7 +12,7 @@
         android:id="@+id/view_flipper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/next"
+        android:layout_above="@id/viewflipper_buttons"
         android:layout_marginBottom="-1dp">
 
         <RelativeLayout
@@ -76,27 +76,29 @@
             </LinearLayout>
 
             <RadioGroup
-
+                android:id="@+id/gender_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/gender"
                 android:layout_centerHorizontal="true"
+                android:checkedButton="@id/radio_male"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton6"
+                    android:id="@+id/radio_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="RadioButton" />
+
+                    android:text="Male" />
 
                 <RadioButton
-                    android:id="@+id/radioButton5"
+                    android:id="@+id/radio_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="RadioButton" />
+                    android:text="Female" />
             </RadioGroup>
 
         </RelativeLayout>
@@ -117,8 +119,8 @@
                 android:textSize="32sp" />
 
             <ImageView
-                android:layout_width="250dp"
-                android:layout_height="200dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 app:srcCompat="@drawable/man" />
@@ -146,7 +148,7 @@
                 android:layout_marginBottom="87dp"
                 android:textSize="20sp"
                 android:textColor="@android:color/white"
-                android:text="185cm" />
+                android:text="185 cm" />
 
         </RelativeLayout>
 
@@ -165,8 +167,8 @@
                 android:textSize="32sp" />
 
             <ImageView
-                android:layout_width="250dp"
-                android:layout_height="200dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 app:srcCompat="@drawable/man" />
@@ -195,34 +197,100 @@
                 android:layout_marginBottom="87dp"
                 android:textSize="20sp"
                 android:textColor="@android:color/white"
-                android:text="185cm" />
+                android:text="60 kg" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:text="What's your name?"
+                android:textColor="@android:color/white"
+                android:textSize="32sp" />
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/man"
+                app:srcCompat="@drawable/man" />
+
+            <EditText
+                android:id="@+id/edittext_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="83dp"
+                android:ellipsize="start"
+                android:ems="10"
+                android:gravity="center"
+                android:layout_below="@id/man"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
 
         </RelativeLayout>
 
     </ViewFlipper>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="148dp"
-        android:layout_marginRight="148dp"
-        android:layout_marginBottom="46dp"
-        android:onClick="nextView"
-        app:backgroundTint="@color/battery" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/next3"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="46dp"
-        android:layout_toStartOf="@+id/next"
-        android:onClick="previousView"
-        app:backgroundTint="@color/hr" />
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/viewflipper_buttons"
+        >
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="previousView"
+            android:layout_marginRight="5dp"
+            android:visibility="gone"
+            app:backgroundTint="@color/hr" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="nextView"
+            app:backgroundTint="@color/battery" />
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/get_started"
+            android:layout_width="200dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardBackgroundColor="@color/colorBackground"
+            card_view:cardCornerRadius="30dp"
+            android:visibility="gone"
+            card_view:cardElevation="5dp">
+
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="GET STARTED"
+                android:textColor="@android:color/background_light"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
 </RelativeLayout>
