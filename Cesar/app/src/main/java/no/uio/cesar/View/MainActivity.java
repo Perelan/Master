@@ -1,26 +1,39 @@
 package no.uio.cesar.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import no.uio.cesar.R;
 import no.uio.cesar.View.HomeView.HomeFragment;
 import no.uio.cesar.View.RecordView.RecordFragment;
 import no.uio.cesar.ViewModel.RecordViewModel;
+import no.uio.cesar.ViewModel.UserViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecordViewModel recordViewModel;
+    private UserViewModel userViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
+        if (userViewModel.getUserCount() == 0) {
+            System.out.println("Here");
+
+            startActivity(new Intent(this, LandingActivity.class));
+
+        }
 
         // Inject the home fragment initially.
         commitFragmentTransaction(new HomeFragment());
@@ -62,6 +75,4 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, fragment)
                 .commit();
     }
-
-
 }

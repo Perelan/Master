@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".View.RecordView.RecordFragment">
+    tools:context=".View.RecordView.RecordItemFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/record_list_view"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/record_item" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

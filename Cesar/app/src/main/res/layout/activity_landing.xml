@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".View.LandingActivity">
+
+
+    <ViewFlipper
+        android:id="@+id/view_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/next"
+        android:layout_marginBottom="-1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:text="CESAR"
+                android:textColor="@android:color/white"
+                android:textSize="32sp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_below="@id/title"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/sleep" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:text="Choose Gender"
+                android:textColor="@android:color/white"
+                android:textSize="32sp" />
+
+            <LinearLayout
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_gender"
+                android:layout_marginTop="50dp"
+                android:weightSum="1.0">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:layout_weight="0.50"
+                    app:srcCompat="@drawable/man" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:layout_weight="0.50"
+                    android:src="@drawable/woman"
+
+                    />
+            </LinearLayout>
+
+            <RadioGroup
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gender"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="RadioButton" />
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RadioButton" />
+            </RadioGroup>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:text="Choose Height"
+                android:textColor="@android:color/white"
+                android:textSize="32sp" />
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/man" />
+
+            <SeekBar
+                android:id="@+id/sb_height"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:max="250"
+                android:min="100"
+                android:progress="180"
+                android:rotation="270" />
+
+            <TextView
+                android:id="@+id/height_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="176dp"
+                android:layout_marginRight="176dp"
+                android:layout_marginBottom="87dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:text="185cm" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:text="Choose Weight"
+                android:textColor="@android:color/white"
+                android:textSize="32sp" />
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/man" />
+
+            <SeekBar
+                android:id="@+id/sb_weight"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="83dp"
+                android:layout_marginBottom="45dp"
+                android:max="300"
+                android:min="30"
+                android:progress="60" />
+
+            <TextView
+                android:id="@+id/weight_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="176dp"
+                android:layout_marginRight="176dp"
+                android:layout_marginBottom="87dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:text="185cm" />
+
+        </RelativeLayout>
+
+    </ViewFlipper>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="148dp"
+        android:layout_marginRight="148dp"
+        android:layout_marginBottom="46dp"
+        android:onClick="nextView"
+        app:backgroundTint="@color/battery" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/next3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="46dp"
+        android:layout_toStartOf="@+id/next"
+        android:onClick="previousView"
+        app:backgroundTint="@color/hr" />
+
+</RelativeLayout>

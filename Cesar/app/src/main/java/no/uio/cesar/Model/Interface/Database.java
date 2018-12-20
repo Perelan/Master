@@ -7,27 +7,28 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import androidx.annotation.NonNull;
-import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
+import no.uio.cesar.Model.User;
 import no.uio.cesar.Utils.Converters;
 
-@Database(entities = {Record.class}, version = 3)
+@androidx.room.Database(entities = {Record.class, User.class}, version = 4)
 @TypeConverters({Converters.class})
-public abstract class RecordDatabase extends RoomDatabase {
+public abstract class Database extends RoomDatabase {
 
-    private static RecordDatabase instance;
+    private static Database instance;
 
     public abstract RecordDao recordDao();
+    public abstract UserDao userDao();
 
-    public static synchronized RecordDatabase getInstance(Context context) {
+    public static synchronized Database getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    RecordDatabase.class,"record.db")
+                    Database.class,"record.db")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -49,7 +50,7 @@ public abstract class RecordDatabase extends RoomDatabase {
 
         private RecordDao recordDao;
 
-        PopulateDummyDataAsyncTask(RecordDatabase db) {
+        PopulateDummyDataAsyncTask(Database db) {
             recordDao = db.recordDao();
         }
 

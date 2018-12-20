@@ -30,5 +30,4 @@ public class Converters {
     public static ArrayList<Sample> fromString(String value) {
         return new Gson().fromJson(value, new TypeToken<ArrayList<Sample>>(){}.getType());
     }
-
 }

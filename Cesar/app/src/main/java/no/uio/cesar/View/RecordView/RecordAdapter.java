@@ -16,7 +16,7 @@ import no.uio.cesar.R;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordViewHolder> {
 
-    class RecordViewHolder extends RecyclerView.ViewHolder {
+    class RecordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView tvTitle;
 
@@ -24,15 +24,22 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.record_title);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onRecordItemClick(v, this.getAdapterPosition());
         }
     }
 
     private List<Record> mRecords;
+    private RecordViewClickListener listener;
 
-    RecordAdapter() {
+    RecordAdapter(RecordViewClickListener listener) {
         mRecords = new ArrayList<>();
-        mRecords.add(new Record("Hei2", null));
-        System.out.println("HERE " + mRecords.size());
+        this.listener = listener;
     }
 
     @NonNull
@@ -48,8 +55,6 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     public void onBindViewHolder(@NonNull RecordViewHolder holder, int position) {
         Record currentRecord = mRecords.get(position);
 
-        System.out.println("HERE");
-
         holder.tvTitle.setText(currentRecord.getName());
     }
 
@@ -58,10 +63,11 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
         return mRecords.size();
     }
 
+    public List<Record> getRecords() { return mRecords; }
+
     public void insertRecord(List<Record> records) {
-        System.out.println("HAHA");
-        System.out.println(records.size());
         this.mRecords = records;
         notifyDataSetChanged();
     }
+
 }

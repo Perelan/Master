@@ -20,11 +20,13 @@ import no.uio.cesar.ViewModel.RecordViewModel;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecordFragment extends Fragment {
+public class RecordFragment extends Fragment implements RecordViewClickListener {
 
     private RecyclerView mRecyclerView;
 
     private RecordViewModel recordViewModel;
+
+    private RecordAdapter adapter;
 
     public RecordFragment() {
         // Required empty public constructor
@@ -46,7 +48,8 @@ public class RecordFragment extends Fragment {
         ));
         mRecyclerView.setHasFixedSize(true);
 
-        final RecordAdapter adapter = new RecordAdapter();
+        adapter = new RecordAdapter(this);
+
         mRecyclerView.setAdapter(adapter);
 
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
@@ -59,4 +62,16 @@ public class RecordFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onRecordItemClick(View v, int position) {
+        System.out.println(position);
+        //recordViewModel.delete(adapter.getRecords().get(position));
+
+        RecordItemFragment fragment = new RecordItemFragment();
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment, null)
+                .addToBackStack(null)
+                .commit();
+    }
 }

@@ -22,15 +22,15 @@ public class RecordViewModel extends AndroidViewModel {
     }
 
     public void insert(Record record) {
-        repository.insert(record);
+        repository.insertRecord(record);
     }
 
     public void update(Record record) {
-        repository.update(record);
+        repository.updateRecord(record);
     }
 
     public void delete(Record record) {
-        repository.delete(record);
+        repository.deleteRecord(record);
     }
 
     public LiveData<List<Record>> getAllRecords() {
