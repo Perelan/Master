@@ -119,11 +119,20 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
 
     @Override
     public void onLaunchModuleClick(String packageName) {
+        Intent launch = getContext().getPackageManager().getLaunchIntentForPackage(packageName);
 
+        // TODO: Send bundle with all data
+
+        startActivity(launch);
     }
 
     @Override
     public void onNewModuleClick() {
         displayAppsDialog();
+    }
+
+    @Override
+    public void onDeleteClick(Module module) {
+        moduleViewModel.delete(module);
     }
 }

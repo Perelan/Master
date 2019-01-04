@@ -44,7 +44,6 @@ public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ModulesV
         itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_module, parent, false);
 
-
         return new ModulesViewHolder(itemView);
     }
 
@@ -66,6 +65,17 @@ public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ModulesV
                 Drawable d = context.getPackageManager().getApplicationIcon(module.getPackageName());
                 holder.moduleIcon.setImageDrawable(d);
             } catch(PackageManager.NameNotFoundException ignored) { }
+
+            holder.itemView.setOnClickListener(view -> {
+                listener.onLaunchModuleClick(module.getPackageName());
+            });
+
+            holder.itemView.setOnLongClickListener(view -> {
+                listener.onDeleteClick(module);
+
+                return true;
+            });
+
         }
     }
 

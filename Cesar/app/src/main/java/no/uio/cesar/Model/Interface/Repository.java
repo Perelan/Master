@@ -16,8 +16,6 @@ public class Repository {
     private ModuleDao moduleDao;
     private LiveData<List<Module>> allModules;
 
-    private int userCount;
-
     public Repository(Application application) {
         Database database = Database.getInstance(application);
 
@@ -46,11 +44,8 @@ public class Repository {
     }
 
     public void deleteModule(Module module) {
-
+        new DeleteModuleAsyncTask(moduleDao).execute(module);
     }
-
-
-    public int getUserCount() { return userCount; }
 
     public LiveData<List<Record>> getAllRecords() {
         return allRecords;
@@ -105,6 +100,20 @@ public class Repository {
             // Single record passed, thus accessing the only element
 
             recordDao.delete(records[0]);
+
+            return null;
+        }
+    }
+
+    private static class DeleteModuleAsyncTask extends AsyncTask<Module, Void, Void> {
+
+        private ModuleDao moduleDao;
+
+        private DeleteModuleAsyncTask(ModuleDao moduleDao) { this.moduleDao = moduleDao; }
+
+        @Override
+        public Void doInBackground(Module... modules) {
+            moduleDao.delete(modules[0]);
 
             return null;
         }
