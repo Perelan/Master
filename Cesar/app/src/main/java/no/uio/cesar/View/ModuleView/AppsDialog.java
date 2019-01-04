@@ -24,6 +24,8 @@ public class AppsDialog extends AlertDialog.Builder implements AppsClickListener
 
     private AppsClickListener listener;
 
+    private AppsAdapter adapter;
+
     public AppsDialog(Context context, AppsClickListener listener) {
         super(context);
         this.listener = listener;
@@ -39,23 +41,28 @@ public class AppsDialog extends AlertDialog.Builder implements AppsClickListener
         RecyclerView recyclerView = dialogView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        AppsAdapter adapter = new AppsAdapter(getContext(), this);
+        adapter = new AppsAdapter(getContext(), this);
         recyclerView.setAdapter(adapter);
 
-        final PackageManager pm = getContext().getPackageManager();
-        List<PackageInfo> packages = pm.getInstalledPackages(0);
-
-        for (PackageInfo app : packages) {
-            if (!isSystemPackage(app)) {
-                adapter.addItem(app);
-            }
-        }
+        getAndFilterInstalledApps();
 
         this.setView(dialogView);
     }
 
-    private boolean isSystemPackage(PackageInfo pkgInfo) {
-        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
+
+    public void getAndFilterInstalledApps() {
+        final PackageManager pm = getContext().getPackageManager();
+        List<PackageInfo> packages = pm.getInstalledPackages(0);
+
+        for (PackageInfo app : packages) {
+            if (!isSystemPackage(app) && !app.packageName.equals(getContext().getPackageName())) {
+                adapter.addItem(app);
+            }
+        }
+    }
+
+    private boolean isSystemPackage(PackageInfo app) {
+        return ((app.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
     }
 
 
