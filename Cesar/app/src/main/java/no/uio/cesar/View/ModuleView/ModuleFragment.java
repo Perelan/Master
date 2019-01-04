@@ -1,6 +1,7 @@
 package no.uio.cesar.View.ModuleView;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -37,6 +38,8 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
 
     private ModuleViewModel moduleViewModel;
 
+    private Context context;
+
     public static ModuleFragment newInstance() {
         return new ModuleFragment();
     }
@@ -49,7 +52,7 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
 
         moduleRv = v.findViewById(R.id.module_recyclerview);
 
-        adapter = new ModulesAdapter(getContext(), this);
+        adapter = new ModulesAdapter(context, this);
         moduleRv.setAdapter(adapter);
         moduleRv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
@@ -63,12 +66,16 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
         return v;
     }
 
-    private void displayAppsDialog() {
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
-        AppsDialog builder = new AppsDialog(getContext(), this);
-        builder.setView(getLayoutInflater());
-
-        dialog = builder.show();
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.context = null;
     }
 
     @Override
@@ -76,17 +83,15 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
         dialog.dismiss();
         if (app == null) return;
 
-        String appName = app.applicationInfo.loadLabel(getContext().getPackageManager()).toString();
+        String appName = app.applicationInfo.loadLabel(context.getPackageManager()).toString();
         String packageName = app.packageName;
 
         moduleViewModel.insert(new Module(appName, packageName));
-
-        System.out.println(app.applicationInfo.loadLabel(getContext().getPackageManager()));
     }
 
     @Override
     public void onLaunchModuleClick(String packageName) {
-        Intent launch = getContext().getPackageManager().getLaunchIntentForPackage(packageName);
+        Intent launch = context.getPackageManager().getLaunchIntentForPackage(packageName);
 
         // TODO: Send bundle with all data
 
@@ -101,5 +106,13 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
     @Override
     public void onDeleteClick(Module module) {
         moduleViewModel.delete(module);
+    }
+
+    private void displayAppsDialog() {
+
+        AppsDialog builder = new AppsDialog(context, this);
+        builder.setView(getLayoutInflater());
+
+        dialog = builder.show();
     }
 }
