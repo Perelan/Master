@@ -1,6 +1,5 @@
 package no.uio.cesar.View.RecordView;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     @Override
     public RecordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.record_item, parent, false);
+                .inflate(R.layout.item_record, parent, false);
 
         return new RecordViewHolder(itemView);
     }

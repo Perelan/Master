@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Constant;
+import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.View.HomeView.HomeFragment;
+import no.uio.cesar.View.ModuleView.ModuleFragment;
 import no.uio.cesar.View.RecordView.RecordFragment;
 import no.uio.cesar.ViewModel.RecordViewModel;
 
@@ -40,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        sharedPref.edit().clear().apply();
-
         // Inject the home fragment initially.
-        commitFragmentTransaction(new HomeFragment());
+        Uti.commitFragmentTransaction(this, new ModuleFragment());
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> {
@@ -56,16 +56,16 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new HomeFragment();
                     break;
                 case R.id.navigation_dashboard:
-                    setTitle("Records");
-                    selectedFragment = new RecordFragment();
+                    setTitle("Modules");
+                    selectedFragment = ModuleFragment.newInstance();
                     break;
                 case R.id.navigation_notifications:
-                    setTitle("Modules");
+                    setTitle("Records");
                     selectedFragment = new RecordFragment();
                     break;
             }
 
-            commitFragmentTransaction(selectedFragment);
+            Uti.commitFragmentTransaction(this, selectedFragment);
 
             return true;
         });
@@ -74,12 +74,5 @@ public class MainActivity extends AppCompatActivity {
         recordViewModel.getAllRecords().observe(this, records -> {
             System.out.println(">>> new data " + records.size());
         });
-    }
-
-    private void commitFragmentTransaction(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit();
     }
 }

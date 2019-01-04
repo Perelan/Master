@@ -36,7 +36,7 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
     @Override
     public DeviceViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.sensor_item, viewGroup, false);
+                .inflate(R.layout.item_sensor, viewGroup, false);
 
         return new DeviceViewHolder(v);
     }
