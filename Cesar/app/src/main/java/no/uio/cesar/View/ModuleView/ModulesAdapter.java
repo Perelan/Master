@@ -19,8 +19,6 @@ import no.uio.cesar.R;
 
 public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ModulesViewHolder> {
 
-    private final int NEW_MODULE = 1;
-
     List<Module> modules = new ArrayList<>();
 
     private Context context;
@@ -77,11 +75,6 @@ public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ModulesV
             });
 
         }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return position == modules.size() ? NEW_MODULE : 0;
     }
 
     @Override

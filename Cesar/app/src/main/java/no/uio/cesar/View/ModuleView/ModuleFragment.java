@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -62,57 +63,23 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
         return v;
     }
 
-
-
-    // Todo: Move this into separat class
     private void displayAppsDialog() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-        builder.setTitle("Install a module");
-        builder.setCancelable(true);
-
-        builder.setNegativeButton("Cancel", (dialog, which) -> { dialog.dismiss(); });
-
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.fragment_dialog, null);
-
-        builder.setView(dialogView);
+        AppsDialog builder = new AppsDialog(getContext(), this);
+        builder.setView(getLayoutInflater());
 
         dialog = builder.show();
-
-        RecyclerView rv = dialogView.findViewById(R.id.recycler_view);
-
-        AppsAdapter adapter = new AppsAdapter(getContext(), this);
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        final PackageManager pm = getContext().getPackageManager();
-        List<PackageInfo> packages = pm.getInstalledPackages(0);
-
-        for (PackageInfo app : packages) {
-            if (!isSystemPackage(app)) {
-                adapter.addItem(app);
-            }
-        }
-    }
-    private boolean isSystemPackage(PackageInfo pkgInfo) {
-        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
     }
 
     @Override
     public void onAppItemClick(PackageInfo app) {
-        if (app == null) return;
         dialog.dismiss();
+        if (app == null) return;
 
         String appName = app.applicationInfo.loadLabel(getContext().getPackageManager()).toString();
         String packageName = app.packageName;
 
         moduleViewModel.insert(new Module(appName, packageName));
-
-        //Intent launch = getContext().getPackageManager().getLaunchIntentForPackage(app.packageName);
-
-        //startActivity(launch);
 
         System.out.println(app.applicationInfo.loadLabel(getContext().getPackageManager()));
     }
