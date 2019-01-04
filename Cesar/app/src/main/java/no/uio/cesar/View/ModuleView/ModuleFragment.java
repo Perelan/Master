@@ -18,16 +18,23 @@ import android.widget.Button;
 
 import java.util.List;
 
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import no.uio.cesar.Model.Module;
 import no.uio.cesar.R;
+import no.uio.cesar.ViewModel.ModuleViewModel;
 
-public class ModuleFragment extends Fragment implements AppsClickListener {
+public class ModuleFragment extends Fragment implements AppsClickListener, ModuleClickListener {
 
-    private AppsAdapter adapter;
+    private ModulesAdapter adapter;
     private AlertDialog dialog;
 
     private RecyclerView moduleRv;
+
+    private ModuleViewModel moduleViewModel;
 
     public static ModuleFragment newInstance() {
         return new ModuleFragment();
@@ -39,21 +46,25 @@ public class ModuleFragment extends Fragment implements AppsClickListener {
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_module, container, false);
 
-        Button b = v.findViewById(R.id.button_start);
-
         moduleRv = v.findViewById(R.id.module_recyclerview);
 
-        b.setOnClickListener(view -> {
-            displayAppsDialog();
+        adapter = new ModulesAdapter(getContext(), this);
+        moduleRv.setAdapter(adapter);
+        moduleRv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+        moduleViewModel = ViewModelProviders.of(this).get(ModuleViewModel.class);
+        moduleViewModel.getAllModules().observe(this, modules -> {
+            System.out.println("New module");
+
+            adapter.insertModules(modules);
         });
 
         return v;
     }
 
-    private boolean isSystemPackage(PackageInfo pkgInfo) {
-        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
-    }
 
+
+    // Todo: Move this into separat class
     private void displayAppsDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -72,7 +83,7 @@ public class ModuleFragment extends Fragment implements AppsClickListener {
 
         RecyclerView rv = dialogView.findViewById(R.id.recycler_view);
 
-        adapter = new AppsAdapter(getContext(), this);
+        AppsAdapter adapter = new AppsAdapter(getContext(), this);
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -85,23 +96,34 @@ public class ModuleFragment extends Fragment implements AppsClickListener {
             }
         }
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    private boolean isSystemPackage(PackageInfo pkgInfo) {
+        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
     }
 
     @Override
-    public void onAppItemClick(View v, int position) {
-        PackageInfo app = adapter.getItem(position);
+    public void onAppItemClick(PackageInfo app) {
         if (app == null) return;
-
         dialog.dismiss();
 
-        Intent launch = getContext().getPackageManager().getLaunchIntentForPackage(app.packageName);
+        String appName = app.applicationInfo.loadLabel(getContext().getPackageManager()).toString();
+        String packageName = app.packageName;
 
-        startActivity(launch);
+        moduleViewModel.insert(new Module(appName, packageName));
+
+        //Intent launch = getContext().getPackageManager().getLaunchIntentForPackage(app.packageName);
+
+        //startActivity(launch);
 
         System.out.println(app.applicationInfo.loadLabel(getContext().getPackageManager()));
+    }
+
+    @Override
+    public void onLaunchModuleClick(String packageName) {
+
+    }
+
+    @Override
+    public void onNewModuleClick() {
+        displayAppsDialog();
     }
 }

@@ -6,11 +6,15 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import no.uio.cesar.Model.Module;
 import no.uio.cesar.Model.Record;
 
 public class Repository {
     private RecordDao recordDao;
     private LiveData<List<Record>> allRecords;
+
+    private ModuleDao moduleDao;
+    private LiveData<List<Module>> allModules;
 
     private int userCount;
 
@@ -19,6 +23,9 @@ public class Repository {
 
         recordDao = database.recordDao();
         allRecords = recordDao.getAllRecords();
+
+        moduleDao = database.moduleDao();
+        allModules = moduleDao.getAllModules();
 
     }
 
@@ -31,8 +38,15 @@ public class Repository {
     }
 
     public void deleteRecord(Record record) {
-        // To be implemented
         new DeleteRecordAsyncTask(recordDao).execute(record);
+    }
+
+    public void insertModule(Module module) {
+        new InsertModuleAsyncTask(moduleDao).execute(module);
+    }
+
+    public void deleteModule(Module module) {
+
     }
 
 
@@ -40,6 +54,10 @@ public class Repository {
 
     public LiveData<List<Record>> getAllRecords() {
         return allRecords;
+    }
+
+    public LiveData<List<Module>> getAllModules() {
+        return allModules;
     }
 
     private static class InsertRecordAsyncTask extends AsyncTask<Record, Void, Void> {
@@ -54,6 +72,20 @@ public class Repository {
         protected Void doInBackground(Record... records) {
             // Single record passed, thus accessing the only element
             recordDao.insert(records[0]);
+
+            return null;
+        }
+    }
+
+    private static class InsertModuleAsyncTask extends AsyncTask<Module, Void, Void> {
+
+        private ModuleDao moduleDao;
+
+        private InsertModuleAsyncTask(ModuleDao moduleDao) { this.moduleDao = moduleDao; }
+
+        @Override
+        public Void doInBackground(Module... modules) {
+            moduleDao.insert(modules[0]);
 
             return null;
         }

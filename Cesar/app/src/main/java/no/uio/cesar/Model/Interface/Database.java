@@ -11,18 +11,20 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+import no.uio.cesar.Model.Module;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
 import no.uio.cesar.Utils.Constant;
 import no.uio.cesar.Utils.Converters;
 
-@androidx.room.Database(entities = {Record.class}, version = Constant.DATABASE_VERSION)
+@androidx.room.Database(entities = {Record.class, Module.class}, version = Constant.DATABASE_VERSION)
 @TypeConverters({Converters.class})
 public abstract class Database extends RoomDatabase {
 
     private static Database instance;
 
     public abstract RecordDao recordDao();
+    public abstract ModuleDao moduleDao();
 
     public static synchronized Database getInstance(Context context) {
         if (instance == null) {

@@ -30,12 +30,6 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.AppViewHolder>
         notifyDataSetChanged();
     }
 
-    public PackageInfo getItem(int position) {
-        if (position > packages.size() || position < 0) return null;
-
-        return packages.get(position);
-    }
-
     @NonNull
     @Override
     public AppViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -73,7 +67,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.AppViewHolder>
 
         @Override
         public void onClick(View v) {
-            listener.onAppItemClick(v, this.getAdapterPosition());
+            listener.onAppItemClick(packages.get(this.getAdapterPosition()));
         }
     }
 }
