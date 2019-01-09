@@ -12,7 +12,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.SystemClock;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -68,6 +68,8 @@ public class DataStreamsDispatchingService extends Service {
      * as a foreground component.
      */
     public void onCreate(){
+
+        Log.d(TAG, "onCreate: Creating Service");
         // Initializes all local variables
         wrapperIndex = 0;
         connections = new HashMap<String, MainServiceConnection>();
@@ -75,7 +77,7 @@ public class DataStreamsDispatchingService extends Service {
         packetQueue = new ArrayBlockingQueue<String>(10000);
         serviceLock = new ReentrantLock();
         powerManager = (PowerManager)getApplicationContext().getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DSDServiceWakeLock");
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DSDM:DSDServiceWakeLock");
         random = new SecureRandom();
 
         // Create and add new wrapper for logical sensors
@@ -86,7 +88,8 @@ public class DataStreamsDispatchingService extends Service {
 
         // Register receiver of new wrappers and send hello Intent
         registerReceiver((wrapperReceiver), new IntentFilter(ADD_DRIVER_ACTION));
-        sendBroadcast(new Intent(HELLO_ACTION));
+        //sendBroadcast(new Intent(HELLO_ACTION));
+
         toForeground();
         super.onCreate();
     }
@@ -102,6 +105,11 @@ public class DataStreamsDispatchingService extends Service {
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "onBind() finished: "+intent.getComponent()+" - "+intent.getDataString());
         return binder;
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+        super.onStart(intent, startId);
     }
 
     /**
@@ -215,6 +223,7 @@ public class DataStreamsDispatchingService extends Service {
     BroadcastReceiver wrapperReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "onReceive: recieved!");
             String wrapperId = intent.getStringExtra("ID");
             String wrapperName = intent.getStringExtra("NAME");
             ArrayList<Integer> frequencies = intent.getIntegerArrayListExtra("FREQUENCIES");
@@ -233,6 +242,8 @@ public class DataStreamsDispatchingService extends Service {
             }else{
                 wrapper = new Wrapper(wrapperId, wrapperName, wrapperIndex++, frequencies);
             }
+
+            Log.d(TAG, "onReceive: " + wrapper.getWrapperName());
             //add capabilities suported by wrapper
             ArrayList<String> supported_types = intent.getStringArrayListExtra("SUPPORTED_TYPES");
             for(String s : supported_types){
@@ -282,6 +293,7 @@ public class DataStreamsDispatchingService extends Service {
          */
         public void putJson(String json) {
             try{
+                Log.d(TAG, "putJson: " + json);
                 packetQueue.put(json);
             }catch (InterruptedException ie){
                 ie.printStackTrace();
