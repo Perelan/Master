@@ -1,6 +1,8 @@
 package com.sensordroid;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -9,15 +11,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,17 +88,37 @@ public class DataStreamsDispatchingService extends Service {
         random = new SecureRandom();
 
         // Create and add new wrapper for logical sensors
-        ArrayList<Integer> frequencies = new ArrayList<Integer>();
-        frequencies.addAll(Arrays.asList(1,10,100,1000));
+        ArrayList<Integer> frequencies = new ArrayList<Integer>(Arrays.asList(1, 10, 100, 1000));
         wrappers.put(wrapperIndex, new Wrapper("LogicalWrapper", "MobileWrapper", wrapperIndex, frequencies));
         wrapperIndex++;
 
         // Register receiver of new wrappers and send hello Intent
         registerReceiver((wrapperReceiver), new IntentFilter(ADD_DRIVER_ACTION));
-        //sendBroadcast(new Intent(HELLO_ACTION));
 
         toForeground();
+
+        sendBroadcastToSensors();
         super.onCreate();
+    }
+
+    public void sendBroadcastToSensors() {
+        SharedPreferences sp = getSharedPreferences("SENSORS_FILES", MODE_PRIVATE);
+
+        String data = sp.getString("data", null);
+
+        if (data == null) return;
+
+        ArrayList<Sensor> sensors = new Gson().fromJson(data, new TypeToken<ArrayList<Sensor>>(){}.getType());
+
+        Log.d(TAG, "sendBroadcastToSensors: Size of data " + sensors.size());
+
+        Intent i = new Intent(HELLO_ACTION);
+        for (Sensor s : sensors) {
+            Log.d(TAG, "sendBroadcastToSensors: to " + s.getName() + " " + s.getPackageName());
+
+            i.setPackage(s.getPackageName());
+            sendBroadcast(i);
+        }
     }
 
     /**
@@ -146,7 +173,7 @@ public class DataStreamsDispatchingService extends Service {
                         e.printStackTrace();
                     }
                 }else{
-                    SystemClock.sleep(100);
+                    SystemClock.sleep(100000);
                 }
                 if (Thread.currentThread().interrupted()) {
                     return;
@@ -178,6 +205,8 @@ public class DataStreamsDispatchingService extends Service {
         @Override
         public void run() {
             Intent intent = new Intent();
+            Log.d(TAG, "run: HERER " + componentPackageName);
+            Log.d(TAG, "run: HERER " + componentClassName);
             intent.setClassName(componentPackageName, componentClassName);
             if(!connections.containsKey(componentClassName)){
                 bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
@@ -193,9 +222,11 @@ public class DataStreamsDispatchingService extends Service {
                     // wrapper not found
                     return;
                 }
+
                 int capabilityIdInteger = Integer.parseInt(wrapperAndCapabilityId[1]);
                 wrapper.addSubscriber(capabilityIdInteger, frequency, connections.get(componentClassName));
                 startCollection(wrapper.getId(), wrapper.getWrapperNumber(), capabilityIdInteger, wrapper.getCurrentFreq());
+
             }catch(NumberFormatException e){
                 e.printStackTrace();
             }finally {
@@ -223,33 +254,36 @@ public class DataStreamsDispatchingService extends Service {
     BroadcastReceiver wrapperReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "onReceive: recieved!");
+            Log.d(TAG, "onReceive Broadcast: recieved!");
             String wrapperId = intent.getStringExtra("ID");
             String wrapperName = intent.getStringExtra("NAME");
             ArrayList<Integer> frequencies = intent.getIntegerArrayListExtra("FREQUENCIES");
             //sjekk om wrapper med samme id eksisterer
             int existingWrapperId = -1;
             for(Wrapper w : wrappers.values()){
-                if(w.getId()==wrapperId){
+                if(w.getId().equals(wrapperId)){
                     existingWrapperId = w.getWrapperNumber();
                     break;
                 }
             }
+
             //hvis eksisterer bruk samme wrapperIndex som den eksisterende har
             Wrapper wrapper = null;
             if(existingWrapperId > 0){
-                wrapper = new Wrapper(wrapperId, wrapperName, existingWrapperId, frequencies);
+                wrapper = new Wrapper(wrapperId, wrapperName, existingWrapperId, null);
             }else{
-                wrapper = new Wrapper(wrapperId, wrapperName, wrapperIndex++, frequencies);
+                wrapper = new Wrapper(wrapperId, wrapperName, wrapperIndex++, null);
             }
-
-            Log.d(TAG, "onReceive: " + wrapper.getWrapperName());
             //add capabilities suported by wrapper
+
             ArrayList<String> supported_types = intent.getStringArrayListExtra("SUPPORTED_TYPES");
-            for(String s : supported_types){
-                String channel[] = s.split(",");
-                Capability c = new Capability(channel[0], channel[1], channel[2], channel[3], wrapper);
-                wrapper.addCapability(c);
+
+            if (supported_types != null) {
+                for(String s : supported_types){
+                    String channel[] = s.split(",");
+                    Capability c = new Capability(channel[0], channel[1], channel[2], channel[3], wrapper);
+                    wrapper.addCapability(c);
+                }
             }
             //add wrapper to wrappersArray
             Wrapper existingWrapper = wrappers.put(wrapper.getWrapperNumber(), wrapper);
@@ -325,6 +359,7 @@ public class DataStreamsDispatchingService extends Service {
                 connectionCreatorThread.start();
                 return 1;
             }
+
             if(workerThread==null){
                 workerThread = new Thread(new Worker());
                 workerThread.start();
@@ -337,9 +372,14 @@ public class DataStreamsDispatchingService extends Service {
                     // wrapper not found
                     return -3;
                 }
+
                 int capabilityIdInteger = Integer.parseInt(wrapperAndCapabilityId[1]);
+
                 int statusCode = wrapper.addSubscriber(capabilityIdInteger, frequency, connections.get(key));
+                Log.d(TAG, "Subscribe: AHAHAHHA " + statusCode);
+
                 if(statusCode == 0){
+                    Log.d(TAG, "Subscribe: Start collection");
                     startCollection(wrapper.getId(), wrapper.getWrapperNumber(), capabilityIdInteger, wrapper.getCurrentFreq());
                     return statusCode;
                 }else{
@@ -462,6 +502,7 @@ public class DataStreamsDispatchingService extends Service {
     private void startCollection(String wrapperId, int wrapperNum, int channel, int newFrequency){
         Log.d(TAG, "startCollection() called, freq = "+newFrequency);
         Intent start = new Intent(START_ACTION);
+        start.setPackage(wrapperId);
         start.putExtra("WRAPPER_ID", wrapperId);
         start.putExtra("WRAPPER_NUMBER", wrapperNum);
         start.putExtra("WRAPPER_CHANNEL", channel);
@@ -559,7 +600,17 @@ public class DataStreamsDispatchingService extends Service {
      * Method responsible for make this component a foreground component.
      */
     public void toForeground() {
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel notificationChannel = new NotificationChannel("ID", "Name", importance);
+            notificationManager.createNotificationChannel(notificationChannel);
+            builder = new NotificationCompat.Builder(getApplicationContext(), notificationChannel.getId());
+        } else {
+            builder = new NotificationCompat.Builder(getApplicationContext());
+        }
+
         builder.setSmallIcon(R.drawable.stat_notify_chat);
         builder.setContentTitle("DataStreamsDispatchingService");
         builder.setTicker("Forwarding");

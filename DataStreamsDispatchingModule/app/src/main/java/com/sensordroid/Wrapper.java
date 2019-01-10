@@ -40,14 +40,14 @@ public class Wrapper {
         this.wrapperName = wrapperName;
         this.number = number;
         if(frequencies == null){
-            this.frequencies = new ArrayList<Integer>();
+            this.frequencies = new ArrayList<>();
         }else{
             this.frequencies = frequencies;
         }
-        frequencies.add(0);
+        this.frequencies.add(0);
         Collections.sort(this.frequencies);
         this.currentWrapperFreq = 0;
-        this.maxWrapperFreq = Collections.max(frequencies);
+        this.maxWrapperFreq = Collections.max(this.frequencies);
         this.capabilities = new HashMap<Integer, Capability>();
         this.wrapperLock = new ReentrantLock();
     }

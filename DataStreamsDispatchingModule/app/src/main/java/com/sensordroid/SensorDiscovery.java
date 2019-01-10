@@ -26,7 +26,7 @@ public class SensorDiscovery extends BroadcastReceiver {
         String name = b.getString("name");
         String packageName = b.getString("packageName");
 
-        SharedPreferences sp = context.getSharedPreferences("SENSORS_FILE", Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences("SENSORS_FILES", Context.MODE_PRIVATE);
 
         String data = sp.getString("data", null);
 
