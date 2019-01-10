@@ -15,9 +15,11 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.sensordroid.MainServiceConnection;
 import com.sensordroid.flow.util.GattAttributes;
 
 import java.nio.ByteBuffer;
@@ -44,6 +46,11 @@ public class CommunicationHandler extends Service implements IBluetoothLEService
     public SensorMetadata mSensorMetadata = new SensorMetadata();
 
     private IBinder mBinder = new LocalBinder();
+
+    private MainServiceConnection binder;
+    private String name;
+    private int id;
+    private Context context;
 
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override

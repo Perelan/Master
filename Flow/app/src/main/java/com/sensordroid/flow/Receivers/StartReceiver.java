@@ -25,12 +25,16 @@ public class StartReceiver extends BroadcastReceiver {
             }
         }
 
+        Log.d(TAG, "onReceive: HAHAH " + driverId);
+
         if (driverId != -1) {
             String serv_action = bundle.getString("SERVICE_ACTION");
             String serv_name = bundle.getString("SERVICE_NAME");
             String serv_pack = bundle.getString("SERVICE_PACKAGE");
             int channel_num = bundle.getInt("WRAPPER_CHANNEL");
             int serv_freq = bundle.getInt("WRAPPER_FREQUENCY");
+
+            Log.d(TAG, "onReceive: serv_name: " + serv_name);
 
             Intent service = new Intent(context, WrapperService.class);
             service.putExtra("ACTION", WrapperService.START_ACTION);
@@ -40,6 +44,7 @@ public class StartReceiver extends BroadcastReceiver {
             service.putExtra("SERVICE_ACTION", serv_action);
             service.putExtra("SERVICE_NAME", serv_name);
             service.putExtra("SERVICE_PACKAGE", serv_pack);
+
             context.startService(service);
         }
     }

@@ -1,6 +1,7 @@
 package com.sensordroid.flow;
 
 import android.app.Activity;
+import android.app.Service;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -8,20 +9,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sensordroid.MainServiceConnection;
 import com.sensordroid.flow.Handlers.CommunicationHandler;
 import com.sensordroid.ripple.RippleEffect;
 
+import java.util.List;
 import java.util.Locale;
 
 // bgcolor: #44628e
@@ -74,6 +80,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        System.out.println("HAHHAHA");
+
         rp              = findViewById(R.id.ripple);
         mSensorTitle    = findViewById(R.id.sensor_title);
         mSensorMac      = findViewById(R.id.sensor_mac);
@@ -91,6 +99,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mButton         = findViewById(R.id.sensor_button);
         mButton.setOnClickListener(this);
 
+        Intent broadcast = new Intent();
+        ComponentName name = new ComponentName("com.sensordroid", "com.sensordroid.SensorDiscovery");
+        Bundle b = new Bundle();
+        b.putString("name", "Flow");
+        b.putString("packageName", "com.sensordroid.flow");
+        broadcast.putExtras(b);
+        broadcast.setComponent(name);
+        sendBroadcast(broadcast);
+
+        System.out.println("HERERER");
+
         mServiceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder service) {
@@ -105,10 +124,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         };
 
-        Intent bindSensorIntent = new Intent(this, CommunicationHandler.class);
-        startService(bindSensorIntent);
-        bindService(bindSensorIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
-
+        // Start a new service
         IntentFilter filter = new IntentFilter();
         filter.addAction(CommunicationHandler.ACTION_GATT_CONNECTED);
         filter.addAction(CommunicationHandler.ACTION_GATT_DISCONNECTED);
@@ -118,8 +134,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         filter.addAction(CommunicationHandler.ACTION_DEVICE_METADATA_UPDATED);
         registerReceiver(mSensorStateListener, filter);
 
-        Intent i = new Intent(MainActivity.this, DeviceListActivity.class);
-        startActivityForResult(i, REQUEST_SELECT_SENSOR);
+
+        //Display the list of devices
+        //Intent i = new Intent(MainActivity.this, DeviceListActivity.class);
+        //startActivityForResult(i, REQUEST_SELECT_SENSOR);
     }
 
     private void handleBroadcastEvent(Intent intent) {
@@ -292,4 +310,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         sensorState = state;
     }
+
 }

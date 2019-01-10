@@ -1,6 +1,8 @@
 package com.sensordroid.flow;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ComponentName;
@@ -9,12 +11,16 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.sensordroid.MainServiceConnection;
 import com.sensordroid.flow.Handlers.CommunicationHandler;
+import com.sensordroid.flow.util.JSONHelper;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -26,7 +32,7 @@ public class WrapperService extends Service {
     public static final String STOP_ACTION = "com.sensordroid.STOP";
 
     private static Context mContext;
-    public static final String name = mContext.getResources().getString(R.string.app_name);
+    public static final String name = "FLOW";
 
     private static int driverId;
 
@@ -41,6 +47,7 @@ public class WrapperService extends Service {
         driverId = -1;
         binder = null;
         mContext = this;
+
     }
 
     @Nullable
@@ -55,13 +62,14 @@ public class WrapperService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "onStartCommand");
         if (intent != null) {
             String action = intent.getStringExtra("ACTION");
 
             if (action.compareTo(START_ACTION) == 0) {
                 start(intent.getStringExtra("SERVICE_ACTION"),
                         intent.getStringExtra("SERVICE_PACKAGE"),
-                        intent.getStringExtra("STRING_NAME"));
+                        intent.getStringExtra("SERVICE_NAME"));
             } else {
                 stop();
             }
@@ -76,7 +84,7 @@ public class WrapperService extends Service {
             - binds to service_name, which is located in service_package and is listening for service_action
      */
     public void start(String action, String pack, String name) {
-        Log.d(TAG, "start: event");
+        Log.d(TAG, "start: event pack: " + pack + " name: " + name);
 
         if (binder == null) {
             serviceConnection = new ServiceBackConnection();
@@ -104,7 +112,17 @@ public class WrapperService extends Service {
      Sets the current service to the foreground
      */
     public void toForeground() {
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder builder = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel notificationChannel = new NotificationChannel("ID", "Name", importance);
+            notificationManager.createNotificationChannel(notificationChannel);
+            builder = new NotificationCompat.Builder(getApplicationContext(), notificationChannel.getId());
+        } else {
+            builder = new NotificationCompat.Builder(getApplicationContext());
+        }
+
         builder.setSmallIcon(R.drawable.stat_notify_chat);
         builder.setContentTitle(WrapperService.name);
         builder.setTicker("Starting data collecting");
@@ -125,7 +143,7 @@ public class WrapperService extends Service {
         private Thread connectionThread;
 
         PowerManager powerManager = (PowerManager)getApplicationContext().getSystemService(Context.POWER_SERVICE);
-        PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, name + "WakeLock");
+        PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, name + "Flow:WakeLock");
 
         /*
             Called when the service is connected,
@@ -134,6 +152,9 @@ public class WrapperService extends Service {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             binder = MainServiceConnection.Stub.asInterface(iBinder);
+            Log.d(TAG, "onServiceConnected: In here");
+
+
             //connectionThread = new Thread(new CommunicationHandler(binder, name, driverId, getApplicationContext()));
 
             if (!wakeLock.isHeld()){
