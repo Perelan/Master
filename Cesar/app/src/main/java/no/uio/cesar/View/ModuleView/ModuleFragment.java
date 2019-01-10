@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import java.util.List;
+
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -101,7 +103,9 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
 
     private void displayAppsDialog() {
 
-        AppsDialog builder = new AppsDialog(context, this);
+        List<Module> installedModules = moduleViewModel.getAllModules().getValue();
+
+        AppsDialog builder = new AppsDialog(context, this, installedModules);
         builder.setView(getLayoutInflater());
 
         dialog = builder.show();

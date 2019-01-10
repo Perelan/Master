@@ -27,6 +27,17 @@
         <activity
             android:name=".View.LandingActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <service
+            android:name=".DSDService"
+            android:enabled="true"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="no.uio.cesar.DSDService" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>
