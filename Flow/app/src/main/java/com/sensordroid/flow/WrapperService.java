@@ -47,7 +47,8 @@ public class WrapperService extends Service {
         driverId = -1;
         binder = null;
         mContext = this;
-
+        current_frequency = -1;
+        channelList = new ArrayList<>();
     }
 
     @Nullable
@@ -67,11 +68,16 @@ public class WrapperService extends Service {
             String action = intent.getStringExtra("ACTION");
 
             if (action.compareTo(START_ACTION) == 0) {
+
+                driverId = intent.getIntExtra("DRIVER_ID", -1);
                 start(intent.getStringExtra("SERVICE_ACTION"),
                         intent.getStringExtra("SERVICE_PACKAGE"),
-                        intent.getStringExtra("SERVICE_NAME"));
-            } else {
-                stop();
+                        intent.getStringExtra("SERVICE_NAME"),
+                        intent.getIntExtra("CHANNEL", -1),
+                        intent.getIntExtra("FREQUENCY", -1));
+            } else if (action.compareTo(STOP_ACTION) == 0) {
+                stop(intent.getIntExtra("CHANNEL", -1),
+                        intent.getIntExtra("FREQUENCY", -1));
             }
         }
 
@@ -83,8 +89,13 @@ public class WrapperService extends Service {
         Start data acquisition by binding to the Collector application
             - binds to service_name, which is located in service_package and is listening for service_action
      */
-    public void start(String action, String pack, String name) {
+    public void start(String action, String pack, String name, int channel, int frequency) {
+        Log.w(TAG, "Adding new channel: "+channel+", with freq: "+frequency);
         Log.d(TAG, "start: event pack: " + pack + " name: " + name);
+
+        if(!channelList.contains(channel)){
+            channelList.add(channel);
+        }
 
         if (binder == null) {
             serviceConnection = new ServiceBackConnection();
@@ -99,13 +110,38 @@ public class WrapperService extends Service {
     /*
         Stop data acquisition, interrupt thread and unbind
      */
-    public void stop() {
-        Log.d(TAG, "stop: event");
-        if (binder != null) {
-            mContext.unbindService(serviceConnection);
-            binder = null;
-            stopForeground(true);
+    public void stop(int channel, int frequency) {
+
+        Log.w(TAG, "Stopping channel: "+channel+", new frequency: "+frequency);
+        if(binder != null) {
+            for(int i=0; i<channelList.size(); i++){
+                if(channelList.get(i) == channel){
+                    channelList.remove(i);
+                    current_frequency = frequency;
+                }
+            }
+
+            if(channelList.size() == 0){
+                try {
+                    serviceConnection.interruptThread();
+                    getApplicationContext().unbindService(serviceConnection);
+                    binder = null;
+                    current_frequency = -1;
+                    stopForeground(true);
+                } catch (IllegalArgumentException iae){
+                    iae.printStackTrace();
+                }
+            }
         }
+    }
+
+    public static int[] getChannelList(){
+        int[] newOne = new int[channelList.size()];
+        int index = 0;
+        for(Integer i : channelList){
+            newOne[index++] = i;
+        }
+        return newOne;
     }
 
     /**
@@ -154,7 +190,13 @@ public class WrapperService extends Service {
             binder = MainServiceConnection.Stub.asInterface(iBinder);
             Log.d(TAG, "onServiceConnected: In here");
 
+            String sendString = JSONHelper.construct(driverId, getChannelList(), new String[] { "kothe" }).toString();
 
+            try {
+                binder.putJson(sendString);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
             //connectionThread = new Thread(new CommunicationHandler(binder, name, driverId, getApplicationContext()));
 
             if (!wakeLock.isHeld()){
@@ -170,6 +212,17 @@ public class WrapperService extends Service {
         public void onServiceDisconnected(ComponentName componentName) {
             Log.w(TAG, "Service disconnected!");
              if (wakeLock.isHeld()){
+                Log.w(TAG, "WakeLock released");
+                wakeLock.release();
+            }
+            if (connectionThread != null) {
+                connectionThread.interrupt();
+                connectionThread = null;
+            }
+        }
+
+        public void interruptThread() {
+            if(wakeLock.isHeld()){
                 Log.w(TAG, "WakeLock released");
                 wakeLock.release();
             }

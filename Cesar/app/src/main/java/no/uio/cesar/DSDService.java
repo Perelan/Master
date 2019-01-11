@@ -21,7 +21,7 @@ public class DSDService extends Service {
     MainServiceConnection.Stub binder = new MainServiceConnection.Stub() {
         @Override
         public void putJson(String json) throws RemoteException {
-
+            System.out.println("HAHAHAH " + json);
         }
 
         @Override

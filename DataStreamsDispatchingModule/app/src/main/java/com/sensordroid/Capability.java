@@ -233,10 +233,11 @@ public class Capability {
      *                            the binder of a subscriber goes wrong
      */
     public void sendJson(String json) {
+        Log.d(TAG, "sendJson: SENDING PAYLOAD");
         packCounter++;
         for(Integer i:subscribers.keySet()){
             if(((int)((double)packCounter % ((double)wrapper.getCurrentFreq()/(double)i))) == 0){
-                for(MainServiceConnection b:subscribers.get(i)){
+                for(MainServiceConnection b : subscribers.get(i)){
                     try{
                         b.putJson(json);
                     }catch (RemoteException re) {

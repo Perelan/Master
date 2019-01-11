@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(">>> new data " + records.size());
         });
 
+
         findViewById(R.id.test).setOnClickListener(view -> {
             if (msc != null) {
                 try {
@@ -121,5 +122,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        findViewById(R.id.test2).setOnClickListener(view -> {
+            if (msc != null) {
+                try {
+                    List<String> publishers = msc.getPublishers();
+
+                    String s = publishers.get(0).split(",")[0];
+                    System.out.println(msc.Unsubscribe(s, DSDService.class.getName()));
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
     }
 }

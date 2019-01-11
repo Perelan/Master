@@ -173,7 +173,7 @@ public class DataStreamsDispatchingService extends Service {
                         e.printStackTrace();
                     }
                 }else{
-                    SystemClock.sleep(100000);
+                    SystemClock.sleep(100);
                 }
                 if (Thread.currentThread().interrupted()) {
                     return;
@@ -278,11 +278,17 @@ public class DataStreamsDispatchingService extends Service {
 
             ArrayList<String> supported_types = intent.getStringArrayListExtra("SUPPORTED_TYPES");
 
+            Log.d(TAG, "onReceive: HAHAHAH " +supported_types);
             if (supported_types != null) {
+                Log.d(TAG, "onReceive: HAHAHAH inside");
+
                 for(String s : supported_types){
                     String channel[] = s.split(",");
                     Capability c = new Capability(channel[0], channel[1], channel[2], channel[3], wrapper);
+
+                    Log.d(TAG, "onReceive: capability " + c.getInfo());
                     wrapper.addCapability(c);
+                    Log.d(TAG, "onReceive: + wrapper.getWrapperName()" + wrapper.getWrapperName());
                 }
             }
             //add wrapper to wrappersArray
@@ -526,6 +532,7 @@ public class DataStreamsDispatchingService extends Service {
     private void stopCollection(String wrapperId, int wrapperNum, int channel, int newFrequency){
         Log.d(TAG, "stopCollection() called, freq = "+newFrequency);
         Intent stop = new Intent(STOP_ACTION);
+        stop.setPackage(wrapperId);
         stop.putExtra("WRAPPER_ID", wrapperId);
         stop.putExtra("WRAPPER_NUMBER", wrapperNum);
         stop.putExtra("WRAPPER_CHANNEL", channel);
