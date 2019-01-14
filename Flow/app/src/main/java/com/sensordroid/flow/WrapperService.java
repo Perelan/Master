@@ -9,6 +9,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.RemoteException;
@@ -19,8 +20,6 @@ import android.util.Log;
 import com.sensordroid.MainServiceConnection;
 import com.sensordroid.flow.Handlers.CommunicationHandler;
 import com.sensordroid.flow.util.JSONHelper;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -49,6 +48,10 @@ public class WrapperService extends Service {
         mContext = this;
         current_frequency = -1;
         channelList = new ArrayList<>();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForeground(1,new Notification());
+        }
     }
 
     @Nullable
@@ -190,14 +193,9 @@ public class WrapperService extends Service {
             binder = MainServiceConnection.Stub.asInterface(iBinder);
             Log.d(TAG, "onServiceConnected: In here");
 
-            String sendString = JSONHelper.construct(driverId, getChannelList(), new String[] { "kothe" }).toString();
-
-            try {
-                binder.putJson(sendString);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-            //connectionThread = new Thread(new CommunicationHandler(binder, name, driverId, getApplicationContext()));
+            connectionThread = new Thread(
+                    new CommunicationHandler(binder, name, driverId, getApplicationContext()));
+            connectionThread.start();
 
             if (!wakeLock.isHeld()){
                 Log.w("WakeLock", "Acquire");

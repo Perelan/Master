@@ -222,7 +222,6 @@ public class Wrapper {
                 dataPack.put("time", time);
                 channelId = dataPack.getInt("id");
                 dataPack.put("id", this.number+"-"+channelId);
-
                 Log.d(TAG, "distributePackages: channelid " + channelId);
                 Log.d(TAG, "distributePackages: capabilites" + capabilities.size());
                 capabilities.get(channelId).sendJson(dataPack.toString());

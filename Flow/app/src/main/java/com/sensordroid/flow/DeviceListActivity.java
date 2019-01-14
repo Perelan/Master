@@ -9,21 +9,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sensordroid.flow.Handlers.CommunicationHandler;
+import com.sensordroid.flow.Handlers.BluetoothHandler;
 
 import java.util.ArrayList;
 
@@ -49,7 +45,7 @@ public class DeviceListActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Handler mHandler = new Handler();
-    private CommunicationHandler mComHandler = new CommunicationHandler();
+    private BluetoothHandler mComHandler = new BluetoothHandler();
 
     private ServiceConnection mBluetoothServiceConnection = null;
 
@@ -127,7 +123,7 @@ public class DeviceListActivity extends AppCompatActivity {
             public void onServiceConnected(ComponentName componentName, IBinder service) {
                 Log.i(TAG, "onServiceConnected");
 
-                mComHandler = ((CommunicationHandler.LocalBinder) service).getService();
+                mComHandler = ((BluetoothHandler.LocalBinder) service).getService();
 
                 if (!mComHandler.init()) {
                     Log.e(TAG, "onServiceConnected: Unable to initialize Bluetooth");
@@ -144,7 +140,7 @@ public class DeviceListActivity extends AppCompatActivity {
             }
         };
 
-        Intent bindIntent = new Intent(this, CommunicationHandler.class);
+        Intent bindIntent = new Intent(this, BluetoothHandler.class);
         bindService(bindIntent, mBluetoothServiceConnection, Context.BIND_AUTO_CREATE);
     }
 

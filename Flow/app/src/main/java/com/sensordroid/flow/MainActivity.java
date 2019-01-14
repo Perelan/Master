@@ -1,7 +1,7 @@
 package com.sensordroid.flow;
 
 import android.app.Activity;
-import android.app.Service;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -9,32 +9,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sensordroid.MainServiceConnection;
-import com.sensordroid.flow.Handlers.CommunicationHandler;
+import com.sensordroid.flow.Handlers.BluetoothHandler;
+import com.sensordroid.flow.util.JSONHelper;
 import com.sensordroid.ripple.RippleEffect;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Locale;
 
 // bgcolor: #44628e
 // iconcolor: #4572b6
 
 public class MainActivity extends Activity implements View.OnClickListener {
-    private static final String TAG ="MainClass";
+    private static final String TAG ="FlowWrapper";
 
     private static int sensorState = 0;
     private static final int SENSOR_STATE_CONNECTING = 1;
@@ -55,7 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private String flow = "E7:B4:33:F2:ED:52";
 
     private ServiceConnection mServiceConnection;
-    private CommunicationHandler mComHandler = new CommunicationHandler();
+    private BluetoothHandler mComHandler = null;
 
     private boolean mScanning;
 
@@ -65,22 +60,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private CardView mButton;
     private TextView mButtonText;
 
-    private BroadcastReceiver mSensorStateListener = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "onReceive: Data " + context.getPackageName());
-            runOnUiThread(() -> {
-                handleBroadcastEvent(intent);
-            });
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        System.out.println("HAHHAHA");
 
         rp              = findViewById(R.id.ripple);
         mSensorTitle    = findViewById(R.id.sensor_title);
@@ -108,14 +91,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
         broadcast.setComponent(name);
         sendBroadcast(broadcast);
 
-        System.out.println("HERERER");
-
         mServiceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder service) {
                 Log.i(TAG, "onServiceConnected");
 
-                mComHandler = ((CommunicationHandler.LocalBinder) service).getService();
+                mComHandler = ((BluetoothHandler.LocalBinder) service).getService();
+
+
+                if (!mComHandler.init()) {
+                    Log.e(TAG, "onServiceConnected: Unable to initialize Bluetooth");
+                    finish();
+                    return;
+                }
+
+
+                ArrayList<BluetoothDevice> devices = JSONHelper.retrieveDeviceList(getApplicationContext());
+
+                if (devices == null) return;
+
+                BluetoothDevice device = devices.get(0);
+                mComHandler.setSelectedFlowSensor(device);
+
+
+                System.out.println("Name " + BluetoothAdapter.getDefaultAdapter().getRemoteDevice(device.getAddress()).getName());
+                System.out.println("Address " + device.getAddress());
+
+                //connect();
             }
 
             @Override
@@ -124,85 +126,29 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         };
 
+        bindService(new Intent(this, BluetoothHandler.class), mServiceConnection, BIND_AUTO_CREATE);
         // Start a new service
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(CommunicationHandler.ACTION_GATT_CONNECTED);
-        filter.addAction(CommunicationHandler.ACTION_GATT_DISCONNECTED);
-        filter.addAction(CommunicationHandler.ACTION_GATT_SERVICES_DISCOVERED);
-        filter.addAction(CommunicationHandler.ACTION_DATA_AVAILABLE);
-        filter.addAction(CommunicationHandler.ACTION_DEVICE_METADATA_COMPLETE);
-        filter.addAction(CommunicationHandler.ACTION_DEVICE_METADATA_UPDATED);
-        registerReceiver(mSensorStateListener, filter);
 
+        ArrayList<BluetoothDevice> devices = JSONHelper.retrieveDeviceList(this);
 
-        //Display the list of devices
-        //Intent i = new Intent(MainActivity.this, DeviceListActivity.class);
-        //startActivityForResult(i, REQUEST_SELECT_SENSOR);
-    }
+        if (devices == null) {
+            Log.d(TAG, "onCreate: HEI");
 
-    private void handleBroadcastEvent(Intent intent) {
-        if (intent == null) {
-            return;
-        }
-
-        String action = intent.getAction();
-
-        if (action == null)  {
-            Log.d(TAG, "handleBroadcastEvent: No action found");
-            return;
-        }
-
-        Log.d(TAG, "onReceive: Action " + action);
-
-        switch (action) {
-            case CommunicationHandler.ACTION_GATT_CONNECTED:
-                setSensorState(SENSOR_STATE_CONNECTED);
-                break;
-            case CommunicationHandler.ACTION_GATT_DISCONNECTED:
-                setSensorState(SENSOR_STATE_DISCONNECTED);
-                break;
-            case CommunicationHandler.ACTION_GATT_SERVICES_DISCOVERED:
-                break;
-            case CommunicationHandler.ACTION_DATA_AVAILABLE:
-                String flowRespirationData = intent.getStringExtra(CommunicationHandler.EXTRA_DATA_FLOW_INFO_STRING);
-                String heartRateData = intent.getStringExtra(CommunicationHandler.EXTRA_DATA_HEART_RATE);
-
-                rp.pulse(rp.BREATH);
-                Log.d(TAG, "handleBroadcastEvent: Respiration " + flowRespirationData);
-
-                // Get the data from the sensor and send it the the demuxer.
-
-
-
-                break;
-            case CommunicationHandler.ACTION_DEVICE_METADATA_COMPLETE:
-                rp.pulse(rp.IDLE);
-
-                System.out.println(">>> Updated");
-                System.out.println(">>> " + mComHandler.mSensorMetadata.batteryLevel);
-                System.out.println(">>> " + mComHandler.mSensorMetadata.firmwareRevision);
-                System.out.println(">>> " + mComHandler.mSensorMetadata.manufacturerName);
-                mSensorBattery.setText(String.format(Locale.getDefault(), "%d%%", mComHandler.mSensorMetadata.batteryLevel));
-                mSensorFirmware.setText(String.format("Firmware: %s", mComHandler.mSensorMetadata.firmwareRevision));
-                break;
-            case CommunicationHandler.ACTION_DEVICE_METADATA_UPDATED:
-
-                break;
-            default:
-                Log.d(TAG, "handleBroadcastEvent: Unknown action:" + action);
-                break;
+            Intent i = new Intent(MainActivity.this, DeviceListActivity.class);
+            startActivityForResult(i, REQUEST_SELECT_SENSOR);
         }
     }
+
+
 
     @Override
     protected void onDestroy() {
-        unregisterReceiver(mSensorStateListener);
 
         if (mServiceConnection != null) {
             unbindService(mServiceConnection);
 
             if (isFinishing()) {
-                stopService(new Intent(this, CommunicationHandler.class));
+                stopService(new Intent(this, BluetoothHandler.class));
             }
         }
 
@@ -216,6 +162,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case REQUEST_SELECT_SENSOR:
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     BluetoothDevice device = data.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+
+                    JSONHelper.storeToDeviceList(this, device);
 
                     System.out.println(" >>> " + device.getName());
 
@@ -245,7 +193,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.sensor_button:
                 Log.d(TAG, "onClick: Sensor Button " + sensorState);
-                handleSensorButton();
+                //handleSensorButton();
+                removeCurrentDevice();
                 break;
             case R.id.sensor_new_device:
                 Log.d(TAG, "onClick: Connect to new sensor");
@@ -255,6 +204,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    public void removeCurrentDevice() {
+        Log.d(TAG, "removeCurrentDevice: ToDo");
     }
 
     /**
@@ -287,7 +240,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (state) {
             case SENSOR_STATE_CONNECTED:
                 mSensorState.setText("Connected");
-                mButtonText.setText("DISCONNECT");
+                //mButtonText.setText("DISCONNECT");
                 mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorConnected), PorterDuff.Mode.SRC_ATOP);
                 mButton.setEnabled(true);
                 mNewConnection.setVisibility(View.INVISIBLE);
@@ -295,7 +248,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case SENSOR_STATE_DISCONNECTED:
                 mSensorState.setText("Disconnected");
-                mButtonText.setText("RECONNECT");
+                //mButtonText.setText("RECONNECT");
                 mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorDisconnected), PorterDuff.Mode.SRC_ATOP);
                 mButton.setEnabled(true);
                 mNewConnection.setVisibility(View.VISIBLE);
@@ -310,5 +263,4 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         sensorState = state;
     }
-
 }

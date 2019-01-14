@@ -3,6 +3,7 @@ package com.sensordroid.flow.Receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -25,8 +26,6 @@ public class StartReceiver extends BroadcastReceiver {
             }
         }
 
-        Log.d(TAG, "onReceive: HAHAH " + driverId);
-
         if (driverId != -1) {
             String serv_action = bundle.getString("SERVICE_ACTION");
             String serv_name = bundle.getString("SERVICE_NAME");
@@ -45,7 +44,11 @@ public class StartReceiver extends BroadcastReceiver {
             service.putExtra("SERVICE_NAME", serv_name);
             service.putExtra("SERVICE_PACKAGE", serv_pack);
 
-            context.startService(service);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(service);
+            } else {
+                context.startService(service);
+            }
         }
     }
 }

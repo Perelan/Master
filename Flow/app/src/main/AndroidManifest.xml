@@ -33,7 +33,7 @@
             android:exported="false"/>
 
         <service
-            android:name=".Handlers.CommunicationHandler"
+            android:name=".Handlers.BluetoothHandler"
             android:enabled="true"/>
 
         <activity

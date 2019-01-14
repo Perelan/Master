@@ -159,7 +159,12 @@ public class DataStreamsDispatchingService extends Service {
         public void run() {
             Log.i(TAG, "dispatching packet");
             while(true){
-                String packet = packetQueue.peek();
+                String packet = null;
+                try {
+                    packet = packetQueue.take();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 if(packet!=null){
                     int wrapperNum = -1;
                     StringBuilder s = new StringBuilder();

@@ -1,11 +1,21 @@
 package com.sensordroid.flow.util;
 
+import android.bluetooth.BluetoothDevice;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -65,5 +75,43 @@ public class JSONHelper {
             e.printStackTrace();
         }
         return res;
+    }
+
+    public static void storeToDeviceList(Context context, BluetoothDevice device) {
+        Log.d("FlowWrapper", "storeToDeviceList: " + device.getName());
+
+        SharedPreferences pref = context.getSharedPreferences("devices", Context.MODE_PRIVATE);
+
+        Gson gson = new Gson();
+
+        ArrayList<BluetoothDevice> devices = retrieveDeviceList(context);
+
+        if (devices == null) {
+            devices = new ArrayList<>();
+        }
+
+        devices.add(device);
+
+        String storeString = gson.toJson(devices);
+
+        SharedPreferences.Editor edit = pref.edit();
+
+        edit.putString("devices", storeString);
+        edit.apply();
+    }
+
+    public static ArrayList<BluetoothDevice> retrieveDeviceList(Context context) {
+        SharedPreferences pref = context.getSharedPreferences("devices", Context.MODE_PRIVATE);
+
+        String deviceString = pref.getString("devices", null);
+
+
+        if (deviceString == null) return null;
+
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<ArrayList<BluetoothDevice>>() {}.getType();
+
+        return gson.fromJson(deviceString, type);
     }
 }

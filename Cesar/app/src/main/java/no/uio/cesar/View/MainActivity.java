@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
             username = sharedPref.getString(Constant.USER_KEY_NAME, null);
             System.out.println(username);
-
         }
 
         // Inject the home fragment initially.
