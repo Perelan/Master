@@ -1,4 +1,4 @@
-package com.sensordroid.flow.util;
+package com.sensordroid.flow.Bluetooth;
 
 import java.util.HashMap;
 import java.util.UUID;

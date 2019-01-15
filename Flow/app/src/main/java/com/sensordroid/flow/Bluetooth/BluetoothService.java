@@ -1,6 +1,6 @@
-package com.sensordroid.flow.Handlers;
+package com.sensordroid.flow.Bluetooth;
 
-public interface IBluetoothLEService {
+public interface BluetoothService {
     String ACTION_GATT_CONNECTED = "ACTION_GATT_CONNECTED";
     String ACTION_GATT_DISCONNECTED = "ACTION_GATT_DISCONNECTED";
     String ACTION_GATT_SERVICES_DISCOVERED = "ACTION_GATT_SERVICES_DISCOVERED";

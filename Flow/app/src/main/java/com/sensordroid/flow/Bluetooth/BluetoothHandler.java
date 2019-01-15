@@ -1,4 +1,4 @@
-package com.sensordroid.flow.Handlers;
+package com.sensordroid.flow.Bluetooth;
 
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
@@ -17,9 +17,6 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.sensordroid.MainServiceConnection;
-import com.sensordroid.flow.util.GattAttributes;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
@@ -32,7 +29,7 @@ import java.util.UUID;
 /**
  * Created by jagatds on 11.10.2018
  */
-public class BluetoothHandler extends Service implements IBluetoothLEService {
+public class BluetoothHandler extends Service implements BluetoothService {
     private final static String TAG = "BluetoothHandler";
 
     private BluetoothAdapter mBluetoothAdapter;
@@ -40,12 +37,11 @@ public class BluetoothHandler extends Service implements IBluetoothLEService {
     private BluetoothManager mBluetoothManager;
     private BluetoothGatt mBluetoothGatt;
     private BluetoothDevice selectedFlowSensor;
+    private BluetoothCallback callback;
 
     public SensorMetadata mSensorMetadata = new SensorMetadata();
 
     private IBinder mBinder = new LocalBinder();
-
-    private BluetoothCallback callback;
 
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
@@ -83,19 +79,20 @@ public class BluetoothHandler extends Service implements IBluetoothLEService {
         @Override
         public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                decodeCharacteristic(characteristic, false);
+                decodeCharacteristic(characteristic);
             }
         }
 
         @Override
         public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
-            decodeCharacteristic(characteristic, false);
+            decodeCharacteristic(characteristic);
         }
     };
 
     private void fetchSensorMetaData() {
         if (hasCharacteristic(GattAttributes.DEVICE_INFORMATION_SERVICE, GattAttributes.FIRMWARE_REVISION))
             mSensorMetadata.firmwareRevisionSupported = true;
+
         if (mSensorMetadata.manufacturerName == null) {
             readCharacteristic(GattAttributes.DEVICE_INFORMATION_SERVICE, GattAttributes.MANUFACTURER_NAME);
         } else if (mSensorMetadata.firmwareRevision == null && mSensorMetadata.firmwareRevisionSupported) {
@@ -220,21 +217,23 @@ public class BluetoothHandler extends Service implements IBluetoothLEService {
             Log.w(TAG, "readCharacteristic: Service not found: " + serviceUUID);
             return;
         }
+
         BluetoothGattCharacteristic characteristic = mDI.getCharacteristic(characteristicUUID);
         if (characteristic == null) {
             Log.w(TAG, "readCharacteristic(): Characteristic not found: " + characteristicUUID);
             return;
         }
+
         boolean ok = mBluetoothGatt.readCharacteristic(characteristic);
         if (!ok) {
             Log.w(TAG, "readCharacteristic() not OK: " + characteristicUUID);
         }
     }
 
-    private void decodeCharacteristic(final BluetoothGattCharacteristic characteristic, boolean store) {
+    private void decodeCharacteristic(final BluetoothGattCharacteristic characteristic) {
         if (GattAttributes.HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {
             Log.i(TAG, "decodeCharacteristic: >>> Heart Rate Measurement");
-            heartRateDataReceived(characteristic, false);
+            heartRateDataReceived(characteristic);
         } else if (GattAttributes.MANUFACTURER_NAME.equals(characteristic.getUuid())) {
             Log.i(TAG, "decodeCharacteristic:>>> Manufacturer Name");
             manufacturerNameReceived(characteristic);
@@ -247,7 +246,7 @@ public class BluetoothHandler extends Service implements IBluetoothLEService {
             setBatteryNotification(true);
         } else if (GattAttributes.FLOW_MEASUREMENT.equals(characteristic.getUuid())) {
             Log.i(TAG, "decodeCharacteristic:>>> Flow Measurement");
-            flowDataReceived(characteristic, false);
+            flowDataReceived(characteristic);
         } else if (GattAttributes.RAW_DATA_MEASUREMENT.equals(characteristic.getUuid())) {
             Log.i(TAG, "decodeCharacteristic:>>> Raw data");
         } else if (GattAttributes.ANGLES_MEASUREMENT.equals(characteristic.getUuid())) {
@@ -301,7 +300,7 @@ public class BluetoothHandler extends Service implements IBluetoothLEService {
         }
     }
 
-    private void flowDataReceived(BluetoothGattCharacteristic characteristic, boolean store) {
+    private void flowDataReceived(BluetoothGattCharacteristic characteristic) {
         byte[] values = characteristic.getValue();
         if (values.length == 0)
             Log.w(TAG, "flowDataReceived - No Respiration Data");
@@ -325,9 +324,7 @@ public class BluetoothHandler extends Service implements IBluetoothLEService {
             Intent intent = new Intent(ACTION_DATA_AVAILABLE);
             intent.putExtra(EXTRA_DATA_FLOW_TIMESTAMP, ts);
             intent.putExtra(EXTRA_DATA_FLOW_INFO_STRING, String.format("Time=%sms, deltaT=%s, data=%s", timeStamp, deltaTime, samples));
-            if (store) {
-                //XmlSampleStorage.HandleNewSample("FLOW", samples, timeStamp, deltaTime, minValueTimeStamp, maxValueTimeStamp);
-            }
+
             int sum = 0;
             int max = intValues.get(1);
             int min = max;
@@ -358,7 +355,7 @@ public class BluetoothHandler extends Service implements IBluetoothLEService {
         }
     }
 
-    private void heartRateDataReceived(BluetoothGattCharacteristic characteristic, boolean store) {
+    private void heartRateDataReceived(BluetoothGattCharacteristic characteristic) {
         int flags = characteristic.getProperties();
         int format = (flags & 0x01) != 0 ? BluetoothGattCharacteristic.FORMAT_UINT16 : BluetoothGattCharacteristic.FORMAT_UINT8;
         final int heartRate = characteristic.getIntValue(format, 1);
@@ -369,13 +366,7 @@ public class BluetoothHandler extends Service implements IBluetoothLEService {
             if (rrIntervalInt != null)
                 rrInterval = (long) rrIntervalInt;
         }
-        //Log.d(TAG, String.format("Received heart rate: %d", heartRate));
-        if (store) {
-            String stringToStore = String.format("BPM=\"%d\"", heartRate);
-            //XmlSampleStorage.HandleNewSample("HR",stringToStore );
-        }
 
-        //sendMessageToWearable(heartRate);
         callback.onDataReceived(new Intent(ACTION_DATA_AVAILABLE)
                 .putExtra(EXTRA_DATA_HEART_RATE, String.valueOf(heartRate))
                 .putExtra(EXTRA_DATA_RR_INTERVAL, String.valueOf(rrInterval)));

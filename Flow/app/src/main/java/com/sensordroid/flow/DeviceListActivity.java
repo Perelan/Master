@@ -29,7 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sensordroid.flow.Handlers.BluetoothHandler;
+import com.sensordroid.flow.Bluetooth.BluetoothHandler;
 
 import java.util.ArrayList;
 

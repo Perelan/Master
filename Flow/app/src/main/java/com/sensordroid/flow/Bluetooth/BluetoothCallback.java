@@ -1,4 +1,4 @@
-package com.sensordroid.flow.Handlers;
+package com.sensordroid.flow.Bluetooth;
 
 import android.content.Intent;
 
