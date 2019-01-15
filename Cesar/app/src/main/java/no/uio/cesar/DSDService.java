@@ -4,12 +4,15 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.sensordroid.MainServiceConnection;
 
 import java.util.List;
 
 public class DSDService extends Service {
+    private final static String TAG = "CESARservice";
+
     public DSDService() {
     }
 
@@ -21,7 +24,7 @@ public class DSDService extends Service {
     MainServiceConnection.Stub binder = new MainServiceConnection.Stub() {
         @Override
         public void putJson(String json) throws RemoteException {
-            System.out.println("HAHAHAH " + json);
+            Log.d(TAG, "putJson: " + json);
         }
 
         @Override

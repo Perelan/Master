@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         intent.setPackage("com.sensordroid");
         bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
 
-
         SharedPreferences sharedPref = getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
 
         String username = sharedPref.getString(Constant.USER_KEY_NAME, null);
@@ -112,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(msc.getPublishers());
 
                     List<String> publishers = msc.getPublishers();
+                    if (publishers.isEmpty()) return;
 
                     String s = publishers.get(0).split(",")[0];
 

@@ -185,12 +185,14 @@ public class Capability {
      */
     public int removeSubscriber(MainServiceConnection binder){
         Log.i(TAG, "removing of a subscriber");
-        for(Integer i:subscribers.keySet()){
+        for(Integer i : subscribers.keySet()){
             if(subscribers.get(i).contains(binder)){
-                if(subscribers.get(i).size()==1){
+                if(subscribers.get(i).size() == 1){
                     subscribers.remove(i);
-                    return updateCurrentCapabilityFreq();
+                    Log.d(TAG, "removeSubscriber: Wtf?");
+                    return 0;
                 }else{
+                    Log.d(TAG, "removeSubscriber: lmao");
                     subscribers.get(i).remove(binder);
                     return 1;
                 }
@@ -209,12 +211,15 @@ public class Capability {
      * @return status code 0 if currentCapabilityFreq was updated or 1 if not
      */
     private int updateCurrentCapabilityFreq(){
-        int highestRequestedFrequency = 0;
+        int highestRequestedFrequency;
         if(subscribers.size() == 0){
             highestRequestedFrequency = 0;
         }else{
             highestRequestedFrequency = Collections.max(subscribers.keySet());
         }
+
+        Log.d(TAG, "updateCurrentCapabilityFreq: highestreq " + highestRequestedFrequency);
+        Log.d(TAG, "updateCurrentCapabilityFreq: currentfrq " + this.currentCapabilityFreq);
         if(this.currentCapabilityFreq != highestRequestedFrequency){
             this.currentCapabilityFreq = highestRequestedFrequency;
             return 0;

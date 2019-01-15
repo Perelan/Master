@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.sensordroid.MainServiceConnection;
+import com.sensordroid.flow.WrapperService;
 import com.sensordroid.flow.util.JSONHelper;
 
 import java.util.ArrayList;
@@ -51,11 +52,17 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
 
 
     private void bluetoothConnection() {
+
         bluetoothConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 bluetoothHandler = ((BluetoothHandler.LocalBinder) service).getService();
+                
+                if (bluetoothHandler == null) Log.d(TAG, "onServiceConnected: wtf");
+                
                 bluetoothHandler.setCallback(callback);
+
+                connect();
             }
 
             @Override
@@ -65,20 +72,36 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
         };
 
         Intent i = new Intent(context, BluetoothHandler.class);
-
         context.bindService(i, bluetoothConnection, context.BIND_AUTO_CREATE);
     }
 
     @Override
     public void run() {
         int sleepTime = 1000;
+        Log.d(TAG, "run: Running");
 
-        if (connect()) {
-            Log.d(TAG, "run: Connection successfull");
-            sleepTime = 1000;
+        bluetoothConnection();
 
-            // Collect data
-            collectData();
+        while (!interrupted) {
+            if (Thread.currentThread().isInterrupted()) {
+                interrupted = true;
+                break;
+            }
+
+            if (!interrupted) {
+                try {
+                    Thread.sleep(sleepTime);
+                    if (sleepTime < 30_000) sleepTime *= 2;
+                } catch (InterruptedException e) {
+                    interrupted = true;
+                    break;
+                }
+            }
+        }
+
+        if (bluetoothHandler != null) {
+            Log.d(TAG, "run: CLOSING");
+            bluetoothHandler.closeAndNotifyGattDisconnection();
         }
 
         /*
@@ -122,10 +145,13 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
 
     private boolean connect() {
 
-        bluetoothConnection();
+        Log.d(TAG, "connect: bluetooth");
+
+        Log.d(TAG, "connect: bluetooth done");
 
         if (bluetoothHandler == null) return false;
 
+        Log.d(TAG, "connect: Initing");
         if (!bluetoothHandler.init()) {
             Log.d(TAG, "connect: Unable to init Bluetooth");
 
@@ -173,6 +199,7 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
             case BluetoothHandler.ACTION_GATT_CONNECTED:
                 break;
             case BluetoothHandler.ACTION_GATT_DISCONNECTED:
+                interrupted = true;
                 break;
             case BluetoothHandler.ACTION_GATT_SERVICES_DISCOVERED:
                 break;
@@ -184,6 +211,11 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
 
                 // Get the data from the sensor and send it the the demuxer.
 
+                executor.submit(new DataHandler(
+                        binder,
+                        driverId,
+                        new String[] {flowRespirationData},
+                        WrapperService.getChannelList()));
 
                 break;
             case BluetoothHandler.ACTION_DEVICE_METADATA_COMPLETE:

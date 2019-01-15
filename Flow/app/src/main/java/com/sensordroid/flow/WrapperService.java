@@ -126,8 +126,9 @@ public class WrapperService extends Service {
 
             if(channelList.size() == 0){
                 try {
+                    Log.d(TAG, "stop: STOPPING");
                     serviceConnection.interruptThread();
-                    getApplicationContext().unbindService(serviceConnection);
+                    mContext.unbindService(serviceConnection);
                     binder = null;
                     current_frequency = -1;
                     stopForeground(true);
@@ -208,6 +209,7 @@ public class WrapperService extends Service {
          */
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
+            Log.d(TAG, "onServiceDisconnected: DISSCONNECTED");
             Log.w(TAG, "Service disconnected!");
              if (wakeLock.isHeld()){
                 Log.w(TAG, "WakeLock released");

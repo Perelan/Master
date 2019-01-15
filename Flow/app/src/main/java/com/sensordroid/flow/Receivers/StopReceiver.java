@@ -3,6 +3,7 @@ package com.sensordroid.flow.Receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -31,7 +32,13 @@ public class StopReceiver extends BroadcastReceiver {
             service.putExtra("DRIVER_ID", driverId);
             service.putExtra("CHANNEL", bundle.getInt("WRAPPER_CHANNEL"));
             service.putExtra("FREQUENCY", bundle.getInt("WRAPPER_FREQUENCY"));
-            context.startService(service);
+
+            Log.d(TAG, "onReceive: STOPPING");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(service);
+            } else {
+                context.startService(service);
+            }
         }
     }
 }

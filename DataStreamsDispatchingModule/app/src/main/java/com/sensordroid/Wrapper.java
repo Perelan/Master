@@ -161,6 +161,8 @@ public class Wrapper {
             return -1;
         }
         int statusCode = c.removeSubscriber(binder);
+
+        Log.d(TAG, "removeSubscriber: statuscode " + statusCode);
         // subscriber removed
         if(statusCode == 0){
             // frequency or channel list might be updated
@@ -187,7 +189,7 @@ public class Wrapper {
             this.currentWrapperFreq = maxNeededFreq;
             return 0;
         }
-        return 1;
+        return 0;
     }
 
     /**

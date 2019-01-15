@@ -428,6 +428,8 @@ public class DataStreamsDispatchingService extends Service {
                 }
                 int capabilityIdInteger = Integer.parseInt(wrapperAndCapabilityId[1]);
                 int statusCode = wrapper.removeSubscriber(capabilityIdInteger, connections.get(key));
+
+                Log.d(TAG, "Unsubscribe: statuscode " + statusCode);
                 if(statusCode == 0){
                     stopCollection(wrapper.getId(), wrapper.getWrapperNumber(), capabilityIdInteger, wrapper.getCurrentFreq());
                     checkSubscriptionExistance();
@@ -538,6 +540,7 @@ public class DataStreamsDispatchingService extends Service {
         Log.d(TAG, "stopCollection() called, freq = "+newFrequency);
         Intent stop = new Intent(STOP_ACTION);
         stop.setPackage(wrapperId);
+
         stop.putExtra("WRAPPER_ID", wrapperId);
         stop.putExtra("WRAPPER_NUMBER", wrapperNum);
         stop.putExtra("WRAPPER_CHANNEL", channel);
