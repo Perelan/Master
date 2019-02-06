@@ -43,9 +43,10 @@ public class RespondReceiver extends BroadcastReceiver {
         int counter = 0;
         String type = FlowTransfer.getType(FlowTransfer.TYPE_RIP);
         String metric = FlowTransfer.getMetric(FlowTransfer.TYPE_RIP);
-        String description = " ";
+        String description = "SweetZpot: Flow";
 
         typesWithDescription.add(counter + "," + type + "," + metric + "," + description);
+        typesWithDescription.add(counter +1 + "," + type + "," + metric + "," + description);
 
         return typesWithDescription;
     }

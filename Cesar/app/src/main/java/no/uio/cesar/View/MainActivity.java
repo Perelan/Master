@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecordViewModel recordViewModel;
 
-    MainServiceConnection msc;
+    public MainServiceConnection msc;
 
     private ServiceConnection serviceCon = new ServiceConnection() {
         @Override
@@ -45,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (serviceCon != null) {
+            unbindService(serviceCon);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

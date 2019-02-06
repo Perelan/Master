@@ -6,12 +6,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import no.uio.cesar.R;
 
-class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder> {
+class SensorAdapter extends RecyclerView.Adapter<SensorAdapter.DeviceViewHolder> {
 
     class DeviceViewHolder extends RecyclerView.ViewHolder {
 
@@ -24,12 +25,26 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
         }
     }
 
+    ArrayList<Sensor> mDataSet = new ArrayList<>();
 
-    ArrayList<Sensor> mDataSet;
+    public void parseSensorData(List<String> sensors) {
+        if (sensors.isEmpty()) return;
 
+        loop:
+        for (String s : sensors) {
+            String[] parse = s.split(",");
 
-    public DeviceAdapter(ArrayList<Sensor> mDataSet) {
-        this.mDataSet = mDataSet;
+            String capAndId = parse[0],
+                    type    = parse[1],
+                    metric  = parse[2],
+                    desc    = parse[3],
+                    freq    = parse[4];
+
+            for (Sensor sens : mDataSet) if (sens.getDesc().equals(desc)) continue loop;
+
+            mDataSet.add(new Sensor(capAndId, type, metric, desc, freq));
+            notifyDataSetChanged();
+        }
     }
 
     @NonNull
@@ -43,7 +58,7 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull DeviceViewHolder viewHolder, int i) {
-        viewHolder.mSensorName.setText(mDataSet.get(i).getName());
+        viewHolder.mSensorName.setText(mDataSet.get(i).getDesc());
     }
 
     @Override

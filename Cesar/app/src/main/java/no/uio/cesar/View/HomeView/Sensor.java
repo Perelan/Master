@@ -2,14 +2,33 @@ package no.uio.cesar.View.HomeView;
 
 public class Sensor {
 
-     private String name;
+    private String capAndId, type, metric, desc, freq;
 
-     Sensor(String name) {
-         this.name = name;
-     }
+    public Sensor(String capAndId, String type, String metric, String desc, String freq) {
+        this.capAndId = capAndId;
+        this.type = type;
+        this.metric = metric;
+        this.desc = desc;
+        this.freq = freq;
+    }
 
-     public String getName() {
-         return name;
-     }
+    public String getCapAndId() {
+        return capAndId;
+    }
 
+    public String getType() {
+        return type;
+    }
+
+    public String getMetric() {
+        return metric;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getFreq() {
+        return freq;
+    }
 }

@@ -1,16 +1,24 @@
 package no.uio.cesar.View.HomeView;
 
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.sensordroid.MainServiceConnection;
 
 import java.util.ArrayList;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import no.uio.cesar.R;
 import no.uio.cesar.View.MonitorActivity;
@@ -23,12 +31,41 @@ public class HomeFragment extends Fragment {
     ArrayList<Sensor> mDummyData;
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private SensorAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private MainServiceConnection msc;
 
 
     public HomeFragment() {
         // Required empty public constructor
+    }
+
+    private ServiceConnection serviceCon = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            msc = MainServiceConnection.Stub.asInterface(service);
+
+            try {
+                Log.d("HomeFragment", "onServiceConnected: " + msc.getPublishers());
+
+                mAdapter.parseSensorData(msc.getPublishers());
+            } catch (Exception e) { }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (serviceCon != null) {
+            getActivity().unbindService(serviceCon);
+        }
     }
 
     @Override
@@ -44,19 +81,19 @@ public class HomeFragment extends Fragment {
             startActivity(new Intent(getActivity(), MonitorActivity.class));
         });
 
-        /*mDummyData = new ArrayList<>();
-
-        mDummyData.add(new Sensor("OarZpot"));
-        mDummyData.add(new Sensor("Bitalino"));
-
         mRecyclerView = v.findViewById(R.id.available_sensors);
 
         mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new DeviceAdapter(mDummyData);
+        mAdapter = new SensorAdapter();
 
-        mRecyclerView.setAdapter(mAdapter);*/
+        mRecyclerView.setAdapter(mAdapter);
+
+        Intent intent = new Intent(MainServiceConnection.class.getName());
+        intent.setAction("com.sensordroid.ADD_DRIVER");
+        intent.setPackage("com.sensordroid");
+        getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
 
         return v;
     }
