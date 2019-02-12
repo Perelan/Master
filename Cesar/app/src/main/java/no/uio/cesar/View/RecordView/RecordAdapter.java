@@ -54,7 +54,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     public void onBindViewHolder(@NonNull RecordViewHolder holder, int position) {
         Record currentRecord = mRecords.get(position);
 
-        holder.tvTitle.setText(currentRecord.getName());
+        holder.tvTitle.setText("" + currentRecord.getId());
     }
 
     @Override

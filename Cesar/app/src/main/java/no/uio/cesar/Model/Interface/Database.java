@@ -17,13 +17,14 @@ import no.uio.cesar.Model.Sample;
 import no.uio.cesar.Utils.Constant;
 import no.uio.cesar.Utils.Converters;
 
-@androidx.room.Database(entities = {Record.class, Module.class}, version = Constant.DATABASE_VERSION)
+@androidx.room.Database(entities = {Record.class, Sample.class, Module.class}, version = Constant.DATABASE_VERSION)
 @TypeConverters({Converters.class})
 public abstract class Database extends RoomDatabase {
 
     private static Database instance;
 
     public abstract RecordDao recordDao();
+    public abstract SampleDao sampleDao();
     public abstract ModuleDao moduleDao();
 
     public static synchronized Database getInstance(Context context) {
@@ -32,13 +33,14 @@ public abstract class Database extends RoomDatabase {
                     Database.class,
                     Constant.DATABASE_NAME)
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
+                    //.addCallback(roomCallback)
                     .build();
         }
 
         return instance;
     }
 
+    /*
     private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -60,11 +62,12 @@ public abstract class Database extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
 
             ArrayList<Sample> hr = new ArrayList<>();
-            hr.add(new Sample(100, new Date()));
+            hr.add(new Sample("1", null, new Date()));
 
             recordDao.insert(new Record("test1", hr));
 
             return null;
         }
     }
+    */
 }

@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 6,
-    "identityHash": "1ac1420bbf81a74373dafe966fb6a6a2",
+    "version": 8,
+    "identityHash": "fbc7872bc7167a26cc11bf33bd89901f",
     "entities": [
       {
         "tableName": "record_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `createdAt` INTEGER, `updatedAt` INTEGER, `respiration` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `createdAt` INTEGER, `updatedAt` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,10 +31,36 @@
             "columnName": "updatedAt",
             "affinity": "INTEGER",
             "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "module_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `packageName` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
-            "fieldPath": "respiration",
-            "columnName": "respiration",
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -84,7 +110,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"1ac1420bbf81a74373dafe966fb6a6a2\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"fbc7872bc7167a26cc11bf33bd89901f\")"
     ]
   }
 }

@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import no.uio.cesar.DSDService;
+import no.uio.cesar.Model.Record;
+import no.uio.cesar.Model.Sample;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Constant;
 import no.uio.cesar.Utils.Uti;
@@ -27,45 +29,17 @@ import no.uio.cesar.View.HomeView.HomeFragment;
 import no.uio.cesar.View.ModuleView.ModuleFragment;
 import no.uio.cesar.View.RecordView.RecordFragment;
 import no.uio.cesar.ViewModel.RecordViewModel;
+import no.uio.cesar.ViewModel.SampleViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecordViewModel recordViewModel;
 
-    public MainServiceConnection msc;
-
-    private ServiceConnection serviceCon = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            msc = MainServiceConnection.Stub.asInterface(service);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        if (serviceCon != null) {
-            unbindService(serviceCon);
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("CESAR", "onCreate: PENCHOD");
-        System.out.println("HAHAHAH");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent(MainServiceConnection.class.getName());
-        intent.setAction("com.sensordroid.ADD_DRIVER");
-        intent.setPackage("com.sensordroid");
-        bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
 
         SharedPreferences sharedPref = getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
 
@@ -108,42 +82,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+
+        SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
+
+        sampleViewModel.getSamplesForRecord(5).observe(this, samples -> {
+            System.out.println("DATA > " + samples);
+        });
+
+
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         recordViewModel.getAllRecords().observe(this, records -> {
             System.out.println(">>> new data " + records.size());
         });
-
-
-        findViewById(R.id.test).setOnClickListener(view -> {
-            if (msc != null) {
-                try {
-                    System.out.println(msc.getPublishers());
-
-                    List<String> publishers = msc.getPublishers();
-                    if (publishers.isEmpty()) return;
-
-                    String s = publishers.get(0).split(",")[0];
-
-                    System.out.println(msc.Subscribe(s, 0, getPackageName(), DSDService.class.getName()));
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        findViewById(R.id.test2).setOnClickListener(view -> {
-            if (msc != null) {
-                try {
-                    List<String> publishers = msc.getPublishers();
-
-                    String s = publishers.get(0).split(",")[0];
-                    System.out.println(msc.Unsubscribe(s, DSDService.class.getName()));
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
     }
 }

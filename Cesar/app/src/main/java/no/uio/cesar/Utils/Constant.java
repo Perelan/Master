@@ -2,7 +2,7 @@ package no.uio.cesar.Utils;
 
 public class Constant {
 
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 9;
     public static final String DATABASE_NAME = "record.db";
 
 

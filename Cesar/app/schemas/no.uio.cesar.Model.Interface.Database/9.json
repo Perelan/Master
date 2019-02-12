@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 6,
-    "identityHash": "1ac1420bbf81a74373dafe966fb6a6a2",
+    "version": 9,
+    "identityHash": "3bba6231aa6485aed4327857c253f2de",
     "entities": [
       {
         "tableName": "record_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `createdAt` INTEGER, `updatedAt` INTEGER, `respiration` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `createdAt` INTEGER, `updatedAt` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,12 +31,6 @@
             "columnName": "updatedAt",
             "affinity": "INTEGER",
             "notNull": false
-          },
-          {
-            "fieldPath": "respiration",
-            "columnName": "respiration",
-            "affinity": "TEXT",
-            "notNull": false
           }
         ],
         "primaryKey": {
@@ -47,6 +41,62 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "sample_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `recordId` INTEGER NOT NULL, `sample` TEXT, `explicitTS` INTEGER, `implicitTS` INTEGER, FOREIGN KEY(`recordId`) REFERENCES `record_table`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "recordId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sample",
+            "columnName": "sample",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "explicitTS",
+            "columnName": "explicitTS",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "implicitTS",
+            "columnName": "implicitTS",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "record_table",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "recordId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       },
       {
         "tableName": "module_table",
@@ -84,7 +134,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"1ac1420bbf81a74373dafe966fb6a6a2\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3bba6231aa6485aed4327857c253f2de\")"
     ]
   }
 }

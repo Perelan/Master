@@ -14,7 +14,7 @@ import no.uio.cesar.Model.Record;
 public interface RecordDao {
 
     @Insert
-    void insert(Record record);
+    long insert(Record record);
 
     @Update
     void update(Record record);

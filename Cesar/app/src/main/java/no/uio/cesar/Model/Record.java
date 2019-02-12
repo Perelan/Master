@@ -5,6 +5,8 @@ import java.util.Date;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+import no.uio.cesar.Utils.Converters;
 
 @Entity(tableName = "record_table")
 public class Record {
@@ -15,12 +17,8 @@ public class Record {
 
     private Date createdAt, updatedAt;
 
-    private ArrayList<Sample> hr;
-
-    public Record(String name, ArrayList<Sample> hr) {
+    public Record(String name) {
         this.name = name;
-        this.hr = new ArrayList<>();
-        this.hr = hr;
 
         createdAt = new Date();
         updatedAt = new Date();
@@ -54,7 +52,4 @@ public class Record {
         return name;
     }
 
-    public ArrayList<Sample> getHr() {
-        return hr;
-    }
 }
