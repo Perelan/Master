@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.os.IBinder;
@@ -106,6 +107,8 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
             if (currentRecordId == -1) return;
 
+            rp.pulse(rp.BREATH);
+
             Bundle b = intent.getExtras();
 
             String data = b.getString("data");
@@ -181,10 +184,8 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
         rp.setOnClickListener(view -> rp.pulse(rp.BREATH));
 
-        rp.pulse(rp.BATTERY);
-
-        FloatingActionButton fab = v.findViewById(R.id.fab);
-        fab.setOnClickListener(view -> dialogSessionEnd());
+        CardView stopMonitor = v.findViewById(R.id.monitor_stop);
+        stopMonitor.setOnClickListener(view -> dialogSessionEnd());
 
         return v;
     }
@@ -203,6 +204,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     public void onDestroy() {
         super.onDestroy();
 
+        /*
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(listener);
 
         if (msc != null) {
@@ -218,7 +220,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
         if (serviceCon != null) {
             getActivity().unbindService(serviceCon);
-        }
+        }*/
     }
 
     @Override
@@ -231,6 +233,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     public void storeAndFinishSession() {
         cm.stop();
 
+        /*
         if (msc != null) {
             try {
                 List<String> publishers = msc.getPublishers();
@@ -240,9 +243,9 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
-        Fragment f = new StoreFragment();
+        Fragment f = StoreFragment.newInstance(currentRecordId);
 
         Uti.commitFragmentTransaction(getActivity(), f);
 
@@ -265,9 +268,8 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         Intent intent = new Intent(MainServiceConnection.class.getName());
         intent.setAction("com.sensordroid.ADD_DRIVER");
         intent.setPackage("com.sensordroid");
-        getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
+        //getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
 
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(listener, new IntentFilter("PUT_DATA"));
-
+        //LocalBroadcastManager.getInstance(getContext()).registerReceiver(listener, new IntentFilter("PUT_DATA"));
     }
 }

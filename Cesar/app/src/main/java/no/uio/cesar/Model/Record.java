@@ -32,6 +32,10 @@ public class Record {
         return id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }

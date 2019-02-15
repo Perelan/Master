@@ -41,11 +41,12 @@ public class RecordFragment extends Fragment implements RecordViewClickListener 
 
         mRecyclerView = v.findViewById(R.id.record_list_view);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(
-                getContext(),
-                RecyclerView.VERTICAL,
-                false
-        ));
+        LinearLayoutManager lym = new LinearLayoutManager(getContext());
+        lym.setReverseLayout(true);
+        lym.setStackFromEnd(true);
+
+        mRecyclerView.setLayoutManager(lym);
+
         mRecyclerView.setHasFixedSize(true);
 
         adapter = new RecordAdapter(this);

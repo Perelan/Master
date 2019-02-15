@@ -8,68 +8,83 @@
     android:background="@color/colorPrimary"
     tools:context=".View.MonitorActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <no.uio.ripple.RippleEffect
-        android:id="@+id/ripple"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clickable="false"
-        app:rb_radius="32dp">
-
-        <ImageView
-            android:id="@+id/test"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:gravity="center"
-            android:src="@drawable/bluetooth"
-            android:text="--\n--" />
-    </no.uio.ripple.RippleEffect>
+            android:text="Establish connection..."
+            android:textColor="@android:color/white"
+            android:textSize="32sp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:gravity="center_vertical"
-        app:layout_dodgeInsetEdges="bottom">
+        <no.uio.ripple.RippleEffect
+            android:id="@+id/ripple"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:clickable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rb_radius="32dp">
+
+            <ImageView
+                android:id="@+id/test"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:src="@drawable/bluetooth"
+                android:text="--\n--" />
+
+        </no.uio.ripple.RippleEffect>
 
         <Chronometer
             android:id="@+id/monitor_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="center"
+            android:layout_below="@id/ripple"
+
             android:text="01 h 30 m 02 s"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_anchor="@+id/fab" />
+            android:textSize="28sp"
+            android:layout_centerHorizontal="true"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            app:backgroundTint="@color/colorBackground"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_dodgeInsetEdges="bottom"
-            app:srcCompat="@drawable/stop" />
-    </LinearLayout>
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/monitor_stop"
+            android:layout_width="200dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardBackgroundColor="@android:color/holo_red_dark"
+            card_view:cardCornerRadius="30dp"
+            card_view:cardElevation="5dp"
+            android:layout_below="@id/monitor_time"
+            >
+
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="STOP MONITOR"
+                android:textColor="@android:color/background_light" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/bottom_sheet"
@@ -96,16 +111,8 @@
                 android:textStyle="bold"
                 android:textSize="16sp" />
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/bluetooth"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/bottom_sheet_text"
-                />
-
             <com.jjoe64.graphview.GraphView
+                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
                 android:id="@+id/graph" />
