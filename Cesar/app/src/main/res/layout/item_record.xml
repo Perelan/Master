@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="150dp"
     android:orientation="vertical"
-    android:layout_marginBottom="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:padding="10dp"
     app:cardBackgroundColor="@color/colorAccent"
     app:cardCornerRadius="3dp"
@@ -37,6 +38,7 @@
             android:layout_marginEnd="24dp"
             android:ellipsize="end"
             android:maxLines="2"
+            android:visibility="gone"
             android:text="s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
             android:textColor="@color/subtitle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +51,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginEnd="40dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="@color/subtitle"
+            android:rating="0"
             android:scaleX="1.5"
             android:scaleY="1.5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,16 +72,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/record_title" />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:layout_marginEnd="24dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/record_date" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="150dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
             android:weightSum="3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"

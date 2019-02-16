@@ -14,4 +14,12 @@ public class Uti {
                 .replace(R.id.fragment_container, fragment)
                 .commit();
     }
+
+    public static long[] splitSecondsToHMS(long time) {
+        long seconds = time / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+
+        return new long[] { hours % 24, minutes % 60, seconds % 60 };
+    }
 }
