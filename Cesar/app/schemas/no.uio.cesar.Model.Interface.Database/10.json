@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 9,
-    "identityHash": "cf2a218d1f874c701aa018ff584ce76c",
+    "version": 10,
+    "identityHash": "999fb797e664ccb7e45a618afda5f8dd",
     "entities": [
       {
         "tableName": "record_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `description` TEXT, `sessionTime` INTEGER NOT NULL, `rating` REAL NOT NULL, `createdAt` INTEGER, `updatedAt` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `description` TEXT, `monitorTime` INTEGER NOT NULL, `rating` REAL NOT NULL, `createdAt` INTEGER, `updatedAt` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -27,8 +27,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "sessionTime",
-            "columnName": "sessionTime",
+            "fieldPath": "monitorTime",
+            "columnName": "monitorTime",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -152,7 +152,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"cf2a218d1f874c701aa018ff584ce76c\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"999fb797e664ccb7e45a618afda5f8dd\")"
     ]
   }
 }

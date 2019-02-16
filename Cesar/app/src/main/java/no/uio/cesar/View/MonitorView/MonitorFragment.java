@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -119,7 +120,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
             Log.d("Recordviewmodel", "insertData: parse " + parse.getId() + " " + parse.getTime() + " " + parse.getValue());
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS", Locale.ENGLISH);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS", Locale.getDefault());
             Date d = null;
             try {
                 d = sdf.parse(parse.getTime());
@@ -152,7 +153,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
         sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
 
-        currentRecord = new Record(null);
+        currentRecord = new Record();
         recordViewModel.insert(currentRecord, this);
 
         View bottomSheet = v.findViewById(R.id.bottom_sheet);
@@ -245,9 +246,12 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             }
         }*/
 
-        Fragment f = StoreFragment.newInstance(currentRecordId);
+        long monitorTime = SystemClock.elapsedRealtime() - cm.getBase();
+
+        Fragment f = StoreFragment.newInstance(currentRecordId, monitorTime);
 
         Uti.commitFragmentTransaction(getActivity(), f);
+
 
         /* returns MS elapsed time
         System.out.println(SystemClock.elapsedRealtime() - cm.getBase());

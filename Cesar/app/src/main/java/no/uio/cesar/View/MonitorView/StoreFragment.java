@@ -11,7 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
+import java.util.Locale;
+
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.R;
@@ -22,10 +27,12 @@ import no.uio.cesar.ViewModel.RecordViewModel;
  */
 public class StoreFragment extends Fragment {
 
-    private EditText title, description;
-    private CardView btn;
-
     private RecordViewModel recordViewModel;
+
+    private RatingBar rb;
+    private EditText etTitle, etDescription;
+
+    private int primaryKey;
 
     public static final String TAG = "StoreFragment";
 
@@ -33,10 +40,11 @@ public class StoreFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static StoreFragment newInstance(long primaryKey) {
+    public static StoreFragment newInstance(long primaryKey, long monitorTime) {
         
         Bundle args = new Bundle();
         args.putLong("key", primaryKey);
+        args.putLong("monitorTime", monitorTime);
         
         StoreFragment fragment = new StoreFragment();
         fragment.setArguments(args);
@@ -53,27 +61,42 @@ public class StoreFragment extends Fragment {
 
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
 
-        title = v.findViewById(R.id.store_title);
-        description = v.findViewById(R.id.store_desc);
+        primaryKey = (int) getArguments().getLong("key");
 
-        btn = v.findViewById(R.id.store_btn);
+        etTitle = v.findViewById(R.id.store_title);
+        etDescription = v.findViewById(R.id.store_desc);
+        rb = v.findViewById(R.id.store_rating);
+
+        etTitle.setHint("Record #" + primaryKey);
+
+        CardView btn = v.findViewById(R.id.store_btn);
         btn.setOnClickListener(view -> storeMonitorSession());
-
-        long primaryKey = getArguments().getLong("key");
-
-        Record r = new Record(null);
-        r.setId((int)primaryKey);
-        r.setName(String.format("Record %d", (int)primaryKey));
-
-        recordViewModel.update(r);
-
-        Log.d(TAG, "onCreateView: key " + primaryKey);
 
         return v;
     }
 
     private void storeMonitorSession() {
-        System.out.println("here");
-    }
+        long monitorTime = getArguments().getLong("monitorTime");
 
+        String name = etTitle.getText().toString().isEmpty()
+                ? "Record " + primaryKey
+                : etTitle.getText().toString();
+
+        String description = etDescription.getText().toString();
+
+        float rating = rb.getRating();
+
+        Record r = new Record();
+        r.setId(primaryKey);
+        r.setName(name);
+        r.setDescription(description);
+        r.setRating(rating);
+        r.setMonitorTime(monitorTime);
+
+        Toast.makeText(getContext(), "Monitored session stored!", Toast.LENGTH_LONG).show();
+
+        recordViewModel.update(r);
+
+        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
 }

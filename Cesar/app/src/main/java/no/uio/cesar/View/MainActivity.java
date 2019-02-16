@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Inject the home fragment initially.
-        Uti.commitFragmentTransaction(this, new HomeFragment());
+        Uti.commitFragmentTransaction(this, new RecordFragment());
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> {
@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         recordViewModel.getAllRecords().observe(this, records -> {
             System.out.println(">>> new data " + records.size());
+            for (Record r : records) {
+                System.out.println(r);
+            }
         });
     }
 }

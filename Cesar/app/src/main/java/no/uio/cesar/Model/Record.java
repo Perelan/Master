@@ -2,7 +2,9 @@ package no.uio.cesar.Model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
@@ -13,15 +15,38 @@ public class Record {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String name;
-
+    private String name, description;
+    private long monitorTime;
+    private float rating;
     private Date createdAt, updatedAt;
 
-    public Record(String name) {
-        this.name = name;
-
+    public Record() {
         createdAt = new Date();
         updatedAt = new Date();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getMonitorTime() {
+        return monitorTime;
+    }
+
+    public void setMonitorTime(long monitorTime) {
+        this.monitorTime = monitorTime;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     public void setId(int id) {
@@ -56,4 +81,11 @@ public class Record {
         return name;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format(Locale.getDefault(),
+                "ID: %d - name: %s - createdat: %d - updatedat: %d - rating: %f - time: %d",
+                id, name, createdAt.getTime(), updatedAt.getTime(), rating, monitorTime);
+    }
 }

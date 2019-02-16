@@ -65,7 +65,7 @@ public class LandingActivity extends AppCompatActivity {
         sbHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvHeight.setText(String.format(Locale.ENGLISH, "%d cm", progress));
+                tvHeight.setText(String.format(Locale.getDefault(), "%d cm", progress));
             }
 
             @Override
@@ -82,7 +82,7 @@ public class LandingActivity extends AppCompatActivity {
         sbWeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvWeight.setText(String.format(Locale.ENGLISH, "%d kg", progress));
+                tvWeight.setText(String.format(Locale.getDefault(), "%d kg", progress));
             }
 
             @Override
