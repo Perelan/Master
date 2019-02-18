@@ -24,11 +24,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
+import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.sensordroid.MainServiceConnection;
@@ -62,6 +64,8 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     private RippleEffect rp;
     private Chronometer cm;
 
+    private TextView tvTitle;
+
     private LineGraphSeries<DataPoint> mSeries;
 
     private RecordViewModel recordViewModel;
@@ -81,6 +85,10 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
             if (msc != null) {
                 try {
+                    cm.start();
+
+                    tvTitle.setText("Connected; Sleep well!");
+
                     System.out.println(msc.getPublishers());
 
                     List<String> publishers = msc.getPublishers();
@@ -111,50 +119,25 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             rp.pulse(rp.BREATH);
 
             Bundle b = intent.getExtras();
-
             String data = b.getString("data");
 
-            Log.d(TAG, "onReceive: " + data);
+            Log.d(TAG, "onReceive: " + data + " id: " + currentRecordId);
 
-            Payload parse  = new Gson().fromJson(data, new TypeToken<Payload>(){}.getType());
+            Sample newSample = new Sample(currentRecordId);
 
-            Log.d("Recordviewmodel", "insertData: parse " + parse.getId() + " " + parse.getTime() + " " + parse.getValue());
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS", Locale.getDefault());
-            Date d = null;
-            try {
-                d = sdf.parse(parse.getTime());
-                System.out.println(d);
-
-            } catch(Exception e) {
-                System.out.println("error on date parse: " + e);
-            }
-
-            Sample newSample = new Sample(currentRecordId, parse.getValue(), d);
-
-            sampleViewModel.insert(newSample);
+            sampleViewModel.insert(newSample, data);
         }
     };
-
 
     public MonitorFragment() {
         // Required empty public constructor
     }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_monitor, container, false);
-        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
-
-        sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
-
-        currentRecord = new Record();
-        recordViewModel.insert(currentRecord, this);
 
         View bottomSheet = v.findViewById(R.id.bottom_sheet);
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
@@ -178,15 +161,34 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             }
         });
 
+        tvTitle = v.findViewById(R.id.monitor_title);
         cm = v.findViewById(R.id.monitor_time);
-        cm.start();
-
         rp = v.findViewById(R.id.ripple);
 
-        rp.setOnClickListener(view -> rp.pulse(rp.BREATH));
+        GraphView graph = v.findViewById(R.id.resp_graph);
+        graph.getViewport().setMinY(1000);
+        graph.getViewport().setMaxY(2000);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(1000);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setYAxisBoundsManual(true);
+
+        mSeries = new LineGraphSeries<>();
+
+        graph.addSeries(mSeries);
 
         CardView stopMonitor = v.findViewById(R.id.monitor_stop);
         stopMonitor.setOnClickListener(view -> dialogSessionEnd());
+
+        rp.setOnClickListener(view -> rp.pulse(rp.BREATH));
+
+        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
+
+        sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
+
+        currentRecord = new Record();
+        recordViewModel.insert(currentRecord, this);
 
         return v;
     }
@@ -205,7 +207,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     public void onDestroy() {
         super.onDestroy();
 
-        /*
+
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(listener);
 
         if (msc != null) {
@@ -221,7 +223,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
         if (serviceCon != null) {
             getActivity().unbindService(serviceCon);
-        }*/
+        }
     }
 
     @Override
@@ -234,7 +236,6 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     public void storeAndFinishSession() {
         cm.stop();
 
-        /*
         if (msc != null) {
             try {
                 List<String> publishers = msc.getPublishers();
@@ -244,23 +245,13 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 
         long monitorTime = SystemClock.elapsedRealtime() - cm.getBase();
 
         Fragment f = StoreFragment.newInstance(currentRecordId, monitorTime);
 
         Uti.commitFragmentTransaction(getActivity(), f);
-
-
-        /* returns MS elapsed time
-        System.out.println(SystemClock.elapsedRealtime() - cm.getBase());
-
-        ArrayList<Sample> sample = new ArrayList<>();
-
-        Record newRecord = new Record("test", sample);
-
-        recordViewModel.insert(newRecord);*/
     }
 
     @Override
@@ -272,8 +263,22 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         Intent intent = new Intent(MainServiceConnection.class.getName());
         intent.setAction("com.sensordroid.ADD_DRIVER");
         intent.setPackage("com.sensordroid");
-        //getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
+        getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
 
-        //LocalBroadcastManager.getInstance(getContext()).registerReceiver(listener, new IntentFilter("PUT_DATA"));
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(listener, new IntentFilter("PUT_DATA"));
+
+        sampleViewModel.getSamplesForRecord(currentRecordId).observe(this, samples -> {
+            Log.d(TAG, "onInsertGetRecordId: " + samples.size());
+            if (samples.size() == 0) return;
+            Sample latestSample = samples.get(samples.size() - 1);
+
+            int values = Uti.extractFlowData(latestSample.getSample());
+
+            DataPoint dp = new DataPoint(Uti.calcElapsedTime(cm.getBase()) / 1000.0, values);
+
+            System.out.println("X: " + Uti.calcElapsedTime(cm.getBase()) + " y: " + values);
+
+            mSeries.appendData(dp, true, 40);
+        });
     }
 }

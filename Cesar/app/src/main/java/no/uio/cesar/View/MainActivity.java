@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Inject the home fragment initially.
-        Uti.commitFragmentTransaction(this, new RecordFragment());
+        Uti.commitFragmentTransaction(this, new HomeFragment());
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> {

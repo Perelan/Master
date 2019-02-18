@@ -14,13 +14,16 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Locale;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import no.uio.cesar.Model.Record;
+import no.uio.cesar.Model.Sample;
 import no.uio.cesar.R;
 import no.uio.cesar.ViewModel.RecordViewModel;
+import no.uio.cesar.ViewModel.SampleViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +31,7 @@ import no.uio.cesar.ViewModel.RecordViewModel;
 public class StoreFragment extends Fragment {
 
     private RecordViewModel recordViewModel;
+    private SampleViewModel sampleViewModel;
 
     private RatingBar rb;
     private EditText etTitle, etDescription;
@@ -60,6 +64,7 @@ public class StoreFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_store, container, false);
 
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
+        sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
 
         primaryKey = (int) getArguments().getLong("key");
 
@@ -70,12 +75,12 @@ public class StoreFragment extends Fragment {
         etTitle.setHint("Record #" + primaryKey);
 
         CardView btn = v.findViewById(R.id.store_btn);
-        btn.setOnClickListener(view -> storeMonitorSession());
+        btn.setOnClickListener(view -> getNumberSamples(primaryKey));
 
         return v;
     }
 
-    private void storeMonitorSession() {
+    private void storeMonitorSession(int sampleCount) {
         long monitorTime = getArguments().getLong("monitorTime");
 
         String name = etTitle.getText().toString().isEmpty()
@@ -92,11 +97,21 @@ public class StoreFragment extends Fragment {
         r.setDescription(description);
         r.setRating(rating);
         r.setMonitorTime(monitorTime);
+        r.setNrSamples(sampleCount);
 
         Toast.makeText(getContext(), "Monitored session stored!", Toast.LENGTH_LONG).show();
 
         recordViewModel.update(r);
 
         getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+    // Todo: rewrite this logic
+    private void getNumberSamples(long primaryKey) {
+
+        sampleViewModel.getSamplesForRecord(primaryKey).observe(this, samples -> {
+            Log.d(TAG, "getNumberSamples: " + samples);
+            storeMonitorSession(samples.size());
+        });
     }
 }

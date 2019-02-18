@@ -2,7 +2,9 @@ package no.uio.cesar.Model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -21,10 +23,8 @@ public class Sample {
     private String sample;
     private Date explicitTS, implicitTS;
 
-    public Sample(long recordId, String sample, Date explicitTS) {
+    public Sample(long recordId) {
         this.recordId = recordId;
-        this.sample = sample;
-        this.explicitTS = explicitTS;
         this.implicitTS = new Date();
     }
 
@@ -46,11 +46,29 @@ public class Sample {
         return explicitTS;
     }
 
+    public void setRecordId(long recordId) {
+        this.recordId = recordId;
+    }
+
+    public void setSample(String sample) {
+        this.sample = sample;
+    }
+
+    public void setExplicitTS(Date explicitTS) {
+        this.explicitTS = explicitTS;
+    }
+
     public Date getImplicitTS() {
         return implicitTS;
     }
 
     public void setImplicitTS(Date implicitTS) {
         this.implicitTS = implicitTS;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format(Locale.getDefault(), "Id: %d - recordid: %d - sample: %s", id, recordId, sample);
     }
 }

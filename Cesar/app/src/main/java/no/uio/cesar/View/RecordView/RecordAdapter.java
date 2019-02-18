@@ -73,7 +73,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
         holder.tvTitle.setText(currentRecord.getName());
         holder.tvDate.setText(DateFormat.getDateInstance().format(currentRecord.getCreatedAt()));
         holder.rbRating.setRating(currentRecord.getRating());
-
+        holder.tvSamples.setText("" + currentRecord.getNrSamples());
 
         long[] timeConverted = Uti.splitSecondsToHMS(currentRecord.getMonitorTime());
 

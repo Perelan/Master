@@ -13,13 +13,13 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/monitor_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="Establish connection..."
-            android:textColor="@android:color/white"
+            android:textColor="@color/title"
             android:textSize="32sp" />
 
         <no.uio.ripple.RippleEffect
@@ -115,7 +115,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
-                android:id="@+id/graph" />
+                android:id="@+id/resp_graph" />
         </RelativeLayout>
 
 

@@ -4,11 +4,17 @@ import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.lifecycle.LiveData;
 import no.uio.cesar.Model.Module;
+import no.uio.cesar.Model.Payload;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
 
@@ -52,7 +58,27 @@ public class Repository {
 
     /* Sample */
 
-    public void insertSample(Sample sample) {
+    // Change this to specificly Flow
+    public void insertSample(Sample sample, String data) {
+        Payload parse  = new Gson().fromJson(data, new TypeToken<Payload>(){}.getType());
+
+        Log.d(TAG, "insertData: parse " + parse.getId() + " " + parse.getTime() + " " + parse.getValue());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS", Locale.getDefault());
+        Date d = null;
+        try {
+            d = sdf.parse(parse.getTime());
+            System.out.println(d);
+
+        } catch(Exception e) {
+            System.out.println("error on date parse: " + e);
+        }
+
+        sample.setExplicitTS(d);
+        sample.setSample(parse.getValue());
+
+        Log.d(TAG, "insertSample: " + sample);
+
         new InsertSampleAsyncTask(sampleDao).execute(sample);
     }
 
@@ -116,6 +142,9 @@ public class Repository {
 
         @Override
         public Void doInBackground(Sample... samples) {
+
+            Log.d(TAG, "doInBackground: Inserting in Sample: " + samples[0]);
+            
             sampleDao.insert(samples[0]);
 
             return null;

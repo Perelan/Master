@@ -23,6 +23,9 @@ public interface SampleDao {
     @Delete
     void delete(Sample sample);
 
+    @Query("SELECT COUNT(*) FROM sample_table WHERE recordId=:recordId")
+    int countSamplesForRecord(final long recordId);
+
     @Query("SELECT * FROM sample_table WHERE recordId=:recordId")
     LiveData<List<Sample>> getSamplesForRecord(final long recordId);
 }

@@ -20,9 +20,19 @@ public class Record {
     private float rating;
     private Date createdAt, updatedAt;
 
+    private int nrSamples;
+
     public Record() {
         createdAt = new Date();
         updatedAt = new Date();
+    }
+
+    public int getNrSamples() {
+        return nrSamples;
+    }
+
+    public void setNrSamples(int nrSamples) {
+        this.nrSamples = nrSamples;
     }
 
     public String getDescription() {
