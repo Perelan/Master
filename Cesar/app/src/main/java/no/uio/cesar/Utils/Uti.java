@@ -7,13 +7,22 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
 import java.util.Date;
+import java.util.List;
 
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import no.uio.cesar.ExportObject;
 import no.uio.cesar.R;
 
 public class Uti {
@@ -52,22 +61,22 @@ public class Uti {
     }
 
     public static File writeToInternalStorage(Context context, String data) {
-        File file = new File(context.getFilesDir(), "cesar");
+        File folder = new File(context.getFilesDir(), "cesar");
 
-        if (!file.exists()) {
-            file.mkdir();
+        if (!folder.exists()) {
+            folder.mkdir();
         }
 
         try {
-            File writeFile = new File(file, "record_" + new Date().getTime() + ".json");
-            FileWriter writer = new FileWriter(writeFile);
+            File file = new File(folder, "record_" + new Date().getTime() + ".json");
+            FileWriter writer = new FileWriter(file);
 
             System.out.println("DATA " + data);
             writer.write(data);
             writer.flush();
             writer.close();
 
-            return writeFile;
+            return file;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,5 +96,24 @@ public class Uti {
         intentShareFile.putExtra(Intent.EXTRA_STREAM, fileUri);
         intentShareFile.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         a.startActivity(Intent.createChooser(intentShareFile, "Share Via"));
+    }
+
+    public static void parseRecordFile(Context context, String data) {
+
+        Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", new File(data));
+
+        File f = new File(fileUri.getPath());
+
+        Type IMPORT_TYPE = new TypeToken<List<ExportObject>>(){}.getType();
+
+        try {
+            JsonReader reader = new JsonReader(new FileReader(f.getAbsoluteFile()));
+            List<ExportObject> listofrecords = new Gson().fromJson(reader, IMPORT_TYPE);
+
+            System.out.println("HERERE " + listofrecords.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

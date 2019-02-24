@@ -119,6 +119,7 @@ public class RecordFragment extends DialogFragment implements Toolbar.OnMenuItem
                 Export.export(this, getContext(), currentRecord);
                 return true;
             case R.id.record_delete:
+                recordViewModel.delete(currentRecord);
                 return true;
         }
         return false;

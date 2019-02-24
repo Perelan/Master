@@ -10,29 +10,13 @@ import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import no.uio.cesar.ExportObject;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
+import no.uio.cesar.ViewModel.RecordViewModel;
 import no.uio.cesar.ViewModel.SampleViewModel;
 
 public class Export {
-
-    private static class ExportObject {
-        Record record;
-        List<Sample> samples;
-
-        public ExportObject(Record record, List<Sample> samples) {
-            this.record = record;
-            this.samples = samples;
-        }
-
-        public Record getRecord() {
-            return record;
-        }
-
-        public List<Sample> getSamples() {
-            return samples;
-        }
-    }
 
     public static void export(Fragment f, Context context, Record record) {
 
@@ -48,11 +32,37 @@ public class Export {
 
             Uti.shareFileIntent(f.getActivity(), file);
         });
-
     }
 
-    public static void exportAll() {
+    // Todo: fix this logic
+    public static void exportAll(Fragment f) {
+        RecordViewModel recordViewModel = ViewModelProviders.of(f).get(RecordViewModel.class);
+        SampleViewModel sampleViewModel = ViewModelProviders.of(f).get(SampleViewModel.class);
 
+        recordViewModel.getAllRecords().observe(f, records -> {
+
+            ArrayList<ExportObject> listOfExportObjects = new ArrayList<>();
+
+            System.out.println(records.size());
+
+            for (int i = 0; i < records.size(); i++) {
+                int finalI = i;
+                sampleViewModel.getSamplesForRecord(records.get(i).getId()).observe(f, samples -> {
+                    listOfExportObjects.add(new ExportObject(records.get(finalI), samples));
+
+                    if (finalI == records.size() - 1) {
+                        String exportString = new Gson().toJson(listOfExportObjects);
+
+                        System.out.println("HERE " + exportString);
+
+
+                        File file = Uti.writeToInternalStorage(f.getContext(), exportString);
+
+                        Uti.shareFileIntent(f.getActivity(), file);
+                    }
+                });
+            }
+
+        });
     }
-
 }

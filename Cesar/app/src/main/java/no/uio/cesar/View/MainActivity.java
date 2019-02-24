@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Inject the home fragment initially.
+        setTitle("Feed");
         Uti.commitFragmentTransaction(this, new FeedFragment());
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -74,10 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
         SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
 
-        sampleViewModel.getSamplesForRecord(5).observe(this, samples -> {
+        sampleViewModel.getSamplesForRecord(40).observe(this, samples -> {
             System.out.println("DATA > " + samples);
         });
-
 
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         recordViewModel.getAllRecords().observe(this, records -> {

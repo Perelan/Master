@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/feed_import"
+        android:title="Import Records"/>
+
+    <item
+        android:id="@+id/feed_export"
+        android:title="Export All"/>
+
+    <item
+        android:id="@+id/feed_delete"
+        android:title="Delete All"/>
+
+</menu>
