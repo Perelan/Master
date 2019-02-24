@@ -1,19 +1,15 @@
-package no.uio.cesar.View.RecordView;
+package no.uio.cesar.View.FeedView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.sql.Time;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +17,7 @@ import no.uio.cesar.Model.Record;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Uti;
 
-public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordViewHolder> {
+public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHolder> {
 
     class RecordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -50,9 +46,9 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     }
 
     private List<Record> mRecords;
-    private RecordViewClickListener listener;
+    private FeedViewClickListener listener;
 
-    RecordAdapter(RecordViewClickListener listener) {
+    FeedAdapter(FeedViewClickListener listener) {
         mRecords = new ArrayList<>();
         this.listener = listener;
     }

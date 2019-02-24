@@ -2,8 +2,16 @@ package no.uio.cesar.Utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.SystemClock;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Date;
+
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import no.uio.cesar.R;
@@ -41,5 +49,43 @@ public class Uti {
 
     public static long calcElapsedTime(long offset) {
         return SystemClock.elapsedRealtime() - offset;
+    }
+
+    public static File writeToInternalStorage(Context context, String data) {
+        File file = new File(context.getFilesDir(), "cesar");
+
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
+        try {
+            File writeFile = new File(file, "record_" + new Date().getTime() + ".json");
+            FileWriter writer = new FileWriter(writeFile);
+
+            System.out.println("DATA " + data);
+            writer.write(data);
+            writer.flush();
+            writer.close();
+
+            return writeFile;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static void shareFileIntent(Activity a, File file) {
+
+        System.out.println("HERERER " + file.getName());
+
+        Uri fileUri = FileProvider.getUriForFile(a.getApplicationContext(), a.getApplicationContext().getPackageName() + ".provider", file);
+
+        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+        intentShareFile.setType("text/*");
+        intentShareFile.putExtra(Intent.EXTRA_SUBJECT, "Share Records");
+        intentShareFile.putExtra(Intent.EXTRA_STREAM, fileUri);
+        intentShareFile.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        a.startActivity(Intent.createChooser(intentShareFile, "Share Via"));
     }
 }

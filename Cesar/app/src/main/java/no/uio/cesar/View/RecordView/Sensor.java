@@ -1,4 +1,4 @@
-package no.uio.cesar.View.HomeView;
+package no.uio.cesar.View.RecordView;
 
 public class Sensor {
 

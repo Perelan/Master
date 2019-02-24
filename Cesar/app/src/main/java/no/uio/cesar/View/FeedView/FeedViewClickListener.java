@@ -1,7 +1,7 @@
-package no.uio.cesar.View.RecordView;
+package no.uio.cesar.View.FeedView;
 
 import android.view.View;
 
-public interface RecordViewClickListener {
+public interface FeedViewClickListener {
     public void onRecordItemClick(View v, int position);
 }

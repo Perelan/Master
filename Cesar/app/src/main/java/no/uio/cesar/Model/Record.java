@@ -95,7 +95,7 @@ public class Record {
     @Override
     public String toString() {
         return String.format(Locale.getDefault(),
-                "ID: %d - name: %s - createdat: %d - updatedat: %d - rating: %f - time: %d",
-                id, name, createdAt.getTime(), updatedAt.getTime(), rating, monitorTime);
+                "ID: %d - name: %s - createdat: %d - updatedat: %d - rating: %f - time: %d - samples: %d",
+                id, name, createdAt.getTime(), updatedAt.getTime(), rating, monitorTime, nrSamples);
     }
 }
