@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import androidx.cardview.widget.CardView;
+import no.uio.cesar.Model.User;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Constant;
 
@@ -129,9 +130,17 @@ public class LandingActivity extends AppCompatActivity {
         }
     }
 
+    // TODO: switch to user model
     public void storeUserData() {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
+
+        User user = new User(
+                name.getText().toString(),
+                gender.getText().toString(),
+                sbHeight.getProgress(),
+                sbWeight.getProgress(),
+                10);
 
         editor.putString(Constant.USER_KEY_NAME, name.getText().toString());
         editor.putString(Constant.USER_KEY_GENDER, gender.getText().toString());
@@ -139,6 +148,6 @@ public class LandingActivity extends AppCompatActivity {
         editor.putInt(Constant.USER_KEY_WEIGHT, sbWeight.getProgress());
         editor.putLong(Constant.USER_KEY_CREATED, new Date().getTime());
 
-        editor.commit();
+        editor.apply();
     }
 }

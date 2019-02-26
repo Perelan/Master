@@ -18,6 +18,19 @@
 
     </FrameLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/navigation"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@android:drawable/ic_media_play"
+        app:backgroundTint="@color/red" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
@@ -27,5 +40,8 @@
         app:itemBackground="@color/colorPrimaryDark"
         app:itemTextColor="@android:color/darker_gray"
         app:menu="@menu/navigation" />
+
+
+
 
 </RelativeLayout>

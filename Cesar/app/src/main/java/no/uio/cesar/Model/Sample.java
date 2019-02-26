@@ -66,9 +66,14 @@ public class Sample {
         this.implicitTS = implicitTS;
     }
 
-    @NonNull
     @Override
     public String toString() {
-        return String.format(Locale.getDefault(), "Id: %d - recordid: %d - sample: %s", id, recordId, sample);
+        return "Sample{" +
+                "id=" + id +
+                ", recordId=" + recordId +
+                ", sample='" + sample + '\'' +
+                ", explicitTS=" + explicitTS +
+                ", implicitTS=" + implicitTS +
+                '}';
     }
 }

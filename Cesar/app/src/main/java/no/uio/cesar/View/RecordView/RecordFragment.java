@@ -17,6 +17,7 @@ import com.sensordroid.MainServiceConnection;
 import java.util.ArrayList;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +27,7 @@ import no.uio.cesar.View.MonitorActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecordFragment extends Fragment {
+public class RecordFragment extends DialogFragment {
 
     ArrayList<Sensor> mDummyData;
 

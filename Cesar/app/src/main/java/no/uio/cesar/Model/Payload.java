@@ -27,4 +27,14 @@ public class Payload {
     public void setTime(String time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "Payload{" +
+                "id='" + id + '\'' +
+                ", value='" + value + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
+
 }

@@ -1,6 +1,5 @@
 package no.uio.cesar.View.FeedView;
 
-
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -10,8 +9,6 @@ import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,9 +97,12 @@ public class RecordFragment extends DialogFragment implements Toolbar.OnMenuItem
     }
 
     public void populateElements(Record currentRecord) {
+
         tvTitle.setText(currentRecord.getName());
         tvDate.setText(DateFormat.getDateInstance().format(currentRecord.getCreatedAt()));
-        tvDescription.setText(currentRecord.getDescription().isEmpty() ? "No description" : currentRecord.getDescription());
+        tvDescription.setText(currentRecord.getDescription() != null && currentRecord.getDescription().isEmpty()
+                ? "No description"
+                : currentRecord.getDescription());
 
         long[] timeConverted = Uti.splitSecondsToHMS(currentRecord.getMonitorTime());
 
@@ -116,7 +116,7 @@ public class RecordFragment extends DialogFragment implements Toolbar.OnMenuItem
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.record_export:
-                Export.export(this, getContext(), currentRecord);
+                Export.export(this, currentRecord);
                 return true;
             case R.id.record_delete:
                 recordViewModel.delete(currentRecord);

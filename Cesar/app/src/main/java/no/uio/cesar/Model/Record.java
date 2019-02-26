@@ -91,11 +91,17 @@ public class Record {
         return name;
     }
 
-    @NonNull
     @Override
     public String toString() {
-        return String.format(Locale.getDefault(),
-                "ID: %d - name: %s - createdat: %d - updatedat: %d - rating: %f - time: %d - samples: %d",
-                id, name, createdAt.getTime(), updatedAt.getTime(), rating, monitorTime, nrSamples);
+        return "Record{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", monitorTime=" + monitorTime +
+                ", rating=" + rating +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", nrSamples=" + nrSamples +
+                '}';
     }
 }

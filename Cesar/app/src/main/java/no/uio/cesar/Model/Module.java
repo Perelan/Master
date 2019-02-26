@@ -31,4 +31,13 @@ public class Module {
     public String getPackageName() {
         return packageName;
     }
+
+    @Override
+    public String toString() {
+        return "Module{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", packageName='" + packageName + '\'' +
+                '}';
+    }
 }

@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.R;
+import no.uio.cesar.Utils.Export;
 import no.uio.cesar.Utils.Uti;
 
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHolder> {
@@ -24,24 +25,37 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
         private TextView tvTitle, tvDate, tvDescription, tvTime, tvSamples, tvAvgResp;
         private RatingBar rbRating;
 
+        private View recordToggle, btnShare, btnAnalytics, btnDelete;
+
         RecordViewHolder(View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.record_title);
             tvDate = itemView.findViewById(R.id.record_date);
-            //tvDescription = itemView.findViewById(R.id.record_description);
+            tvDescription = itemView.findViewById(R.id.record_description);
             tvTime = itemView.findViewById(R.id.record_time);
             tvSamples = itemView.findViewById(R.id.record_samples);
             tvAvgResp = itemView.findViewById(R.id.record_resp);
 
             rbRating = itemView.findViewById(R.id.record_rating);
 
+            recordToggle = itemView.findViewById(R.id.record_toggle);
+
+            btnShare = itemView.findViewById(R.id.record_share);
+            btnAnalytics = itemView.findViewById(R.id.record_analytics);
+            btnDelete = itemView.findViewById(R.id.record_delete);
+
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            listener.onRecordItemClick(v, this.getAdapterPosition());
+            //listener.onRecordItemClick(v, this.getAdapterPosition());
+            if (recordToggle.getVisibility() == View.GONE) {
+                recordToggle.setVisibility(View.VISIBLE);
+            } else {
+                recordToggle.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -51,6 +65,18 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
     FeedAdapter(FeedViewClickListener listener) {
         mRecords = new ArrayList<>();
         this.listener = listener;
+    }
+
+    @Override
+    public int getItemCount() {
+        return mRecords.size();
+    }
+
+    public List<Record> getRecords() { return mRecords; }
+
+    public void insertRecord(List<Record> records) {
+        this.mRecords = records;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -67,6 +93,10 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
         Record currentRecord = mRecords.get(position);
 
         holder.tvTitle.setText(currentRecord.getName());
+        holder.tvDescription.setText(currentRecord.getDescription() != null && currentRecord.getDescription().isEmpty()
+                ? "No description..."
+                : currentRecord.getDescription());
+
         holder.tvDate.setText(DateFormat.getDateInstance().format(currentRecord.getCreatedAt()));
         holder.rbRating.setRating(currentRecord.getRating());
         holder.tvSamples.setText("" + currentRecord.getNrSamples());
@@ -75,18 +105,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
 
         holder.tvTime.setText(String.format(Locale.getDefault(),
                 "%dh %dm %ds", timeConverted[0], timeConverted[1], timeConverted[2]));
+
+        holder.btnDelete.setOnClickListener(l -> listener.onRecordDeleteClick(currentRecord));
+        holder.btnShare.setOnClickListener(l -> listener.onRecordShareClick(currentRecord));
+
     }
-
-    @Override
-    public int getItemCount() {
-        return mRecords.size();
-    }
-
-    public List<Record> getRecords() { return mRecords; }
-
-    public void insertRecord(List<Record> records) {
-        this.mRecords = records;
-        notifyDataSetChanged();
-    }
-
 }

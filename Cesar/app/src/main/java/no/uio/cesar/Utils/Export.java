@@ -18,7 +18,7 @@ import no.uio.cesar.ViewModel.SampleViewModel;
 
 public class Export {
 
-    public static void export(Fragment f, Context context, Record record) {
+    public static void export(Fragment f, Record record) {
 
         SampleViewModel sampleViewModel = ViewModelProviders.of(f).get(SampleViewModel.class);
         sampleViewModel.getSamplesForRecord(record.getId()).observe(f, samples -> {
@@ -28,7 +28,7 @@ public class Export {
 
             String exportString = new Gson().toJson(listOfExportObjects);
 
-            File file = Uti.writeToInternalStorage(context, exportString);
+            File file = Uti.writeToInternalStorage(f.getContext(), exportString);
 
             Uti.shareFileIntent(f.getActivity(), file);
         });

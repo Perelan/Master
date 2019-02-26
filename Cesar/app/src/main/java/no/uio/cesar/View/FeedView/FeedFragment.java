@@ -2,23 +2,23 @@ package no.uio.cesar.View.FeedView;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.io.File;
 import java.util.List;
 
 import androidx.fragment.app.FragmentTransaction;
@@ -26,15 +26,18 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import no.uio.cesar.Model.Record;
+import no.uio.cesar.Model.User;
 import no.uio.cesar.R;
+import no.uio.cesar.Utils.Constant;
 import no.uio.cesar.Utils.Export;
 import no.uio.cesar.Utils.Uti;
+import no.uio.cesar.View.ProfileView.ProfileFragment;
 import no.uio.cesar.ViewModel.RecordViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FeedFragment extends Fragment implements FeedViewClickListener {
+public class FeedFragment extends Fragment implements FeedViewClickListener, Toolbar.OnMenuItemClickListener {
 
     private RecyclerView mRecyclerView;
 
@@ -52,9 +55,11 @@ public class FeedFragment extends Fragment implements FeedViewClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_feed, container, false);
 
-        setHasOptionsMenu(true);
-
         mRecyclerView = v.findViewById(R.id.record_list_view);
+
+        Toolbar toolbar = v.findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.feed);
+        toolbar.setOnMenuItemClickListener(this);
 
         LinearLayoutManager lym = new LinearLayoutManager(getContext());
         lym.setReverseLayout(true);
@@ -78,10 +83,22 @@ public class FeedFragment extends Fragment implements FeedViewClickListener {
         return v;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.feed, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+    private void viewUserProfile() {
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        SharedPreferences sharedPref = getContext().getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
+
+        String name = sharedPref.getString(Constant.USER_KEY_NAME, null);
+        String gender = sharedPref.getString(Constant.USER_KEY_GENDER, null);
+        int height = sharedPref.getInt(Constant.USER_KEY_HEIGHT, 0);
+        int weight = sharedPref.getInt(Constant.USER_KEY_WEIGHT, 0);
+        //sharedPref.getLong(Constant.USER_KEY_CREATED, null);
+
+        User user = new User(name, gender, height, weight, 20);
+
+        DialogFragment dialogFragment = ProfileFragment.newInstance(user);
+        dialogFragment.show(ft, "user_dialog");
+
     }
 
     @Override
@@ -100,7 +117,34 @@ public class FeedFragment extends Fragment implements FeedViewClickListener {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void onRecordAnalyticsClick(Record record) {
+
+    }
+
+    @Override
+    public void onRecordDeleteClick(Record record) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Delete current record?")
+                .setMessage("Do you want to delete this record?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Yes", (dialog, which) -> recordViewModel.delete(record))
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    @Override
+    public void onRecordShareClick(Record record) {
+        Export.export(this, record);
+    }
+
+    public void importRecords() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.feed_import:
                 importRecords();
@@ -120,25 +164,5 @@ public class FeedFragment extends Fragment implements FeedViewClickListener {
         return false;
     }
 
-    @Override
-    public void onRecordItemClick(View v, int position) {
-        List<Record> allRecords = adapter.getRecords();
-        Record selectedRecord = allRecords.get(position);
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-        /*getActivity().getSupportFragmentManager().beginTransaction()
-                //.replace(R.id.fragment_container, fragment, null)
-                .addToBackStack(null)
-                .commit();*/
-
-        DialogFragment dialogFragment = RecordFragment.newInstance(selectedRecord);
-        dialogFragment.show(ft, "dialog");
-    }
-
-    public void importRecords() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(intent, 1);
-    }
 }
