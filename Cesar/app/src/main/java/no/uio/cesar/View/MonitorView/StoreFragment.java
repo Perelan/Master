@@ -1,6 +1,7 @@
 package no.uio.cesar.View.MonitorView;
 
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -35,6 +37,8 @@ public class StoreFragment extends Fragment {
 
     private RatingBar rb;
     private EditText etTitle, etDescription;
+
+    private TextView tvDiscard;
 
     private int primaryKey;
 
@@ -71,6 +75,9 @@ public class StoreFragment extends Fragment {
         etTitle = v.findViewById(R.id.store_title);
         etDescription = v.findViewById(R.id.store_desc);
         rb = v.findViewById(R.id.store_rating);
+        tvDiscard = v.findViewById(R.id.store_discard);
+
+        tvDiscard.setOnClickListener(l -> discardSession(primaryKey));
 
         etTitle.setHint("Record #" + primaryKey);
 
@@ -78,6 +85,25 @@ public class StoreFragment extends Fragment {
         btn.setOnClickListener(view -> getNumberSamples(primaryKey));
 
         return v;
+    }
+
+    private void discardSession(int primaryKey) {
+
+        Record record = new Record();
+        record.setId(primaryKey);
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Delete current session?")
+                .setMessage("Do you want to delete this session?")
+                .setIcon(android.R.drawable.ic_delete)
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    recordViewModel.delete(record);
+                    Toast.makeText(getContext(), "Monitored session deleted!", Toast.LENGTH_LONG).show();
+                    getActivity().finish();
+                })
+                .setNegativeButton("No", null)
+                .show();
+
     }
 
     private void storeMonitorSession(int sampleCount) {
@@ -103,7 +129,8 @@ public class StoreFragment extends Fragment {
 
         recordViewModel.update(r);
 
-        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getActivity().finish();
+
     }
 
     // Todo: rewrite this logic

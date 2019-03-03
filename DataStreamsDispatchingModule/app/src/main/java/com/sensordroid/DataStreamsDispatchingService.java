@@ -491,7 +491,7 @@ public class DataStreamsDispatchingService extends Service {
          * @return list of capabilities from sensor-capability model.
          */
         public List<String> getPublishers(){
-            Log.d(TAG, "getPublishers() called");
+            Log.d(TAG, "\ngetPublishers() called");
             List<String> tmp = new ArrayList<String>();
             int index = 0;
             for(Wrapper w : wrappers.values()){

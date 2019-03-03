@@ -9,6 +9,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.Window;
 import android.widget.Chronometer;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,5 +42,10 @@ public class MonitorActivity extends AppCompatActivity {
 
         Fragment f = new MonitorFragment();
         Uti.commitFragmentTransaction(this, f);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Stop the monitor and save/discard session", Toast.LENGTH_LONG).show();
     }
 }

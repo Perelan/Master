@@ -21,6 +21,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import no.uio.cesar.Model.Sensor;
 import no.uio.cesar.R;
 import no.uio.cesar.View.MonitorActivity;
 
@@ -32,7 +33,6 @@ public class RecordFragment extends DialogFragment {
     ArrayList<Sensor> mDummyData;
 
     private RecyclerView mRecyclerView;
-    private SensorAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private MainServiceConnection msc;
@@ -50,7 +50,6 @@ public class RecordFragment extends DialogFragment {
             try {
                 Log.d("RecordFragment", "onServiceConnected: " + msc.getPublishers());
 
-                mAdapter.parseSensorData(msc.getPublishers());
             } catch (Exception e) { }
         }
 
@@ -79,6 +78,7 @@ public class RecordFragment extends DialogFragment {
         CardView cv = v.findViewById(R.id.monitor_button);
 
         cv.setOnClickListener(view -> {
+            this.dismiss();
             startActivity(new Intent(getActivity(), MonitorActivity.class));
         });
 
@@ -87,9 +87,7 @@ public class RecordFragment extends DialogFragment {
         mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new SensorAdapter();
-
-        mRecyclerView.setAdapter(mAdapter);
+        //mAdapter = new SensorAdapter();
 
         Intent intent = new Intent(MainServiceConnection.class.getName());
         intent.setAction("com.sensordroid.ADD_DRIVER");

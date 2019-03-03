@@ -16,7 +16,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
@@ -42,11 +44,14 @@ import java.util.Locale;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import no.uio.cesar.DSDService;
 import no.uio.cesar.Model.Interface.DatabaseCallback;
 import no.uio.cesar.Model.Payload;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
+import no.uio.cesar.Model.Sensor;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.ViewModel.RecordViewModel;
@@ -61,10 +66,17 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
     private Context mContext;
 
+    private PowerManager.WakeLock wakeLock;
+
     private RippleEffect rp;
     private Chronometer cm;
 
     private TextView tvTitle;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private SensorAdapter mAdapter;
+
 
     private LineGraphSeries<DataPoint> mSeries;
 
@@ -78,29 +90,14 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
     public MainServiceConnection msc;
 
+    private List<String> publishers;
+
     private ServiceConnection serviceCon = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             msc = MainServiceConnection.Stub.asInterface(service);
 
-            if (msc != null) {
-                try {
-                    cm.start();
-
-                    tvTitle.setText("Connected; Sleep well!");
-
-                    System.out.println(msc.getPublishers());
-
-                    List<String> publishers = msc.getPublishers();
-                    if (publishers.isEmpty()) return;
-
-                    String s = publishers.get(0).split(",")[0];
-
-                    System.out.println(msc.Subscribe(s, 0, getActivity().getPackageName(), DSDService.class.getName()));
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }
+            connect();
         }
 
         @Override
@@ -161,6 +158,21 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             }
         });
 
+        PowerManager powerManager = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                "CESAR::collection");
+
+        wakeLock.acquire();
+
+        mRecyclerView = v.findViewById(R.id.available_sensors);
+
+        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new SensorAdapter();
+
+        mRecyclerView.setAdapter(mAdapter);
+
         tvTitle = v.findViewById(R.id.monitor_title);
         cm = v.findViewById(R.id.monitor_time);
         rp = v.findViewById(R.id.ripple);
@@ -181,8 +193,6 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         CardView stopMonitor = v.findViewById(R.id.monitor_stop);
         stopMonitor.setOnClickListener(view -> dialogSessionEnd());
 
-        rp.setOnClickListener(view -> rp.pulse(rp.BREATH));
-
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
 
         sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
@@ -193,7 +203,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         return v;
     }
 
-    public void dialogSessionEnd() {
+    private void dialogSessionEnd() {
         new AlertDialog.Builder(mContext)
                 .setMessage("Are you done with the monitor session?")
                 .setCancelable(false)
@@ -205,25 +215,11 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
     @Override
     public void onDestroy() {
+        Log.d(TAG, "onDestroy: CALLED");
+        
         super.onDestroy();
 
-
-        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(listener);
-
-        if (msc != null) {
-            try {
-                List<String> publishers = msc.getPublishers();
-
-                String s = publishers.get(0).split(",")[0];
-                System.out.println(msc.Unsubscribe(s, DSDService.class.getName()));
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (serviceCon != null) {
-            getActivity().unbindService(serviceCon);
-        }
+        cleanup();
     }
 
     @Override
@@ -231,27 +227,6 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         super.onAttach(context);
 
         mContext = context;
-    }
-
-    public void storeAndFinishSession() {
-        cm.stop();
-
-        if (msc != null) {
-            try {
-                List<String> publishers = msc.getPublishers();
-
-                String s = publishers.get(0).split(",")[0];
-                System.out.println(msc.Unsubscribe(s, DSDService.class.getName()));
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-
-        long monitorTime = SystemClock.elapsedRealtime() - cm.getBase();
-
-        Fragment f = StoreFragment.newInstance(currentRecordId, monitorTime);
-
-        Uti.commitFragmentTransaction(getActivity(), f);
     }
 
     @Override
@@ -265,8 +240,9 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         intent.setPackage("com.sensordroid");
         getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
 
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(listener, new IntentFilter("PUT_DATA"));
+        LocalBroadcastManager.getInstance(mContext).registerReceiver(listener, new IntentFilter("PUT_DATA"));
 
+        /*
         sampleViewModel.getSamplesForRecord(currentRecordId).observe(this, samples -> {
             Log.d(TAG, "onInsertGetRecordId: " + samples.size());
             if (samples.size() == 0) return;
@@ -279,6 +255,77 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             System.out.println("X: " + Uti.calcElapsedTime(cm.getBase()) + " y: " + values);
 
             mSeries.appendData(dp, true, 40);
-        });
+        });*/
+    }
+
+    private void connect() {
+
+        Handler h = new Handler();
+
+        h.postDelayed(new Runnable() {
+              @Override
+              public void run() {
+                  try {
+                      publishers = msc.getPublishers();
+
+                      if (publishers.isEmpty()) {
+                          h.postDelayed(this, 1_000);
+
+                          return;
+                      }
+
+                      h.removeCallbacks(this);
+
+                      tvTitle.setText("Connection Established!");
+
+                      cm.setBase(SystemClock.elapsedRealtime());
+                      cm.start();
+
+                      String s = publishers.get(0).split(",")[0];
+
+                      mAdapter.parseSensorData(publishers);
+
+                      System.out.println(msc.Subscribe(s, 0, getActivity().getPackageName(), DSDService.class.getName()));
+
+                  } catch (RemoteException e) {
+                      e.printStackTrace();
+                  }
+              }
+          }, 1_000);
+    }
+
+    private void storeAndFinishSession() {
+        cm.stop();
+
+        long monitorTime = SystemClock.elapsedRealtime() - cm.getBase();
+
+        Fragment f = StoreFragment.newInstance(currentRecordId, monitorTime);
+
+        Uti.commitFragmentTransaction(getActivity(), f);
+    }
+
+    private void cleanup() {
+
+        if (wakeLock.isHeld()) wakeLock.release();
+
+        LocalBroadcastManager.getInstance(mContext).unregisterReceiver(listener);
+
+        if (msc != null) {
+            try {
+                if (publishers.isEmpty()) {
+                    System.out.println("IN STORE: NO PUBLISHERS");
+                } else {
+                    String s = publishers.get(0).split(",")[0];
+
+                    System.out.println(msc.Unsubscribe(s, DSDService.class.getName()));
+                }
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (serviceCon != null) {
+            getActivity().unbindService(serviceCon);
+        }
     }
 }

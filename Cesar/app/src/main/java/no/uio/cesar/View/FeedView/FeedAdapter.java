@@ -77,6 +77,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
     public void insertRecord(List<Record> records) {
         this.mRecords = records;
         notifyDataSetChanged();
+
     }
 
     @NonNull
@@ -108,6 +109,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
 
         holder.btnDelete.setOnClickListener(l -> listener.onRecordDeleteClick(currentRecord));
         holder.btnShare.setOnClickListener(l -> listener.onRecordShareClick(currentRecord));
+        holder.btnAnalytics.setOnClickListener(l -> listener.onRecordAnalyticsClick(currentRecord));
 
     }
 }

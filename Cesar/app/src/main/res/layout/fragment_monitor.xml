@@ -108,14 +108,73 @@
                 android:padding="16dp"
                 android:text="Expand for Statistics"
                 android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <com.jjoe64.graphview.GraphView
-                android:layout_marginTop="50dp"
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/bottom_sheet_text"
+                android:id="@+id/sensor_container"
                 android:layout_width="match_parent"
-                android:layout_height="200dip"
-                android:id="@+id/resp_graph" />
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:layout_height="200dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/available_sensors_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:textColor="@color/title"
+                        android:text="Sensors"
+                        android:textSize="24sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+
+                        android:id="@+id/available_sensors"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_below="@id/available_sensors_title"
+                        tools:listitem="@layout/item_sensor" />
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/sensor_container"
+                android:id="@+id/graph_container"
+                android:layout_width="match_parent"
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:layout_height="300dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/graph_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:textColor="@color/title"
+                        android:text="Graph"
+                        android:textSize="24sp" />
+
+                    <com.jjoe64.graphview.GraphView
+                        android:layout_below="@+id/graph_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dip"
+                        android:id="@+id/resp_graph" />
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
 

@@ -1,4 +1,4 @@
-package no.uio.cesar.View.RecordView;
+package no.uio.cesar.View.MonitorView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import no.uio.cesar.Model.Sensor;
 import no.uio.cesar.R;
 
 class SensorAdapter extends RecyclerView.Adapter<SensorAdapter.DeviceViewHolder> {

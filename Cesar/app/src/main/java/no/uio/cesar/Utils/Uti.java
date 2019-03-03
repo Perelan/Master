@@ -3,9 +3,11 @@ package no.uio.cesar.Utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
+import android.provider.OpenableColumns;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,6 +31,14 @@ public class Uti {
     public static void commitFragmentTransaction(FragmentActivity a, Fragment fragment) {
         a.getSupportFragmentManager()
                 .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+    }
+
+    public static void commitFragmentTransaction(FragmentActivity a, Fragment fragment, String tag) {
+        a.getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(tag)
                 .replace(R.id.fragment_container, fragment)
                 .commit();
     }
@@ -86,8 +96,6 @@ public class Uti {
 
     public static void shareFileIntent(Activity a, File file) {
 
-        System.out.println("HERERER " + file.getName());
-
         Uri fileUri = FileProvider.getUriForFile(a.getApplicationContext(), a.getApplicationContext().getPackageName() + ".provider", file);
 
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
@@ -95,25 +103,47 @@ public class Uti {
         intentShareFile.putExtra(Intent.EXTRA_SUBJECT, "Share Records");
         intentShareFile.putExtra(Intent.EXTRA_STREAM, fileUri);
         intentShareFile.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intentShareFile.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         a.startActivity(Intent.createChooser(intentShareFile, "Share Via"));
     }
 
-    public static void parseRecordFile(Context context, String data) {
+    public static List<ExportObject> parseRecordFile(Activity a, Uri uri) {
 
-        Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", new File(data));
-
-        File f = new File(fileUri.getPath());
+        File f = getAbsoluteFilePath(a, uri);
+        if (f == null) return null;
 
         Type IMPORT_TYPE = new TypeToken<List<ExportObject>>(){}.getType();
 
+        List<ExportObject> listOfRecords = null;
+
         try {
             JsonReader reader = new JsonReader(new FileReader(f.getAbsoluteFile()));
-            List<ExportObject> listofrecords = new Gson().fromJson(reader, IMPORT_TYPE);
-
-            System.out.println("HERERE " + listofrecords.size());
+            listOfRecords = new Gson().fromJson(reader, IMPORT_TYPE);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        return listOfRecords;
+    }
+
+
+    private static File getAbsoluteFilePath(Activity a, Uri uri) {
+
+        String uriString = uri.toString();
+
+        if (uriString.startsWith("content://")) {
+            try (Cursor cursor = a.getContentResolver().query(uri, null, null, null, null)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    String name = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+
+                    File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                    return new File(dir, name);
+                }
+            }
+        } else if (uriString.startsWith("file://")) {
+            // Todo: check if implemanation is needed
+        }
+
+        return null;
     }
 }

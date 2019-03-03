@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
     private RecordViewModel recordViewModel;
 
+    private FeedFragment feedFragment;
+    private ModuleFragment moduleFragment;
+    private ProfileFragment profileFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab_record);
         fab.setOnClickListener(l -> {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            /*FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             DialogFragment dialogFragment = new RecordFragment();
-            dialogFragment.show(ft, "record_dialog");
-        });
+            dialogFragment.show(ft, "record_dialog");*/
 
+            startActivity(new Intent(this, MonitorActivity.class));
+        });
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> {
@@ -65,13 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    selectedFragment = new FeedFragment();
+                    if (feedFragment == null) feedFragment = new FeedFragment();
+                    selectedFragment = feedFragment;
                     break;
                 case R.id.navigation_profile:
-                    selectedFragment = new ProfileFragment();
+                    if (profileFragment == null) profileFragment = new ProfileFragment();
+                    selectedFragment = profileFragment;
                     break;
                 case R.id.navigation_notifications:
-                    selectedFragment = ModuleFragment.newInstance();
+                    if (moduleFragment == null) moduleFragment = new ModuleFragment();
+                    selectedFragment = moduleFragment;
                     break;
             }
 

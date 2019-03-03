@@ -18,8 +18,6 @@ public class SensorDiscovery extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG, "onReceive: Here");
-
         Bundle b = intent.getExtras();
         Log.d(TAG, "onReceive: " + b.getString("name"));
 

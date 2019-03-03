@@ -46,7 +46,6 @@ public class RespondReceiver extends BroadcastReceiver {
         String description = "SweetZpot: Flow";
 
         typesWithDescription.add(counter + "," + type + "," + metric + "," + description);
-        typesWithDescription.add(counter +1 + "," + type + "," + metric + "," + description);
 
         return typesWithDescription;
     }

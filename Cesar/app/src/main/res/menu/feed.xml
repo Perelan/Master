@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/feed_import"
-        android:title="Import Records"/>
+        android:title="Import"/>
 
     <item
         android:id="@+id/feed_export"

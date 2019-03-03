@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,17 +16,36 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import in.gauriinfotech.commons.Commons;
+import no.uio.cesar.ExportObject;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.User;
 import no.uio.cesar.R;
@@ -45,6 +66,8 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
     private FeedAdapter adapter;
 
+    private TextView subtitle;
+
     public FeedFragment() {
         // Required empty public constructor
     }
@@ -57,6 +80,8 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
         mRecyclerView = v.findViewById(R.id.record_list_view);
 
+        subtitle = v.findViewById(R.id.feed_subtitle);
+
         Toolbar toolbar = v.findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.feed);
         toolbar.setOnMenuItemClickListener(this);
@@ -67,7 +92,7 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
         mRecyclerView.setLayoutManager(lym);
 
-        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(false);
 
         adapter = new FeedAdapter(this);
 
@@ -75,30 +100,12 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         recordViewModel.getAllRecords().observe(this, records -> {
-            System.out.println(">>> new data " + records.size());
-
+            subtitle.setText(String.format(Locale.getDefault(), "- %d records", records.size()));
+            lym.scrollToPosition(records.size() - 1);
             adapter.insertRecord(records);
         });
 
         return v;
-    }
-
-    private void viewUserProfile() {
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        SharedPreferences sharedPref = getContext().getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
-
-        String name = sharedPref.getString(Constant.USER_KEY_NAME, null);
-        String gender = sharedPref.getString(Constant.USER_KEY_GENDER, null);
-        int height = sharedPref.getInt(Constant.USER_KEY_HEIGHT, 0);
-        int weight = sharedPref.getInt(Constant.USER_KEY_WEIGHT, 0);
-        //sharedPref.getLong(Constant.USER_KEY_CREATED, null);
-
-        User user = new User(name, gender, height, weight, 20);
-
-        DialogFragment dialogFragment = ProfileFragment.newInstance(user);
-        dialogFragment.show(ft, "user_dialog");
-
     }
 
     @Override
@@ -107,8 +114,7 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         switch (requestCode) {
             case 1:
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    System.out.println("HERE " + data.getData());
-                    Uti.parseRecordFile(getContext(), data.getDataString());
+                    List<ExportObject> list = Uti.parseRecordFile(getActivity(), data.getData());
                 }
                 break;
         }
@@ -118,15 +124,15 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
     @Override
     public void onRecordAnalyticsClick(Record record) {
-
+        Uti.commitFragmentTransaction(getActivity(), AnalyticsFragment.newInstance(record), "analytics");
     }
 
     @Override
     public void onRecordDeleteClick(Record record) {
         new AlertDialog.Builder(getContext())
                 .setTitle("Delete current record?")
-                .setMessage("Do you want to delete this record?")
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setMessage("Do you want to delete this record with " + record.getNrSamples() + " samples?")
+                .setIcon(android.R.drawable.ic_delete)
                 .setPositiveButton("Yes", (dialog, which) -> recordViewModel.delete(record))
                 .setNegativeButton("No", null)
                 .show();
@@ -153,11 +159,19 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
                 Export.exportAll(this);
                 return true;
             case R.id.feed_delete:
-                recordViewModel.getAllRecords().observe(this, records -> {
-                    for (Record r : records) {
-                        recordViewModel.delete(r);
-                    }
-                });
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Delete all record?")
+                        .setMessage("Do you want to delete all record?")
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            recordViewModel.getAllRecords().observe(this, records -> {
+                                for (Record r : records) {
+                                    recordViewModel.delete(r);
+                                }
+                            });
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
                 return true;
         }
 

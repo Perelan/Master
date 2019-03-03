@@ -108,8 +108,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="SAVE MONITOR"
-                android:textColor="@android:color/background_light"/>
+                android:text="SAVE SESSION"
+                android:textColor="@android:color/background_light" />
 
         </androidx.cardview.widget.CardView>
 
