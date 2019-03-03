@@ -24,6 +24,4 @@ public class ModuleViewModel extends AndroidViewModel {
     public void delete(Module module) { repository.deleteModule(module); }
 
     public LiveData<List<Module>> getAllModules() { return repository.getAllModules(); }
-
-
 }

@@ -7,7 +7,6 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".View.LandingActivity">
 
-
     <ViewFlipper
         android:id="@+id/view_flipper"
         android:layout_width="match_parent"
@@ -17,7 +16,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/title"
@@ -25,17 +25,32 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
-                android:text="CESAR"
+                android:text="Welcome to CESAR"
                 android:textColor="@android:color/white"
                 android:textSize="32sp" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/sleeping_man"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_below="@id/title"
                 android:layout_centerHorizontal="true"
                 app:srcCompat="@drawable/sleep" />
+
+            <TextView
+                android:id="@+id/landing_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sleeping_man"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="developed by Deep Singh with University of Oslo and Supervisor Thomas Plagemann \n\n To get started, press the button below!"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -57,52 +72,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title_gender"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="100dp"
+                android:padding="10dp"
                 android:weightSum="1.0">
 
                 <ImageView
+                    android:id="@+id/gender_male"
                     android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:layout_weight="0.50"
+                    android:background="@color/colorBackground"
                     app:srcCompat="@drawable/man" />
 
                 <ImageView
+                    android:id="@+id/gender_female"
                     android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:layout_weight="0.50"
                     android:src="@drawable/woman"
-
                     />
             </LinearLayout>
 
-            <RadioGroup
-                android:id="@+id/gender_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/gender"
-                android:layout_centerHorizontal="true"
-                android:checkedButton="@id/radio_male"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radio_male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-
-                    android:text="Male" />
-
-                <RadioButton
-                    android:id="@+id/radio_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Female" />
-            </RadioGroup>
-
         </RelativeLayout>
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -132,7 +123,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:max="250"
-                android:min="100"
                 android:progress="180"
                 android:rotation="270" />
 
@@ -174,6 +164,7 @@
                 app:srcCompat="@drawable/man" />
 
             <SeekBar
+                android:padding="10dp"
                 android:id="@+id/sb_weight"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
@@ -182,7 +173,6 @@
                 android:layout_marginRight="83dp"
                 android:layout_marginBottom="45dp"
                 android:max="300"
-                android:min="30"
                 android:progress="60" />
 
             <TextView
@@ -206,6 +196,43 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/title_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:text="What's your age?"
+                android:textColor="@android:color/white"
+                android:textSize="32sp" />
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@id/man"
+                app:srcCompat="@drawable/man" />
+
+            <EditText
+                android:id="@+id/edittext_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="83dp"
+                android:ellipsize="start"
+                android:ems="10"
+                android:gravity="center"
+                android:layout_below="@id/man"
+                android:inputType="number"
+                android:hint="Age" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
                 android:id="@+id/title_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -216,28 +243,29 @@
                 android:textSize="32sp" />
 
             <ImageView
+                android:id="@+id/man"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:id="@+id/man"
                 app:srcCompat="@drawable/man" />
 
             <EditText
                 android:id="@+id/edittext_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/man"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="83dp"
                 android:ellipsize="start"
                 android:ems="10"
                 android:gravity="center"
-                android:layout_below="@id/man"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textCapWords"
+                android:hint="Name" />
 
 
         </RelativeLayout>
+
 
     </ViewFlipper>
 
@@ -256,6 +284,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="previousView"
+            android:src="@android:drawable/arrow_up_float"
             android:layout_marginRight="5dp"
             android:visibility="gone"
             app:backgroundTint="@color/hr" />
@@ -264,6 +293,7 @@
             android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@android:drawable/arrow_down_float"
             android:onClick="nextView"
             app:backgroundTint="@color/battery" />
 

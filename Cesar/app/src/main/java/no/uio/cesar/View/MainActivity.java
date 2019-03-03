@@ -41,13 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
 
-        String username = sharedPref.getString(Constant.USER_KEY_NAME, null);
+        String userString = sharedPref.getString(Constant.USER_KEY, null);
 
-        if (username == null) {
+        if (userString == null || userString.isEmpty()) {
+
             startActivity(new Intent(this, LandingActivity.class));
-
-            username = sharedPref.getString(Constant.USER_KEY_NAME, null);
-            System.out.println(username);
+            finish();
         }
 
         // Inject the home fragment initially.

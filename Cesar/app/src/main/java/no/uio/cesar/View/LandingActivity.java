@@ -3,17 +3,22 @@ package no.uio.cesar.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import java.util.Date;
 import java.util.Locale;
@@ -23,18 +28,18 @@ import no.uio.cesar.Model.User;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Constant;
 
-public class LandingActivity extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton nextButton, prevButton;
     private CardView getStarted;
 
     private ViewFlipper viewFlipper;
 
     private SeekBar sbWeight, sbHeight;
-    private EditText name;
-    private RadioGroup radioGroup;
-    private RadioButton gender;
+    private EditText etName, etAge;
     private TextView tvWeight, tvHeight;
+    private ImageView ivMale, ivFemale;
 
+    private String gender = "Male"; // Default value
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +50,9 @@ public class LandingActivity extends AppCompatActivity {
         prevButton = findViewById(R.id.prev);
 
         getStarted = findViewById(R.id.get_started);
-        getStarted.setOnClickListener(view -> {
-            gender = findViewById(radioGroup.getCheckedRadioButtonId());
-
-            storeUserData();
-            finish();
-        });
+        getStarted.setOnClickListener(this);
 
         viewFlipper = findViewById(R.id.view_flipper);
-        radioGroup = findViewById(R.id.gender_group);
 
         sbWeight = findViewById(R.id.sb_weight);
         sbHeight = findViewById(R.id.sb_height);
@@ -61,7 +60,13 @@ public class LandingActivity extends AppCompatActivity {
         tvWeight = findViewById(R.id.weight_text);
         tvHeight = findViewById(R.id.height_text);
 
-        name = findViewById(R.id.edittext_name);
+        ivMale = findViewById(R.id.gender_male);
+        ivMale.setOnClickListener(this);
+        ivFemale = findViewById(R.id.gender_female);
+        ivFemale.setOnClickListener(this);
+
+        etName = findViewById(R.id.edittext_name);
+        etAge = findViewById(R.id.edittext_age);
 
         sbHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -130,24 +135,48 @@ public class LandingActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.gender_male:
+                gender = "Male";
+                ivMale.setBackgroundColor(getResources().getColor(R.color.colorBackground));
+                ivFemale.setBackgroundColor(0);
+                break;
+            case R.id.gender_female:
+                gender = "Female";
+                ivFemale.setBackgroundColor(getResources().getColor(R.color.colorBackground));
+                ivMale.setBackgroundColor(0);
+                break;
+            case R.id.get_started:
+                if (validateInput()) {
+                    Toast.makeText(this, "Name or age is not filled out, please do so", Toast.LENGTH_SHORT).show();
+                } else {
+                    storeUserData();
+                    startActivity(new Intent(this, MainActivity.class));
+                    finish();
+                }
+                break;
+        }
+    }
+
     // TODO: switch to user model
     public void storeUserData() {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
         User user = new User(
-                name.getText().toString(),
-                gender.getText().toString(),
+                etName.getText().toString(),
+                gender,
                 sbHeight.getProgress(),
                 sbWeight.getProgress(),
-                10);
-
-        editor.putString(Constant.USER_KEY_NAME, name.getText().toString());
-        editor.putString(Constant.USER_KEY_GENDER, gender.getText().toString());
-        editor.putInt(Constant.USER_KEY_HEIGHT, sbHeight.getProgress());
-        editor.putInt(Constant.USER_KEY_WEIGHT, sbWeight.getProgress());
-        editor.putLong(Constant.USER_KEY_CREATED, new Date().getTime());
+                Integer.parseInt(etAge.getText().toString()));
+        editor.putString(Constant.USER_KEY, new Gson().toJson(user));
 
         editor.apply();
+    }
+
+    public boolean validateInput() {
+        return (etAge.getText().toString().isEmpty() || etName.getText().toString().isEmpty());
     }
 }

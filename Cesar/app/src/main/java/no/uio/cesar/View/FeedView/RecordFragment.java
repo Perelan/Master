@@ -27,6 +27,7 @@ import no.uio.cesar.R;
 import no.uio.cesar.Utils.Export;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.ViewModel.RecordViewModel;
+import no.uio.cesar.ViewModel.UserViewModel;
 
 /**
  * A simple {@link Fragment} subclass.

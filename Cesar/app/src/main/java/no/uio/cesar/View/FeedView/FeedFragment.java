@@ -54,6 +54,7 @@ import no.uio.cesar.Utils.Export;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.View.ProfileView.ProfileFragment;
 import no.uio.cesar.ViewModel.RecordViewModel;
+import no.uio.cesar.ViewModel.SampleViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -115,6 +116,14 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
             case 1:
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     List<ExportObject> list = Uti.parseRecordFile(getActivity(), data.getData());
+
+                    for (ExportObject obj : list) {
+                        Record r = obj.getRecord();
+                        r.setId(0);
+
+                        recordViewModel.insert(r, null);
+
+                    }
                 }
                 break;
         }

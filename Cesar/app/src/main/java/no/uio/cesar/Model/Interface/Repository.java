@@ -130,7 +130,7 @@ public class Repository {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            callback.onInsertGetRecordId(generatedId);
+            if (callback != null) callback.onInsertGetRecordId(generatedId);
         }
     }
 
