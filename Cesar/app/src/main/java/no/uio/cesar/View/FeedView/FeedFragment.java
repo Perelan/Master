@@ -46,7 +46,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import in.gauriinfotech.commons.Commons;
 import no.uio.cesar.ExportObject;
+import no.uio.cesar.Model.Interface.DatabaseCallback;
 import no.uio.cesar.Model.Record;
+import no.uio.cesar.Model.Sample;
 import no.uio.cesar.Model.User;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Constant;
@@ -64,6 +66,7 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
     private RecyclerView mRecyclerView;
 
     private RecordViewModel recordViewModel;
+    private SampleViewModel sampleViewModel;
 
     private FeedAdapter adapter;
 
@@ -99,12 +102,16 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
         mRecyclerView.setAdapter(adapter);
 
+        sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
+
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         recordViewModel.getAllRecords().observe(this, records -> {
             subtitle.setText(String.format(Locale.getDefault(), "- %d records", records.size()));
             lym.scrollToPosition(records.size() - 1);
             adapter.insertRecord(records);
         });
+
+
 
         return v;
     }
@@ -116,13 +123,20 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
             case 1:
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     List<ExportObject> list = Uti.parseRecordFile(getActivity(), data.getData());
+                    if (list == null) return;
 
                     for (ExportObject obj : list) {
                         Record r = obj.getRecord();
                         r.setId(0);
 
-                        recordViewModel.insert(r, null);
+                        recordViewModel.insert(r, id -> {
+                            for (int i = 0; i < obj.getSamples().size(); i++) {
+                                Sample s = obj.getSamples().get(i);
+                                s.setRecordId(id);
 
+                                sampleViewModel.insert(s);
+                            }
+                        });
                     }
                 }
                 break;

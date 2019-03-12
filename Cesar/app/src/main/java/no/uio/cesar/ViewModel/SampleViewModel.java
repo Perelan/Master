@@ -19,6 +19,10 @@ public class SampleViewModel extends AndroidViewModel {
         this.repository = new Repository(application);
     }
 
+    public void insert(Sample sample) {
+        repository.insert(sample);
+    }
+
     public void insert(Sample sample, String data) {
         repository.insertSample(sample, data);
     }

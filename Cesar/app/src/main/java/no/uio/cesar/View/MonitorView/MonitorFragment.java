@@ -42,6 +42,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,6 +68,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
     private Context mContext;
 
+    private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
     private RippleEffect rp;
@@ -77,6 +80,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     private RecyclerView.LayoutManager mLayoutManager;
     private SensorAdapter mAdapter;
 
+    private LiveData<List<Sample>> sampleCollection;
 
     private LineGraphSeries<DataPoint> mSeries;
 
@@ -113,7 +117,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
             if (currentRecordId == -1) return;
 
-            rp.pulse(rp.BREATH);
+            if (powerManager.isInteractive()) rp.pulse(rp.BREATH);
 
             Bundle b = intent.getExtras();
             String data = b.getString("data");
@@ -139,14 +143,32 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         View bottomSheet = v.findViewById(R.id.bottom_sheet);
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
+        final LifecycleOwner self = this;
+
         mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+
+                    sampleCollection.removeObservers(self);
+
                     return;
                 }
 
                 if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                    sampleCollection.observe(self, samples -> {
+                        Log.d(TAG, "onInsertGetRecordId: " + samples.size());
+                        if (samples.size() == 0) return;
+                        Sample latestSample = samples.get(samples.size() - 1);
+
+                        int values = Uti.extractFlowData(latestSample.getSample());
+
+                        DataPoint dp = new DataPoint((int) (Uti.calcElapsedTime(cm.getBase()) / 1000.0), values);
+
+                        System.out.println("X: " + Uti.calcElapsedTime(cm.getBase()) / 1000.0 + " y: " + values);
+
+                        mSeries.appendData(dp, true, 10000);
+                    });
 
                     return;
                 }
@@ -158,7 +180,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             }
         });
 
-        PowerManager powerManager = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+        powerManager = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "CESAR::collection");
 
@@ -178,13 +200,17 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         rp = v.findViewById(R.id.ripple);
 
         GraphView graph = v.findViewById(R.id.resp_graph);
-        graph.getViewport().setMinY(1000);
+
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(1700);
         graph.getViewport().setMaxY(2000);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(1000);
 
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setYAxisBoundsManual(true);
+
+        graph.getViewport().setScalable(true);
+        graph.getViewport().setScalableY(true);
+
+        graph.getGridLabelRenderer().setHumanRounding(true);
 
         mSeries = new LineGraphSeries<>();
 
@@ -216,7 +242,6 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy: CALLED");
-        
         super.onDestroy();
 
         cleanup();
@@ -242,20 +267,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
         LocalBroadcastManager.getInstance(mContext).registerReceiver(listener, new IntentFilter("PUT_DATA"));
 
-        /*
-        sampleViewModel.getSamplesForRecord(currentRecordId).observe(this, samples -> {
-            Log.d(TAG, "onInsertGetRecordId: " + samples.size());
-            if (samples.size() == 0) return;
-            Sample latestSample = samples.get(samples.size() - 1);
-
-            int values = Uti.extractFlowData(latestSample.getSample());
-
-            DataPoint dp = new DataPoint(Uti.calcElapsedTime(cm.getBase()) / 1000.0, values);
-
-            System.out.println("X: " + Uti.calcElapsedTime(cm.getBase()) + " y: " + values);
-
-            mSeries.appendData(dp, true, 40);
-        });*/
+        sampleCollection = sampleViewModel.getSamplesForRecord(currentRecordId);
     }
 
     private void connect() {

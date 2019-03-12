@@ -17,7 +17,9 @@ public class UserViewModel {
 
         String userString = pref.getString(Constant.USER_KEY, null);
 
-        this.user = new Gson().fromJson(userString, User.class);
+        this.user = userString == null
+                ? null
+                : new Gson().fromJson(userString, User.class);
     }
 
     public void setUser(User user) {
@@ -26,6 +28,12 @@ public class UserViewModel {
 
     public User getUser() {
         return user;
+    }
+
+    public boolean deleteUser() {
+
+
+        return false;
     }
 }
 

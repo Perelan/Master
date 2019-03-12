@@ -28,7 +28,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:src="@android:drawable/ic_media_play"
+        android:src="@drawable/record"
         app:backgroundTint="@color/red" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -40,8 +40,5 @@
         app:itemBackground="@color/colorPrimaryDark"
         app:itemTextColor="@android:color/darker_gray"
         app:menu="@menu/navigation" />
-
-
-
 
 </RelativeLayout>

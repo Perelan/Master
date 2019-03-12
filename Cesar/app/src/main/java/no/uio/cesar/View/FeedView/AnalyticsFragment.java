@@ -74,24 +74,30 @@ public class AnalyticsFragment extends Fragment {
         TextView tvTitle = v.findViewById(R.id.analytics_title);
         TextView tvSubtitle = v.findViewById(R.id.analytics_subtitle);
 
+        long[] timeConverted = Uti.splitSecondsToHMS(currentRecord.getMonitorTime());
+
         tvTitle.setText(String.format(Locale.getDefault(), "Analytics for %s", currentRecord.getName()));
-        tvSubtitle.setText(String.format(Locale.getDefault(), "%d samples were gathered during this session", currentRecord.getNrSamples()));
+        tvSubtitle.setText(String.format(Locale.getDefault(), "%d samples were gathered over %dh %dm %ds",
+                currentRecord.getNrSamples(), timeConverted[0], timeConverted[1], timeConverted[2]));
 
         GraphView respGraph = v.findViewById(R.id.analytics_resp_graph);
-
-        GraphView hrGraph = v.findViewById(R.id.analytics_hr_graph);
 
         SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
 
         sampleViewModel.getSamplesForRecord(currentRecord.getId()).observe(this, samples -> {
             DataPoint[] dpList = new DataPoint[samples.size()];
+            long baseTime = samples.get(0).getImplicitTS().getTime();
 
             for (int i = 0; i < dpList.length; i++) {
                 Sample currSample = samples.get(i);
 
                 int value = Uti.extractFlowData(currSample.getSample());
 
-                dpList[i] = new DataPoint(currSample.getImplicitTS().getTime() / 1000, value);
+                int x = (int) ((currSample.getImplicitTS().getTime() - baseTime) / 1000) / 60;
+
+                dpList[i] = new DataPoint(x , value);
+
+                System.out.println("Time " + x);
             }
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dpList);

@@ -57,6 +57,9 @@ public class Repository {
     }
 
     /* Sample */
+    public void insert(Sample sample) {
+        new InsertSampleAsyncTask(sampleDao).execute(sample);
+    }
 
     // Change this to specificly Flow
     public void insertSample(Sample sample, String data) {
