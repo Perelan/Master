@@ -95,11 +95,8 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         lym.setStackFromEnd(true);
 
         mRecyclerView.setLayoutManager(lym);
-
         mRecyclerView.setHasFixedSize(false);
-
         adapter = new FeedAdapter(this);
-
         mRecyclerView.setAdapter(adapter);
 
         sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
@@ -110,8 +107,6 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
             lym.scrollToPosition(records.size() - 1);
             adapter.insertRecord(records);
         });
-
-
 
         return v;
     }

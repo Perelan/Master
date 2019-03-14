@@ -41,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
@@ -55,14 +56,13 @@ import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
 import no.uio.cesar.Model.Sensor;
 import no.uio.cesar.R;
+import no.uio.cesar.Utils.ConnectivityHandler;
+import no.uio.cesar.Utils.Graph;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.ViewModel.RecordViewModel;
 import no.uio.cesar.ViewModel.SampleViewModel;
 import no.uio.ripple.RippleEffect;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MonitorFragment extends Fragment implements DatabaseCallback {
     private static final String TAG = "Monitor";
 
@@ -96,12 +96,104 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
     private List<String> publishers;
 
+    final LifecycleOwner self = this;
+
+    private ConnectivityHandler conHandler;
+
+    private Runnable runnable = () -> {
+        Log.d(TAG, ": Restarted");
+
+        if (msc != null) {
+            try {
+                if (publishers.isEmpty()) {
+                    System.out.println("IN STORE: NO PUBLISHERS");
+                } else {
+                    String s = publishers.get(0).split(",")[0];
+
+                    System.out.println(msc.Unsubscribe(s, DSDService.class.getName()));
+                }
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        connect();
+
+        conHandler.retry();
+    };
+
+    public MonitorFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_monitor, container, false);
+
+        View bottomSheet = v.findViewById(R.id.bottom_sheet);
+        mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mBottomSheetBehavior.setBottomSheetCallback(bottomSheetCallback);
+
+        powerManager = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                "CESAR::collection");
+
+        wakeLock.acquire();
+
+        conHandler = new ConnectivityHandler(runnable);
+
+        mRecyclerView = v.findViewById(R.id.available_sensors);
+        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new SensorAdapter();
+        mRecyclerView.setAdapter(mAdapter);
+
+        tvTitle = v.findViewById(R.id.monitor_title);
+        cm = v.findViewById(R.id.monitor_time);
+        rp = v.findViewById(R.id.ripple);
+
+        GraphView graph = v.findViewById(R.id.resp_graph);
+        Graph.changeParams(graph);
+        mSeries = new LineGraphSeries<>();
+        graph.addSeries(mSeries);
+
+        CardView stopMonitor = v.findViewById(R.id.monitor_stop);
+        stopMonitor.setOnClickListener(view -> dialogSessionEnd());
+
+        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
+
+        sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
+
+        currentRecord = new Record();
+        recordViewModel.insert(currentRecord, this);
+
+        return v;
+    }
+
+    @Override
+    public void onInsertGetRecordId(long id) {
+        Log.d(TAG, "onInsertDatabaseId: " + id);
+
+        currentRecordId = id;
+
+        Intent intent = new Intent(MainServiceConnection.class.getName());
+        intent.setAction("com.sensordroid.ADD_DRIVER");
+        intent.setPackage("com.sensordroid");
+        getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
+
+        LocalBroadcastManager.getInstance(mContext).registerReceiver(listener, new IntentFilter("PUT_DATA"));
+
+        sampleCollection = sampleViewModel.getSamplesForRecord(currentRecordId);
+    }
+
     private ServiceConnection serviceCon = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             msc = MainServiceConnection.Stub.asInterface(service);
 
-            connect();
+            init();
         }
 
         @Override
@@ -119,6 +211,8 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
             if (powerManager.isInteractive()) rp.pulse(rp.BREATH);
 
+            conHandler.restart();
+
             Bundle b = intent.getExtras();
             String data = b.getString("data");
 
@@ -127,106 +221,57 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             Sample newSample = new Sample(currentRecordId);
 
             sampleViewModel.insert(newSample, data);
+
         }
     };
 
-    public MonitorFragment() {
-        // Required empty public constructor
+    private void init() {
+        Log.d(TAG, "Init");
+
+        Handler h = new Handler();
+
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    publishers = msc.getPublishers();
+
+                    if (publishers.isEmpty()) {
+                        h.postDelayed(this, 1_000);
+
+                        return;
+                    }
+
+                    h.removeCallbacks(this);
+
+                    tvTitle.setText("Connection Established!");
+
+                    cm.setBase(SystemClock.elapsedRealtime());
+                    cm.start();
+
+                    mAdapter.parseSensorData(publishers);
+
+                    connect();
+
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 1_000);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_monitor, container, false);
+    public void connect() {
+        Log.d(TAG, "connect");
 
-        View bottomSheet = v.findViewById(R.id.bottom_sheet);
-        mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        try {
+            String s = publishers.get(0).split(",")[0];
+            int res = msc.Subscribe(s, 0, getActivity().getPackageName(), DSDService.class.getName());
+            System.out.println(res);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
-        final LifecycleOwner self = this;
-
-        mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-
-                    sampleCollection.removeObservers(self);
-
-                    return;
-                }
-
-                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
-                    sampleCollection.observe(self, samples -> {
-                        Log.d(TAG, "onInsertGetRecordId: " + samples.size());
-                        if (samples.size() == 0) return;
-                        Sample latestSample = samples.get(samples.size() - 1);
-
-                        int values = Uti.extractFlowData(latestSample.getSample());
-
-                        DataPoint dp = new DataPoint((int) (Uti.calcElapsedTime(cm.getBase()) / 1000.0), values);
-
-                        System.out.println("X: " + Uti.calcElapsedTime(cm.getBase()) / 1000.0 + " y: " + values);
-
-                        mSeries.appendData(dp, true, 10000);
-                    });
-
-                    return;
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-            }
-        });
-
-        powerManager = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                "CESAR::collection");
-
-        wakeLock.acquire();
-
-        mRecyclerView = v.findViewById(R.id.available_sensors);
-
-        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new SensorAdapter();
-
-        mRecyclerView.setAdapter(mAdapter);
-
-        tvTitle = v.findViewById(R.id.monitor_title);
-        cm = v.findViewById(R.id.monitor_time);
-        rp = v.findViewById(R.id.ripple);
-
-        GraphView graph = v.findViewById(R.id.resp_graph);
-
-        graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMinY(1700);
-        graph.getViewport().setMaxY(2000);
-
-        graph.getViewport().setXAxisBoundsManual(true);
-
-        graph.getViewport().setScalable(true);
-        graph.getViewport().setScalableY(true);
-
-        graph.getGridLabelRenderer().setHumanRounding(true);
-
-        mSeries = new LineGraphSeries<>();
-
-        graph.addSeries(mSeries);
-
-        CardView stopMonitor = v.findViewById(R.id.monitor_stop);
-        stopMonitor.setOnClickListener(view -> dialogSessionEnd());
-
-        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
-
-        sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
-
-        currentRecord = new Record();
-        recordViewModel.insert(currentRecord, this);
-
-        return v;
+        conHandler.start();
     }
 
     private void dialogSessionEnd() {
@@ -254,58 +299,6 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         mContext = context;
     }
 
-    @Override
-    public void onInsertGetRecordId(long id) {
-        Log.d(TAG, "onInsertDatabaseId: " + id);
-
-        currentRecordId = id;
-
-        Intent intent = new Intent(MainServiceConnection.class.getName());
-        intent.setAction("com.sensordroid.ADD_DRIVER");
-        intent.setPackage("com.sensordroid");
-        getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
-
-        LocalBroadcastManager.getInstance(mContext).registerReceiver(listener, new IntentFilter("PUT_DATA"));
-
-        sampleCollection = sampleViewModel.getSamplesForRecord(currentRecordId);
-    }
-
-    private void connect() {
-
-        Handler h = new Handler();
-
-        h.postDelayed(new Runnable() {
-              @Override
-              public void run() {
-                  try {
-                      publishers = msc.getPublishers();
-
-                      if (publishers.isEmpty()) {
-                          h.postDelayed(this, 1_000);
-
-                          return;
-                      }
-
-                      h.removeCallbacks(this);
-
-                      tvTitle.setText("Connection Established!");
-
-                      cm.setBase(SystemClock.elapsedRealtime());
-                      cm.start();
-
-                      String s = publishers.get(0).split(",")[0];
-
-                      mAdapter.parseSensorData(publishers);
-
-                      System.out.println(msc.Subscribe(s, 0, getActivity().getPackageName(), DSDService.class.getName()));
-
-                  } catch (RemoteException e) {
-                      e.printStackTrace();
-                  }
-              }
-          }, 1_000);
-    }
-
     private void storeAndFinishSession() {
         cm.stop();
 
@@ -317,8 +310,10 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     }
 
     private void cleanup() {
-
+        Log.d(TAG, "cleanup");
         if (wakeLock.isHeld()) wakeLock.release();
+
+        conHandler.stop();
 
         LocalBroadcastManager.getInstance(mContext).unregisterReceiver(listener);
 
@@ -336,8 +331,45 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
             }
         }
 
-        if (serviceCon != null) {
+        try {
             getActivity().unbindService(serviceCon);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+    public BottomSheetBehavior.BottomSheetCallback bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
+        @Override
+        public void onStateChanged(@NonNull View bottomSheet, int newState) {
+            if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+
+                sampleCollection.removeObservers(self);
+
+                return;
+            }
+
+            if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                sampleCollection.observe(self, samples -> {
+                    Log.d(TAG, "onInsertGetRecordId: " + samples.size());
+                    if (samples.size() == 0) return;
+                    Sample latestSample = samples.get(samples.size() - 1);
+
+                    int values = Uti.extractFlowData(latestSample.getSample());
+
+                    DataPoint dp = new DataPoint((int) (Uti.calcElapsedTime(cm.getBase()) / 1000.0), values);
+
+                    System.out.println("X: " + Uti.calcElapsedTime(cm.getBase()) / 1000.0 + " y: " + values);
+
+                    mSeries.appendData(dp, true, 10000);
+                });
+
+                return;
+            }
+        }
+
+        @Override
+        public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+        }
+    };
 }

@@ -70,30 +70,6 @@ public class Uti {
         return SystemClock.elapsedRealtime() - offset;
     }
 
-    public static File writeToInternalStorage(Context context, String data) {
-        File folder = new File(context.getFilesDir(), "cesar");
-
-        if (!folder.exists()) {
-            folder.mkdir();
-        }
-
-        try {
-            File file = new File(folder, "record_" + new Date().getTime() + ".json");
-            FileWriter writer = new FileWriter(file);
-
-            System.out.println("DATA " + data);
-            writer.write(data);
-            writer.flush();
-            writer.close();
-
-            return file;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     public static void shareFileIntent(Activity a, File file) {
 
         Uri fileUri = FileProvider.getUriForFile(a.getApplicationContext(), a.getApplicationContext().getPackageName() + ".provider", file);
