@@ -96,7 +96,7 @@ public class WrapperService extends Service {
         Log.w(TAG, "Adding new channel: "+channel+", with freq: "+frequency);
         Log.d(TAG, "start: event pack: " + pack + " name: " + name);
 
-        if(!channelList.contains(channel)){
+        if (!channelList.contains(channel)){
             channelList.add(channel);
         }
 
@@ -209,7 +209,7 @@ public class WrapperService extends Service {
          */
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
-            Log.d(TAG, "onServiceDisconnected: DISSCONNECTED");
+            Log.d(TAG, "onServiceDisconnected: DISCONNECTED");
             Log.w(TAG, "Service disconnected!");
              if (wakeLock.isHeld()){
                 Log.w(TAG, "WakeLock released");

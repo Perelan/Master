@@ -123,11 +123,12 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
         Log.d(TAG, "connect: Connecting");
         ArrayList<BluetoothDevice> devices = JSONHelper.retrieveDeviceList(context);
 
-
         Log.d(TAG, "connect: devices empty");
         if (devices == null) return;
 
         BluetoothDevice device = devices.get(0);
+
+        Log.d(TAG, "connect: to device " + device);
 
         bluetoothHandler.setSelectedFlowSensor(device);
 

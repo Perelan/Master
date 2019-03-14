@@ -46,6 +46,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+
             mBluetoothGatt = gatt;
 
             if (newState == BluetoothProfile.STATE_CONNECTED) {
@@ -165,9 +166,10 @@ public class BluetoothHandler extends Service implements BluetoothService {
             closeAndNotifyGattDisconnection();
         }
 
-        Log.i(TAG, "connect: Connecting to a device: " + selectedFlowSensor.getName());
+        Log.i(TAG, "connect: Connecting to a device: " + selectedFlowSensor);
 
-        mBluetoothGatt = selectedFlowSensor.connectGatt(this, false, mGattCallback);
+
+        mBluetoothGatt = selectedFlowSensor.connectGatt(this, true, mGattCallback);
 
         if (mBluetoothGatt == null) {
             Log.e(TAG, "connect: Device not connected");
