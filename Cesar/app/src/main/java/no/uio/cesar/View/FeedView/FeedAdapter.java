@@ -22,7 +22,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
 
     class RecordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvTitle, tvDate, tvDescription, tvTime, tvSamples, tvAvgResp;
+        private TextView tvTitle, tvUser, tvDate, tvDescription, tvTime, tvSamples, tvAvgResp;
         private RatingBar rbRating;
 
         private View recordToggle, btnShare, btnAnalytics, btnDelete;
@@ -31,6 +31,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.record_title);
+            tvUser = itemView.findViewById(R.id.record_user);
             tvDate = itemView.findViewById(R.id.record_date);
             tvDescription = itemView.findViewById(R.id.record_description);
             tvTime = itemView.findViewById(R.id.record_time);
@@ -94,6 +95,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
         Record currentRecord = mRecords.get(position);
 
         holder.tvTitle.setText(currentRecord.getName());
+        holder.tvUser.setText(currentRecord.getUser() == null ? "No User" : currentRecord.getUser().getName());
+
         holder.tvDescription.setText(currentRecord.getDescription() != null && currentRecord.getDescription().isEmpty()
                 ? "No description..."
                 : currentRecord.getDescription());

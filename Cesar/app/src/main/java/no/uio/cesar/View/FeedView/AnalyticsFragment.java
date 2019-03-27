@@ -85,6 +85,9 @@ public class AnalyticsFragment extends Fragment {
         SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
 
         sampleViewModel.getSamplesForRecord(currentRecord.getId()).observe(this, samples -> {
+
+            if (samples.isEmpty()) return;
+
             DataPoint[] dpList = new DataPoint[samples.size()];
             long baseTime = samples.get(0).getImplicitTS().getTime();
 

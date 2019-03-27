@@ -3,55 +3,29 @@ package no.uio.cesar.View.FeedView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import android.os.Environment;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
-import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import in.gauriinfotech.commons.Commons;
-import no.uio.cesar.ExportObject;
-import no.uio.cesar.Model.Interface.DatabaseCallback;
+import no.uio.cesar.Utils.ExportObject;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
-import no.uio.cesar.Model.User;
 import no.uio.cesar.R;
-import no.uio.cesar.Utils.Constant;
 import no.uio.cesar.Utils.Export;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.View.ProfileView.ProfileFragment;
@@ -89,6 +63,11 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         Toolbar toolbar = v.findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.feed);
         toolbar.setOnMenuItemClickListener(this);
+
+        View profile = v.findViewById(R.id.user_profile);
+        profile.setOnClickListener(l -> {
+            Uti.commitFragmentTransaction(getActivity(), new ProfileFragment(), "profile");
+        });
 
         LinearLayoutManager lym = new LinearLayoutManager(getContext());
         lym.setReverseLayout(true);
@@ -128,6 +107,7 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
                             for (int i = 0; i < obj.getSamples().size(); i++) {
                                 Sample s = obj.getSamples().get(i);
                                 s.setRecordId(id);
+                                s.setId(0);
 
                                 sampleViewModel.insert(s);
                             }

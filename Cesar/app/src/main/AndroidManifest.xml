@@ -29,6 +29,7 @@
         <activity
             android:name=".View.MonitorActivity"
             android:label="@string/title_activity_monitor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.LandingActivity"

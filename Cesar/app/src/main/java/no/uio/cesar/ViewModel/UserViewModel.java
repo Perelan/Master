@@ -11,9 +11,11 @@ import no.uio.cesar.Utils.Constant;
 public class UserViewModel {
 
     private User user;
+    private SharedPreferences pref;
+
 
     public UserViewModel(Context context) {
-        SharedPreferences pref = context.getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
+        pref = context.getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
 
         String userString = pref.getString(Constant.USER_KEY, null);
 
@@ -31,8 +33,7 @@ public class UserViewModel {
     }
 
     public boolean deleteUser() {
-
-
+        pref.edit().clear().apply();
         return false;
     }
 }

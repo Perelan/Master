@@ -1,7 +1,6 @@
 package no.uio.cesar.Utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -15,16 +14,12 @@ import com.google.gson.stream.JsonReader;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.util.Date;
 import java.util.List;
 
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import no.uio.cesar.ExportObject;
 import no.uio.cesar.R;
 
 public class Uti {

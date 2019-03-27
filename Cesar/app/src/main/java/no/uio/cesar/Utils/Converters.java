@@ -8,6 +8,7 @@ import java.util.Date;
 
 import androidx.room.TypeConverter;
 import no.uio.cesar.Model.Sample;
+import no.uio.cesar.Model.User;
 
 public class Converters {
 
@@ -29,5 +30,15 @@ public class Converters {
     @TypeConverter
     public static ArrayList<Sample> fromString(String value) {
         return new Gson().fromJson(value, new TypeToken<ArrayList<Sample>>(){}.getType());
+    }
+
+    @TypeConverter
+    public static String fromUser(User user) {
+        return user == null ? null : new Gson().toJson(user);
+    }
+
+    @TypeConverter
+    public static User fromUserString(String value) {
+        return new Gson().fromJson(value, User.class);
     }
 }

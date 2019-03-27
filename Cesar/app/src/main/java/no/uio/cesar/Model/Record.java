@@ -19,12 +19,21 @@ public class Record {
     private long monitorTime;
     private float rating;
     private Date createdAt, updatedAt;
+    private User user;
 
     private int nrSamples;
 
     public Record() {
         createdAt = new Date();
         updatedAt = new Date();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getNrSamples() {

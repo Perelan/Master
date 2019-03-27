@@ -92,11 +92,11 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
     private BottomSheetBehavior mBottomSheetBehavior;
 
-    public MainServiceConnection msc;
+    private MainServiceConnection msc;
 
     private List<String> publishers;
 
-    final LifecycleOwner self = this;
+    private final LifecycleOwner self = this;
 
     private ConnectivityHandler conHandler;
 

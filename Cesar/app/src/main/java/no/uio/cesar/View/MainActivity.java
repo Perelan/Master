@@ -3,6 +3,7 @@ package no.uio.cesar.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,25 +46,12 @@ public class MainActivity extends AppCompatActivity {
         String userString = sharedPref.getString(Constant.USER_KEY, null);
 
         if (userString == null || userString.isEmpty()) {
-
             startActivity(new Intent(this, LandingActivity.class));
             finish();
         }
 
         // Inject the home fragment initially.
         Uti.commitFragmentTransaction(this, new FeedFragment());
-
-
-        FloatingActionButton fab = findViewById(R.id.fab_record);
-        fab.setOnClickListener(l -> {
-            /*FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            DialogFragment dialogFragment = new RecordFragment();
-            dialogFragment.show(ft, "record_dialog");*/
-
-            startActivity(new Intent(this, MonitorActivity.class));
-        });
-
-
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> {
@@ -74,19 +62,17 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     if (feedFragment == null) feedFragment = new FeedFragment();
                     selectedFragment = feedFragment;
+                    Uti.commitFragmentTransaction(this, selectedFragment);
                     break;
-                case R.id.navigation_profile:
-                    if (profileFragment == null) profileFragment = new ProfileFragment();
-                    selectedFragment = profileFragment;
-                    break;
+                case R.id.navigation_record:
+                    startActivity(new Intent(this, MonitorActivity.class));
+                    return false;
                 case R.id.navigation_notifications:
                     if (moduleFragment == null) moduleFragment = new ModuleFragment();
                     selectedFragment = moduleFragment;
+                    Uti.commitFragmentTransaction(this, selectedFragment);
                     break;
             }
-
-            Uti.commitFragmentTransaction(this, selectedFragment);
-
             return true;
         });
 

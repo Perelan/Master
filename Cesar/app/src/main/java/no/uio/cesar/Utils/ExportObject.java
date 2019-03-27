@@ -1,4 +1,4 @@
-package no.uio.cesar;
+package no.uio.cesar.Utils;
 
 import java.util.List;
 
@@ -7,18 +7,12 @@ import no.uio.cesar.Model.Sample;
 import no.uio.cesar.Model.User;
 
 public class ExportObject {
-    private User user;
     private Record record;
     private List<Sample> samples;
 
-    public ExportObject(User user, Record record, List<Sample> samples) {
-        this.user = user;
+    public ExportObject(Record record, List<Sample> samples) {
         this.record = record;
         this.samples = samples;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     public Record getRecord() {

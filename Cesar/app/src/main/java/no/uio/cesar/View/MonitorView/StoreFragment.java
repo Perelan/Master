@@ -26,6 +26,7 @@ import no.uio.cesar.Model.Sample;
 import no.uio.cesar.R;
 import no.uio.cesar.ViewModel.RecordViewModel;
 import no.uio.cesar.ViewModel.SampleViewModel;
+import no.uio.cesar.ViewModel.UserViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +35,7 @@ public class StoreFragment extends Fragment {
 
     private RecordViewModel recordViewModel;
     private SampleViewModel sampleViewModel;
+    private UserViewModel userViewModel;
 
     private RatingBar rb;
     private EditText etTitle, etDescription;
@@ -69,6 +71,7 @@ public class StoreFragment extends Fragment {
 
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
+        userViewModel = new UserViewModel(getContext());
 
         primaryKey = (int) getArguments().getLong("key");
 
@@ -124,6 +127,7 @@ public class StoreFragment extends Fragment {
         r.setRating(rating);
         r.setMonitorTime(monitorTime);
         r.setNrSamples(sampleCount);
+        r.setUser(userViewModel.getUser());
 
         Toast.makeText(getContext(), "Monitored session stored!", Toast.LENGTH_LONG).show();
 
