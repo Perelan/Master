@@ -48,10 +48,10 @@ public class WrapperService extends Service {
         mContext = this;
         current_frequency = -1;
         channelList = new ArrayList<>();
-
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForeground(1,new Notification());
-        }
+        }*/
     }
 
     @Nullable

@@ -79,39 +79,21 @@ public class JSONHelper {
 
     public static void storeToDeviceList(Context context, BluetoothDevice device) {
         Log.d("FlowWrapper", "storeToDeviceList: " + device.getName());
-
-        SharedPreferences pref = context.getSharedPreferences("devices", Context.MODE_PRIVATE);
-
-        Gson gson = new Gson();
-
-        ArrayList<BluetoothDevice> devices = retrieveDeviceList(context);
-
-        if (devices == null) {
-            devices = new ArrayList<>();
-        }
-
-        devices.add(device);
-
-        String storeString = gson.toJson(devices);
+        SharedPreferences pref = context.getSharedPreferences("com.sensordroid.flow", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor edit = pref.edit();
 
-        edit.putString("devices", storeString);
+        edit.putString("device", device.toString());
         edit.apply();
     }
 
-    public static ArrayList<BluetoothDevice> retrieveDeviceList(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("devices", Context.MODE_PRIVATE);
+    public static String retrieveDeviceList(Context context) {
+        SharedPreferences pref = context.getSharedPreferences("com.sensordroid.flow", Context.MODE_PRIVATE);
 
-        String deviceString = pref.getString("devices", null);
-
+        String deviceString = pref.getString("device", null);
 
         if (deviceString == null) return null;
 
-        Gson gson = new Gson();
-
-        Type type = new TypeToken<ArrayList<BluetoothDevice>>() {}.getType();
-
-        return gson.fromJson(deviceString, type);
+        return deviceString;
     }
 }

@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import java.nio.ByteBuffer;
@@ -39,9 +40,15 @@ public class BluetoothHandler extends Service implements BluetoothService {
     private BluetoothDevice selectedFlowSensor;
     private BluetoothCallback callback;
 
+    private LocalBroadcastManager localBroadcastManager;
+
     public SensorMetadata mSensorMetadata = new SensorMetadata();
 
     private IBinder mBinder = new LocalBinder();
+
+    public BluetoothHandler() {
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+    }
 
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
@@ -56,6 +63,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
 
                 sendMetadataUpdated();
                 callback.onDataReceived(new Intent(ACTION_GATT_CONNECTED));
+                localBroadcastManager.sendBroadcast(new Intent(ACTION_GATT_CONNECTED));
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 Log.i(TAG, "onConnectionStateChange: Disconnected from GATT server");
                 closeAndNotifyGattDisconnection();
@@ -160,6 +168,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
                 Log.d(TAG, "connect: Already connected to a device");
 
                 callback.onDataReceived(new Intent(ACTION_GATT_CONNECTED));
+                localBroadcastManager.sendBroadcast(new Intent(ACTION_GATT_CONNECTED));
                 return true;
             }
 
@@ -188,10 +197,11 @@ public class BluetoothHandler extends Service implements BluetoothService {
         }
 
         callback.onDataReceived(new Intent(ACTION_GATT_DISCONNECTED));
+        localBroadcastManager.sendBroadcast(new Intent(ACTION_GATT_DISCONNECTED));
     }
 
-    public void setSelectedFlowSensor(BluetoothDevice device) {
-        selectedFlowSensor = device;
+    public void setSelectedFlowSensor(String address) {
+        selectedFlowSensor = mBluetoothAdapter.getRemoteDevice(address);
     }
 
     public int getConnectionState(BluetoothDevice device) {
@@ -344,8 +354,6 @@ public class BluetoothHandler extends Service implements BluetoothService {
 
             int[] avgMinMaxList = new int[]{avg, min, max};
 
-            System.out.println(Arrays.toString(avgMinMaxList));
-
             //intent.putExtra(EXTRA_DATA_FLOW_AVG_MIN_MAX, avgMinMaxList);
             callback.onDataReceived(intent);
 
@@ -372,6 +380,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
         callback.onDataReceived(new Intent(ACTION_DATA_AVAILABLE)
                 .putExtra(EXTRA_DATA_HEART_RATE, String.valueOf(heartRate))
                 .putExtra(EXTRA_DATA_RR_INTERVAL, String.valueOf(rrInterval)));
+
     }
 
     private void sendMetadataUpdated() {
@@ -388,6 +397,11 @@ public class BluetoothHandler extends Service implements BluetoothService {
                     hasCharacteristic(GattAttributes.HEART_RATE_SERVICE, GattAttributes.HEART_RATE_MEASUREMENT);
 
             callback.onDataReceived(new Intent(ACTION_DEVICE_METADATA_COMPLETE));  // Update GUI
+            localBroadcastManager.sendBroadcast(new Intent(ACTION_DEVICE_METADATA_COMPLETE)
+                .putExtra("batteryLevel", mSensorMetadata.batteryLevel)
+                .putExtra("manufacturerName", mSensorMetadata.manufacturerName)
+                .putExtra("firmwareRevision", mSensorMetadata.firmwareRevision));
+
             mSensorMetadata.completeSent = true;
         }
     }

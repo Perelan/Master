@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.sensordroid.MainServiceConnection;
@@ -50,7 +51,7 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
 
     @Override
     public void run() {
-        int sleepTime = 1000;
+        int sleepTime = 10_000;
         Log.d(TAG, "run: Running");
 
         bluetoothConnection();
@@ -90,7 +91,7 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
             public void onServiceConnected(ComponentName name, IBinder service) {
                 bluetoothHandler = ((BluetoothHandler.LocalBinder) service).getService();
 
-                if (bluetoothHandler == null) Log.d(TAG, "onServiceConnected: wtf");
+                if (bluetoothHandler == null) Log.d(TAG, "onServiceConnected: Bluetooth Handler Null?!");
 
                 bluetoothHandler.setCallback(callback);
 
@@ -100,11 +101,12 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 bluetoothHandler = null;
+                interrupted = true;
             }
         };
 
         Intent i = new Intent(context, BluetoothHandler.class);
-        context.bindService(i, bluetoothConnection, context.BIND_AUTO_CREATE);
+        context.bindService(i, bluetoothConnection, Context.BIND_AUTO_CREATE);
     }
 
     /**
@@ -121,16 +123,14 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
         }
 
         Log.d(TAG, "connect: Connecting");
-        ArrayList<BluetoothDevice> devices = JSONHelper.retrieveDeviceList(context);
+        String address = JSONHelper.retrieveDeviceList(context);
 
         Log.d(TAG, "connect: devices empty");
-        if (devices == null) return;
+        if (address == null) return;
 
-        BluetoothDevice device = devices.get(0);
+        Log.d(TAG, "connect: to device " + address);
 
-        Log.d(TAG, "connect: to device " + device);
-
-        bluetoothHandler.setSelectedFlowSensor(device);
+        bluetoothHandler.setSelectedFlowSensor(address);
 
         bluetoothHandler.connect();
     }
@@ -162,7 +162,7 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
                 String flowRespirationData = intent.getStringExtra(BluetoothHandler.EXTRA_DATA_FLOW_INFO_STRING);
                 String heartRateData = intent.getStringExtra(BluetoothHandler.EXTRA_DATA_HEART_RATE);
 
-                Log.d(TAG, "handleBroadcastEvent: Respiration " + flowRespirationData);
+                //Log.d(TAG, "handleBroadcastEvent: Respiration " + flowRespirationData);
 
                 executor.submit(new DataHandler(
                         binder,

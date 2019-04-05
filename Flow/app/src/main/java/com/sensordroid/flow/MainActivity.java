@@ -1,24 +1,32 @@
 package com.sensordroid.flow;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.IBinder;
+import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.sensordroid.flow.Bluetooth.BluetoothHandler;
+import com.sensordroid.flow.View.DeviceListActivity;
 import com.sensordroid.flow.util.JSONHelper;
 import com.sensordroid.ripple.RippleEffect;
 
-import java.util.ArrayList;
+import java.util.Locale;
+
+import static com.sensordroid.flow.Bluetooth.BluetoothService.ACTION_DEVICE_METADATA_COMPLETE;
+import static com.sensordroid.flow.Bluetooth.BluetoothService.ACTION_GATT_CONNECTED;
+import static com.sensordroid.flow.Bluetooth.BluetoothService.ACTION_GATT_DISCONNECTED;
 
 // bgcolor: #44628e
 // iconcolor: #4572b6
@@ -26,23 +34,10 @@ import java.util.ArrayList;
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final String TAG ="FlowWrapper";
 
-    private static int sensorState = 0;
-    private static final int SENSOR_STATE_CONNECTING = 1;
-    private static final int SENSOR_STATE_CONNECTED = 2;
-    private static final int SENSOR_STATE_DISCONNECTED = 3;
-
     private static final int REQUEST_SELECT_SENSOR = 1;
     private static final int REQUEST_LOCATION_PERMISSION = 2;
 
     public static final String sharedKey = "com.sensordroid.flow";
-    public static final String channelKey = sharedKey + ".channels";
-    public static final String macKey = sharedKey + ".mac";
-    public static final String frequencyKey = sharedKey + ".frequency";
-    public static final String frequenciesKey = sharedKey + ".frequencies";
-    public static final String[] descriptionKeys = new String[]{sharedKey + ".d1", sharedKey + ".d2",
-            sharedKey + ".d3", sharedKey + ".d4", sharedKey + ".d5", sharedKey + ".d6"};
-
-    private String flow = "E7:B4:33:F2:ED:52";
 
     private RippleEffect rp;
 
@@ -81,13 +76,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
         broadcast.setComponent(name);
         sendBroadcast(broadcast);
 
-        ArrayList<BluetoothDevice> devices = JSONHelper.retrieveDeviceList(this);
+        String address = JSONHelper.retrieveDeviceList(this);
 
-        if (devices == null) {
-            Log.d(TAG, "onCreate: HEI");
-
+        if (address == null) {
             startDeviceListActivity();
+        } else {
+            mSensorMac.setText(String.format(Locale.getDefault(), "Mac: %s", address));
         }
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ACTION_DEVICE_METADATA_COMPLETE);
+        filter.addAction(ACTION_GATT_CONNECTED);
+        filter.addAction(ACTION_GATT_DISCONNECTED);
+        LocalBroadcastManager.getInstance(this).registerReceiver(listener, filter);
     }
 
     public void startDeviceListActivity() {
@@ -103,12 +104,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     BluetoothDevice device = data.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+
                     JSONHelper.storeToDeviceList(this, device);
 
                     System.out.println(" >>> " + device.getName());
 
                     mSensorTitle.setText(device.getName());
-                    mSensorMac.setText(String.format("Mac: %s", device.getAddress()));
+                    mSensorMac.setText(String.format(Locale.getDefault(), "Mac: %s", device.getAddress()));
                 }
                 break;
             default:
@@ -121,7 +124,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sensor_button:
-                Log.d(TAG, "onClick: Sensor Button " + sensorState);
                 //handleSensorButton();
                 removeCurrentDevice();
                 break;
@@ -138,36 +140,29 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Log.d(TAG, "removeCurrentDevice: ToDo");
     }
 
-    /**
-     * Following method changes the state of the button and the corresponding text.
-     *
-     * @param state
-     */
-    private void setSensorState(int state) {
-        switch (state) {
-            case SENSOR_STATE_CONNECTED:
-                mSensorState.setText("Connected");
-                //mButtonText.setText("DISCONNECT");
-                mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorConnected), PorterDuff.Mode.SRC_ATOP);
-                mButton.setEnabled(true);
-                mNewConnection.setVisibility(View.INVISIBLE);
-                mButton.setCardBackgroundColor(getResources().getColor(R.color.colorButtonDisconnect));
-                break;
-            case SENSOR_STATE_DISCONNECTED:
-                mSensorState.setText("Disconnected");
-                //mButtonText.setText("RECONNECT");
-                mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorDisconnected), PorterDuff.Mode.SRC_ATOP);
-                mButton.setEnabled(true);
-                mNewConnection.setVisibility(View.VISIBLE);
-                mButton.setCardBackgroundColor(getResources().getColor(R.color.colorButtonReconnect));
-                break;
-            case SENSOR_STATE_CONNECTING:
-                mSensorState.setText("Connecting...");
-                mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorConnecting), PorterDuff.Mode.SRC_ATOP);
-                mButton.setCardBackgroundColor(getResources().getColor(R.color.colorButtonConnecting));
-                mButton.setEnabled(false);
-        }
+    private BroadcastReceiver listener = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "onReceive: " + intent);
 
-        sensorState = state;
-    }
+            if (intent == null) return;
+
+            if (intent.getAction() != null && intent.getAction().equals(ACTION_DEVICE_METADATA_COMPLETE)) {
+                Integer batteryLevel = intent.getIntExtra("batteryLevel", -1);
+                String manufacturerName = intent.getStringExtra("manufacturerName");
+                String firmwareRevision = intent.getStringExtra("firmwareRevision");
+
+                mSensorBattery.setText(String.format(Locale.getDefault(), "%d %%", batteryLevel));
+                mSensorFirmware.setText(String.format(Locale.getDefault(), "Firmware: %s", firmwareRevision));
+            } else if (intent.getAction() != null && intent.getAction().equals(ACTION_GATT_CONNECTED)) {
+                mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorConnected), PorterDuff.Mode.SRC_ATOP);
+                mSensorState.setText("Connected");
+            } else if (intent.getAction() != null && intent.getAction().equals(ACTION_GATT_DISCONNECTED)) {
+                mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorDisconnected), PorterDuff.Mode.SRC_ATOP);
+                mSensorState.setText("Disconnected...");
+            } else {
+                Log.d(TAG, "onReceive: Unknown action!");
+            }
+        }
+    };
 }
