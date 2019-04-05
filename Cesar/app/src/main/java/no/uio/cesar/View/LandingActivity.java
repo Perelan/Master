@@ -151,6 +151,7 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.get_started:
                 if (validateInput()) {
                     Toast.makeText(this, "Name or age is not filled out, please do so", Toast.LENGTH_SHORT).show();
+
                 } else {
                     storeUserData();
                     startActivity(new Intent(this, MainActivity.class));

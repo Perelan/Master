@@ -4,14 +4,14 @@ import com.jjoe64.graphview.GraphView;
 
 public class Graph {
 
-    private final int MAX_Y = 2500;
-    private final int MIN_Y = 1500;
+    private final static int MAX_Y = 2500;
+    private final static int MIN_Y = 1500;
 
 
     public static void changeParams(GraphView graph) {
         graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMinY(1700);
-        graph.getViewport().setMaxY(2000);
+        graph.getViewport().setMinY(MIN_Y);
+        graph.getViewport().setMaxY(MAX_Y);
 
         graph.getViewport().setXAxisBoundsManual(true);
 

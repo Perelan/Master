@@ -47,7 +47,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="30dp"
-                android:text="developed by Deep Singh with University of Oslo and Supervisor Thomas Plagemann \n\n To get started, press the button below!"
+                android:text="Developed by Jagat Deep Singh at University of Oslo with Supervisor Thomas Plagemann \n\n To get started, press the button below!"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textSize="16sp" />
@@ -284,7 +284,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="previousView"
-            android:src="@android:drawable/arrow_up_float"
+            android:src="@drawable/back"
             android:layout_marginRight="5dp"
             android:visibility="gone"
             app:backgroundTint="@color/hr" />
@@ -293,7 +293,7 @@
             android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/arrow_down_float"
+            android:src="@drawable/right"
             android:onClick="nextView"
             app:backgroundTint="@color/battery" />
 

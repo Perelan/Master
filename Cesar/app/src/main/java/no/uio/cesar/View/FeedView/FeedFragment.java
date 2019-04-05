@@ -103,7 +103,11 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
                         Record r = obj.getRecord();
                         r.setId(0);
 
+                        System.out.println("Outside ID : " + r.getId());
+
                         recordViewModel.insert(r, id -> {
+                            System.out.println("Inside ID : " + id);
+
                             for (int i = 0; i < obj.getSamples().size(); i++) {
                                 Sample s = obj.getSamples().get(i);
                                 s.setRecordId(id);

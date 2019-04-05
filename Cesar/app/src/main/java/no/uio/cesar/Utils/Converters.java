@@ -23,16 +23,6 @@ public class Converters {
     }
 
     @TypeConverter
-    public static String fromArrayList(ArrayList<Sample> list) {
-        return list == null ? null : new Gson().toJson(list);
-    }
-
-    @TypeConverter
-    public static ArrayList<Sample> fromString(String value) {
-        return new Gson().fromJson(value, new TypeToken<ArrayList<Sample>>(){}.getType());
-    }
-
-    @TypeConverter
     public static String fromUser(User user) {
         return user == null ? null : new Gson().toJson(user);
     }

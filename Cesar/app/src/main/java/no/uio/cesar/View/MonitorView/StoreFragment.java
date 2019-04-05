@@ -40,7 +40,7 @@ public class StoreFragment extends Fragment {
     private RatingBar rb;
     private EditText etTitle, etDescription;
 
-    private TextView tvDiscard;
+    private TextView tvDiscard, tvStoreTime, tvStoreSample;
 
     private int primaryKey;
 
@@ -79,6 +79,8 @@ public class StoreFragment extends Fragment {
         etDescription = v.findViewById(R.id.store_desc);
         rb = v.findViewById(R.id.store_rating);
         tvDiscard = v.findViewById(R.id.store_discard);
+        tvStoreTime = v.findViewById(R.id.store_time);
+        tvStoreSample = v.findViewById(R.id.store_samples);
 
         tvDiscard.setOnClickListener(l -> discardSession(primaryKey));
 

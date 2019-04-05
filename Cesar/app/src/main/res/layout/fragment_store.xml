@@ -21,26 +21,26 @@
             android:text="Store Montitored Session"/>
 
         <TextView
-            android:layout_marginTop="10dp"
             android:id="@+id/store_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Monitoring lasted for 8 hours and 10 minutes"
-            android:textColor="@color/subtitle"
+            android:layout_below="@id/store_info_title"
             android:layout_centerHorizontal="true"
-            android:textSize="16sp"
-            android:layout_below="@id/store_info_title" />
+            android:layout_marginTop="10dp"
+            android:text="Monitoring lasted for x hours and x minutes"
+            android:textColor="@color/subtitle"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/store_samples"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100 samples gathered"
-            android:textSize="16sp"
-            android:textColor="@color/subtitle"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/store_time"
-            android:layout_marginBottom="10dp" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="x samples gathered"
+            android:textColor="@color/subtitle"
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

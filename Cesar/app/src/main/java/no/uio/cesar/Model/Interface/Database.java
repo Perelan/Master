@@ -40,35 +40,4 @@ public abstract class Database extends RoomDatabase {
 
         return instance;
     }
-
-    /*
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDummyDataAsyncTask(instance).execute();
-        }
-
-    };
-
-    private static class PopulateDummyDataAsyncTask extends AsyncTask<Void, Void, Void> {
-
-        private RecordDao recordDao;
-
-        PopulateDummyDataAsyncTask(Database db) {
-            recordDao = db.recordDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            ArrayList<Sample> hr = new ArrayList<>();
-            hr.add(new Sample("1", null, new Date()));
-
-            recordDao.insert(new Record("test1", hr));
-
-            return null;
-        }
-    }
-    */
 }

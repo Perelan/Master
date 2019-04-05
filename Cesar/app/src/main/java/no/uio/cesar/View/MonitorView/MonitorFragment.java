@@ -43,6 +43,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
@@ -66,7 +67,7 @@ import no.uio.ripple.RippleEffect;
 public class MonitorFragment extends Fragment implements DatabaseCallback {
     private static final String TAG = "Monitor";
 
-    private Context mContext;
+    private FragmentActivity mContext;
 
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
@@ -136,7 +137,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior.setBottomSheetCallback(bottomSheetCallback);
 
-        powerManager = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+        powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "CESAR::collection");
 
@@ -145,7 +146,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         conHandler = new ConnectivityHandler(runnable);
 
         mRecyclerView = v.findViewById(R.id.available_sensors);
-        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new SensorAdapter();
         mRecyclerView.setAdapter(mAdapter);
@@ -181,7 +182,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         Intent intent = new Intent(MainServiceConnection.class.getName());
         intent.setAction("com.sensordroid.ADD_DRIVER");
         intent.setPackage("com.sensordroid");
-        getActivity().bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
+        mContext.bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
 
         LocalBroadcastManager.getInstance(mContext).registerReceiver(listener, new IntentFilter("PUT_DATA"));
 
@@ -260,12 +261,12 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         }, 1_000);
     }
 
-    public void connect() {
+    private void connect() {
         Log.d(TAG, "connect");
 
         try {
             String s = publishers.get(0).split(",")[0];
-            int res = msc.Subscribe(s, 0, getActivity().getPackageName(), DSDService.class.getName());
+            int res = msc.Subscribe(s, 0, mContext.getPackageName(), DSDService.class.getName());
             System.out.println(res);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -296,7 +297,14 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        mContext = context;
+        mContext = (FragmentActivity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        mContext = null;
     }
 
     private void storeAndFinishSession() {
@@ -306,7 +314,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
         Fragment f = StoreFragment.newInstance(currentRecordId, monitorTime);
 
-        Uti.commitFragmentTransaction(getActivity(), f);
+        Uti.commitFragmentTransaction(mContext, f);
     }
 
     private void cleanup() {
@@ -332,13 +340,13 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
         }
 
         try {
-            getActivity().unbindService(serviceCon);
+            mContext.unbindService(serviceCon);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public BottomSheetBehavior.BottomSheetCallback bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
+    private BottomSheetBehavior.BottomSheetCallback bottomSheetCallback = new BottomSheetBehavior.BottomSheetCallback() {
         @Override
         public void onStateChanged(@NonNull View bottomSheet, int newState) {
             if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
@@ -362,8 +370,6 @@ public class MonitorFragment extends Fragment implements DatabaseCallback {
 
                     mSeries.appendData(dp, true, 10000);
                 });
-
-                return;
             }
         }
 

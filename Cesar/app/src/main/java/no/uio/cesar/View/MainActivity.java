@@ -14,18 +14,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import no.uio.cesar.Model.Record;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Constant;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.View.ProfileView.ProfileFragment;
-import no.uio.cesar.View.RecordView.RecordFragment;
 import no.uio.cesar.View.ModuleView.ModuleFragment;
 import no.uio.cesar.View.FeedView.FeedFragment;
 import no.uio.cesar.ViewModel.RecordViewModel;
-import no.uio.cesar.ViewModel.SampleViewModel;
-import androidx.fragment.app.FragmentTransaction;
 
 
 public class MainActivity extends AppCompatActivity {
