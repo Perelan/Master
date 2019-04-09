@@ -34,7 +34,7 @@ def get_data(sample):
 def get_date(sample):
     return datetime.strptime(sample, '%H:%M:%S')
 
-def parse(data):
+def parse(data, name):
     date = [get_date(i['implicitTS'].split(" ")[-1]) for i in data[0]['samples']]
     data = [get_data(i['sample'].split(", ")) for i in data[0]['samples']]
 
@@ -45,13 +45,17 @@ def parse(data):
     ax.xaxis_date()
     ax.xaxis.set_tick_params(rotation=45)
 
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Respiration value")
+    ax.set_title(name)
+
     plt.show();
 
 def read(filename="record_1_B.json"):
     with open(filename) as f:
         json_data = json.load(f)
 
-        parse(json_data)
+        parse(json_data, filename)
 
 
 if __name__ == "__main__":
