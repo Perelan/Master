@@ -12,17 +12,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.lifecycle.ViewModelProviders;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
 import no.uio.cesar.R;
+import no.uio.cesar.Utils.Graph;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.ViewModel.SampleViewModel;
 
@@ -36,6 +41,8 @@ public class AnalyticsFragment extends Fragment {
 
     private Record currentRecord;
 
+
+    private GraphView respGraph;
 
     public AnalyticsFragment() {
         // Required empty public constructor
@@ -80,47 +87,33 @@ public class AnalyticsFragment extends Fragment {
         tvSubtitle.setText(String.format(Locale.getDefault(), "%d samples were gathered over %dh %dm %ds",
                 currentRecord.getNrSamples(), timeConverted[0], timeConverted[1], timeConverted[2]));
 
-        GraphView respGraph = v.findViewById(R.id.analytics_resp_graph);
+        respGraph = v.findViewById(R.id.analytics_resp_graph);
 
         SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
 
-        sampleViewModel.getSamplesForRecord(currentRecord.getId()).observe(this, samples -> {
-
-            if (samples.isEmpty()) return;
-
-            DataPoint[] dpList = new DataPoint[samples.size()];
-            long baseTime = samples.get(0).getImplicitTS().getTime();
-
-            for (int i = 0; i < dpList.length; i++) {
-                Sample currSample = samples.get(i);
-
-                int value = Uti.extractFlowData(currSample.getSample());
-
-                int x = (int) ((currSample.getImplicitTS().getTime() - baseTime) / 1000) / 60;
-
-                dpList[i] = new DataPoint(x , value);
-
-                System.out.println("Time " + x);
-            }
-
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dpList);
-
-            respGraph.addSeries(series);
-
-            respGraph.getViewport().setYAxisBoundsManual(true);
-            respGraph.getViewport().setMinY(1700);
-            respGraph.getViewport().setMaxY(2000);
-
-            respGraph.getViewport().setXAxisBoundsManual(true);
-
-            respGraph.getViewport().setScalable(true);
-            respGraph.getViewport().setScalableY(true);
-
-            respGraph.getGridLabelRenderer().setHumanRounding(true);
-        });
-
+        sampleViewModel.getSamplesForRecord(currentRecord.getId()).observe(this, this::populate);
 
         return v;
+    }
+
+    private void populate(List<Sample> samples) {
+        if (samples.isEmpty()) return;
+
+        DataPoint[] dpList = new DataPoint[samples.size()];
+
+        for (int i = 0; i < dpList.length; i++) {
+            Sample currSample = samples.get(i);
+
+            int value = Uti.extractFlowData(currSample.getSample());
+
+            dpList[i] = new DataPoint(currSample.getImplicitTS(), value);
+        }
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dpList);
+
+        respGraph.addSeries(series);
+
+        Graph.changeParams(respGraph);
     }
 
 }
