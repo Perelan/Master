@@ -168,8 +168,6 @@ public class Repository {
         }
     }
 
-
-
     private static class UpdateRecordAsyncTask extends AsyncTask<Record, Void, Void> {
 
         private RecordDao recordDao;

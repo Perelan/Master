@@ -46,6 +46,9 @@ public class MonitorActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "Stop the monitor and save/discard session", Toast.LENGTH_LONG).show();
+        Toast.makeText(
+                this,
+                "Stop the monitor and save/discard session",
+                Toast.LENGTH_LONG).show();
     }
 }

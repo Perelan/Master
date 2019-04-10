@@ -16,7 +16,7 @@ public class Record {
     private int id;
 
     private String name, description;
-    private long monitorTime;
+    private long avgSampleRate, monitorTime;
     private float rating;
     private Date createdAt, updatedAt;
     private User user;
@@ -26,6 +26,14 @@ public class Record {
     public Record() {
         createdAt = new Date();
         updatedAt = new Date();
+    }
+
+    public long getAvgSampleRate() {
+        return avgSampleRate;
+    }
+
+    public void setAvgSampleRate(long avgSampleRate) {
+        this.avgSampleRate = avgSampleRate;
     }
 
     public User getUser() {

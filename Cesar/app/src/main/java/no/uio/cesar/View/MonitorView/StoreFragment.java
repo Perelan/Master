@@ -16,9 +16,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-import java.util.Locale;
-
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import no.uio.cesar.Model.Record;
@@ -50,7 +47,7 @@ public class StoreFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static StoreFragment newInstance(long primaryKey, long monitorTime) {
+    static StoreFragment newInstance(long primaryKey, long monitorTime) {
         
         Bundle args = new Bundle();
         args.putLong("key", primaryKey);
@@ -61,7 +58,6 @@ public class StoreFragment extends Fragment {
 
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
