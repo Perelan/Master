@@ -25,6 +25,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -177,7 +178,6 @@ public class BluetoothHandler extends Service implements BluetoothService {
 
         Log.i(TAG, "connect: Connecting to a device: " + selectedFlowSensor);
 
-
         mBluetoothGatt = selectedFlowSensor.connectGatt(this, true, mGattCallback);
 
         if (mBluetoothGatt == null) {
@@ -305,7 +305,8 @@ public class BluetoothHandler extends Service implements BluetoothService {
 
     private void batteryLevelReceived(BluetoothGattCharacteristic characteristic) {
         try {
-            mSensorMetadata.batteryLevel = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
+            mSensorMetadata.batteryLevel =
+                    characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
             sendMetadataUpdated();
         } catch (Exception e) {
             Log.e(TAG, e.toString());
@@ -314,8 +315,8 @@ public class BluetoothHandler extends Service implements BluetoothService {
 
     private void flowDataReceived(BluetoothGattCharacteristic characteristic) {
         byte[] values = characteristic.getValue();
-        if (values.length == 0)
-            Log.w(TAG, "flowDataReceived - No Respiration Data");
+
+        if (values.length == 0) Log.w(TAG, "flowDataReceived - No Respiration Data");
         else {
             ShortBuffer shortBuffer = ByteBuffer.wrap(values).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer();
             List<Integer> intValues = new ArrayList<>();
@@ -324,12 +325,12 @@ public class BluetoothHandler extends Service implements BluetoothService {
             }
 
             long ts = intValues.get(7) & 0x0000ffff;
-            String timeStamp = String.format("%d", (long) ts);
+            String timeStamp = String.format(Locale.getDefault(), "%d", (long) ts);
             String deltaTime = "100";
-            String minValueTimeStamp = String.format("%d", intValues.get(8));
-            String maxValueTimeStamp = String.format("%d", intValues.get(9));
+            String minValueTimeStamp = String.format(Locale.getDefault(), "%d", intValues.get(8));
+            String maxValueTimeStamp = String.format(Locale.getDefault(), "%d", intValues.get(9));
 
-            String samples = String.format("%d,%d,%d,%d,%d,%d,%d",
+            String samples = String.format(Locale.getDefault(), "%d,%d,%d,%d,%d,%d,%d",
                     intValues.get(0), intValues.get(1), intValues.get(2),
                     intValues.get(3), intValues.get(4), intValues.get(5), intValues.get(6));
 
@@ -393,7 +394,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
                     hasCharacteristic(GattAttributes.BATTERY_SERVICE, GattAttributes.BATTERY_LEVEL);
             mSensorMetadata.flowSupported =
                     hasCharacteristic(GattAttributes.VENTILATION_SERVICE, GattAttributes.FLOW_MEASUREMENT);
-            mSensorMetadata.heartRateSupposted =
+            mSensorMetadata.heartRateSupported =
                     hasCharacteristic(GattAttributes.HEART_RATE_SERVICE, GattAttributes.HEART_RATE_MEASUREMENT);
 
             callback.onDataReceived(new Intent(ACTION_DEVICE_METADATA_COMPLETE));  // Update GUI

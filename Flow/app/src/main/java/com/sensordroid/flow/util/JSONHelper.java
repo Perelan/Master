@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -28,7 +29,7 @@ public class JSONHelper {
 
     public static JSONObject construct(int id, int[] ids, Object[] values) {
         TimeZone timeZone = TimeZone.getTimeZone("UTC");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.getDefault());
         dateFormat.setTimeZone(timeZone);
         String time = dateFormat.format(new Date());
 

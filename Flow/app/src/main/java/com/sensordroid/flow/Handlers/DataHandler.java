@@ -16,8 +16,7 @@ public class DataHandler implements Runnable {
     private final int id;
     private final int[] channels;
 
-    // TODO 8: Change type of "data" to match your format
-    public DataHandler(MainServiceConnection binder, int id, Object[] data, int[] channels) {
+    DataHandler(MainServiceConnection binder, int id, Object[] data, int[] channels) {
         this.binder = binder;
         this.id = id;
         this.data = data;
@@ -29,10 +28,6 @@ public class DataHandler implements Runnable {
         Create JSON-object and send it using the binder object.
      */
     public void run() {
-        /*
-            TODO 9: Rewrite the collected data from the data format in to an array
-                  containing the sampled values.
-         */
         try {
             JSONObject res = JSONHelper.construct(id, this.channels, this.data);
             binder.putJson(res.toString());

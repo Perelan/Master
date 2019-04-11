@@ -31,7 +31,6 @@ public class RespondReceiver extends BroadcastReceiver {
         Log.d(TAG, "onReceive: " + WrapperService.name);
         extras.putStringArrayList("SUPPORTED_TYPES", getSupportedTypes(context));
         extras.putIntegerArrayList("FREQUENCIES", null);
-        //extras.putIntegerArrayList("FREQUENCIES", getFrequencies(context));
 
         i.putExtras(extras);
         context.sendBroadcast(i);

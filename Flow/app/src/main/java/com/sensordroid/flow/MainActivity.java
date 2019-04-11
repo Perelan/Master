@@ -31,7 +31,7 @@ import static com.sensordroid.flow.Bluetooth.BluetoothService.ACTION_GATT_DISCON
 // bgcolor: #44628e
 // iconcolor: #4572b6
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity {
     private static final String TAG ="FlowWrapper";
 
     private static final int REQUEST_SELECT_SENSOR = 1;
@@ -39,10 +39,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String sharedKey = "com.sensordroid.flow";
 
-    private TextView mSensorTitle, mSensorMac,
-            mSensorBattery, mSensorFirmware, mSensorState, mNewConnection, mIndicator;
+    private TextView mSensorTitle;
+    private TextView mSensorMac;
+    private TextView mSensorBattery;
+    private TextView mSensorFirmware;
+    private TextView mSensorState;
+    private TextView mIndicator;
 
-    private CardView mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,24 +57,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mSensorBattery  = findViewById(R.id.sensor_battery);
         mSensorFirmware = findViewById(R.id.sensor_firmware);
         mIndicator      = findViewById(R.id.sensor_state_indicator);
-
-
-        mNewConnection  = findViewById(R.id.sensor_new_device);
-        mNewConnection.setOnClickListener(this);
-
         mSensorState    = findViewById(R.id.sensor_state);
 
-        mButton         = findViewById(R.id.sensor_button);
-        mButton.setOnClickListener(this);
+        TextView newConButton = findViewById(R.id.sensor_new_device);
+        newConButton.setOnClickListener(l -> startDeviceListActivity());
 
-        Intent broadcast = new Intent();
-        ComponentName name = new ComponentName("com.sensordroid", "com.sensordroid.SensorDiscovery");
-        Bundle b = new Bundle();
-        b.putString("name", "Flow");
-        b.putString("packageName", "com.sensordroid.flow");
-        broadcast.putExtras(b);
-        broadcast.setComponent(name);
-        sendBroadcast(broadcast);
+        CardView removeButton = findViewById(R.id.sensor_button);
+        removeButton.setOnClickListener(l -> removeCurrentDevice());
+
+        sendVisibilityBroadcast();
 
         String address = JSONHelper.retrieveDeviceList(this);
 
@@ -96,16 +90,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult: request code " + requestCode);
+
         switch (requestCode) {
             case REQUEST_SELECT_SENSOR:
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     BluetoothDevice device = data.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
-                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-
                     JSONHelper.storeToDeviceList(this, device);
 
-                    System.out.println(" >>> " + device.getName());
+                    Log.d(TAG, "onActivityResult: " + device.getName());
 
                     mSensorTitle.setText(device.getName());
                     mSensorMac.setText(String.format(Locale.getDefault(), "Mac: %s", device.getAddress()));
@@ -117,24 +110,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.sensor_button:
-                //handleSensorButton();
-                removeCurrentDevice();
-                break;
-            case R.id.sensor_new_device:
-                Log.d(TAG, "onClick: Connect to new sensor");
-                startDeviceListActivity();
-                break;
-            default:
-                break;
-        }
+
+    /**
+     * Send a broadcast to the DataStreamDispatchingModule to notify the existence of the sensor
+     * wrapper
+     */
+    private void sendVisibilityBroadcast() {
+        Intent broadcast = new Intent();
+        ComponentName name = new ComponentName("com.sensordroid", "com.sensordroid.SensorDiscovery");
+        Bundle b = new Bundle();
+        b.putString("name", "Flow");
+        b.putString("packageName", "com.sensordroid.flow");
+        broadcast.putExtras(b);
+        broadcast.setComponent(name);
+        sendBroadcast(broadcast);
     }
 
     public void removeCurrentDevice() {
-        Log.d(TAG, "removeCurrentDevice: ToDo");
+        Log.d(TAG, "removeCurrentDevice: Todo");
     }
 
     private BroadcastReceiver listener = new BroadcastReceiver() {
@@ -153,10 +146,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 mSensorFirmware.setText(String.format(Locale.getDefault(), "Firmware: %s", firmwareRevision));
             } else if (intent.getAction() != null && intent.getAction().equals(ACTION_GATT_CONNECTED)) {
                 mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorConnected), PorterDuff.Mode.SRC_ATOP);
-                mSensorState.setText("Connected");
+                mSensorState.setText(getString(R.string.main_connected));
             } else if (intent.getAction() != null && intent.getAction().equals(ACTION_GATT_DISCONNECTED)) {
                 mIndicator.getBackground().setColorFilter(getResources().getColor(R.color.colorDisconnected), PorterDuff.Mode.SRC_ATOP);
-                mSensorState.setText("Disconnected...");
+                mSensorState.setText(getString(R.string.main_disconnected));
             } else {
                 Log.d(TAG, "onReceive: Unknown action!");
             }

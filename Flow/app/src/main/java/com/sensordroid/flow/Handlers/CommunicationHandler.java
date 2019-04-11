@@ -36,7 +36,6 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
 
     private boolean interrupted;
 
-
     public CommunicationHandler(final MainServiceConnection binder, String name, int id, Context context) {
         this.driverId = id;
         this.driverName = name;
@@ -167,9 +166,8 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
                 executor.submit(new DataHandler(
                         binder,
                         driverId,
-                        new String[] {flowRespirationData},
+                        new String[] { flowRespirationData },
                         WrapperService.getChannelList()));
-
                 break;
             case BluetoothHandler.ACTION_DEVICE_METADATA_COMPLETE:
 

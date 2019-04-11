@@ -97,7 +97,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/connect_title"
             app:layout_constraintVertical_bias="0.302"
-            app:srcCompat="@drawable/refresh"/>
+            app:srcCompat="@drawable/refresh"
+            android:contentDescription="@string/device_list_refresh_icon" />
 
 
     </android.support.constraint.ConstraintLayout>

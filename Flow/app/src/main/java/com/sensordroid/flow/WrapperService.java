@@ -221,7 +221,7 @@ public class WrapperService extends Service {
             }
         }
 
-        public void interruptThread() {
+        void interruptThread() {
             if(wakeLock.isHeld()){
                 Log.w(TAG, "WakeLock released");
                 wakeLock.release();

@@ -1,8 +1,26 @@
 <resources>
-<!-- TODO 2: Change the name of the applicaiton-->
-<string name="app_name">Flow</string>
-<string name="title_activity_device_list">DeviceListActivity</string>
-<string name="textview">TextView</string>
-<string name="paring_description">Make sure your Flow sensor is close to your device.\nTurn on and grant location permissions to this application.</string>
-<string name="pairing_title">Searching for devices…</string>
+    <string name="app_name">Flow</string>
+    <string name="title_activity_device_list">DeviceListActivity</string>
+
+    <string name="paring_description">Make sure your Flow sensor is close to your device.\nTurn on and grant location permissions to this application.</string>
+    <string name="pairing_title">Searching for devices…</string>
+
+    <string name="main_connected">Connected</string>
+    <string name="main_disconnected">Disconnected...</string>
+    <string name="main_title">OarZpot</string>
+    <string name="main_new_device">Connect to another device...</string>
+    <string name="main_remove_device">REMOVE DEVICE</string>
+    <string name="main_mac">Mac: FF:FF:FF:FF:FF:FF</string>
+    <string name="main_firmware">Firmware: --</string>
+    <string name="main_default_battery">--</string>
+    <string name="main_sensor_image_desc">An image of the flow sensor</string>
+
+    <string name="device_title">TextView</string>
+    <string name="device_mac">TextView</string>
+    <string name="device_image_desc">An image of a bluetooth icon</string>
+    <string name="device_list_refresh_icon">An icon of a refresh logo</string>
+    <string name="device_enable_bluetooth">Enable Bluetooth and Restart the App!</string>
+    <string name="device_search">Searching for devices...</string>
+    <string name="device_no_device">No devices found, try to refresh...</string>
+    <string name="device_results">Device results...</string>
 </resources>

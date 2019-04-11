@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/test"
+            android:id="@+id/sensor_image"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_centerHorizontal="true"
@@ -26,10 +26,10 @@
             android:layout_marginEnd="8dp"
             android:gravity="center"
             android:src="@drawable/flow"
-            android:text="--\n--"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:contentDescription="@string/main_sensor_image_desc" />
 
         <TextView
             android:id="@+id/sensor_title"
@@ -40,7 +40,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="150dp"
             android:fontFamily="sans-serif"
-            android:text="OarZpot"
+            android:text="@string/main_title"
             android:textColor="@color/colorTitle"
             android:textSize="62sp"
             android:textStyle="bold"
@@ -74,8 +74,8 @@
                 android:id="@+id/sensor_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Disconnected..."
+                android:layout_marginStart="10dp"
+                android:text="@string/main_disconnected"
                 android:textAlignment="textStart"
                 android:textColor="@color/colorSubtitle" />
         </LinearLayout>
@@ -88,7 +88,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="24dp"
-            android:text="Connect to another device..."
+            android:text="@string/main_new_device"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/breath"
@@ -125,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="REMOVE DEVICE"
+                android:text="@string/main_remove_device"
                 android:textColor="@android:color/background_light"/>
 
         </android.support.v7.widget.CardView>
@@ -137,7 +137,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Mac: FF:FF:FF:FF:FF:FF"
+            android:text="@string/main_mac"
             android:textAlignment="center"
             android:textColor="@color/colorSubtitle"
             android:textSize="12sp"
@@ -153,10 +153,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Firmware: --"
+            android:text="@string/main_firmware"
             android:textAllCaps="false"
             android:textColor="@color/colorSubtitle"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -172,7 +172,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="--"
+            android:text="@string/main_default_battery"
             android:textAlignment="center"
             android:textColor="@color/colorSubtitle"
             android:textSize="12sp"
@@ -180,7 +180,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/test" />
+            app:layout_constraintTop_toBottomOf="@+id/sensor_image" />
 
 
     </android.support.constraint.ConstraintLayout>

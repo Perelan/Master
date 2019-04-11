@@ -58,7 +58,8 @@ class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>
         viewHolder.mDeviceTitle.setText(device.getName());
         viewHolder.mDeviceMac.setText(device.getAddress());
 
-        if (device.getName().equalsIgnoreCase("oarzpot")) {
+        if (device.getName().equalsIgnoreCase("oarzpot") ||
+                device.getName().equalsIgnoreCase("breathzpot")) {
             viewHolder.mDeviceImage.setImageResource(R.drawable.flow);
         } else {
             viewHolder.mDeviceImage.setImageResource(R.drawable.bluetooth);

@@ -12,7 +12,7 @@ public class FlowTransfer {
     };
 
     private final static String[] metric = new String[] {
-            "Raw data", "Milivolt", "milivolt"
+            "Raw data", "Milivolt", "Milivolt"
     };
 
     public static String getMetric(int type) {

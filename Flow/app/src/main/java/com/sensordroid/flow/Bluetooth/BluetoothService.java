@@ -22,24 +22,25 @@ public interface BluetoothService {
         public String manufacturerName;
         public String firmwareRevision;
 
-        public boolean firmwareRevisionSupported = false;
+        boolean firmwareRevisionSupported = false;
 
-        public boolean flowEnabled;
-        public boolean flowSupported;
+        boolean flowEnabled;
+        boolean flowSupported;
 
-        public boolean heartRateEnabled;
-        public boolean heartRateSupposted;
+        boolean heartRateEnabled;
+        boolean heartRateSupported;
 
-        public boolean batteryEnabled;
-        public boolean batterySupported;
+        boolean batteryEnabled;
+        boolean batterySupported;
 
-        public boolean completeSent;
+        boolean completeSent;
 
-        public boolean isComplete() {
-            if (firmwareRevisionSupported)
+        boolean isComplete() {
+            if (firmwareRevisionSupported) {
                 return batteryLevel != null && manufacturerName != null && firmwareRevision != null;
-            else
+            } else {
                 return batteryLevel != null && manufacturerName != null;
+            }
         }
 
         public void reset() {

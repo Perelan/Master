@@ -39,16 +39,12 @@ import java.util.ArrayList;
 public class DeviceListActivity extends AppCompatActivity {
     private static final String TAG = "DeviceListActivity";
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     private Handler mHandler = new Handler();
     private BluetoothHandler mComHandler = new BluetoothHandler();
 
     private ServiceConnection mBluetoothServiceConnection = null;
-
-    private boolean mScanning;
 
     private static final long SCAN_PERIOD = 10_000; // 10 sec
 
@@ -83,7 +79,6 @@ public class DeviceListActivity extends AppCompatActivity {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,11 +94,11 @@ public class DeviceListActivity extends AppCompatActivity {
 
         mSwipeRefreshLayout = findViewById(R.id.swipe_container);
 
-        mRecyclerView = findViewById(R.id.devicelist);
+        RecyclerView mRecyclerView = findViewById(R.id.devicelist);
 
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         devicesDataset = new ArrayList<>();
@@ -147,14 +142,12 @@ public class DeviceListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (requestCode) {
             case REQUEST_ENABLE_BT:
-                System.out.println(">>>>>>>>> Here " + resultCode);
-
                 if (resultCode == RESULT_OK) {
                     // Bluetooth toggle granted.
                     refreshDeviceLoading();
                 } else {
                     // Bluetooth toggle denied.
-                    title.setText("Enable Bluetooth and Restart the App!");
+                    title.setText(getString(R.string.device_enable_bluetooth));
                     Toast.makeText(this, "Please enable Bluetooth.", Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -177,14 +170,28 @@ public class DeviceListActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        if (mBluetoothServiceConnection != null) {
+            unbindService(mBluetoothServiceConnection);
+        }
+
+        super.onDestroy();
+    }
+
     private void handlePrivileges() {
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
-            Toast.makeText(this, "Bluetooth LE is not supported on this device", Toast.LENGTH_LONG).show();
+            Toast.makeText(
+                    this,
+                    "Bluetooth LE is not supported on this device",
+                    Toast.LENGTH_LONG).show();
             finish();
         }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_LOC);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, REQUEST_ACCESS_LOC);
         }
 
         BluetoothAdapter adapter = mComHandler.getBluetoothAdapter();
@@ -201,17 +208,8 @@ public class DeviceListActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
         progress.setVisibility(View.VISIBLE);
         refresh.setVisibility(View.INVISIBLE);
-        title.setText("Searching for devices...");
+        title.setText(getString(R.string.device_search));
         scanLeDevice(true);
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (mBluetoothServiceConnection != null) {
-            unbindService(mBluetoothServiceConnection);
-        }
-
-        super.onDestroy();
     }
 
     // Stops scanning after 10 seconds.
@@ -221,15 +219,12 @@ public class DeviceListActivity extends AppCompatActivity {
         if (enable) {
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(() -> {
-                mScanning = false;
                 adapter.stopLeScan(mLeScanCallback);
                 showBluetoothDeviceResult();
             }, SCAN_PERIOD);
 
-            mScanning = true;
             adapter.startLeScan(mLeScanCallback);
         } else {
-            mScanning = false;
             adapter.stopLeScan(mLeScanCallback);
         }
     }
@@ -237,10 +232,10 @@ public class DeviceListActivity extends AppCompatActivity {
     public void showBluetoothDeviceResult() {
         if (devicesDataset.size() == 0) {
             // Bluetooth scanning has terminated, and there are no device results.
-            title.setText("No devices found, try to refresh...");
+            title.setText(getString(R.string.device_no_device));
         } else {
             // Bluetooth scanning has terminated, and there are results.
-            title.setText("Device results...");
+            title.setText(getString(R.string.device_results));
         }
 
         progress.setVisibility(View.INVISIBLE);
@@ -250,7 +245,7 @@ public class DeviceListActivity extends AppCompatActivity {
     // Device scan callback.
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             (BluetoothDevice device, int rssi, byte[] scanRecord) -> runOnUiThread(() -> {
-                System.out.println(">>> Device: " + device.getName());
+                Log.d(TAG, "Device: " + device.getName());
                 if (device.getName() != null) {
                     addDevice(device);
                 }
