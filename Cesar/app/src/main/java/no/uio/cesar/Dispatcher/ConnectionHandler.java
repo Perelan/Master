@@ -1,4 +1,4 @@
-package no.uio.cesar.View.MonitorView;
+package no.uio.cesar.Dispatcher;
 
 import android.app.Service;
 import android.content.ComponentName;
@@ -14,9 +14,7 @@ import com.sensordroid.MainServiceConnection;
 
 import java.util.List;
 
-import no.uio.cesar.DSDService;
-
-class ConnectionHandler {
+public class ConnectionHandler {
 
     private static final String TAG = "ConnectionHandler";
 
@@ -28,7 +26,7 @@ class ConnectionHandler {
 
     private ConnectionCallback callback;
 
-    ConnectionHandler(Context context, ConnectionCallback callback) {
+    public ConnectionHandler(Context context, ConnectionCallback callback) {
         this.context = context;
         this.callback = callback;
     }
@@ -47,7 +45,7 @@ class ConnectionHandler {
         }
     };
 
-    void establish() {
+    public void establish() {
         Intent intent = new Intent(MainServiceConnection.class.getName());
         intent.setAction("com.sensordroid.ADD_DRIVER");
         intent.setPackage("com.sensordroid");
@@ -106,12 +104,12 @@ class ConnectionHandler {
         }
     }
 
-    void reconnect() {
+    public void reconnect() {
         disconnect();
         connect();
     }
 
-    void cleanup() {
+    public void cleanup() {
         Log.d(TAG, "cleanup");
 
         disconnect();

@@ -1,8 +1,8 @@
-package no.uio.cesar.View.MonitorView;
+package no.uio.cesar.Dispatcher;
 
 import android.os.Handler;
 
-class ConnectivityHandler {
+public class ConnectivityHandler {
     private Handler handler;
     private Runnable runnable;
 
@@ -10,22 +10,22 @@ class ConnectivityHandler {
 
     private int wait, attempts;
 
-    ConnectivityHandler(Runnable runnable) {
+    public ConnectivityHandler(Runnable runnable) {
         handler = new Handler();
         this.runnable = runnable;
         wait = BASE_START_TIME;
         attempts = 0;
     }
 
-    void start() {
+    public void start() {
         handler.postDelayed(this.runnable, wait);
     }
 
-    void stop() {
+    public void stop() {
         handler.removeCallbacks(runnable);
     }
 
-    void retry() {
+    public void retry() {
         System.out.println("Trying to reconnect, attempt: " + attempts);
         if (attempts++ > 5) wait += 10_000; // Increment with 10secs
 
@@ -33,7 +33,7 @@ class ConnectivityHandler {
         start();
     }
 
-    void reset() {
+    public void reset() {
         wait = BASE_START_TIME;
         attempts = 0;
 

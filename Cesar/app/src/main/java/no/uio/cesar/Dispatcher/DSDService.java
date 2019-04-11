@@ -1,4 +1,4 @@
-package no.uio.cesar;
+package no.uio.cesar.Dispatcher;
 
 import android.app.Service;
 import android.content.Intent;

@@ -1,14 +1,11 @@
 package no.uio.cesar.View.MonitorView;
 
 
-import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,10 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.os.IBinder;
 import android.os.PowerManager;
-import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,7 +26,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import com.sensordroid.MainServiceConnection;
 
 import java.util.List;
 
@@ -43,7 +36,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import no.uio.cesar.DSDService;
+import no.uio.cesar.Dispatcher.ConnectionCallback;
+import no.uio.cesar.Dispatcher.ConnectionHandler;
+import no.uio.cesar.Dispatcher.ConnectivityHandler;
 import no.uio.cesar.Model.Interface.DatabaseCallback;
 import no.uio.cesar.Model.Record;
 import no.uio.cesar.Model.Sample;
@@ -252,7 +247,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback, Conne
                     mSeries.appendData(dp, true, 10_000);
                 });
             }
-        }
+        } 
 
         @Override
         public void onSlide(@NonNull View bottomSheet, float slideOffset) {

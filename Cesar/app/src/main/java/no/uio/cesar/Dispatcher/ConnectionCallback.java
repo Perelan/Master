@@ -1,4 +1,4 @@
-package no.uio.cesar.View.MonitorView;
+package no.uio.cesar.Dispatcher;
 
 import java.util.List;
 
