@@ -39,8 +39,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String sharedKey = "com.sensordroid.flow";
 
-    private RippleEffect rp;
-
     private TextView mSensorTitle, mSensorMac,
             mSensorBattery, mSensorFirmware, mSensorState, mNewConnection, mIndicator;
 
@@ -51,7 +49,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rp              = findViewById(R.id.ripple);
         mSensorTitle    = findViewById(R.id.sensor_title);
         mSensorMac      = findViewById(R.id.sensor_mac);
         mSensorBattery  = findViewById(R.id.sensor_battery);

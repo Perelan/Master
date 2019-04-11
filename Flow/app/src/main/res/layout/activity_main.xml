@@ -7,7 +7,183 @@
     android:layout_height="match_parent"
     tools:context=".View.DeviceListActivity">
 
-    <include layout="@layout/content_main"/>
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/test"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:src="@drawable/flow"
+            android:text="--\n--"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <TextView
+            android:id="@+id/sensor_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="150dp"
+            android:fontFamily="sans-serif"
+            android:text="OarZpot"
+            android:textColor="@color/colorTitle"
+            android:textSize="62sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/sensor_new_device"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sensor_title">
+
+            <TextView
+                android:id="@+id/sensor_state_indicator"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/corners"
+                android:backgroundTint="@color/colorDisconnected" />
+
+            <TextView
+                android:id="@+id/sensor_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Disconnected..."
+                android:textAlignment="textStart"
+                android:textColor="@color/colorSubtitle" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/sensor_new_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            android:text="Connect to another device..."
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/breath"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/sensor_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/sensor_button"
+            android:layout_width="200dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="25dp"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardBackgroundColor="@color/colorButtonDisconnect"
+            card_view:cardCornerRadius="30dp"
+            card_view:cardElevation="5dp"
+            card_view:layout_constraintBottom_toTopOf="@+id/sensor_mac"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.492"
+            card_view:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="REMOVE DEVICE"
+                android:textColor="@android:color/background_light"/>
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/sensor_mac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Mac: FF:FF:FF:FF:FF:FF"
+            android:textAlignment="center"
+            android:textColor="@color/colorSubtitle"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/sensor_firmware"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/sensor_firmware"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Firmware: --"
+            android:textAllCaps="false"
+            android:textColor="@color/colorSubtitle"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/sensor_battery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="--"
+            android:textAlignment="center"
+            android:textColor="@color/colorSubtitle"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/test" />
+
+
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
