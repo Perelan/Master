@@ -46,6 +46,7 @@ public class User {
         return createdAt;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "User{" +

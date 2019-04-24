@@ -108,6 +108,7 @@ public class Record {
         return name;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Record{" +

@@ -46,6 +46,8 @@ public class ConnectionHandler {
     };
 
     public void establish() {
+        Log.d(TAG, "establish");
+
         Intent intent = new Intent(MainServiceConnection.class.getName());
         intent.setAction("com.sensordroid.ADD_DRIVER");
         intent.setPackage("com.sensordroid");
@@ -53,6 +55,7 @@ public class ConnectionHandler {
     }
 
     private void init() {
+        Log.d(TAG, "init");
         Handler h = new Handler();
 
         h.postDelayed(new Runnable() {
@@ -80,23 +83,35 @@ public class ConnectionHandler {
     }
 
     private void connect() {
+        Log.d(TAG, "connect");
+
         try {
             String s = publishers.get(0).split(",")[0];
-            int res = msc.Subscribe(s, 0, context.getPackageName(), DSDService.class.getName());
+            int res = msc.Subscribe(
+                    s,
+                    0,
+                    context.getPackageName(),
+                    DSDService.class.getName());
+
+            Log.d(TAG, "connect: result " + res);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
     private void disconnect() {
+        Log.d(TAG, "disconnect");
+
         if (msc != null) {
             try {
                 if (publishers.isEmpty()) {
-                    System.out.println("IN STORE: NO PUBLISHERS");
+                    Log.d(TAG, "disconnect: no publishers");
                 } else {
                     String s = publishers.get(0).split(",")[0];
 
                     int res = msc.Unsubscribe(s, DSDService.class.getName());
+
+                    Log.d(TAG, "disconnect: result " + res);
                 }
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -105,6 +120,8 @@ public class ConnectionHandler {
     }
 
     public void reconnect() {
+        Log.d(TAG, "reconnect");
+
         disconnect();
         connect();
     }

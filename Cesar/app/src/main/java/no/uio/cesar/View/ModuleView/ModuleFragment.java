@@ -51,8 +51,6 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
 
         moduleViewModel = ViewModelProviders.of(this).get(ModuleViewModel.class);
         moduleViewModel.getAllModules().observe(this, modules -> {
-            System.out.println("New module");
-
             adapter.insertModules(modules);
         });
 

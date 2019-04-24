@@ -1,5 +1,7 @@
 package no.uio.cesar.Model;
 
+import androidx.annotation.NonNull;
+
 public class Payload {
 
     private String id, value, time;
@@ -28,6 +30,7 @@ public class Payload {
         this.time = time;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Payload{" +

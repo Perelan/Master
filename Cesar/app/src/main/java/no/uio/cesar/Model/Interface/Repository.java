@@ -20,7 +20,7 @@ import no.uio.cesar.Model.Sample;
 
 public class Repository {
 
-    public static final String TAG = "Repository";
+    private static final String TAG = "Repository";
     private RecordDao recordDao;
     private LiveData<List<Record>> allRecords;
 
@@ -57,32 +57,31 @@ public class Repository {
     }
 
     /* Sample */
+
     public void insert(Sample sample) {
         new InsertSampleAsyncTask(sampleDao).execute(sample);
     }
 
-    // Change this to specificly Flow
-    public void insertSample(Sample sample, String data) {
+    public void insertFlowSample(Sample sample, String data) {
         Payload parse  = new Gson().fromJson(data, new TypeToken<Payload>(){}.getType());
 
         Log.d(TAG, "insertData: parse " + parse.getId() + " " + parse.getTime() + " " + parse.getValue());
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+SSSS", Locale.getDefault());
-        Date d = null;
+
         try {
-            d = sdf.parse(parse.getTime());
-            System.out.println(d);
+            Date d = sdf.parse(parse.getTime());
 
+            sample.setExplicitTS(d);
+            sample.setSample(parse.getValue());
+
+            Log.d(TAG, "insertSample: " + sample);
+
+            new InsertSampleAsyncTask(sampleDao).execute(sample);
         } catch(Exception e) {
-            System.out.println("error on date parse: " + e);
+            e.printStackTrace();
+            return;
         }
-
-        sample.setExplicitTS(d);
-        sample.setSample(parse.getValue());
-
-        Log.d(TAG, "insertSample: " + sample);
-
-        new InsertSampleAsyncTask(sampleDao).execute(sample);
     }
 
     public void updateSample(Sample sample) { throw new UnsupportedOperationException(); }

@@ -113,6 +113,5 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.RecordViewHold
         holder.btnDelete.setOnClickListener(l -> listener.onRecordDeleteClick(currentRecord));
         holder.btnShare.setOnClickListener(l -> listener.onRecordShareClick(currentRecord));
         holder.btnAnalytics.setOnClickListener(l -> listener.onRecordAnalyticsClick(currentRecord));
-
     }
 }

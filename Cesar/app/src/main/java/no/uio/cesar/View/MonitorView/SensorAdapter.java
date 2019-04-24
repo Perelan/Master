@@ -19,16 +19,16 @@ class SensorAdapter extends RecyclerView.Adapter<SensorAdapter.DeviceViewHolder>
 
         private TextView mSensorName;
 
-        public DeviceViewHolder(@NonNull View itemView) {
+        DeviceViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mSensorName = itemView.findViewById(R.id.sensor_name);
         }
     }
 
-    ArrayList<Sensor> mDataSet = new ArrayList<>();
+    private ArrayList<Sensor> mDataSet = new ArrayList<>();
 
-    public void parseSensorData(List<String> sensors) {
+    void parseSensorData(List<String> sensors) {
         if (sensors.isEmpty()) return;
 
         loop:

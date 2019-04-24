@@ -1,6 +1,7 @@
 package no.uio.cesar.Dispatcher;
 
 import android.os.Handler;
+import android.util.Log;
 
 public class ConnectivityHandler {
     private Handler handler;
@@ -26,7 +27,8 @@ public class ConnectivityHandler {
     }
 
     public void retry() {
-        System.out.println("Trying to reconnect, attempt: " + attempts);
+        Log.d("ConnectivityHandler", "Trying to reconnect, attempt: " + attempts);
+
         if (attempts++ > 5) wait += 10_000; // Increment with 10secs
 
         stop();

@@ -27,7 +27,7 @@ public abstract class Database extends RoomDatabase {
     public abstract SampleDao sampleDao();
     public abstract ModuleDao moduleDao();
 
-    public static synchronized Database getInstance(Context context) {
+    static synchronized Database getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     Database.class,

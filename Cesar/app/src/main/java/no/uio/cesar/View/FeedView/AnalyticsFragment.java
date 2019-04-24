@@ -3,6 +3,7 @@ package no.uio.cesar.View.FeedView;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -41,7 +42,6 @@ public class AnalyticsFragment extends Fragment {
 
     private Record currentRecord;
 
-
     private GraphView respGraph;
 
     public AnalyticsFragment() {
@@ -54,7 +54,7 @@ public class AnalyticsFragment extends Fragment {
      *
      * @return A new instance of fragment AnalyticsFragment.
      */
-    public static AnalyticsFragment newInstance(Record record) {
+    static AnalyticsFragment newInstance(Record record) {
         AnalyticsFragment fragment = new AnalyticsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_RECORD, new Gson().toJson(record));
@@ -72,7 +72,7 @@ public class AnalyticsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_analytics, container, false);
@@ -91,12 +91,14 @@ public class AnalyticsFragment extends Fragment {
 
         SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
 
-        sampleViewModel.getSamplesForRecord(currentRecord.getId()).observe(this, this::populate);
+        sampleViewModel
+                .getSamplesForRecord(currentRecord.getId())
+                .observe(this, this::populateGraph);
 
         return v;
     }
 
-    private void populate(List<Sample> samples) {
+    private void populateGraph(List<Sample> samples) {
         if (samples.isEmpty()) return;
 
         DataPoint[] dpList = new DataPoint[samples.size()];

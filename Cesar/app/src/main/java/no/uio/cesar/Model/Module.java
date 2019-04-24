@@ -1,5 +1,6 @@
 package no.uio.cesar.Model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -32,6 +33,7 @@ public class Module {
         return packageName;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Module{" +

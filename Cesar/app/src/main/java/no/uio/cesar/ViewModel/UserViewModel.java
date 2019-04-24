@@ -13,7 +13,6 @@ public class UserViewModel {
     private User user;
     private SharedPreferences pref;
 
-
     public UserViewModel(Context context) {
         pref = context.getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
 

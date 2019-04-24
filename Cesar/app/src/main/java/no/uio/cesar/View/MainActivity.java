@@ -70,21 +70,5 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
-        /*
-        SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
-
-        sampleViewModel.getSamplesForRecord(40).observe(this, samples -> {
-            System.out.println("DATA > " + samples);
-        });
-
-        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
-        recordViewModel.getAllRecords().observe(this, records -> {
-            System.out.println(">>> new data " + records.size());
-            for (Record r : records) {
-                System.out.println(r);
-            }
-        });
-        */
     }
 }

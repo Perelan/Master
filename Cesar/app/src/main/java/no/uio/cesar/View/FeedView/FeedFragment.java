@@ -29,6 +29,7 @@ import no.uio.cesar.R;
 import no.uio.cesar.Utils.Export;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.View.ProfileView.ProfileFragment;
+import no.uio.cesar.View.SettingsActivity;
 import no.uio.cesar.ViewModel.RecordViewModel;
 import no.uio.cesar.ViewModel.SampleViewModel;
 
@@ -36,8 +37,6 @@ import no.uio.cesar.ViewModel.SampleViewModel;
  * A simple {@link Fragment} subclass.
  */
 public class FeedFragment extends Fragment implements FeedViewClickListener, Toolbar.OnMenuItemClickListener {
-
-    private RecyclerView mRecyclerView;
 
     private RecordViewModel recordViewModel;
     private SampleViewModel sampleViewModel;
@@ -56,7 +55,7 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_feed, container, false);
 
-        mRecyclerView = v.findViewById(R.id.record_list_view);
+        RecyclerView mRecyclerView = v.findViewById(R.id.record_list_view);
 
         subtitle = v.findViewById(R.id.feed_subtitle);
 
@@ -66,7 +65,7 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
         View profile = v.findViewById(R.id.user_profile);
         profile.setOnClickListener(l -> {
-            Uti.commitFragmentTransaction(getActivity(), new ProfileFragment(), "profile");
+            startActivity(new Intent(getActivity(), SettingsActivity.class));
         });
 
         LinearLayoutManager lym = new LinearLayoutManager(getContext());
@@ -103,10 +102,7 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
                         Record r = obj.getRecord();
                         r.setId(0);
 
-                        System.out.println("Outside ID : " + r.getId());
-
                         recordViewModel.insert(r, id -> {
-                            System.out.println("Inside ID : " + id);
 
                             for (int i = 0; i < obj.getSamples().size(); i++) {
                                 Sample s = obj.getSamples().get(i);
@@ -179,6 +175,4 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
         return false;
     }
-
-
 }

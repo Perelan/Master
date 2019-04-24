@@ -19,7 +19,7 @@ import no.uio.cesar.ViewModel.UserViewModel;
 
 public class Export {
 
-    public static File writeToInternalStorage(Context context, String data) {
+    private static File writeToInternalStorage(Context context, String data) {
         File folder = new File(context.getFilesDir(), "cesar");
 
         if (!folder.exists()) {
@@ -46,7 +46,6 @@ public class Export {
 
     public static void export(Fragment f, Record record) {
 
-        UserViewModel userViewModel = new UserViewModel(f.getContext());
         SampleViewModel sampleViewModel = ViewModelProviders.of(f).get(SampleViewModel.class);
         sampleViewModel.getSamplesForRecord(record.getId()).observe(f, samples -> {
             ArrayList<ExportObject> listOfExportObjects = new ArrayList<>();
@@ -69,8 +68,6 @@ public class Export {
         recordViewModel.getAllRecords().observe(f, records -> {
 
             ArrayList<ExportObject> listOfExportObjects = new ArrayList<>();
-
-            System.out.println(records.size());
 
             for (int i = 0; i < records.size(); i++) {
                 int finalI = i;

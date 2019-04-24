@@ -53,9 +53,9 @@ public class Uti {
 
         //int[] values = new int[dataValues.length];
         int avg = 0;
-        for (int i = 0; i < dataValues.length; i++) {
+        for (String dataValue : dataValues) {
             //values[i] = Integer.parseInt(dataValues[i]);
-            avg += Integer.parseInt(dataValues[i]);
+            avg += Integer.parseInt(dataValue);
         }
 
         return avg / dataValues.length;
@@ -112,7 +112,7 @@ public class Uti {
                 }
             }
         } else if (uriString.startsWith("file://")) {
-            // Todo: check if implemanation is needed
+            // Todo: check if implementation is needed
         }
 
         return null;

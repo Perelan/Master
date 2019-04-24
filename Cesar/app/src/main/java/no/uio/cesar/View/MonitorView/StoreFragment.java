@@ -1,6 +1,5 @@
 package no.uio.cesar.View.MonitorView;
 
-
 import android.app.AlertDialog;
 import android.os.Bundle;
 
@@ -41,7 +40,7 @@ public class StoreFragment extends Fragment {
 
     private int primaryKey;
 
-    public static final String TAG = "StoreFragment";
+    static final String TAG = "StoreFragment";
 
     public StoreFragment() {
         // Required empty public constructor

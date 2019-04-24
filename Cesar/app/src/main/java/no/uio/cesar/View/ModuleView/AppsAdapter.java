@@ -25,7 +25,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.AppViewHolder>
         this.listener = listener;
     }
 
-    public void addItem(PackageInfo data) {
+    void addItem(PackageInfo data) {
         packages.add(data);
         notifyDataSetChanged();
     }
@@ -56,7 +56,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.AppViewHolder>
         private TextView mAppTitle;
         private ImageView mAppIcon;
 
-        public AppViewHolder(@NonNull View itemView) {
+        AppViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mAppTitle = itemView.findViewById(R.id.app_title);

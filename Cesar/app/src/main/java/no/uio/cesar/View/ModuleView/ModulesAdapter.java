@@ -19,7 +19,7 @@ import no.uio.cesar.R;
 
 public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ModulesViewHolder> {
 
-    List<Module> modules = new ArrayList<>();
+    private List<Module> modules = new ArrayList<>();
 
     private Context context;
     private ModuleClickListener listener;
@@ -29,7 +29,7 @@ public class ModulesAdapter extends RecyclerView.Adapter<ModulesAdapter.ModulesV
         this.listener = listener;
     }
 
-    public void insertModules(List<Module> modules) {
+    void insertModules(List<Module> modules) {
         this.modules = modules;
         notifyDataSetChanged();
     }

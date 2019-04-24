@@ -25,7 +25,7 @@ public class AppsDialog extends AlertDialog.Builder implements AppsClickListener
 
     private Context context;
 
-    public AppsDialog(Context context, AppsClickListener listener, List<Module> installedModules) {
+    AppsDialog(Context context, AppsClickListener listener, List<Module> installedModules) {
         super(context);
 
         this.context = context;
@@ -52,7 +52,7 @@ public class AppsDialog extends AlertDialog.Builder implements AppsClickListener
     }
 
 
-    public void getAndFilterInstalledApps() {
+    private void getAndFilterInstalledApps() {
         final PackageManager pm = getContext().getPackageManager();
         List<PackageInfo> packages = pm.getInstalledPackages(0);
 

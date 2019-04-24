@@ -5,5 +5,5 @@ import android.view.View;
 
 public interface AppsClickListener
 {
-    public void onAppItemClick(PackageInfo app); // Change paramters to PackageInfo instead...
+    public void onAppItemClick(PackageInfo app);
 }

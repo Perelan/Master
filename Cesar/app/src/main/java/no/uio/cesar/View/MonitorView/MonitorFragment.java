@@ -84,6 +84,8 @@ public class MonitorFragment extends Fragment implements DatabaseCallback, Conne
 
     private Runnable runnable = () -> {
         Log.d(TAG, ": Restarted");
+        if (powerManager.isInteractive()) rp.pulse(rp.IDLE);
+
         conHandler.reconnect();
         conObserver.retry();
     };
@@ -114,6 +116,8 @@ public class MonitorFragment extends Fragment implements DatabaseCallback, Conne
         tvTitle = v.findViewById(R.id.monitor_title);
         cm = v.findViewById(R.id.monitor_time);
         rp = v.findViewById(R.id.ripple);
+
+        if (powerManager.isInteractive()) rp.pulse(rp.IDLE);
 
         GraphView graph = v.findViewById(R.id.resp_graph);
         mSeries = new LineGraphSeries<>();
@@ -247,7 +251,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback, Conne
                     mSeries.appendData(dp, true, 10_000);
                 });
             }
-        } 
+        }
 
         @Override
         public void onSlide(@NonNull View bottomSheet, float slideOffset) {
