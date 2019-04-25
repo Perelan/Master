@@ -45,6 +45,10 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
 
     private TextView subtitle;
 
+    private RecyclerView mRecyclerView;
+    private View mGetStartedView;
+
+
     public FeedFragment() {
         // Required empty public constructor
     }
@@ -55,7 +59,8 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_feed, container, false);
 
-        RecyclerView mRecyclerView = v.findViewById(R.id.record_list_view);
+        mRecyclerView = v.findViewById(R.id.record_list_view);
+        mGetStartedView = v.findViewById(R.id.get_started_container);
 
         subtitle = v.findViewById(R.id.feed_subtitle);
 
@@ -78,10 +83,11 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         mRecyclerView.setAdapter(adapter);
 
         sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
-
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
+
         recordViewModel.getAllRecords().observe(this, records -> {
             subtitle.setText(String.format(Locale.getDefault(), "- %d records", records.size()));
+
             lym.scrollToPosition(records.size() - 1);
             adapter.insertRecord(records);
         });
@@ -141,7 +147,7 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         Export.export(this, record);
     }
 
-    public void importRecords() {
+    private void importRecords() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         startActivityForResult(intent, 1);
@@ -174,5 +180,15 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         }
 
         return false;
+    }
+
+    public void toggleGetStaredView() {
+        if (mGetStartedView.getVisibility() == View.VISIBLE) {
+            mGetStartedView.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.VISIBLE);
+        } else {
+            mGetStartedView.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+        }
     }
 }

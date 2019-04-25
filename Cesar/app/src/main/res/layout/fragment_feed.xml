@@ -75,13 +75,59 @@
 
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/get_started_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:cardCornerRadius="2dp"
+        android:visibility="gone"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/colorAccent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/get_started_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_info_black_24dp" />
+
+            <TextView
+                android:id="@+id/get_started_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/get_started_icon"
+                android:layout_centerHorizontal="true"
+                android:text="Get Started"
+                android:textColor="@color/title"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/get_started_subtitle"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/get_started_title"
+                android:layout_centerHorizontal="true"
+                android:text="Start your first recording by pressing the 'Record' button below!"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/subtitle" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/record_list_view"
         android:layout_below="@id/feed_section"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_record" />
-
-
 
 </RelativeLayout>
