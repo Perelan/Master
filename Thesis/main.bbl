@@ -1,0 +1,118 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{daniel}{article}{}
+      \name{author}{1}{}{%
+        {{hash=2da8c0bcbc66527c30d44f2799cf154b}{%
+           family={Bugajski},
+           familyi={B\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{2da8c0bcbc66527c30d44f2799cf154b}
+      \strng{fullhash}{2da8c0bcbc66527c30d44f2799cf154b}
+      \strng{bibnamehash}{2da8c0bcbc66527c30d44f2799cf154b}
+      \strng{authorbibnamehash}{2da8c0bcbc66527c30d44f2799cf154b}
+      \strng{authornamehash}{2da8c0bcbc66527c30d44f2799cf154b}
+      \strng{authorfullhash}{2da8c0bcbc66527c30d44f2799cf154b}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Extensible data streams dispatching tool for Android}
+      \field{year}{201}
+    \endentry
+    \entry{gjoby}{article}{}
+      \name{author}{1}{}{%
+        {{hash=fc84bd950e3913e65633794ac34988e0}{%
+           family={Gjøby},
+           familyi={G\bibinitperiod},
+           given={Svein\bibnamedelima Petter},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{fc84bd950e3913e65633794ac34988e0}
+      \strng{fullhash}{fc84bd950e3913e65633794ac34988e0}
+      \strng{bibnamehash}{fc84bd950e3913e65633794ac34988e0}
+      \strng{authorbibnamehash}{fc84bd950e3913e65633794ac34988e0}
+      \strng{authornamehash}{fc84bd950e3913e65633794ac34988e0}
+      \strng{authorfullhash}{fc84bd950e3913e65633794ac34988e0}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Extensible data acquisition tool for Android}
+      \field{year}{2016}
+    \endentry
+    \entry{cesar}{book}{}
+      \name{author}{1}{}{%
+        {{hash=173346813d234b7a2ab25a74c7bb526e}{%
+           family={Thomas\bibnamedelimb Peter\bibnamedelima Plagemann},
+           familyi={T\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim P\bibinitperiod},
+           given={Stein\bibnamedelima Kristiansen},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod},
+           suffix={Vera\bibnamedelimb Hermine\bibnamedelima Goebel},
+           suffixi={V\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{173346813d234b7a2ab25a74c7bb526e}
+      \strng{fullhash}{173346813d234b7a2ab25a74c7bb526e}
+      \strng{bibnamehash}{173346813d234b7a2ab25a74c7bb526e}
+      \strng{authorbibnamehash}{173346813d234b7a2ab25a74c7bb526e}
+      \strng{authornamehash}{173346813d234b7a2ab25a74c7bb526e}
+      \strng{authorfullhash}{173346813d234b7a2ab25a74c7bb526e}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{URL: http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html (visited on 05/05/2018)}
+      \field{title}{Android based eHealth applications with BiTalino sensors}
+      \field{year}{2015}
+      \verb{urlraw}
+      \verb http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html
+      \endverb
+      \verb{url}
+      \verb http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html
+      \endverb
+    \endentry
+    \entry{viet}{article}{}
+      \name{author}{1}{}{%
+        {{hash=46a2b74f08ca8df86dd7820ffc4fc886}{%
+           family={Tran},
+           familyi={T\bibinitperiod},
+           given={Viet\bibnamedelima Thi},
+           giveni={V\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{46a2b74f08ca8df86dd7820ffc4fc886}
+      \strng{fullhash}{46a2b74f08ca8df86dd7820ffc4fc886}
+      \strng{bibnamehash}{46a2b74f08ca8df86dd7820ffc4fc886}
+      \strng{authorbibnamehash}{46a2b74f08ca8df86dd7820ffc4fc886}
+      \strng{authornamehash}{46a2b74f08ca8df86dd7820ffc4fc886}
+      \strng{authorfullhash}{46a2b74f08ca8df86dd7820ffc4fc886}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{An open database model for storing Obstructie Sleep Apnea data}
+      \field{year}{2017}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
