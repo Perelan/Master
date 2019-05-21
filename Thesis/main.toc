@@ -1,7 +1,7 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Tables}{v}{chapter*.3}
+\contentsline {chapter}{List of Tables}{vi}{chapter*.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{List of Figures}{vii}{chapter*.4}
 \defcounter {refsection}{0}\relax 
@@ -13,24 +13,74 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.2}Problem Statement}{4}{section.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Related Work}{7}{chapter.2}
+\contentsline {section}{\numberline {1.3}}{5}{section.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Extensible Data Acquisition Tool}{7}{section.2.1}
+\contentsline {section}{\numberline {1.4}Research Methods}{5}{section.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Extensible Data Stream Dispatching Tool}{10}{section.2.2}
+\contentsline {section}{\numberline {1.5}Contributions}{5}{section.1.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Database Model for Storing OSA Data}{12}{section.2.3}
+\contentsline {section}{\numberline {1.6}Thesis Outline}{5}{section.1.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{II\hspace {1em}Design and Implementation}{19}{part.2}
+\contentsline {chapter}{\numberline {2}Background}{7}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Analysis and High-Level Design}{21}{chapter.3}
+\contentsline {section}{\numberline {2.1}Project Architecture}{7}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}High-Level Design}{22}{section.3.1}
+\contentsline {section}{\numberline {2.2}MVVM}{7}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.1}Stakeholders}{22}{subsection.3.1.1}
+\contentsline {section}{\numberline {2.3}Sleep Apnea}{7}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.2}Task Analysis}{22}{subsection.3.1.2}
+\contentsline {section}{\numberline {2.4}Flow Wrapper}{7}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.1.2.1}System Tasks}{22}{subsubsection.3.1.2.1}
+\contentsline {section}{\numberline {2.5}Bluetooth LE}{7}{section.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{29}{part.3}
+\contentsline {section}{\numberline {2.6}Android OS}{7}{section.2.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.7}Daniel}{7}{section.2.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.8}Viet}{7}{section.2.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.9}Svein}{7}{section.2.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Related Work}{9}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Extensible Data Acquisition Tool}{9}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Extensible Data Stream Dispatching Tool}{12}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Database Model for Storing OSA Data}{14}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{II\hspace {1em}Design and Implementation}{21}{part.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Analysis and High-Level Design}{23}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}High-Level Design}{24}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}Stakeholders}{24}{subsection.4.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}Task Analysis}{24}{subsection.4.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.1.2.1}System Tasks}{24}{subsubsection.4.1.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Seperation of Concerns}{27}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}Recording}{27}{subsection.4.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.2}Sharing}{30}{subsection.4.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.3}Modules}{30}{subsection.4.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.4}Storage}{30}{subsection.4.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.5}Presentation}{30}{subsection.4.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Implementation}{31}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{33}{part.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Experiments}{35}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Conclusion}{37}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{Appendix}{38}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Power Data}{41}{appendix.A}

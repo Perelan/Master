@@ -52,9 +52,13 @@
 
 \includeonly{
     sections/introduction/index,
+    sections/background/index,
     sections/relatedwork/index,
     sections/design/index,
-    % sections/appendix/index
+    sections/implementation/index,
+    sections/experiments/index,
+    sections/conclusion/index,
+    sections/appendix/index
 }
 
 \begin{document}
@@ -62,13 +66,9 @@
 \frontmatter{}
 
 \chapter*{Acknowledgements}
-    We want to thank you everyone who has assisted us with the work regarding this master thesis — especially those who have engaged in discussions without any consideration to time and place. Through our discussion, we have received and deepened our knowledge regarding a wide variety of different domains and polished our general programming skills. We would also like to give a huge thanks to everyone who has kept out mental state healthy during this time. 
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo a diam sollicitudin tempor. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Consectetur a erat nam at lectus urna duis. Ullamcorper sit amet risus nullam eget felis eget nunc. Sollicitudin nibh sit amet commodo. Volutpat maecenas volutpat blandit aliquam etiam erat. Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. Metus dictum at tempor commodo. Nunc vel risus commodo viverra maecenas accumsan lacus. Vitae justo eget magna fermentum iaculis eu non diam. Habitant morbi tristique senectus et. Sed enim ut sem viverra aliquet. Lectus mauris ultrices eros in cursus.
 
-    Moreover, we appreciate the human body and the things it is capable of achieving — specifically our legs, which has carried us through adventures and battles, which has assisted in keeping the mind healthy.
-
-    Another notable contributor to this thesis is our dear laptop, which has survived almost five years of rough use. It became a part of our life when it replaced its predecessor, right before an assignment was due, and has been running flawlessly ever since.
-
-    Thank you to everyone who has assisted us in some way through the master degree!
+    Turpis massa tincidunt dui ut ornare lectus. Elit sed vulputate mi sit amet mauris commodo quis imperdiet. Etiam non quam lacus suspendisse faucibus interdum posuere lorem ipsum. Morbi non arcu risus quis. Quis viverra nibh cras pulvinar mattis nunc sed. Tellus cras adipiscing enim eu turpis egestas. Nec tincidunt praesent semper feugiat nibh sed. Ipsum dolor sit amet consectetur. Duis convallis convallis tellus id interdum. Nulla aliquet enim tortor at.
 
 \chapter*{Abstract}
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo a diam sollicitudin tempor. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Consectetur a erat nam at lectus urna duis. Ullamcorper sit amet risus nullam eget felis eget nunc. Sollicitudin nibh sit amet commodo. Volutpat maecenas volutpat blandit aliquam etiam erat. Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. Metus dictum at tempor commodo. Nunc vel risus commodo viverra maecenas accumsan lacus. Vitae justo eget magna fermentum iaculis eu non diam. Habitant morbi tristique senectus et. Sed enim ut sem viverra aliquet. Lectus mauris ultrices eros in cursus.
@@ -87,18 +87,23 @@
 
 \part{Introduction and Background}
 \include{sections/introduction/index}
-
+\include{sections/background/index}
 \include{sections/relatedwork/index}
 
 \part{Design and Implementation}
 \include{sections/design/index}
+\include{sections/implementation/index}
 
 \part{Evaluation and Conclusion}
+\include{sections/experiments/index}
+\include{sections/conclusion/index}
 
-%\include{sections/introduction/index}
+
+\addcontentsline{toc}{part}{Appendix}
+\part*{Appendix}
 
 \appendix{}
-%\include{sections/appendix/index}
+\include{sections/appendix/index}
 
 \backmatter{}
 \printbibliography
