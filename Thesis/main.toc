@@ -11,7 +11,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Background and Motivation}{3}{section.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Problem Statement}{4}{section.1.2}
+\contentsline {section}{\numberline {1.2}Problem Statement}{3}{section.1.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}}{5}{section.1.3}
 \defcounter {refsection}{0}\relax 
@@ -45,7 +45,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.1}Extensible Data Acquisition Tool}{9}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Extensible Data Stream Dispatching Tool}{12}{section.3.2}
+\contentsline {section}{\numberline {3.2}Extensible Data Stream Dispatching Tool}{11}{section.3.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.3}Database Model for Storing OSA Data}{14}{section.3.3}
 \defcounter {refsection}{0}\relax 
@@ -57,30 +57,42 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1.1}Stakeholders}{24}{subsection.4.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.2}Task Analysis}{24}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.2}System Requirements}{24}{subsection.4.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.1.2.1}System Tasks}{24}{subsubsection.4.1.2.1}
+\contentsline {subsection}{\numberline {4.1.3}Task Analysis}{24}{subsection.4.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Seperation of Concerns}{27}{section.4.2}
+\contentsline {section}{\numberline {4.2}Seperation of Concerns}{26}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.1}Recording}{27}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.1}Recording}{26}{subsection.4.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.2}Sharing}{30}{subsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.1.1}Connectivty State Component}{28}{subsubsection.4.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.3}Modules}{30}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.2}Sharing}{29}{subsection.4.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.4}Storage}{30}{subsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.2.1}Format File Component}{30}{subsubsection.4.2.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.5}Presentation}{30}{subsection.4.2.5}
+\contentsline {subsubsection}{\numberline {4.2.2.2}Dispatching Component}{31}{subsubsection.4.2.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Implementation}{31}{chapter.5}
+\contentsline {subsubsection}{\numberline {4.2.2.3}File Location Component}{32}{subsubsection.4.2.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{33}{part.3}
+\contentsline {subsection}{\numberline {4.2.3}Modules}{32}{subsection.4.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Experiments}{35}{chapter.6}
+\contentsline {subsubsection}{\numberline {4.2.3.1}Data Exchange Component}{33}{subsubsection.4.2.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion}{37}{chapter.7}
+\contentsline {subsection}{\numberline {4.2.4}Analytics}{33}{subsection.4.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{Appendix}{38}{chapter.7}
+\contentsline {subsection}{\numberline {4.2.5}Storage}{33}{subsection.4.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Power Data}{41}{appendix.A}
+\contentsline {subsection}{\numberline {4.2.6}Presentation}{34}{subsection.4.2.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Implementation}{35}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{37}{part.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Experiments}{39}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Conclusion}{41}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{Appendix}{42}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Power Data}{45}{appendix.A}
