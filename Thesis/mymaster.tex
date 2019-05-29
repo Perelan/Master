@@ -5,11 +5,47 @@
 \usepackage{babel,textcomp,csquotes,duomasterforside,varioref,graphicx}
 \usepackage[backend=biber,style=numeric-comp]{biblatex}
 
-\title{The title of my thesis}        %% ... or whatever
-\subtitle{Any short subtitle}         %% ... if any
-\author{My Name}                      %% ... or whoever
+\usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage{alltt}
+\usepackage{todonotes}
+\usepackage{enumitem}
+\usepackage{textcomp}
 
-\addbibresource{mybib.bib}            %% ... or whatever
+\setlength{\parindent}{2em}
+\setcounter{secnumdepth}{4}
+
+\lstset{
+    language=Java,
+    columns=flexible,
+    breaklines=true,
+    keywordstyle=\color{black}\bfseries,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=4,
+    numbersep=5pt,
+    tabsize=4,
+}
+
+\title{Nidra}
+\subtitle{An Android application designed to record sleep with Flow sensors}
+\author{Jagat Deep Singh}
+
+\addbibresource{sources.bib}            %% ... or whatever
+
+\includeonly{
+    sections/introduction/index,
+    sections/background/index,
+    sections/relatedwork/index,
+    sections/design/index,
+    sections/implementation/index,
+    sections/experiments/index,
+    sections/conclusion/index,
+    sections/appendix/index
+}
 
 \begin{document}
 \duoforside[dept={Department of Informatics},   %% ... or your department
@@ -17,30 +53,45 @@
   short]                                        %% ... or long
 
 \frontmatter{}
+\chapter*{Acknowledgements}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo a diam sollicitudin tempor. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Consectetur a erat nam at lectus urna duis. Ullamcorper sit amet risus nullam eget felis eget nunc. Sollicitudin nibh sit amet commodo. Volutpat maecenas volutpat blandit aliquam etiam erat. Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. Metus dictum at tempor commodo. Nunc vel risus commodo viverra maecenas accumsan lacus. Vitae justo eget magna fermentum iaculis eu non diam. Habitant morbi tristique senectus et. Sed enim ut sem viverra aliquet. Lectus mauris ultrices eros in cursus.
 
-\chapter*{Abstract}                   %% ... or Sammendrag or Samandrag
+    Turpis massa tincidunt dui ut ornare lectus. Elit sed vulputate mi sit amet mauris commodo quis imperdiet. Etiam non quam lacus suspendisse faucibus interdum posuere lorem ipsum. Morbi non arcu risus quis. Quis viverra nibh cras pulvinar mattis nunc sed. Tellus cras adipiscing enim eu turpis egestas. Nec tincidunt praesent semper feugiat nibh sed. Ipsum dolor sit amet consectetur. Duis convallis convallis tellus id interdum. Nulla aliquet enim tortor at.
 
-\tableofcontents{}
-\listoffigures{}
-\listoftables{}
+\chapter*{Abstract}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo a diam sollicitudin tempor. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Consectetur a erat nam at lectus urna duis. Ullamcorper sit amet risus nullam eget felis eget nunc. Sollicitudin nibh sit amet commodo. Volutpat maecenas volutpat blandit aliquam etiam erat. Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. Metus dictum at tempor commodo. Nunc vel risus commodo viverra maecenas accumsan lacus. Vitae justo eget magna fermentum iaculis eu non diam. Habitant morbi tristique senectus et. Sed enim ut sem viverra aliquet. Lectus mauris ultrices eros in cursus.
 
-\chapter*{Preface}                    %% ... or Forord
+    Turpis massa tincidunt dui ut ornare lectus. Elit sed vulputate mi sit amet mauris commodo quis imperdiet. Etiam non quam lacus suspendisse faucibus interdum posuere lorem ipsum. Morbi non arcu risus quis. Quis viverra nibh cras pulvinar mattis nunc sed. Tellus cras adipiscing enim eu turpis egestas. Nec tincidunt praesent semper feugiat nibh sed. Ipsum dolor sit amet consectetur. Duis convallis convallis tellus id interdum. Nulla aliquet enim tortor at..
+
+\tableofcontents
+
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
 
 \mainmatter{}
-\part{Introduction}                   %% ... or Innledning or Innleiing
 
-\chapter{Background}                  %% ... or Bakgrunn
+\part{Introduction and Background}
+\include{sections/introduction/index}
+\include{sections/background/index}
+\include{sections/relatedwork/index}
+
+\part{Design and Implementation}
+\include{sections/design/index}
+\include{sections/implementation/index}
+
+\part{Evaluation and Conclusion}
+\include{sections/experiments/index}
+\include{sections/conclusion/index}
 
 
-\part{The project}                    %% ... or ??
+\addcontentsline{toc}{part}{Appendix}
+\part*{Appendix}
 
-\chapter{Planning the project}        %% ... or ??
-
-
-\part{Conclusion}                     %% ... or Konklusjon
-
-\chapter{Results}                     %% ... or ??
-
+\appendix{}
+\include{sections/appendix/index}
 
 \backmatter{}
 \printbibliography

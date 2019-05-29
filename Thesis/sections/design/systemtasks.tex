@@ -1,0 +1,27 @@
+%\subsubsection{System Tasks}
+
+\noindent\textbf{Recording}
+
+\noindent A \textit{recording} is a process of collecting and storing physiological signals from sensors over an extended period (i.e., overnight). To enable a recording, we need to establish connections to available sensors, collecting samples from the sensors, and storing the samples on the device. A \textit{sensor} is a device that transforms analog signals from the real world into digital signals. The digital signals are transmittable over a medium (e.g., Bluetooth), and the communication between a sensor and device occurs over an application programming interface (API). A \textit{sample} is a single sensor reading containing data and metadata, such as time and physiological data. During a recording session, ensuring for a consistent and uninterrupted data stream from the sensors is vital to obtaining persistent and meaningful data.  Once a recording session has terminated, a \textit{record} with metadata about the recording session is stored, alongside the samples.    
+
+\noindent \textbf{Sharing}
+
+\noindent Sharing is a mechanism to export and import recordings across applications. \textit{Exporting} consists of bundling record with correlated samples into a transmittable format, and transferring the bundled recordings over a medium (e.g., mail). \textit{Importing}, on the other hand, consists of locating the bundled record on the device, parsing the content and storing it on the device.  
+
+\noindent \textbf{Module}
+
+\noindent A \textit{module} is an independent application that can be installed and launched in Nidra (hereafter: application), to provide extended functionality and data enrichment. A module does not necessarily interact with the application; however, it utilizes the data (e.g., recordings) provided by the application. For example, a module could be using the records provided by the application to feed a machine learning algorithm to predict obstructive sleep apnea. Installing a module is achieved by locating the module-application on the device, and storing the reference to the module in the application. The module-application is a standalone Android application; thus, the development of the module independent from the application. Due to limitations in Android, the module-application cannot be executed within the application. Hence, modules are running alongside the application.
+
+\noindent \textbf{Analytics}
+
+\noindent Analytics is the discovery and interpretation of meaningful patterns in data [wikipedia, analytics]. The application facilitates the recording of physiological signals, which enables the detection and analysis of sleep-related illnesses. There are various analytical methods, ranging from regression to advanced machine learning. However, incorporating a simple time series plot can indirectly aid in the analysis. For instance, plotting a time series graph where the physiological signals are on the Y-axis and the time on X-axis, we provide a graphical representation of the data that can be further analyzed within the application.
+
+\noindent \textbf{Storage}
+
+\noindent Storage is the objective of achieving persistent data; data that is available after application termination. To enable storage, we use a database for a collection of related data that is easily accessed, managed, and updated [Database Systems, p. 52]. The database should be able to store records, samples, modules, and users (/ storing biometrical data related to user) adequately. Thus, structuring a database that is reliable, efficient, and secure is a crucial part of achieving persistent storage. Additionally, determining the database location, whether the database should be located on the device or located on an external server, is essential in the design of the application.
+
+\noindent A \textit{user} is a person that interacts with the application and its functionalities. While a user is not directly correlated to a task in the application, identifying its cognitive load and interactions helps on defining the features and structure of the application. A user has the possibility of providing biometrical data (i.e., gender, age, height, and weight), which can be used to enrich a recording to strengthen the outcome potentially.  
+
+\noindent \textbf{Presentation}
+
+\noindent Presentation is the concept of exhibiting the functionality of the application. It is essential to determine the layout of the application, the color palette, and the interactions between screens.  

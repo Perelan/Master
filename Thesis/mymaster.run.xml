@@ -82,7 +82,7 @@
       <file>mymaster.bcf</file>
     </requires>
     <requires type="editable">
-      <file>mybib.bib</file>
+      <file>sources.bib</file>
     </requires>
   </external>
 </requests>
