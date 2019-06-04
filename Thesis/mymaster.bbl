@@ -19,6 +19,66 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{jsonorg}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=5f226114531dbc9957f6a2e9bc7e1a12}{%
+           family={2017},
+           familyi={2\bibinitperiod},
+           given={Ecma\bibnamedelima International},
+           giveni={E\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \strng{namehash}{5f226114531dbc9957f6a2e9bc7e1a12}
+      \strng{fullhash}{5f226114531dbc9957f6a2e9bc7e1a12}
+      \strng{bibnamehash}{5f226114531dbc9957f6a2e9bc7e1a12}
+      \strng{authorbibnamehash}{5f226114531dbc9957f6a2e9bc7e1a12}
+      \strng{authornamehash}{5f226114531dbc9957f6a2e9bc7e1a12}
+      \strng{authorfullhash}{5f226114531dbc9957f6a2e9bc7e1a12}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The JSON Data Interchange Syntax}
+      \field{urlday}{1}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \field{pages}{5}
+      \range{pages}{1}
+      \verb{urlraw}
+      \verb http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
+      \endverb
+      \verb{url}
+      \verb http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
+      \endverb
+    \endentry
+    \entry{androidsecurity}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=e84e30b9390cdb64db6db2c9ab87846d}{%
+           family={Android},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{e84e30b9390cdb64db6db2c9ab87846d}
+      \strng{fullhash}{e84e30b9390cdb64db6db2c9ab87846d}
+      \strng{bibnamehash}{e84e30b9390cdb64db6db2c9ab87846d}
+      \strng{authorbibnamehash}{e84e30b9390cdb64db6db2c9ab87846d}
+      \strng{authornamehash}{e84e30b9390cdb64db6db2c9ab87846d}
+      \strng{authorfullhash}{e84e30b9390cdb64db6db2c9ab87846d}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Secure an Android Device}
+      \field{urlday}{30}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://source.android.com/security
+      \endverb
+      \verb{url}
+      \verb https://source.android.com/security
+      \endverb
+    \endentry
     \entry{daniel}{article}{}
       \name{author}{1}{}{%
         {{hash=2da8c0bcbc66527c30d44f2799cf154b}{%
@@ -40,6 +100,82 @@
       \field{title}{Extensible data streams dispatching tool for Android}
       \field{year}{201}
     \endentry
+    \entry{w3xml}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=737a983523b9ded59adc1ddee5977faf}{%
+           family={Consortium},
+           familyi={C\bibinitperiod},
+           given={World\bibnamedelimb Wide\bibnamedelima Web},
+           giveni={W\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{737a983523b9ded59adc1ddee5977faf}
+      \strng{fullhash}{737a983523b9ded59adc1ddee5977faf}
+      \strng{bibnamehash}{737a983523b9ded59adc1ddee5977faf}
+      \strng{authorbibnamehash}{737a983523b9ded59adc1ddee5977faf}
+      \strng{authornamehash}{737a983523b9ded59adc1ddee5977faf}
+      \strng{authorfullhash}{737a983523b9ded59adc1ddee5977faf}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Extensible Markup Language (XML) 1.0 (Fifth Edition)}
+      \field{urlday}{1}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/REC-xml/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/REC-xml/
+      \endverb
+    \endentry
+    \entry{ta}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=686a2da379bb577e0caa20bed0238bc9}{%
+           family={Crystal},
+           familyi={C\bibinitperiod},
+           given={Abe},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1a85418a91a119651b90df5829cd4480}{%
+           family={Ellington},
+           familyi={E\bibinitperiod},
+           given={Beth},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{05479aeb9949648ef5ae04cb5ac6e6ed}
+      \strng{fullhash}{05479aeb9949648ef5ae04cb5ac6e6ed}
+      \strng{bibnamehash}{05479aeb9949648ef5ae04cb5ac6e6ed}
+      \strng{authorbibnamehash}{05479aeb9949648ef5ae04cb5ac6e6ed}
+      \strng{authornamehash}{05479aeb9949648ef5ae04cb5ac6e6ed}
+      \strng{authorfullhash}{05479aeb9949648ef5ae04cb5ac6e6ed}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{In this paper we critically review task analysis models and techniques. These approaches to task analysis are discussed in order to develop a richer picture of human activity, while analyzing their limitations, general weaknesses, and possibilities for improvement. We consider their ability to determine the appropriate set of atomic actions in a task, their effect on workers’ motivational needs, their support of users’ cognitive and sociocultural processes, and their effectiveness in supporting interface design. We note that the major approaches have focused on very different levels of analysis, and call for greater integration of these different levels in task analysis theory.}
+      \field{booktitle}{{AMCIS}}
+      \field{shorttitle}{Task analysis and human-computer interaction}
+      \field{title}{Task analysis and human-computer interaction: approaches, techniques, and levels of analysis}
+      \field{urlday}{2}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{year}{2004}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2\bibrangedash 3}
+      \range{pages}{2}
+      \verb{file}
+      \verb Full Text PDF:/Users/deep/Zotero/storage/7JUBMMRI/Crystal and Ellington - 2004 - Task analysis and human-computer interaction appr.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://pdfs.semanticscholar.org/fbd2/b61c998cb3ad8427759a45370a02d9338c31.pdf
+      \endverb
+      \verb{url}
+      \verb https://pdfs.semanticscholar.org/fbd2/b61c998cb3ad8427759a45370a02d9338c31.pdf
+      \endverb
+      \keyw{Human–computer interaction,Linearizability,Task analysis}
+    \endentry
     \entry{gjoby}{article}{}
       \name{author}{1}{}{%
         {{hash=fc84bd950e3913e65633794ac34988e0}{%
@@ -60,6 +196,83 @@
       \field{labeltitlesource}{title}
       \field{title}{Extensible data acquisition tool for Android}
       \field{year}{2016}
+    \endentry
+    \entry{soc}{article}{}
+      \name{author}{2}{}{%
+        {{hash=6420328b42dd3e5c358108b4c66ef71f}{%
+           family={L.\bibnamedelimi Hursch},
+           familyi={L\bibinitperiod\bibinitdelim H\bibinitperiod},
+           given={Walter},
+           giveni={W\bibinitperiod}}}%
+        {{hash=e5e0fed76b14b79442e778b4474dc846}{%
+           family={Videira\bibnamedelima Lopes},
+           familyi={V\bibinitperiod\bibinitdelim L\bibinitperiod},
+           given={Cristina},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{ee59a4707e33881c509d5712da1af44b}
+      \strng{fullhash}{ee59a4707e33881c509d5712da1af44b}
+      \strng{bibnamehash}{ee59a4707e33881c509d5712da1af44b}
+      \strng{authorbibnamehash}{ee59a4707e33881c509d5712da1af44b}
+      \strng{authornamehash}{ee59a4707e33881c509d5712da1af44b}
+      \strng{authorfullhash}{ee59a4707e33881c509d5712da1af44b}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{03}
+      \field{title}{Separation of Concerns}
+      \field{urlday}{24}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{year}{1995}
+      \field{urldateera}{ce}
+      \field{pages}{3\bibrangessep 16}
+      \range{pages}{2}
+      \verb{urlraw}
+      \verb http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=031E83D200FD8770C255B48EA0C2E1C2?doi=10.1.1.29.5223&rep=rep1&type=pdf
+      \endverb
+      \verb{url}
+      \verb http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=031E83D200FD8770C255B48EA0C2E1C2?doi=10.1.1.29.5223&rep=rep1&type=pdf
+      \endverb
+    \endentry
+    \entry{stakeholderdefined}{article}{}
+      \name{author}{2}{}{%
+        {{hash=bf768cbbf6a5a6922e4022e61fa270f8}{%
+           family={McGrath},
+           familyi={M\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7aa9f31626699205b8701f10878ddfe0}{%
+           family={Whitty},
+           familyi={W\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{150a6d2b99bc9597f311f91fba4ea165}
+      \strng{fullhash}{150a6d2b99bc9597f311f91fba4ea165}
+      \strng{bibnamehash}{150a6d2b99bc9597f311f91fba4ea165}
+      \strng{authorbibnamehash}{150a6d2b99bc9597f311f91fba4ea165}
+      \strng{authornamehash}{150a6d2b99bc9597f311f91fba4ea165}
+      \strng{authorfullhash}{150a6d2b99bc9597f311f91fba4ea165}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Managing Projects in Business}
+      \field{month}{07}
+      \field{title}{Stakeholder defined}
+      \field{urlday}{1}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{volume}{10}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{4\bibrangessep 13\bibrangessep 14}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1108/IJMPB-12-2016-0097
+      \endverb
     \endentry
     \entry{cesar}{book}{}
       \name{author}{1}{}{%
@@ -111,6 +324,115 @@
       \field{labeltitlesource}{title}
       \field{title}{An open database model for storing Obstructie Sleep Apnea data}
       \field{year}{2017}
+    \endentry
+    \entry{cia}{article}{}
+      \name{author}{4}{}{%
+        {{hash=7055460aafd1f027e0874314c0fa1faa}{%
+           family={U.Farooq},
+           familyi={U\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2a2d1aef53f7d50188c55f22ee3d6bd6}{%
+           family={Waseem},
+           familyi={W\bibinitperiod},
+           given={Muhammad},
+           giveni={M\bibinitperiod}}}%
+        {{hash=bfb6a0e6d065c82b487cf791b9c1106c}{%
+           family={Khairi},
+           familyi={K\bibinitperiod},
+           given={Anjum},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a6c14b6b97b650b744197a323fad3967}{%
+           family={Mazhar},
+           familyi={M\bibinitperiod},
+           given={Sadia},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{34476152e384de344da843886402a05b}
+      \strng{fullhash}{eeb4550855525d90836b5d452c6767b0}
+      \strng{bibnamehash}{34476152e384de344da843886402a05b}
+      \strng{authorbibnamehash}{34476152e384de344da843886402a05b}
+      \strng{authornamehash}{34476152e384de344da843886402a05b}
+      \strng{authorfullhash}{eeb4550855525d90836b5d452c6767b0}
+      \field{sortinit}{U}
+      \field{sortinithash}{36a2444f5238e0dcf4bb59704df6624d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Internet of Things ({IoT}) has been a major research topic for almost a decade now, where physical objects would be interconnected as a result of convergence of various existing technologies. {IoT} is rapidly developing; however there are uncertainties about its security and privacy which could affect its sustainable development. This paper analyzes the security issues and challenges and provides a well deﬁned security architecture as a conﬁdentiality of the user’s privacy and security which could result in its wider adoption by masses.}
+      \field{day}{18}
+      \field{issn}{09758887}
+      \field{journaltitle}{International Journal of Computer Applications}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{number}{7}
+      \field{title}{A Critical Analysis on the Security Concerns of Internet of Things ({IoT})}
+      \field{urlday}{30}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{volume}{111}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.5120/19547-1280
+      \endverb
+      \verb{file}
+      \verb U.Farooq et al. - 2015 - A Critical Analysis on the Security Concerns of In.pdf:/Users/deep/Zotero/storage/J6DWZ24K/U.Farooq et al. - 2015 - A Critical Analysis on the Security Concerns of In.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://research.ijcaonline.org/volume111/number7/pxc3901280.pdf
+      \endverb
+      \verb{url}
+      \verb http://research.ijcaonline.org/volume111/number7/pxc3901280.pdf
+      \endverb
+    \endentry
+    \entry{jsonvxml}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d76750b9efbb7fa94764bffaee5aecb4}{%
+           family={Zunke},
+           familyi={Z\bibinitperiod},
+           given={Saurabh},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d6a8a427bdab528b43587264b16bffd2}{%
+           family={D’Souza},
+           familyi={D\bibinitperiod},
+           given={Veronica},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{cffbcb17e5aab0db50183df76af7aca1}
+      \strng{fullhash}{cffbcb17e5aab0db50183df76af7aca1}
+      \strng{bibnamehash}{cffbcb17e5aab0db50183df76af7aca1}
+      \strng{authorbibnamehash}{cffbcb17e5aab0db50183df76af7aca1}
+      \strng{authornamehash}{cffbcb17e5aab0db50183df76af7aca1}
+      \strng{authorfullhash}{cffbcb17e5aab0db50183df76af7aca1}
+      \field{sortinit}{Z}
+      \field{sortinithash}{156173bd08b075d7295bc3e0f4735a04}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Service Oriented Architecture is integrated in the very fabric of the nature of Internet. The Internet as it exists today is made up of numerous components which operate asynchronously. These independent components communicate with each other using a specific set of formats that standardize the communication and regulate the coherence of the communication. The {SOA} structure is made up of multiple loosely coupled components that can be broadly classified as service producers and service consumers. The loose coupling allows enterprises to respond to changes quickly by updating, replacing and changing concerned modules with flexibility, without affecting other components coupled to it. This paper first compares the features of the two most widely used Data Exchange formats for communication between these components and finally, provides a comparative analysis on the performance of these formats using benchmarks.}
+      \field{langid}{english}
+      \field{number}{4}
+      \field{title}{{JSON} vs {XML}: A Comparative Performance Analysis of Data Exchange Formats}
+      \field{urlday}{30}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{volume}{3}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2\bibrangedash 4}
+      \range{pages}{3}
+      \verb{file}
+      \verb Zunke and D’Souza - 2014 - JSON vs XML A Comparative Performance Analysis of.pdf:/Users/deep/Zotero/storage/XIGZEMFU/Zunke and D’Souza - 2014 - JSON vs XML A Comparative Performance Analysis of.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://ijcsn.org/IJCSN-2014/3-4 JSON-vs-XML-A-Comparative-Performance-Analysis-of-Data-Exchange-Formats.pdf
+      \endverb
+      \verb{url}
+      \verb http://ijcsn.org/IJCSN-2014/3-4%20JSON-vs-XML-A-Comparative-Performance-Analysis-of-Data-Exchange-Formats.pdf
+      \endverb
     \endentry
   \enddatalist
 \endrefsection

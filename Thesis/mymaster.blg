@@ -1,15 +1,15 @@
-[1] Config.pm:302> INFO - This is Biber 2.11
-[2] Config.pm:305> INFO - Logfile is 'mymaster.blg'
-[62] biber-darwin:313> INFO - === Tue May 28, 2019, 12:15:08
-[99] Biber.pm:371> INFO - Reading 'mymaster.bcf'
-[226] Biber.pm:857> INFO - Found 4 citekeys in bib section 0
-[243] Biber.pm:3976> INFO - Processing section 0
-[259] Biber.pm:4136> INFO - Looking for bibtex format file 'sources.bib' for section 0
-[260] bibtex.pm:1500> INFO - LaTeX decoding ...
-[271] bibtex.pm:1316> INFO - Found BibTeX data source 'sources.bib'
-[302] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'variable = shifted' with 'variable = non-ignorable'
-[302] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[302] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-UK'
-[302] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-UK'
-[318] bbl.pm:617> INFO - Writing 'mymaster.bbl' with encoding 'UTF-8'
-[320] bbl.pm:720> INFO - Output to mymaster.bbl
+[0] Config.pm:302> INFO - This is Biber 2.11
+[0] Config.pm:305> INFO - Logfile is 'mymaster.blg'
+[59] biber-darwin:313> INFO - === Tue Jun  4, 2019, 12:37:39
+[91] Biber.pm:371> INFO - Reading 'mymaster.bcf'
+[250] Biber.pm:857> INFO - Found 12 citekeys in bib section 0
+[274] Biber.pm:3976> INFO - Processing section 0
+[293] Biber.pm:4136> INFO - Looking for bibtex format file 'sources.bib' for section 0
+[295] bibtex.pm:1500> INFO - LaTeX decoding ...
+[340] bibtex.pm:1316> INFO - Found BibTeX data source 'sources.bib'
+[458] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[458] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'variable = shifted' with 'variable = non-ignorable'
+[459] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-UK'
+[459] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-UK'
+[495] bbl.pm:617> INFO - Writing 'mymaster.bbl' with encoding 'UTF-8'
+[503] bbl.pm:720> INFO - Output to mymaster.bbl

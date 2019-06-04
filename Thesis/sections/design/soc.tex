@@ -5,7 +5,7 @@ The structure of a recording is restrictive in terms of arranging the components
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{images/Recording.png}
-    \caption{Sharing}
+    \caption{Recording}
     \label{fig:hta_recording}
 \end{figure}
 
@@ -41,48 +41,32 @@ Sharing is separable into two concerns: export and import. The scope of exportin
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{images/Sharing.png}
+    \includegraphics[width=0.6\textwidth]{images/Sharing.png}
     \caption{Sharing}
     \label{fig:hta_sharing}
 \end{figure}
 
 \begin{itemize}
     \item[2.1] \verb|Import|:
-    \item[2.1.1] \verb|Locate File|: locate the file on the device.
+    \item[2.1.1] \verb|Locate File|: locate the file on the device by using Android picker.
     \item[2.1.2] \verb|Parse Formated Content|: parse the content of the file 
     \item[2.1.3] \verb|Insert Storage|: with the parsed data, insert it into the storage 
     \item[2.2] \verb|Export|:
     \item[2.2.1.1] \verb|All Records|: export all of the records on the device 
     \item[2.2.1.2] \verb|Select Record|: choose one record to export 
-    \item[2.2.2] \verb|Format File|: format the records into a transmittable file  
+    \item[2.2.2] \verb|Format File|: When a preferred format for the records is selected, bundling the data into a file for transmittal over a medium can be done. It is essential to identify the name of the file uniquely to prevent duplicates and overrides of data. For instance, it is identifying the name of the file with the device identification appended with the time of exporting. 
     \item[2.2.3] \verb|Dispatch|: send the file over a medium (e.g., mail).
 \end{itemize}
-
-
-\subsubsection{Format File Component}
-
-The format file component converts selected records into a formatted file. Formatting is used to serialize the data to enable transmission over the internet. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats, and a few appropriate formats are:
-
-\begin{itemize}
-    \item \verb|JSON| is a file format used to transmit data objects consisting of attribute-value pairs and array data types [wikipedia, JSON, 9.mai]. JSON has a simple syntax, which results in a compact file and efficient transmission. However, it only supports a few data types. The markup of a JSON format is \verb|{"firstname": "Peter"}|
-    \item \verb|XML| is a markup language that encodes arbitrary data structures into a format that is human-readable and machine-readable [wikipedia, XML, 9.mai]. XML provides a generalized markup that has support for numerous data types, structure validation, and extensions. However, the structure of XML results in a larger file[?]
-    \item \verb|Custome Format| constructing a file format solely for transmitting records and samples - by introducing a file format that is restrictive to the purpose of records and sample, we can minimize the transmitting file size. However, this might result in unreadable text, the overhead of parsing and transforming, and incompatibilities amongst devices. 
-\end{itemize}
-While these format structures are applicable for transmitting data, choosing a format that is compact, human-readable, and standard format that is extensible and scalable for future data is essential. The custom format is compact, but might not be human-readable and is not a standard format. On the contrary,  JSON and XML meet these criteria the custom format is lacking. JSON in the contrast of XML is more compact and lightweight; hence, in our design, we will be using the JSON format for transmission of the data.
-
-When a preferred format for the records is selected, bundling the data into a file for transmittal over a medium can be done. It is essential to identify the name of the file uniquely to prevent duplicates and overrides of data. For instance, it is identifying the name of the file with the device identification appended with the time of exporting. 
 
 \subsubsection{Dispatching Component}
 The dispatching component uses the formatted file and transfers it across applications. There are two distinctive methods to perform named task which is efficient and practical: 1) implement an interface with recipients to share data with, by establish a web-server with logic to handle users and sharing data with the desired recipient. Also, implementing an interface to retrieve the file within the application;  and 2) Using the interface provided by Android to share files. While the first option might be favorable in terms of practicality, this solution introduces additional concerns (e.g., the privacy matters of storing user data on a server) which is out of the scope for this project. For this reason, using the interface provided by Android is a reasonable solution. The user of the application can utilize the Android interface for sharing files over installed applications; however, e-mail is a flexible medium to transfer the file, and the user can specify the recipients accordingly.  
 
-\subsubsection{File Location Component}
-\textit{Importing} is accomplishable by locating the file, parsing the file, and storing the recordings in storage. A naive solution for the location of a file is by assuming that the file is located in on the same location amongst all devices, thus trying locating the file on a static location. Therefore, providing an interface to the users to deliberately locate the desired file in the file hierarchy of its device is practical. Android provides an interface for such a solution [?]. With the exact path of the file, we can read the bitstream of the file and parse the data according to the chosen format, and store the content of the file on the device.
 
 \subsection{Modules}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.3\textwidth]{images/Modules.png}
+    \includegraphics[width=0.5\textwidth]{images/Modules.png}
     \caption{Modules}
     \label{fig:hta_modules}
 \end{figure}
@@ -106,19 +90,59 @@ One could argue that new records are not obtained while managing and using a mod
 
 \subsection{Analytics}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Analytics.png}
+    \caption{Analytics}
+    \label{fig:hta_analytics}
+\end{figure}
+
+Analytics uses techniques and methods to gain valuable knowledge from data. Nidra provides a simple illustration of the data in a time-series plot; however, other techniques can be in incorporated. In essence, the facilitation of modules in the application enables the development opportunities for advanced analytics of the data. In Figure \ref{fig:hta_analytics}, the structure of analytics is presented with components and their dependencies: 
+
+\begin{itemize}
+    \item[4.1.1] \verb|Select Record|: locate the file on the device.
+    \item[4.1.2] \verb|All Records|: parse the content of the file 
+    \item[4.2] \verb|Analytic Method|: 
+\end{itemize}
+
 \subsection{Storage}
 
-\noindent Storage is the objective of achieving persistent data; data that is available after application termination.  To enable storage, we can use a database for a collection of related data that is easily accessed, managed, and updated [Database Systems, p. 52]. Three distinguishable databases structures are:
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/Storage.png}
+    \caption{Storage}
+    \label{fig:hta_storage}
+\end{figure}
+
+Storage is the objective of achieving persistent data; data that is available after application termination. To enable storage, we can use a database that stores data for easy access, manage and update. Extending a database with a data access layer allows for decoupling and extensibility, in case of future data modification and change. The data in Nidra revolves around modules, records, samples, and user. In Figure \ref{fig:hta_storage}, the structure of storage is presented with components and their dependencies: 
+
+\begin{itemize}
+    \item[5.1] \verb|Data Access Layer|: 
+    \item[5.2] \verb|Database|: 
+    \item[5.2.1] \verb|Record|: 
+    \item[5.2.2] \verb|Sample|: 
+    \item[5.2.3] \verb|Module|: 
+    \item[5.2.4] \verb|User|: 
+\end{itemize}
+
+\subsubsection{Database}
+
+\noindent Choosing a database depends on specific criteria defined for the application data. Three distinguishable database structure are: 
 \begin{itemize}
     \item Flat file - encode a database model (e.g., table) with a collection of records without any structured relationship, in a plain text or binary file [system nosql analysis]. 
     \item Relational Database - consists of relations between data stored in tables; supporting complex queries, database transactions, and   Additionally, ensuring ACID (atomicity, consistency, isolation, and durability) properties for reliable database transactions. 
     \item Non-Relational Database - While these database structures are applicable to achieve persistent data storage, using relational database is suitable for our test
 \end{itemize}
 
-The placement of storage can be located externally on a server or internally on the device. External storage provides larger storage capacity, in addition to faster computing power. Facilitating external storage can be accomplished with maintaining a server, or utilizing a cloud service (e.g., Google Cloud) for the purpose. Internal storage provides limited storage capacity and computing power, however, the storage and retrieval data is efficient.  While both are applicable, the internal storage is more than efficient for the application.
-
 Two distinguishable methods of structuring a storage 
 There are several methods of structuring the storage on, and two distinguishable methods are a flat file or a database management system (hereafter, DBMS). File storage is a bare minimum structure of storing and retrieving data. The data is stored, with a format (e.g., JSON), in a raw file. Retrieving data occurs by reading the whole file into memory, parsing the data and then operating on the data.
 
 
 \subsection{Presentation}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/Presentation.png}
+    \caption{Presentation}
+    \label{fig:hta_presentation}
+\end{figure}
+The format file component converts selected records into a formatted file. Formatting is used to serialize the data to enable transmission over the internet. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats, and a few appropriate formats are:

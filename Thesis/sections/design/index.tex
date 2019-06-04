@@ -24,14 +24,21 @@ main functionalities, each related to the requirements defined in Section [Probl
 
 This chapter will give a detailed look at the design of Nidra...
 
-\section{High-Level Design}
+\section{Requirement Analysis}
 
 \input{sections/design/stakeholders}
 
-\input{sections/design/sysreq.tex}
+%\input{sections/design/sysreq.tex}
+
+\subsection{Resource Efficiency}
+
+\subsection{Security and Privacy}
+The proposed use of the application is to monitor the sleeping patterns of a user. The application manages and stores personal-data and health-related data about the user on the device. As a consequence, the application should incorporate the CIA triad, which stresses data confidentiality, integrity, and availability \cite{cia}. Any unauthorized access to the data, data leaks, and confidentiality should be appropriately managed on the device. Sharing the data across application or with other users should be granted with the consent from the user.  Besides, a mobile device can be connected to the Internet, which makes it vulnerable to attacks. Also, installed application on the device can manipulate the access to the data. Therefore, revising the security policy defined by Android \cite{androidsecurity} should be contemplated. 
+
+\section{High-Level Design}
 
 \subsection{Task Analysis}
-Task analysis is a methodology to facilitate the design of complex systems. Hierarchical task analysis (HTA) is an underlying technique that analyzes and decomposes complex tasks such as planning, diagnosis, and decision making, into specific subtasks [Task analysis...]. In Figure \ref{fig:hta_overview} an illustration of the the main components of the project is presented. These components are integral to the development of the project, and in this Section, we will be analyzing system tasks and user-related tasks.
+Task analysis is a methodology to facilitate the design of complex systems. Hierarchical task analysis (HTA) is an underlying technique that analyzes and decomposes complex tasks such as planning, diagnosis, and decision making, into specific subtasks \cite{ta}. In Figure \ref{fig:hta_overview} an illustration of the the main components of the project is presented. These components are integral to the development of the project, and in this Section, we will be analyzing system tasks and user-related tasks.
 
 \begin{figure}
     \centering
@@ -40,13 +47,13 @@ Task analysis is a methodology to facilitate the design of complex systems. Hier
     \label{fig:hta_overview}
 \end{figure}
 
-
 \input{sections/design/systemtasks}
 
-
-
-
 \section{Seperation of Concerns}
-Separation of concern is a paradigm that classifies an application into concerns at a conceptual and implementational level. It is beneficial for reducing complexity, improving understandability, and increasing reusability. The concerns in this thesis are the individual tasks defined in task analysis. Each concern is conceptualized with a graph of components, the functionality of each component when combined constitutes a structure. The structure of each concern is derived based on research and development. 
+Separation of concern is a paradigm that classifies an application into concerns at a conceptual and implementational level. It is beneficial for reducing complexity, improving understandability, and increasing reusability \cite{soc}. The concerns in this thesis are the individual tasks defined in task analysis. Each concern is conceptualized with a graph of components, the functionality of each component when combined constitutes a structure. The structure of each concern is derived based on research and development. 
 
 \input{sections/design/soc}
+
+\section{Data Structure}
+
+\input{sections/design/dataformat}

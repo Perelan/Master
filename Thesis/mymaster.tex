@@ -17,6 +17,11 @@
 \setlength{\parindent}{2em}
 \setcounter{secnumdepth}{4}
 
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
 \lstset{
     language=Java,
     columns=flexible,
@@ -29,6 +34,19 @@
     numbersep=5pt,
     tabsize=4,
 }
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    aboveskip=20pt,
+}
+
 
 \title{Nidra}
 \subtitle{An Android application designed to record sleep with Flow sensors}
@@ -65,6 +83,9 @@
 
 \tableofcontents
 
+\addcontentsline{toc}{chapter}{List of Listings}
+\lstlistoflistings
+
 \addcontentsline{toc}{chapter}{List of Tables}
 \listoftables
 
@@ -84,6 +105,7 @@
 
 \part{Evaluation and Conclusion}
 \include{sections/experiments/index}
+\chapter{Future Work}
 \include{sections/conclusion/index}
 
 

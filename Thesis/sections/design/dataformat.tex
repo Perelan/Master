@@ -1,0 +1,72 @@
+\subsection{Data Formats}
+
+The data format is a part of the process of serialization, which enables data storage in a file, transmittal over the Internet, and reconstruction in a different environment. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats; however, JavaScript Object Notation (JSON) and eXtensible Markup Language (XML) are the two most common data serialization formats. In this Section, we will discuss these formats. In the end, we will compare these formats and chose a format that meets the criteria of being compact, human-readable, and universal. 
+
+\subsubsection{JSON}
+JSON or JavaScript Object Notation is a light-weight and human-readable format that is commonly used for interchanging data on the web. The format is a text-based solution where the data structure is built on two structures: a collection of name-value pairs (known as objects) and ordered list of values (known as arrays). The JSON format is language-independent and the data structure universally recognized \cite{jsonorg, jsonvxml}. However, it is limited to a few predefined data types (i.e., string, number, boolean, object, array, and null), and extending the data type has to be done with the preliminary types. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+{
+    "firstname": "Ola"
+    "lastname": "Nordmann"
+}
+\end{lstlisting}
+
+\subsubsection{XML}
+XML or eXtensible Markup Language is a simple and flexible format derived from Standard Generalized Markup Language (SGML), developed by the XML Working Group under the World Wide Web Consortium (W3C). An XML document consists of markups called tags, which are containers that describe and organize the enclosed data. The tag starts with \verb|<| and ends with \verb|>|; the content is placed between an opening tag and a closing tag (see listing). \cite{w3xml, jsonvxml} XML provides mechanisms to define custom data types, using existing data types as a starting point, making it extensible for future data. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+<user>
+    <firstname>Ola</firstname>
+    <lastname>Nordmann</lastname>
+</user>
+\end{lstlisting}
+
+\subsubsection{Comparing}
+
+We will compare JSON and XML features and performance with the study conducted by Saurabh and D’Souza \cite{jsonvxml}. There are apparent differences in the two data formats which affect the overall readability, extensibility, bandwidth performance, and ease of mapping. XML documents are easy to read, while JSON is obscure due to the parenthesis delimiters. XML allows for extended data types, while JSON is limited to a few data types. XML takes more bandwidth due to the metadata overhead, while JSON data is compact and use less amount of bandwidth. XML is documented oriented, making it challenging to map objects in the OOP paradigm, while JSON is data oriented and is closer to the graph structure of objects in the OOP paradigm.
+
+Moreover, a few benchmarks were conducted to measure memory footprint and parsing runtime when serializing and deserializing JSON and XML data. From the conclusion,  in terms of memory footprint and parsing runtime, JSON performances better than XML but at the cost of readability and flexibility. While these format structures are applicable for transmitting data, choosing a format that is compact, human-readable, and a standard format that is extensible and scalable for future data is essential. In our design, we will be using the JSON format for transmission of the data.
+
+
+\subsection{Data Packets}
+Data packets are parcels of data that Nidra receives from external applications (e.g., sensor wrappers) or send to other application (e.g., sharing). From the design choice In the Section above, the format of all the desired data should be according to the JSON format.  In this Section.
+
+\subsubsection{Sharing}
+
+In Section (ref), a proposal to the structure of exporting and importing data is discussed. Two of the components (\verb|Parse Formatted Content| and \verb|Format File|) uses JSON to either encode or decode the data. Listing 4.3 illustrate the content of the encoded data from our application to gain a broader understanding of how the data exchange in sharing operates. The attractive attributes from the encoding are the record (ref) and the samples.  A record is an object that contains meta-data with name, number of samples, recording time, creation date, and user information. Samples are an array of objects that contains data, timestamp, and identification to correlated record. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+{
+    "record":{  
+        "id": 1,
+        "name": "Record 1",
+        "rating": 2.5,
+        "description": "",
+        "nrSamples": 6107,
+        "monitorTime": 5963088,
+        "createdAt": "Apr 4, 2019 9:30:56 PM",
+        "updatedAt": "Apr 4, 2019 9:30:56 PM",
+        "user": {  
+            "age": 50,
+            "createdAt": "---",
+            "gender": "Male",
+            "height": 180,
+            "name": "Ola Nordmann",
+            "weight": 60
+        }
+    },
+    "samples": [  
+        {  
+            "explicitTS":"Apr 4, 2019 5:51:26 PM",
+            "implicitTS":"Apr 4, 2019 7:51:26 PM",
+            "recordId":1,
+            "sample":"Time=0ms, deltaT=100, data=1906,1891,1884,1881,1876,1718,1690"
+        },
+        ...
+    ]
+}
+\end{lstlisting}
+
+\subsubsection{Sensor Data}
+Sensor data is data acquisition through the Data Dispatching (section background). The data format discussed in (section background). 
