@@ -75,46 +75,58 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3.2}Sharing}{30}{subsection.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.2.1}Dispatching Component}{31}{subsubsection.4.3.2.1}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Dispatching Component}{32}{subsubsection.4.3.2.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3.3}Modules}{32}{subsection.4.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.3.1}Data Exchange Component}{32}{subsubsection.4.3.3.1}
+\contentsline {subsubsection}{\numberline {4.3.3.1}Data Exchange Component}{33}{subsubsection.4.3.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3.4}Analytics}{33}{subsection.4.3.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3.5}Storage}{34}{subsection.4.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.5.1}Database}{34}{subsubsection.4.3.5.1}
+\contentsline {subsubsection}{\numberline {4.3.5.1}Database Component}{35}{subsubsection.4.3.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.6}Presentation}{35}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.6}Presentation}{36}{subsection.4.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Data Structure}{35}{section.4.4}
+\contentsline {subsubsection}{\numberline {4.3.6.1}Color Palette Component}{37}{subsubsection.4.3.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.1}Data Formats}{35}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.4}Data Structure}{38}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.1.1}JSON}{36}{subsubsection.4.4.1.1}
+\contentsline {subsection}{\numberline {4.4.1}Data Formats}{38}{subsection.4.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.1.2}XML}{36}{subsubsection.4.4.1.2}
+\contentsline {subsubsection}{\numberline {4.4.1.1}JSON}{38}{subsubsection.4.4.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.1.3}Comparing}{37}{subsubsection.4.4.1.3}
+\contentsline {subsubsection}{\numberline {4.4.1.2}XML}{38}{subsubsection.4.4.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.2}Data Packets}{37}{subsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.1.3}Comparing}{39}{subsubsection.4.4.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.2.1}Sharing}{37}{subsubsection.4.4.2.1}
+\contentsline {subsection}{\numberline {4.4.2}Data Records}{39}{subsection.4.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.2.2}Sensor Data}{38}{subsubsection.4.4.2.2}
+\contentsline {subsubsection}{\numberline {4.4.2.1}Record}{40}{subsubsection.4.4.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Implementation}{39}{chapter.5}
+\contentsline {subsubsection}{\numberline {4.4.2.2}Sample}{40}{subsubsection.4.4.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{41}{part.3}
+\contentsline {subsubsection}{\numberline {4.4.2.3}Module}{40}{subsubsection.4.4.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Experiments}{43}{chapter.6}
+\contentsline {subsubsection}{\numberline {4.4.2.4}User}{40}{subsubsection.4.4.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Future Work}{45}{chapter.7}
+\contentsline {subsection}{\numberline {4.4.3}Data Packets}{40}{subsection.4.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Conclusion}{47}{chapter.8}
+\contentsline {subsubsection}{\numberline {4.4.3.1}Sharing}{40}{subsubsection.4.4.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{Appendix}{48}{chapter.8}
+\contentsline {subsubsection}{\numberline {4.4.3.2}Sensor Data}{41}{subsubsection.4.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Power Data}{51}{appendix.A}
+\contentsline {chapter}{\numberline {5}Implementation}{43}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{45}{part.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Experiments}{47}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Future Work}{49}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}Conclusion}{51}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{Appendix}{52}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Power Data}{55}{appendix.A}

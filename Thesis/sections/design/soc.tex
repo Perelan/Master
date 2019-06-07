@@ -4,23 +4,23 @@ The structure of a recording is restrictive in terms of arranging the components
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{images/Recording.png}
+    \includegraphics[scale=0.2]{images/Recording.png}
     \caption{Recording}
     \label{fig:hta_recording}
 \end{figure}
 
 \begin{itemize}
-    \item[1.1] \verb|Sensor Discover:| Has to find all eligible sensors that can enable a recording.
+    \item[1.1] \verb|Sensor Discover:| Find all eligible sensors that can enable a recording.
     \item[1.1.1] \verb|Select Sensors:| From the sensor discovery, we can choose preferable sensors sources.
-    \item[1.1.2] \verb|All Sensors:| More straightforward, we sample from all of the available sensors.
-    \item[1.2] \verb|Sensor Initialization:| Once we have a list of sensors sources, we need to establish and initialize a connection with the sensors. Occasionally a sensor might use some time to connect, or unforeseen occurrence is hindering the initialization of the sensor. Thus, blocking the state of the recording. 
-    \item[1.3] \verb|Sensor Connectivity Setup:| Additionally, we establish a connection between the application and the sensor source. All data exchange occurs over the established interface. 
-    \item[1.4] \verb|Connection Stat:| Based on sensors establishments we can proceed to either start or stop a recording. 
-    \item[1.4.1] \verb|Start:| By starting, we notify the sensors to begin collecting data, and the view should display that a recording has begun accordingly.
-    \item[1.4.1.1] \verb|Monitor:| Is continuously waiting for new samples to arrive on the interface defined between the application and the sensors.
-    \item[1.4.1.1.1] \verb|Sample Management:| Once a new sample has arrived, we need to store the sample on a persistent storage.
-    \item[1.4.1.1.2] \verb|Connectivity State:| If it is an external sensor, the sensor source might disconnect during a recording. Thus, implementing a mechanism to check for continuous data stream is a critical task.
-    \item[1.4.2] \verb|Stop:| By stopping, we notify the sensors to stop collecting data from the sensor source.
+    \item[1.1.2] \verb|All Sensors:| more Straightforward, we sample from all of the available sensors.
+    \item[1.2] \verb|Sensor Initialization:| Once we have a list of sensors sources, we need to establish and initialize a connection with the sensors. Occasionally a sensor might use some time to connect, or unforeseen occurrence is hindering the initialization of the sensor. Therefore, halt the sensor initalization or activily checking for sensor initalization is important. 
+    \item[1.3] \verb|Sensor Connectivity Setup:| Establish a connection between the application and the sensor source through an API or IPC connection. All data exchange will occur over the established interface. 
+    \item[1.4] \verb|Connection State:| Based on sensors establishments we can proceed to either start or stop a recording. 
+    \item[1.4.1] \verb|Start:| By starting, we notify the sensors to begin collecting data, and the view should display that a recording has begun accordingly. Also, we start a timer to display time elapsed on the current recording. 
+    \item[1.4.1.1] \verb|Monitor:| Is a mechanism to handle the connectivty state and the incoming samples. It is actively listening on the interface for new data from the sensors, and appropriately delegating the data to the sample management component.  
+    \item[1.4.1.1.1] \verb|Sample Management:| Handles a single sample from a sensor by parsing the content according to the payload of the sensor (each sensor might have different payload structure), such that it is according to our data structure.
+    \item[1.4.1.1.2] \verb|Connectivity State:| Activly checking the state of sensor connectivty (read more below)
+    \item[1.4.2] \verb|Stop:| By stopping, we stop the recording timer and proceed to the final recording screen.
     \item[1.4.2.1] \verb|Sensor Finalization:| We notify the sensor to stop sampling data, and close establishment.
     \item[1.4.2.2] \verb|Close Sensor Connectivity:| We close the interface establishment between the application and the sensors. 
     \item[1.4.2.3] \verb|Stop Recording:| Once the sensors has closed its connections, we can add additional information to the recording (e.g., title, description, rating). In the end, the recording has concluded and its stored on the mobile device.
@@ -41,21 +41,21 @@ Sharing is separable into two concerns: export and import. The scope of exportin
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{images/Sharing.png}
+    \includegraphics[scale=0.3]{images/Sharing.png}
     \caption{Sharing}
     \label{fig:hta_sharing}
 \end{figure}
 
 \begin{itemize}
-    \item[2.1] \verb|Import|:
-    \item[2.1.1] \verb|Locate File|: locate the file on the device by using Android picker.
-    \item[2.1.2] \verb|Parse Formated Content|: parse the content of the file 
-    \item[2.1.3] \verb|Insert Storage|: with the parsed data, insert it into the storage 
-    \item[2.2] \verb|Export|:
-    \item[2.2.1.1] \verb|All Records|: export all of the records on the device 
-    \item[2.2.1.2] \verb|Select Record|: choose one record to export 
-    \item[2.2.2] \verb|Format File|: When a preferred format for the records is selected, bundling the data into a file for transmittal over a medium can be done. It is essential to identify the name of the file uniquely to prevent duplicates and overrides of data. For instance, it is identifying the name of the file with the device identification appended with the time of exporting. 
-    \item[2.2.3] \verb|Dispatch|: send the file over a medium (e.g., mail).
+    \item[2.1] \verb|Import|: Is a mechanism that locate a file, parse the data, and stores on the device.
+    \item[2.1.1] \verb|Locate File|: To enable this, the user has to download the file on the device. Then, locate the file on the device by using an interface to browse downloaded files. An interface can be developed; however, using the Android document picker (ref) is more straightforward solution.
+    \item[2.1.2] \verb|Parse Formated Content|: Parse the content of the file accordingly to the data format (ref).
+    \item[2.1.3] \verb|Insert Storage|: Retrieve the necessary data from the parsed file, to store on the device without overriding existing data.   
+    \item[2.2] \verb|Export|: Is a mechanism that selects all or specific record, format the record into a formatted filed (ref), and exports the file across device. 
+    \item[2.2.1.1] \verb|All Records|: Export all of the records on the devic.
+    \item[2.2.1.2] \verb|Select Record|: Pick one specific record to export. 
+    \item[2.2.2] \verb|Format File|: When a preferred format for the records is selected, bundling the data into a formatted file (ref) for transmittal can be done. It is essential to identify the name of the file uniquely to prevent duplicates and overrides of data. For instance, it is identifying the name of the file with the device identification appended with the time of exporting. 
+    \item[2.2.3] \verb|Dispatch|: Send the file across application (read more below).
 \end{itemize}
 
 \subsubsection{Dispatching Component}
@@ -66,7 +66,7 @@ The dispatching component uses the formatted file and transfers it across applic
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{images/Modules.png}
+    \includegraphics[scale=0.6]{images/Modules.png}
     \caption{Modules}
     \label{fig:hta_modules}
 \end{figure}
@@ -74,10 +74,10 @@ The dispatching component uses the formatted file and transfers it across applic
 Modules are independent applications that provide extended functionality and data enrichment to Nidra. The components for locating and launching a module is limited to Android design; however, the component for data exchange between a module and Nidra can be designed variously.  In Figure \ref{fig:hta_modules}, the structure of modules is presented with components and their dependencies:   
 
 \begin{itemize}
-    \item[3.1.1] \verb|Install Modules|:
-    \item[3.1.2] \verb|Locate Module|: locate the file on the device.
-    \item[3.2] \verb|Launch Module|: parse the content of the file 
-    \item[3.3] \verb|Data Exchange|: with the parsed data, insert it into the storage 
+    \item[3.1.1] \verb|Install Modules|: Ss the process of locating the application on the device, and storing the reference of the application package name in the storage.  
+    \item[3.1.2] \verb|Locate Module|: Retrieve the list of stored modules, and display the installed modules to the user. 
+    \item[3.2] \verb|Launch Module|: Get the application location stored in the module, and launch the application with the use of Android Intent. 
+    \item[3.3] \verb|Data Exchange|: Enrich the module with data from the application (read more below)
 \end{itemize}
 
 \subsubsection{Data Exchange Component}
@@ -92,7 +92,7 @@ One could argue that new records are not obtained while managing and using a mod
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{images/Analytics.png}
+    \includegraphics[scale=0.6]{images/Analytics.png}
     \caption{Analytics}
     \label{fig:hta_analytics}
 \end{figure}
@@ -109,40 +109,57 @@ Analytics uses techniques and methods to gain valuable knowledge from data. Nidr
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{images/Storage.png}
+    \includegraphics[scale=0.6]{images/Storage.png}
     \caption{Storage}
     \label{fig:hta_storage}
 \end{figure}
 
-Storage is the objective of achieving persistent data; data that is available after application termination. To enable storage, we can use a database that stores data for easy access, manage and update. Extending a database with a data access layer allows for decoupling and extensibility, in case of future data modification and change. The data in Nidra revolves around modules, records, samples, and user. In Figure \ref{fig:hta_storage}, the structure of storage is presented with components and their dependencies: 
+Storage is the objective of achieving persistent data; data that is available after application termination. The data is characterized into four data entities (i.e., record, sample, module, and user) that contains individual properties.  The components in the storage structure are constructed to be extensible and scalable in terms of future data, restructure of data, and removal of data.  In Figure \ref{fig:hta_storage}, the structure of storage is presented with components and their dependencies: 
 
 \begin{itemize}
-    \item[5.1] \verb|Data Access Layer|: 
-    \item[5.2] \verb|Database|: 
-    \item[5.2.1] \verb|Record|: 
-    \item[5.2.2] \verb|Sample|: 
-    \item[5.2.3] \verb|Module|: 
-    \item[5.2.4] \verb|User|: 
+    \item[5.1] \verb|Data Access Layer|: Also known as an Data Access Object (DAO), that provides an abstract interface to a database. It exposes spesific operations (such as insertion of a record) without revealing the database logic. The advantage of this interface is to have a single entry point for each database operation, and to easily extend and modify the operation for future data. 
+    \item[5.2] \verb|Database|: Is the storage of all the data (read below).
+    \item[5.2.1] \verb|Record|: Is a table in the database, which contains fields appropriately to the record structure. A record contains meta-data about a recording (e.g., name, recording time, user). An example of a recording record is illustrated in (ref).
+    \item[5.2.2] \verb|Sample|: Is a table in the database, which contains fields appropriately to a single sample from a sensor. A sample contains data received from a sensor during a recording. An example of a sample record is illustrated in (ref).
+    \item[5.2.3] \verb|Module|: Is a table in the database, which contains fields appropriately to the sample structure. A sample contains the name of the module and a reference to the application package. An example of a module record is illustrated in (ref).
+    \item[5.2.4] \verb|User|: Is a table in the database, which contains fields appropriately to the user structure. A user contains person information about a user (e.g., name, weight, height). An example of a user record is illustrated in (ref).
 \end{itemize}
 
-\subsubsection{Database}
+\subsubsection{Database Component}
 
-\noindent Choosing a database depends on specific criteria defined for the application data. Three distinguishable database structure are: 
-\begin{itemize}
-    \item Flat file - encode a database model (e.g., table) with a collection of records without any structured relationship, in a plain text or binary file [system nosql analysis]. 
-    \item Relational Database - consists of relations between data stored in tables; supporting complex queries, database transactions, and   Additionally, ensuring ACID (atomicity, consistency, isolation, and durability) properties for reliable database transactions. 
-    \item Non-Relational Database - While these database structures are applicable to achieve persistent data storage, using relational database is suitable for our test
-\end{itemize}
+\noindent Android provides several options to store data on the device; depending on space requirement, type of data that needs to be stored, and whether the data should be private or accessible to other applications. Two suitable options for storage are 1) internal file storage - storing files to the internal storage private to the application; and 2) database - Android provides full support for SQLite databases, and the database access is private to the application \cite{android_storage}. Based on the options, some following design questions are 1) should the data be stored in a flat file database on the internal file storage, or should it be stored in an SQLite database?
 
-Two distinguishable methods of structuring a storage 
-There are several methods of structuring the storage on, and two distinguishable methods are a flat file or a database management system (hereafter, DBMS). File storage is a bare minimum structure of storing and retrieving data. The data is stored, with a format (e.g., JSON), in a raw file. Retrieving data occurs by reading the whole file into memory, parsing the data and then operating on the data.
+Flat files database encode a database model (e.g., table) as a collection of records with no structured relationship, into a plain text or binary file. For instance, each line of text holds on record of data, and the fields are separable by delimiters (e.g., comma or tabs). Another possibility is to encode the data in a preferable data format (ref formats). Flat file databases are easy to use and suited for small scale use; however, provide no type of security, there is redundancy in the data, and integrity problems \cite{flatfilerdbms}. Locating a record is made possible by loading the file, and systematically iterating until the desired record is found. Similarly, updating a record and deleting a record. Consequently, the design of flat file databases is for simple and limited storage.
 
+SQLite is a relational database management system, which is embedded and supported in Android. Relational database management system (RDBMS) provides data storage in fields and record, represented as columns (fields) and rows (records), in a table. The advantage is the ability to index records, relations between data stored in tables, and support querying of complex data with a query language (e.g., SQL). Also, RDBMS provides data integrity between transactions, improved security, and backup and recovery controls \cite{flatfilerdbms}. 
+
+While a flat file database is applicable to store small and unchangeable data, it is not suitable for scalable and invasive data change. In Nidra, the samples acquisition makes it unreasonable to use a flat file database. Therefore, SQLite is a preferable solution to storing samples. Also, establishing a relationship between a record and a sample is made possible [rewrite]. 
 
 \subsection{Presentation}
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{images/Presentation.png}
+    \includegraphics[scale=0.5]{images/Presentation.png}
     \caption{Presentation}
     \label{fig:hta_presentation}
 \end{figure}
-The format file component converts selected records into a formatted file. Formatting is used to serialize the data to enable transmission over the internet. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats, and a few appropriate formats are:
+
+Presentation facilitates the user interface of the application, in terms of visualizing the functionality of the application to the user. The user interface derives from the functionality (concerns discussed) in the application, and research on the topic. In Figure \ref{fig:hta_presentation}, the structure of storage is presented with components and their dependencies: 
+
+\begin{itemize}
+    \item[6.1] \verb|UI|: 
+    \item[6.1.1] \verb|Views|: Are the the screen with the content of the current screen. The view incorporates the color palette and some views has the navigation displayed. 
+    \item[6.1.2] \verb|Navigation|: The navigation is a menu with options to change the view. 
+    \item[6.1.3] \verb|Color Palette|: A color selection that persist through the application (read more below).
+    \item[6.1.1.1] \verb|Settings|: Is s screen with user details, permissions and credits, with options to modify permission and user details.
+    \item[6.1.1.2] \verb|Feed|: Is a list of all records for the user, displayed with details specific to the record to make it distinguishable and easily recognizable. 
+    \item[6.1.1.3] \verb|Analytics|: 
+    \item[6.1.1.4] \verb|Recording|:
+    \item[6.1.1.5] \verb|Onboarding|: 
+    \item[6.1.1.6] \verb|Modules|: 
+    \item[6.1.2] \verb|Feedback|:
+\end{itemize}
+
+\subsubsection{Color Palette Component}
+Color palette is a component that decides the color scheme in the application. In the proposal of a color system in the design guidelines by Google \cite{colorsystem}, it is essential to pick colors that reflect the style of the application accordingly to: 1) primary colors - the most frequently displayed color in the application; 2) secondary colors - provides an accent and distinguish color to the application; and 3) surface, background, error colors, typography and iconography colors - colors that reflect the primary and secondary color choices. 
+
+Moreover, choosing colors that meet the purpose of the application is critical. Nidra is most likely to be used during the evening and the morning. According to Google \cite{darktheme}, a dark color theme reduces luminance emitted by the device screen, which reduces eye strain, while still meeting the minimum color contrast ratios, and conserving battery power. From this, we will be choosing a dark color theme. 

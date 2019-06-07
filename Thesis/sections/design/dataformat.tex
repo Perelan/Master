@@ -23,11 +23,79 @@ XML or eXtensible Markup Language is a simple and flexible format derived from S
 \end{lstlisting}
 
 \subsubsection{Comparing}
-
 We will compare JSON and XML features and performance with the study conducted by Saurabh and D’Souza \cite{jsonvxml}. There are apparent differences in the two data formats which affect the overall readability, extensibility, bandwidth performance, and ease of mapping. XML documents are easy to read, while JSON is obscure due to the parenthesis delimiters. XML allows for extended data types, while JSON is limited to a few data types. XML takes more bandwidth due to the metadata overhead, while JSON data is compact and use less amount of bandwidth. XML is documented oriented, making it challenging to map objects in the OOP paradigm, while JSON is data oriented and is closer to the graph structure of objects in the OOP paradigm.
 
 Moreover, a few benchmarks were conducted to measure memory footprint and parsing runtime when serializing and deserializing JSON and XML data. From the conclusion,  in terms of memory footprint and parsing runtime, JSON performances better than XML but at the cost of readability and flexibility. While these format structures are applicable for transmitting data, choosing a format that is compact, human-readable, and a standard format that is extensible and scalable for future data is essential. In our design, we will be using the JSON format for transmission of the data.
 
+\subsection{Data Records}
+Data records are composed of fields and contains the data of single item in a table. In this Section, we will illustrate record for our database.
+
+\subsubsection{Record}
+
+
+\begin{table}
+\begin{center}
+\scalebox{0.75}{
+\begin{tabular}{ |c|c|c|c|c|c|c|c| } 
+\hline
+\textbf{id} & \textbf{name} & \textbf{description} & \textbf{monitorTime} & \textbf{rating} & \textbf{user} & \textbf{createdAt} & \textbf{updatedAt} \\
+\hline
+1 & Record \#1 & & 5963088 & 2.5 & 1 & 1554406256000 & 1554406256000  \\ 
+\hline
+\end{tabular}}
+\caption{Example entry in record table}
+\end{center}
+\end{table}
+
+
+\subsubsection{Sample}
+\begin{table}
+\begin{center}
+\scalebox{0.65}{
+\begin{tabular}{ |c|c|c|c|c| } 
+\hline
+\textbf{id} & \textbf{recordId} & \textbf{explicitTS} & \textbf{implicitTS} & \textbf{sample} \\
+\hline
+1 & 1 & & 5963088 & Time=0ms, deltaT=100, data=1906,1891,1884,1881,1876,1718,1690 \\ 
+\hline
+\end{tabular}}
+\caption{Example entry in record table}
+\end{center}
+\end{table}
+
+
+\subsubsection{Module}
+
+\begin{table}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{ |c|c|c| } 
+\hline
+\textbf{id} & \textbf{name} & \textbf{packageName} \\
+\hline
+1 & OSA Predicter & com.package.osa\_predicter \\ 
+\hline
+\end{tabular}}
+\caption{Example entry in record table}
+\end{center}
+\end{table}
+
+
+\subsubsection{User}
+
+\begin{table}
+\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{ |c|c|c|c|c|c|c| } 
+\hline
+\textbf{id} & \textbf{name} & \textbf{age} & \textbf{gender} & \textbf{height} & \textbf{weight} & \textbf{createdAt} \\
+\hline
+1 & Ola Nordmann & 50 & Male & 180 & 60 & -- \\ 
+\hline
+\end{tabular}}
+\caption{Example entry in record table}
+\end{center}
+\end{table}
 
 \subsection{Data Packets}
 Data packets are parcels of data that Nidra receives from external applications (e.g., sensor wrappers) or send to other application (e.g., sharing). From the design choice In the Section above, the format of all the desired data should be according to the JSON format.  In this Section.
@@ -36,6 +104,7 @@ Data packets are parcels of data that Nidra receives from external applications 
 
 In Section (ref), a proposal to the structure of exporting and importing data is discussed. Two of the components (\verb|Parse Formatted Content| and \verb|Format File|) uses JSON to either encode or decode the data. Listing 4.3 illustrate the content of the encoded data from our application to gain a broader understanding of how the data exchange in sharing operates. The attractive attributes from the encoding are the record (ref) and the samples.  A record is an object that contains meta-data with name, number of samples, recording time, creation date, and user information. Samples are an array of objects that contains data, timestamp, and identification to correlated record. 
 
+    
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
 {
     "record":{  

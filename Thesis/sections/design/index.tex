@@ -31,6 +31,7 @@ This chapter will give a detailed look at the design of Nidra...
 %\input{sections/design/sysreq.tex}
 
 \subsection{Resource Efficiency}
+The application is designed for the use on a mobile device; modern mobile devices are empowered with multi-core processors, a sufficient amount of ROM, and a variety of sensors. However, the battery capacity is restrictive and based on usage. The device may only last for one day before a charge, due to the size of the battery capacity \cite{androidbattery}. The average capacity of a mobile device is around 2000 mAh on budget devices and around 3000 mAh on high-end devices \cite{androidbatteryavg}. The application should be able to run at least 7 hours without any power supply. Also, the device should be capable of handling various sensor connections simultaneously. Therefore, the application should be designed to be resource efficient, by ... 
 
 \subsection{Security and Privacy}
 The proposed use of the application is to monitor the sleeping patterns of a user. The application manages and stores personal-data and health-related data about the user on the device. As a consequence, the application should incorporate the CIA triad, which stresses data confidentiality, integrity, and availability \cite{cia}. Any unauthorized access to the data, data leaks, and confidentiality should be appropriately managed on the device. Sharing the data across application or with other users should be granted with the consent from the user.  Besides, a mobile device can be connected to the Internet, which makes it vulnerable to attacks. Also, installed application on the device can manipulate the access to the data. Therefore, revising the security policy defined by Android \cite{androidsecurity} should be contemplated. 
@@ -42,7 +43,7 @@ Task analysis is a methodology to facilitate the design of complex systems. Hier
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth]{images/TA.png}
+    \includegraphics[scale=0.23]{images/TA.png}
     \caption{Recording}
     \label{fig:hta_overview}
 \end{figure}

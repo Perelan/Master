@@ -176,6 +176,65 @@
       \endverb
       \keyw{Human–computer interaction,Linearizability,Task analysis}
     \endentry
+    \entry{darktheme}{online}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{Dark theme}
+      \field{titleaddon}{Material Design}
+      \field{urlday}{4}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/Users/deep/Zotero/storage/KL42J68F/dark-theme.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://material.io/design/color/dark-theme.html#usage
+      \endverb
+      \verb{url}
+      \verb https://material.io/design/color/dark-theme.html#usage
+      \endverb
+    \endentry
+    \entry{android_storage}{online}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{Data and file storage overview}
+      \field{titleaddon}{Android Developers}
+      \field{urlday}{5}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/Users/deep/Zotero/storage/Q3JHVL4H/data-storage.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://developer.android.com/guide/topics/data/data-storage
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/guide/topics/data/data-storage
+      \endverb
+    \endentry
+    \entry{androidbatteryavg}{online}{}
+      \field{sortinit}{F}
+      \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
+      \field{labeltitlesource}{title}
+      \field{title}{Fact check: Is smartphone battery capacity growing or staying the same?}
+      \field{titleaddon}{Android Authority}
+      \field{urlday}{30}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.androidauthority.com/smartphone-battery-capacity-887305/
+      \endverb
+      \verb{url}
+      \verb https://www.androidauthority.com/smartphone-battery-capacity-887305/
+      \endverb
+    \endentry
     \entry{gjoby}{article}{}
       \name{author}{1}{}{%
         {{hash=fc84bd950e3913e65633794ac34988e0}{%
@@ -236,6 +295,91 @@
       \verb http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=031E83D200FD8770C255B48EA0C2E1C2?doi=10.1.1.29.5223&rep=rep1&type=pdf
       \endverb
     \endentry
+    \entry{androidbattery}{article}{}
+      \name{author}{3}{}{%
+        {{hash=5bc81763550921de73d97464b6009a52}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Huoran},
+           giveni={H\bibinitperiod}}}%
+        {{hash=79882c057d27c79425483ff1e0ff8f15}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Xuanzhe},
+           giveni={X\bibinitperiod}}}%
+        {{hash=2ca1c136fc4a8c4c39869eeaf7fade74}{%
+           family={Mei},
+           familyi={M\bibinitperiod},
+           given={Qiaozhu},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{f53cf023ab95f5a2d3df0529527f88f2}
+      \strng{fullhash}{f53cf023ab95f5a2d3df0529527f88f2}
+      \strng{bibnamehash}{f53cf023ab95f5a2d3df0529527f88f2}
+      \strng{authorbibnamehash}{f53cf023ab95f5a2d3df0529527f88f2}
+      \strng{authornamehash}{f53cf023ab95f5a2d3df0529527f88f2}
+      \strng{authorfullhash}{f53cf023ab95f5a2d3df0529527f88f2}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{Predicting Smartphone Battery Life based on Comprehensive and Real-time Usage Data}
+      \field{urlday}{30}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \field{pages}{2}
+      \range{pages}{1}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/322498404_Predicting_Smartphone_Battery_Life_based_on_Comprehensive_and_Real-time_Usage_Data?enrichId=rgreq-e436313754dba75c81d8a2c76af2e209-XXX&enrichSource=Y292ZXJQYWdlOzMyMjQ5ODQwNDtBUzo2NTE3NjQ5MzYyMTY1NzZAMTUzMjQwNDI3ODE0NQ%3D%3D&el=1_x_2&_esc=publicationCoverPdf
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/322498404_Predicting_Smartphone_Battery_Life_based_on_Comprehensive_and_Real-time_Usage_Data?enrichId=rgreq-e436313754dba75c81d8a2c76af2e209-XXX&enrichSource=Y292ZXJQYWdlOzMyMjQ5ODQwNDtBUzo2NTE3NjQ5MzYyMTY1NzZAMTUzMjQwNDI3ODE0NQ%3D%3D&el=1_x_2&_esc=publicationCoverPdf
+      \endverb
+    \endentry
+    \entry{flatfilerdbms}{article}{}
+      \name{author}{2}{}{%
+        {{hash=61e5c37e70627255ffe1f696faf9cd14}{%
+           family={Mapanga},
+           familyi={M\bibinitperiod},
+           given={Innocent},
+           giveni={I\bibinitperiod}}}%
+        {{hash=008f92fc1da01c68d73089e203d34fca}{%
+           family={Kadebu},
+           familyi={K\bibinitperiod},
+           given={Prudence},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{390e6075b1bc98be3b5f8d5a154a9451}
+      \strng{fullhash}{390e6075b1bc98be3b5f8d5a154a9451}
+      \strng{bibnamehash}{390e6075b1bc98be3b5f8d5a154a9451}
+      \strng{authorbibnamehash}{390e6075b1bc98be3b5f8d5a154a9451}
+      \strng{authornamehash}{390e6075b1bc98be3b5f8d5a154a9451}
+      \strng{authorfullhash}{390e6075b1bc98be3b5f8d5a154a9451}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Modern Communication Technologies And Research (IJMCTR)}
+      \field{month}{09}
+      \field{title}{Database Management Systems: A NoSQL Analysis}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{volume}{Volume-1}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \field{pages}{12\bibrangedash 18}
+      \range{pages}{7}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/258328266_Database_Management_Systems_A_NoSQL_Analysis
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/258328266_Database_Management_Systems_A_NoSQL_Analysis
+      \endverb
+    \endentry
     \entry{stakeholderdefined}{article}{}
       \name{author}{2}{}{%
         {{hash=bf768cbbf6a5a6922e4022e61fa270f8}{%
@@ -272,6 +416,27 @@
       \range{pages}{3}
       \verb{doi}
       \verb 10.1108/IJMPB-12-2016-0097
+      \endverb
+    \endentry
+    \entry{colorsystem}{online}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{The color system}
+      \field{titleaddon}{Material Design}
+      \field{urlday}{4}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:/Users/deep/Zotero/storage/2TNXN4RN/the-color-system.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://material.io/design/color/the-color-system.html#
+      \endverb
+      \verb{url}
+      \verb https://material.io/design/color/the-color-system.html#
       \endverb
     \endentry
     \entry{cesar}{book}{}
