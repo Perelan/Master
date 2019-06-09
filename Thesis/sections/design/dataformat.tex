@@ -1,14 +1,16 @@
 \subsection{Data Formats}
 
-The data format is a part of the process of serialization, which enables data storage in a file, transmittal over the Internet, and reconstruction in a different environment. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats; however, JavaScript Object Notation (JSON) and eXtensible Markup Language (XML) are the two most common data serialization formats. In this Section, we will discuss these formats. In the end, we will compare these formats and chose a format that meets the criteria of being compact, human-readable, and universal. 
+The data format is a part of the process of serialization, which enables data storage in a file, transmittal over the Internet, and reconstruction in a different environment. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats; however, JavaScript Object Notation (JSON) and eXtensible Markup Language (XML) are the two most common data serialization formats. In this Section, we will discuss these formats. In the end, we will compare them and choose the format that meets the criteria of being compact, human-readable, and universal. 
 
 \subsubsection{JSON}
 JSON or JavaScript Object Notation is a light-weight and human-readable format that is commonly used for interchanging data on the web. The format is a text-based solution where the data structure is built on two structures: a collection of name-value pairs (known as objects) and ordered list of values (known as arrays). The JSON format is language-independent and the data structure universally recognized \cite{jsonorg, jsonvxml}. However, it is limited to a few predefined data types (i.e., string, number, boolean, object, array, and null), and extending the data type has to be done with the preliminary types. 
 
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
 {
-    "firstname": "Ola"
-    "lastname": "Nordmann"
+    "user": {
+        "firstname": "Ola"
+        "lastname": "Nordmann"
+    }
 }
 \end{lstlisting}
 
@@ -23,7 +25,7 @@ XML or eXtensible Markup Language is a simple and flexible format derived from S
 \end{lstlisting}
 
 \subsubsection{Comparing}
-We will compare JSON and XML features and performance with the study conducted by Saurabh and D’Souza \cite{jsonvxml}. There are apparent differences in the two data formats which affect the overall readability, extensibility, bandwidth performance, and ease of mapping. XML documents are easy to read, while JSON is obscure due to the parenthesis delimiters. XML allows for extended data types, while JSON is limited to a few data types. XML takes more bandwidth due to the metadata overhead, while JSON data is compact and use less amount of bandwidth. XML is documented oriented, making it challenging to map objects in the OOP paradigm, while JSON is data oriented and is closer to the graph structure of objects in the OOP paradigm.
+We will compare JSON and XML features and performance with the study conducted by Saurabh and D’Souza \cite{jsonvxml}. There are apparent differences in the two data formats which affect the overall readability, extensibility, bandwidth performance, and ease of mapping. XML documents are easy to read, while JSON is obscure due to the parenthesis delimiters. XML allows for extended data types, while JSON is limited to a few data types. XML takes more bandwidth due to the metadata overhead, while JSON data is compact and use less amount of bandwidth.
 
 Moreover, a few benchmarks were conducted to measure memory footprint and parsing runtime when serializing and deserializing JSON and XML data. From the conclusion,  in terms of memory footprint and parsing runtime, JSON performances better than XML but at the cost of readability and flexibility. While these format structures are applicable for transmitting data, choosing a format that is compact, human-readable, and a standard format that is extensible and scalable for future data is essential. In our design, we will be using the JSON format for transmission of the data.
 

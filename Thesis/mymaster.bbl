@@ -235,6 +235,87 @@
       \verb https://www.androidauthority.com/smartphone-battery-capacity-887305/
       \endverb
     \endentry
+    \entry{machinelearning}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=b9e634285f36793b9bdf8df24fbe38bc}{%
+           family={{Fu}},
+           familyi={F\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=7969b27c3036c48b4c828e3e7465cebb}{%
+           family={{Zhang}},
+           familyi={Z\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=9c826062f026ddcb561818c9e2a87333}{%
+           family={{Li}},
+           familyi={L\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{aee56eada56b9e40c9260e0a96ea6827}
+      \strng{fullhash}{aee56eada56b9e40c9260e0a96ea6827}
+      \strng{bibnamehash}{aee56eada56b9e40c9260e0a96ea6827}
+      \strng{authorbibnamehash}{aee56eada56b9e40c9260e0a96ea6827}
+      \strng{authornamehash}{aee56eada56b9e40c9260e0a96ea6827}
+      \strng{authorfullhash}{aee56eada56b9e40c9260e0a96ea6827}
+      \field{sortinit}{F}
+      \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2016 31st Youth Academic Annual Conference of Chinese Association of Automation (YAC)}
+      \field{month}{11}
+      \field{title}{Using LSTM and GRU neural network methods for traffic flow prediction}
+      \field{urlday}{7}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{year}{2016}
+      \field{urldateera}{ce}
+      \field{pages}{324\bibrangedash 328}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/YAC.2016.7804912
+      \endverb
+      \keyw{autoregressive moving average processes;neural nets;telecommunication computing;telecommunication traffic;LSTM neural network methods;GRU neural network methods;traffic flow prediction;intelligent transportation system;ARIMA;linear models;traffic flow;deep-learning-based methods;long short term memory;gated recurrent units;recurrent neural network;auto regressive integrated moving average;ARIMA model;Decision support systems;Economic indicators;Predictive models;Integrated circuits;Conferences;traffic flow prediction;LSTM;GRU;ARIMA}
+    \endentry
+    \entry{datarepresentation}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9a3fba873a633c33a937df5275f1a59b}{%
+           family={Funkhouser},
+           familyi={F\bibinitperiod},
+           given={H\bibnamedelima Gray},
+           giveni={H\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Saint Catherine Press Ltd.}%
+      }
+      \strng{namehash}{9a3fba873a633c33a937df5275f1a59b}
+      \strng{fullhash}{9a3fba873a633c33a937df5275f1a59b}
+      \strng{bibnamehash}{9a3fba873a633c33a937df5275f1a59b}
+      \strng{authorbibnamehash}{9a3fba873a633c33a937df5275f1a59b}
+      \strng{authornamehash}{9a3fba873a633c33a937df5275f1a59b}
+      \strng{authorfullhash}{9a3fba873a633c33a937df5275f1a59b}
+      \field{sortinit}{F}
+      \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Osiris}
+      \field{title}{Historical development of the graphical representation of statistical data}
+      \field{urlday}{7}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{volume}{3}
+      \field{year}{1937}
+      \field{urldateera}{ce}
+      \field{pages}{269\bibrangedash 404}
+      \range{pages}{136}
+      \verb{urlraw}
+      \verb https://www.journals.uchicago.edu/doi/pdfplus/10.1086/368480
+      \endverb
+      \verb{url}
+      \verb https://www.journals.uchicago.edu/doi/pdfplus/10.1086/368480
+      \endverb
+    \endentry
     \entry{gjoby}{article}{}
       \name{author}{1}{}{%
         {{hash=fc84bd950e3913e65633794ac34988e0}{%
@@ -333,10 +414,10 @@
       \field{pages}{2}
       \range{pages}{1}
       \verb{urlraw}
-      \verb https://www.researchgate.net/publication/322498404_Predicting_Smartphone_Battery_Life_based_on_Comprehensive_and_Real-time_Usage_Data?enrichId=rgreq-e436313754dba75c81d8a2c76af2e209-XXX&enrichSource=Y292ZXJQYWdlOzMyMjQ5ODQwNDtBUzo2NTE3NjQ5MzYyMTY1NzZAMTUzMjQwNDI3ODE0NQ%3D%3D&el=1_x_2&_esc=publicationCoverPdf
+      \verb https://www.researchgate.net/publication/322498404_Predicting_Smartphone_Battery_Life_based_on_Comprehensive_and_Real-time_Usage_Data
       \endverb
       \verb{url}
-      \verb https://www.researchgate.net/publication/322498404_Predicting_Smartphone_Battery_Life_based_on_Comprehensive_and_Real-time_Usage_Data?enrichId=rgreq-e436313754dba75c81d8a2c76af2e209-XXX&enrichSource=Y292ZXJQYWdlOzMyMjQ5ODQwNDtBUzo2NTE3NjQ5MzYyMTY1NzZAMTUzMjQwNDI3ODE0NQ%3D%3D&el=1_x_2&_esc=publicationCoverPdf
+      \verb https://www.researchgate.net/publication/322498404_Predicting_Smartphone_Battery_Life_based_on_Comprehensive_and_Real-time_Usage_Data
       \endverb
     \endentry
     \entry{flatfilerdbms}{article}{}
