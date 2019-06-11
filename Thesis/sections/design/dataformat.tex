@@ -29,10 +29,29 @@ We will compare JSON and XML features and performance with the study conducted b
 
 Moreover, a few benchmarks were conducted to measure memory footprint and parsing runtime when serializing and deserializing JSON and XML data. From the conclusion,  in terms of memory footprint and parsing runtime, JSON performances better than XML but at the cost of readability and flexibility. While these format structures are applicable for transmitting data, choosing a format that is compact, human-readable, and a standard format that is extensible and scalable for future data is essential. In our design, we will be using the JSON format for transmission of the data.
 
-\subsection{Data Records}
-Data records are composed of fields and contains the data of single item in a table. In this Section, we will illustrate record for our database.
+\subsection{Data Tables}
+Data tables are a collection of structured and related data in a tabular format in a database. Subsection about Storage introduces four data tables in the application.  In Figure \ref{fig:dataentries}, the relation between these tables are shown. Record and sample are separated in order to reduce data redundancy and improve data integrity; however, samples have a reference to a record so they can be associated with each other. A user can have many records; however, a record can only have one user. The module table has no relation to the other tables in the database. This Subsection will demonstrate the properties of each table in Nidra, with an illustration of a record inside each table.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/DataEntries.png}
+    \caption{Modules}
+    \label{fig:dataentries}
+\end{figure}
 
 \subsubsection{Record}
+
+A record is a table in the database that stores metadata related to the recording session. In Table 4.1, an illustration of the structure of a record is shown, with an entry of dummy data. In Nidra, the fields in the table for a record describe the data that is stored, which is separated into:
+\begin{itemize}
+	\item \verb|ID|: Unique identification of a record, also a primary key for the entry.
+	\item \verb|Name|: A name of the record to easily recognize the recording.
+	\item \verb|Description|: A summary over the recording session, used to describe briefly how the recording session felt (e.g., any abnormalities during the sleep).
+	\item \verb|MonitorTime|: The recording session duration in milliseconds.
+	\item \verb|Rating|: Giving a rating on how the sleeping session felt, in a range between 0-5. 
+	\item \verb|User|: Identification of the user, also a foreign key to the user table.
+	\item \verb|CreatedAt|: Date of creation of the recording in milliseconds (since January 1, 1970, 00:00:00 GMT).
+	\item \verb|UpdatedAt|: Date of update of the recording in milliseconds (since January 1, 1970, 00:00:00 GMT).
+\end{itemize}
 
 
 \begin{table}
@@ -51,6 +70,15 @@ Data records are composed of fields and contains the data of single item in a ta
 
 
 \subsubsection{Sample}
+A sample is a single sensor reading containing data and metadata related to the recording session. Samples are stored separated from a record; however, they are linked with a field in the table.  In Table 4.1, an illustration of the structure of a sample is shown, with an entry of dummy data. In Nidra, the fields in the table for a sample describe the data that is stored accordingly to the data provided by Flow SweetZpot (ref), which are separated into:
+\begin{itemize}
+	\item \verb|ID|: Unique identification of a sample, also a primary key for the entry.
+	\item \verb|RecordID|: An identification to its correlated record, also a foreign key. 
+	\item \verb|ExplicitTS|: Timestamp of sample arrival based on the time in the sensor. 
+	\item \verb|ImplicitTS|: Timestamp of sample arrival based on the time on the device. 
+	\item \verb|Sample|: Sensor reading contains metadata and data according to Flow Sweetzpot. The sensor aggregates seven samples in a single sensor reading. 
+\end{itemize}
+
 \begin{table}
 \begin{center}
 \scalebox{0.65}{
@@ -67,6 +95,12 @@ Data records are composed of fields and contains the data of single item in a ta
 
 
 \subsubsection{Module}
+A module is a table in the database that stores all modules installed by the user in the application. In Table 4.3, an illustration of the structure of a module is shown, with an entry of dummy data. In Nidra, the fields in the table contain the name of the module and the reference to the module and can be summarized as: 
+\begin{itemize}
+    \item \verb|ID|: Unique identification of a module, also a primary key for the entry.
+    \item \verb|Name|: The name of the module-application.
+    \item \verb|PackageName|: The package name of the module-application, such that it can be launched from Nidra. 
+\end{itemize}
 
 \begin{table}
 \begin{center}
@@ -84,6 +118,15 @@ Data records are composed of fields and contains the data of single item in a ta
 
 
 \subsubsection{User}
+Nidra considers the user of the application as the patient, hence storing biometrical data is part of the application to enrich the record data. In Table 4.4, an illustration of the structure of a user is shown, with an entry of dummy data. In Nidra, the fields in the table for a user contains biometrical data related to the user describe the data which are:
+\begin{itemize}
+    \item \verb|ID|: Unique identification of a module, also a primary key for the entry.
+    \item \verb|Name|: The name of the module-application.
+    \item \verb|Age|: Age of the user.
+    \item \verb|Weight|: Weight of the user in kilograms.
+    \item \verb|Height|: Height of the user in centimeters.
+    \item \verb|CreatedAt|: Date of creation of the user in milliseconds (since January 1, 1970, 00:00:00 GMT).
+\end{itemize}
 
 \begin{table}
 \begin{center}

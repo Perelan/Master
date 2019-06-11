@@ -486,6 +486,9 @@ INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/design/datafor
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/vf/adobe/palatino/pplr8t.vf
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/DataEntries.png
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/DataEntries.png
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/DataEntries.png
 OUTPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/index.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/index.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/index.tex

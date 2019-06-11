@@ -4,7 +4,7 @@ The structure of a recording is restrictive in terms of arranging the components
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.2]{images/Recording.png}
+    \includegraphics[scale=0.5]{images/Recording.png}
     \caption{Recording}
     \label{fig:hta_recording}
 \end{figure}
@@ -37,7 +37,7 @@ Connectivity state is a component that monitors for unexpected sensor disconnect
 
 \subsection{Sharing}
 
-Sharing is separable into two concerns: export and import. The scope of exporting in Nidra is to select desired records, format and bundle the records into a transmittable file, and dispatching the bundle over a media (e.g., mail). The scope of importing is to locate the file on the device, parse the content based on the format, and store it on the device. In Figure \ref{fig:hta_sharing}, the structure of sharing is presented with components and their dependencies: 
+Sharing is separable into two concerns: export and import. The scope of exporting in Nidra is to select desired records, format and bundle the records into a transmittable file, and distributing the bundle over a media (e.g., mail). The scope of importing is to locate the file on the device, parse the content based on the format, and store it on the device. In Figure \ref{fig:hta_sharing}, the structure of sharing is presented with components and their dependencies: 
 
 \begin{figure}
     \centering
@@ -55,11 +55,11 @@ Sharing is separable into two concerns: export and import. The scope of exportin
     \item[2.2.1.1] \verb|All Records|: Export all of the records on the device.
     \item[2.2.1.2] \verb|Select Record|: Pick one specific record to export. 
     \item[2.2.2] \verb|Format File|: When a preferred format for the records is selected, bundling the data into a formatted file (ref) for transmittal can be done. It is essential to identify the name of the file uniquely to prevent duplicates and overrides of data. For instance, identifying the name of the file with the device identification appended with the time of exporting. 
-    \item[2.2.3] \verb|Dispatch|: Send the file across application (read more below).
+    \item[2.2.3] \verb|Distribute|: Send the file across application (read more below).
 \end{itemize}
 
-\subsubsection{Dispatching Component}
-The dispatching component uses the formatted file and transfers it across applications. There are two distinctive methods to perform this task which is efficient and practical: 1) implement an interface with recipients to share data with, by establish a web-server with logic to handle users and sharing data with the desired recipient. Also, implementing an interface to retrieve the file within the application;  and 2) using the interface provided by Android to share files. 
+\subsubsection{Distribute Component}
+The distribute component uses the formatted file and transfers it across applications. There are two distinctive methods to perform this task which is efficient and practical: 1) implement an interface with recipients to share data with, by establish a web-server with logic to handle users and sharing data with the desired recipient. Also, implementing an interface to retrieve the file within the application;  and 2) using the interface provided by Android to share files. 
 
 While the first option might be favorable in terms of practicality, this solution introduces additional concerns (e.g., the privacy matters of storing user data on a server) which is out of the scope for this project. For this reason, using the interface provided by Android is a reasonable solution. The user of the application can utilize the Android interface for sharing files over installed applications; however, e-mail is a flexible media to transfer the file, and the user can specify the recipients accordingly.  
 
@@ -152,17 +152,17 @@ While a flat file database is applicable to store small and unchangeable data, i
 Presentation facilitates the user interface of the application, in terms of visualizing the functionality of the application to the user. The user interface derives from the functionality (concerns discussed) in the application, and research on the topic. In Figure \ref{fig:hta_presentation}, the structure of storage is presented with components and their dependencies: 
 
 \begin{itemize}
-    \item[6.1] \verb|UI|: 
-    \item[6.1.1] \verb|Views|: Are the screen with the content of the current screen. The view incorporates the color palette and some views have the navigation displayed. 
-    \item[6.1.2] \verb|Navigation|: The navigation is a menu with options to change the view. 
+    \item[6.1] \verb|UI|: The user interface where interaction between users and the application occurs. 
+    \item[6.1.1] \verb|Layout|: Are the screen with the content of the current screen. The layout incorporates the color palette and some views have the navigation displayed. 
+    \item[6.1.2] \verb|Navigation|: The navigation is a menu with options to change the layout. 
     \item[6.1.3] \verb|Color Palette|: A color selection that persist throughout the application (read more below).
     \item[6.1.1.1] \verb|Settings|: Is s screen with user details, permissions and credits, with options to modify permission and user details.
     \item[6.1.1.2] \verb|Feed|: Is a list of all records for the user, displayed with details specific to the record to make it distinguishable and easily recognizable. 
-    \item[6.1.1.3] \verb|Analytics|: 
-    \item[6.1.1.4] \verb|Recording|:
-    \item[6.1.1.5] \verb|Onboarding|: 
-    \item[6.1.1.6] \verb|Modules|: 
-    \item[6.1.2] \verb|Feedback|:
+    \item[6.1.1.3] \verb|Analytics|: A interactive time-series graph for a single record. 
+    \item[6.1.1.4] \verb|Recording|: The process of establishing a recording session, in addition to showing the results after a recording session has ended. 
+    \item[6.1.1.5] \verb|Onboarding|: The initial screen displayed to the user, where the user can supply the application with their biometrical data. 
+    \item[6.1.1.6] \verb|Modules|: A list of all installed modules, also an option to add more modules. 
+    \item[6.1.4] \verb|Feedback & Interactions|: Each layout has different feedback and interaction, which should be handled appropriately. 
 \end{itemize}
 
 \subsubsection{Color Palette Component}
