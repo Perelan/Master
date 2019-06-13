@@ -1,42 +1,78 @@
 \chapter{Implementation}
 
 \section{Architecture (MVVM)}
-\section{IPC?}
+\section{Process Structure and IPC}
 \section{Permissions \& Android Manifest}
 
 \section{Implementation of Concerns}
 
 \subsection{Recording}
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{images/Recording_ImpA.png}
-    \caption{Implementation of recording functionality (A)}
-    \label{fig:impl_recordingA}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.6]{images/Recording_ImpA.png}
+%    \caption{Implementation of recording functionality (A)}
+%    \label{fig:impl_recordingA}
+%\end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{images/Recording_ImpB.png}
-    \caption{Implementation of recording functionality (B)}
-    \label{fig:impl_recordingB}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.6]{images/Recording_ImpB.png}
+%    \caption{Implementation of recording functionality (B)}
+%    \label{fig:impl_recordingB}
+%\end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{images/Recording_ImpC.png}
-    \caption{Implementation of recording functionality (C)}
-    \label{fig:impl_recordingC}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.6]{images/Recording_ImpC.png}
+%    \caption{Implementation of recording functionality (C)}
+%    \label{fig:impl_recordingC}
+%\end{figure}
 
 
 
 \subsection{Sharing}
+
+The functionality of sharing is separated across components, to make it easier to comprehend. The actions for sharing are separated into A) exporting one or all records; and B) import a record from the device. Before a user can take these actions, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside our adapter (\verb|Feed Adapter|). The adapter contains all the interactions and the event handling (i.e., button event listener for exporting) for a single record. In this Subsection, we will take a look into the steps that are taken to enable the actions.
+
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{images/Sharing_ImpA.png}
-    \caption{Implementation of sharing functionality (A)}
+    \caption{Implementation of sharing functionality (A): Exporting on or all Records}
     \label{fig:impl_sharingA}
 \end{figure}
+
+\subsubsection{Action A: Exporting on or all Records}
+In Figure \ref{fig:impl_sharingA}, an illustration of the steps to export one single recording is shown. However, the \verb|Feed Fragment| has an option to export all record; therefore, by disregarding the first step (A.1), the same structure applies to export all records. The steps can be narrowed down to: 
+
+\begin{itemize}
+    \item[A.1] Upon an event for exporting a selected record in \verb|Feed Adapter|, the record information is sent to the \verb|Feed Fragment| through the callback reference (\verb|onRecordAnalyticsClick|) between these components. The record information will be used to determine the corresponding samples for the record.
+    \item[A.2] The \verb|Feed Fragment| delegates record information to the \verb|export| method inside of the \verb|Export| class. The class is responsible for enabling exportation. 
+    \item[A.3] An operation to retrieve all samples related to the record with the use of the \verb|SampleViewModel| is done. 
+    \item[A.4] The \verb|export| method retrieves all of the samples related to the record. Next, the record and the samples are encoded into an exportable JSON format (Ref: Data Format). To enable the sharing interface provided by Android, the content has to be stored on the device. Thus, the encoded data is written into a file on the device, with a filename of \verb|record_(current date).json|, and the next component uses the reference to the file location. 
+    \item[A.5] The encoded file is retrieved with the use of \verb|FileProvider| (facilitates secure sharing of files [ref]). The code for this step are
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+static void shareFileIntent(Activity a, File file) {
+
+    Uri fileUri = FileProvider.getUriForFile(a.getApplicationContext(), a.getApplicationContext().getPackageName() + ".provider", file);
+
+    Intent iShareFile = new Intent(Intent.ACTION_SEND);
+    iShareFile.setType("text/*");
+    iShareFile.putExtra(
+        Intent.EXTRA_SUBJECT, "Share Records");
+    iShareFile.putExtra(Intent.EXTRA_STREAM, fileUri);
+    ...
+
+    a.startActivity(
+        Intent.createChooser(iShareFile, "Share Via"));
+}
+
+\end{lstlisting}
+
+    \item[A.6] The user is displayed with a popup interface with several options to share the file over a media. An illustration of the layout can be found in Section Representation. 
+
+
+\end{itemize}
+
 
 \begin{figure}
     \centering
@@ -44,6 +80,27 @@
     \caption{Implementation of sharing functionality (B)}
     \label{fig:impl_sharingB}
 \end{figure}
+
+\subsubsection{Action B: Import a Record from the Device}
+In Figure \ref{fig:impl_sharingB}, an illustration of importing a record from the device is shown. The steps can be narrowed down to:
+
+\begin{itemize}
+    \item[B.1] The user requests to view the import record interface. The interface is provided by Android, and allows the user to select particular kind of data on the device (ref). The code for this action is:
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+private void importRecords() {
+    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+    intent.setType("*/*");
+    startActivityForResult(intent, 1);
+}
+
+\end{lstlisting}
+    \item[B.2] Once the user has selected the desired file, the method \verb|onActivityResult| inside of \verb|Feed Fragment| is called, and location of the selected file can be located. 
+    \item[B.3] The file location is an obscured path to the file on the device; thus, parsing the path with the use of \verb|Cursor| method has to be done. After the absolute path is found, the data is decoded accordingly to the data format, and the records are sent back to \verb|Feed Fragment|.
+    \item[B.4] The records and corresponding samples are inserted into the users database. 
+\end{itemize}
+
+
+
 
 
 \subsection{Modules}
@@ -66,26 +123,26 @@ In Figure \ref{fig:impl_modulesA}, the method calls and the interactions between
     \item[C.2]     
 \end{itemize}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{images/Module_ImpA.png}
-    \caption{Implementation of module functionality(A)}
-    \label{fig:impl_modulesA}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.6]{images/Module_ImpA.png}
+%    \caption{Implementation of module functionality(A)}
+%    \label{fig:impl_modulesA}
+%\end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{images/Module_ImpB.png}
-    \caption{Implementation of module functionality(B)}
-    \label{fig:impl_modulesB}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.6]{images/Module_ImpB.png}
+%    \caption{Implementation of module functionality(B)}
+%    \label{fig:impl_modulesB}
+%\end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{images/Module_ImpC.png}
-    \caption{Implementation of module functionality(C)}
-    \label{fig:impl_modulesC}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.6]{images/Module_ImpC.png}
+%    \caption{Implementation of module functionality(C)}
+%    \label{fig:impl_modulesC}
+%\end{figure}
 
 \subsubsection{Data Exchange Implementation}
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
@@ -107,21 +164,21 @@ public void onLaunchModuleClick(String packageName) {
 \end{lstlisting}
 
 \subsection{Analytics}
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{images/Anal_Imp.png}
-    \caption{Implementation of analytics functionality}
-    \label{fig:impl_analytics}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.6]{images/Anal_Imp.png}
+%    \caption{Implementation of analytics functionality}
+%    \label{fig:impl_analytics}
+%\end{figure}
 
 
 \subsection{Storage}
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.55]{images/Storage_Imp.png}
-    \caption{Entity Relationship Diagram}
-    \label{fig:impl_modules}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.55]{images/Storage_Imp.png}
+%    \caption{Entity Relationship Diagram}
+%    \label{fig:impl_modules}
+%\end{figure}
 
 
 \subsection{Presentation}

@@ -149,6 +149,7 @@ Data packets are parcels of data that Nidra receives from external applications 
 
 In Section (ref), a proposal to the structure of exporting and importing data is discussed. Two of the components (\verb|Parse Formatted Content| and \verb|Format File|) uses JSON to either encode or decode the data. Listing 4.3 illustrate the content of the encoded data from our application to gain a broader understanding of how the data exchange in sharing operates. The attractive attributes from the encoding are the record (ref) and the samples.  A record is an object that contains meta-data with name, number of samples, recording time, creation date, and user information. Samples are an array of objects that contains data, timestamp, and identification to correlated record. 
 
+\begin{figure}
     
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
 {
@@ -181,6 +182,7 @@ In Section (ref), a proposal to the structure of exporting and importing data is
     ]
 }
 \end{lstlisting}
+\end{figure}
 
 \subsubsection{Sensor Data}
 Sensor data is data acquisition through the Data Dispatching (section background). The data format discussed in (section background). 

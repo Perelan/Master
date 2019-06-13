@@ -550,27 +550,6 @@
       \verb http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html
       \endverb
     \endentry
-    \entry{viet}{article}{}
-      \name{author}{1}{}{%
-        {{hash=46a2b74f08ca8df86dd7820ffc4fc886}{%
-           family={Tran},
-           familyi={T\bibinitperiod},
-           given={Viet\bibnamedelima Thi},
-           giveni={V\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-      }
-      \strng{namehash}{46a2b74f08ca8df86dd7820ffc4fc886}
-      \strng{fullhash}{46a2b74f08ca8df86dd7820ffc4fc886}
-      \strng{bibnamehash}{46a2b74f08ca8df86dd7820ffc4fc886}
-      \strng{authorbibnamehash}{46a2b74f08ca8df86dd7820ffc4fc886}
-      \strng{authornamehash}{46a2b74f08ca8df86dd7820ffc4fc886}
-      \strng{authorfullhash}{46a2b74f08ca8df86dd7820ffc4fc886}
-      \field{sortinit}{T}
-      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{An open database model for storing Obstructie Sleep Apnea data}
-      \field{year}{2017}
-    \endentry
     \entry{cia}{article}{}
       \name{author}{4}{}{%
         {{hash=7055460aafd1f027e0874314c0fa1faa}{%
