@@ -42,8 +42,8 @@
 \BOOKMARK [2][-]{subsection.4.4.2}{Data Tables}{section.4.4}% 42
 \BOOKMARK [2][-]{subsection.4.4.3}{Data Packets}{section.4.4}% 43
 \BOOKMARK [0][-]{chapter.5}{Implementation}{part.2}% 44
-\BOOKMARK [1][-]{section.5.1}{Architecture \(MVVM\)}{chapter.5}% 45
-\BOOKMARK [1][-]{section.5.2}{Process Structure and IPC}{chapter.5}% 46
+\BOOKMARK [1][-]{section.5.1}{Architecture Pattern \046 Project Structure}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.2}{Process Structure \046 Inter-Process Communication}{chapter.5}% 46
 \BOOKMARK [1][-]{section.5.3}{Permissions \046 Android Manifest}{chapter.5}% 47
 \BOOKMARK [1][-]{section.5.4}{Implementation of Concerns}{chapter.5}% 48
 \BOOKMARK [2][-]{subsection.5.4.1}{Recording}{section.5.4}% 49

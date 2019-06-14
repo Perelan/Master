@@ -119,9 +119,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Implementation}{39}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Architecture (MVVM)}{39}{section.5.1}
+\contentsline {section}{\numberline {5.1}Architecture Pattern \& Project Structure}{39}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Process Structure and IPC}{39}{section.5.2}
+\contentsline {section}{\numberline {5.2}Process Structure \& Inter-Process Communication}{39}{section.5.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.3}Permissions \& Android Manifest}{39}{section.5.3}
 \defcounter {refsection}{0}\relax 
@@ -131,28 +131,36 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.4.2}Sharing}{39}{subsection.5.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.4.2.1}Action A: Exporting on or all Records}{39}{subsubsection.5.4.2.1}
+\contentsline {subsubsection}{\numberline {5.4.2.1}Action A: Exporting on or all Records}{40}{subsubsection.5.4.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.4.2.2}Action B: Import a Record from the Device}{41}{subsubsection.5.4.2.2}
+\contentsline {subsubsection}{\numberline {5.4.2.2}Action B: Import a Record from the Device}{42}{subsubsection.5.4.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.4.2.3}Improvements}{42}{subsubsection.5.4.2.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.4.3}Modules}{42}{subsection.5.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.4}Analytics}{43}{subsection.5.4.4}
+\contentsline {subsubsection}{\numberline {5.4.3.1}Action A: Install a Module}{43}{subsubsection.5.4.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.4.4.1}Action A: Display a Graph for a Single Record}{43}{subsubsection.5.4.4.1}
+\contentsline {subsubsection}{\numberline {5.4.3.2}Action B: Launch a Module}{44}{subsubsection.5.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.5}Storage}{44}{subsection.5.4.5}
+\contentsline {subsubsection}{\numberline {5.4.3.3}Improvements}{45}{subsubsection.5.4.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.6}Presentation}{44}{subsection.5.4.6}
+\contentsline {subsection}{\numberline {5.4.4}Analytics}{46}{subsection.5.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{45}{part.3}
+\contentsline {subsubsection}{\numberline {5.4.4.1}Action A: Display a Graph for a Single Record}{46}{subsubsection.5.4.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Experiments}{47}{chapter.6}
+\contentsline {subsection}{\numberline {5.4.5}Storage}{46}{subsection.5.4.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Future Work}{49}{chapter.7}
+\contentsline {subsection}{\numberline {5.4.6}Presentation}{46}{subsection.5.4.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Conclusion}{51}{chapter.8}
+\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{47}{part.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{Appendix}{52}{chapter.8}
+\contentsline {chapter}{\numberline {6}Experiments}{49}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Power Data}{55}{appendix.A}
+\contentsline {chapter}{\numberline {7}Future Work}{51}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}Conclusion}{53}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{Appendix}{54}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Power Data}{57}{appendix.A}
