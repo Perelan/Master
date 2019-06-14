@@ -8,5 +8,3 @@
 \contentsline {lstlisting}{\numberline {5.1}My Caption}{40}{lstlisting.5.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.2}My Caption}{42}{lstlisting.5.2}
-\defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.3}My Caption}{43}{lstlisting.5.3}

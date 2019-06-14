@@ -96,10 +96,8 @@ private void importRecords() {
 \end{lstlisting}
     \item[B.2] Once the user has selected the desired file, the method \verb|onActivityResult| inside of \verb|Feed Fragment| is called, and location of the selected file can be located. 
     \item[B.3] The file location is an obscured path to the file on the device; thus, parsing the path with the use of \verb|Cursor| method has to be done. After the absolute path is found, the data is decoded accordingly to the data format, and the records are sent back to \verb|Feed Fragment|.
-    \item[B.4] The records and corresponding samples are inserted into the users database. 
+    \item[B.4] The necessary record information and the samples are extracted from the decoded data, and are inserted into the users database. 
 \end{itemize}
-
-
 
 
 
@@ -144,32 +142,48 @@ In Figure \ref{fig:impl_modulesA}, the method calls and the interactions between
 %    \label{fig:impl_modulesC}
 %\end{figure}
 
-\subsubsection{Data Exchange Implementation}
-\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
-public void onLaunchModuleClick(String packageName) {
-    Intent moduleApplication = context.getPackageManager().getLaunchIntentForPackage(packageName);
-    
-    if (moduleApplication == null) return;
+%\subsubsection{Data Exchange Implementation}
+%\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+%public void onLaunchModuleClick(String packageName) {
+%    Intent moduleApplication = context.getPackageManager().getLaunchIntentForPackage(packageName);
+%    
+%    if (moduleApplication == null) return;
+%
+%    String data = formatAllRecordsToJSON();
+%
+%    Bundle bundle = new Bundle();
+%    bundle.putString("data", data);
+%
+%    moduleApplication.putExtras(bundle);
+%
+%    startActivity(moduleApplication);
+%}
 
-    String data = formatAllRecordsToJSON();
+%\end{lstlisting}
 
-    Bundle bundle = new Bundle();
-    bundle.putString("data", data);
-
-    moduleApplication.putExtras(bundle);
-
-    startActivity(moduleApplication);
-}
-
-\end{lstlisting}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/Anal_Imp.png}
+    \caption{Implementation of analytics functionality (A): Display a Graph for a Single Record}
+    \label{fig:impl_analytics}
+\end{figure}
 
 \subsection{Analytics}
-%\begin{figure}
-%    \centering
-%    \includegraphics[scale=0.6]{images/Anal_Imp.png}
-%    \caption{Implementation of analytics functionality}
-%    \label{fig:impl_analytics}
-%\end{figure}
+In Nidra, the analytics part of the implementation is limited to a time-series graph for a single record. However, there are possibilities of extending the \verb|Analytics Fragment| with other graphs based on the current structure. The current action for analytics is A) display a graph for a single record to the user. Similar to sharing, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside the adapter (\verb|Feed Adapter|). The adapter contains all the interactions and the event handling (i.e., button event listener for analytics) for a single record. In this Subsection, we will take a look into the steps that are taken to enable the action.
+
+\subsubsection{Action A: Display a Graph for a Single Record}
+In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown. The steps can be narrowed down to:
+
+\begin{itemize}
+    \item[A.1] Upon an event for analytics on a selected record in \verb|Feed Adapter|, the record information is sent to the \verb|Feed Fragment| through the callback reference (\verb|onRecordAnalyticsClick|) between these components. The record information will be used to determine the corresponding samples for the record.
+    \item[A.2] A new instance of the \verb|Analytics Fragment| is created, and an transition from the \verb|Feed Fragment| to the \verb|Analytics Fragment| is made. Alongside, the record information is transmitted.
+    \item[A.3] An operation to retrieve all samples related to the record with the use of the \verb|SampleViewModel| is done. 
+    \item[A.4] The \verb|Analytics Fragment| retrieves all of the samples related to the record. The samples has to be structured according to the graph library to display an interactive time-series graph. (GraphView (ref)).
+    \item[A.5] Each sample has to be extracted from the sample-data, acccordingly to the sensor data structure.
+    \item[A.6] The sample value is returned, and inserted into an array over datapoints used in the graph. 
+    \item[A.7] The use is presented with a graph, which is interactable. The Y-axis has the sample value on given time (in HH:MM:SS) on the X-axis. The graph library enables interactions (e.g., zooming and scrolling) the user can do, to gain a better understanding of the recording. 
+\end{itemize}
+
 
 
 \subsection{Storage}
