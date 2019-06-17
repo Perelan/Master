@@ -211,22 +211,34 @@ In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown.
 
 
 \subsection{Storage}
-Storage facilites persistant data which remain available after application termination. In Nidra, there are four individual data entities (e.g., record, sample, module, and user) that are stored in a database. The access for each
-
-
 \begin{figure}
     \centering
-    \includegraphics[scale=0.55]{images/Storage_Imp.png}
+    \includegraphics[scale=0.60]{images/Storage_Imp.pdf}
     \caption{Entity Relationship Diagram}
-    \label{fig:impl_modules}
+    \label{fig:impl_storage}
 \end{figure}
+
+
+Storage facilities persistent data which remain available after application termination. In Nidra, there are four individual data entities (i.e., record, sample, module, and user). In the Subsection about Data Entities, we discussed the design choices of the individual data entity. The standard operations on each data entities are: insert, update, and delete. Also, the user has an operation to retrieve the biometrical data, module and record have an operation to retrieve all of the entries in the database, and samples have an operation to retrieve all of the entries corresponding to a record. 
+
+Android Room provides an abstract layer over SQLite to enable easy database access [Cite]. In Figure \ref{fig:impl_storage}, the flow for accessing and retrieving the data from the database based on the Android Room architecture is shown and can be described as:
+
+\begin{itemize}
+	\item[1] Each data entity has a \verb|ViewModel| where all of the operation (e.g., insert, update, delete, or retrieve) goes through.  A view model is designed to store and manage UI-related data in a conscious way, that allows data to be persistent through configuration changes (e.g., screen rotations) [CITE]. 
+ 	\item[2a] The predefined operations point to the repository. Repository modules handle data operations and provide an API  which makes data access easy. A repository is a mediator between different data sources (e.g., database, web services, and cache) [CITE]. In Nidra, the only data source is the database, but repository facilities future data sources. 
+	\item[2b] The storage of the user is not in the database; however, in a \verb|SharedPreference| on the device. Shared preference points to a file containing key-value pairs and provides methods to read and write. The location of the user's shared preference is \verb|no.uio.cesar.user_storage|. 
+	\item[3] Each data entity (disregarding user) has a data access object (DAO), where the SQL operations to the database are defined. 
+	\item[4] Based on the operation, the data is accessed and retrieved from the SQLite database.
+\end{itemize}
+
+
 
 
 \subsection{Presentation}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.26]{images/Modules_img.pdf}
-    \caption{Entity Relationship Diagram}
-    \label{fig:impl_modules}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.26]{images/Modules_img.pdf}
+%    \caption{Entity Relationship Diagram}
+%    \label{fig:impl_modules}
+%\end{figure}
