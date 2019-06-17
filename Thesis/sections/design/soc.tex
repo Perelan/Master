@@ -115,7 +115,7 @@ In Nidra, a time series graph is used to represent the data of a record. The tim
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.6]{images/Storage.png}
+    \includegraphics[scale=0.7]{images/Storage.pdf}
     \caption{Storage}
     \label{fig:hta_storage}
 \end{figure}
@@ -125,10 +125,10 @@ Storage is the objective of achieving persistent data; data that is available af
 \begin{itemize}
     \item[5.1] \verb|Data Access Layer|: Also known as an Data Access Object (DAO), that provides an abstract interface to a database. It exposes spesific operations (such as insertion of a record) without revealing the database logic. The advantage of this interface is to have a single entry point for each database operation, and to easily extend and modify the operation for future data. 
     \item[5.2] \verb|Database|: Is the storage of all the data (read below).
-    \item[5.2.1] \verb|Record|: Is a table in the database, which contains fields appropriately to the record structure. A record contains meta-data about a recording (e.g., name, recording time, user). An example of a recording record is illustrated in (ref).
-    \item[5.2.2] \verb|Sample|: Is a table in the database, which contains fields appropriately to a single sample from a sensor. A sample contains data received from a sensor during a recording. An example of a sample record is illustrated in (ref).
-    \item[5.2.3] \verb|Module|: Is a table in the database, which contains fields appropriately to the sample structure. A sample contains the name of the module and a reference to the application package. An example of a module record is illustrated in (ref).
-    \item[5.2.4] \verb|User|: Is a table in the database, which contains fields appropriately to the user structure. A user contains person information about a user (e.g., name, weight, height). An example of a user record is illustrated in (ref).
+    \item[5.2.1] \verb|Record|: Is a table in the database, which contains fields appropriately to the record structure. A record contains meta-data about a recording (e.g., name, recording time, user). The design decision and an example of a recording record is illustrated in (ref).
+    \item[5.2.2] \verb|Sample|: Is a table in the database, which contains fields appropriately to a single sample from a sensor. A sample contains data received from a sensor during a recording. The design decision and an example of a sample record is illustrated in (ref).
+    \item[5.2.3] \verb|Module|: Is a table in the database, which contains fields appropriately to the sample structure. A sample contains the name of the module and a reference to the application package. The design decision and an example of a module record is illustrated in (ref).
+    \item[5.2.4] \verb|User|: Is an object stored on the device, which contains fields appropriately to the user structure. A user contains the patients biometrical information (e.g., name, weight, height). The design decision and an example of a user is illustrated in (ref).
 \end{itemize}
 
 \subsubsection{Database Component}

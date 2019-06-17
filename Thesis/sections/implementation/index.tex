@@ -5,7 +5,7 @@
 \section{Permissions \& Android Manifest}
 
 \section{Implementation of Concerns}
-In Section (ref) we conceptualized the tasks, by decomposing the tasks into components and discussing various techniques for implementation. In this Section, we will realize the conceptualization by implementing the tasks in Android. 
+In Section (ref) we conceptualized the tasks, by decomposing the tasks into components and discussing various techniques and design decisions for implementation. In this Section, we will realize the discussion by implementing the tasks in Android. 
 
 \subsection{Recording}
 %\begin{figure}
@@ -33,16 +33,18 @@ In Section (ref) we conceptualized the tasks, by decomposing the tasks into comp
 
 \subsection{Sharing}
 
-The functionality of sharing is separated across components, to make it easier to comprehend. The actions for sharing are separated into A) exporting one or all records; and B) import a record from the device. Before a user can take these actions, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|Feed Adapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for exporting) for a single record. In this Subsection, we will take a look into the steps that are taken to enable the actions and imrpovements that can be made.
+Sharing enables users to transmitt records across application over a media. The functionality of sharing is separated across components, to make it easier to comprehend. The actions for sharing are separated into A) exporting one or all records; and B) import a record from the device. 
+
+Before a user can take these actions, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|Feed Adapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for exporting) for a single record. In this Subsection, we will take a look into the steps that are taken to enable the actions and imrpovements that can be made.
 
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{images/Sharing_ImpA.png}
-    \caption{Implementation of sharing functionality (A): Exporting on or all Records}
+    \caption{Implementation of sharing functionality (A): Exporting one or all Records}
     \label{fig:impl_sharingA}
 \end{figure}
 
-\subsubsection{Action A: Exporting on or all Records}
+\subsubsection{Action A: Exporting one or all Records}
 In Figure \ref{fig:impl_sharingA}, an illustration of the steps to export one single recording is shown. However, the \verb|Feed Fragment| has an option to export all record; therefore, by disregarding the first step (A.1), the same structure applies to export all records. The steps can be narrowed down to: 
 
 \begin{itemize}
@@ -101,14 +103,14 @@ private void importRecords() {
 \end{itemize}
 
 
-\subsubsection{Improvements}
+\subsubsection{Implementation Improvements}
 The improvent for this structure is:
 \begin{enumerate}
-    \item In the decision of choosing a filename for the formated file (A.4), picking a filename that is easier distinguishable makes it convenient to detect on the device. This could be improved by including the name of the user (e.g., \verb|record_(lastname)_(current_date).json|).
+    \item In the decision of choosing a filename for the formated file (A.4), picking a filename that is easier distinguishable makes it convenient to detect on the recipients device. This could be improved by including the name of the user (e.g., \verb|record_(lastname)_(current_date).json|).
 \end{enumerate}
 
 \subsection{Modules}
-Modules are standalone application, and their packagename is used to launch a module. The actions to enable modules in the application are A) install a module; and B) launch a module. SKRIV OM POPULATING MODULES. 
+Modules are standalone application, that provides data enrichment and extended functionality to the application. The modules-applications packagename is used to launch a module. The actions to enable modules in the application are A) install a module; and B) launch a module. SKRIV OM POPULATING MODULES. 
 
 \subsubsection{Action A: Install a Module}
 In Figure \ref{fig:impl_modulesB}, an illustration of installing a module shown. The steps can be narrowed down to:
@@ -158,14 +160,13 @@ public void onLaunchModuleClick(String packageName) {
 \end{lstlisting}
 
     \item[B.3] The activity uses the data provided in the \verb|Intent| that includes the packagename (the name of the module-application to determine the correct application).
-    \item[B.4] The selected module is then launched, and presented to the user. The user can at anytime press the back button, to return back to Nidra.  
+    \item[B.4] The selected module is then launched, and presented to the user. The user can at anytime press the back button, to return to Nidra.  
 \end{itemize}
 
-\subsubsection{Improvements}
+\subsubsection{Implementation Improvements}
 The improvements for the following structure are:
 \begin{enumerate}
     \item During the listing of all of the installed application (A.3), only show application that are eligible module-applications. This can be achieved having a prerequisition for new modules to have a package name that starts with \verb|com.nidra.MODULE_NAME|
-    \item As discussed in the Section (ref) about data exchange, the bundlement of the data (B.2) can be switched to use an IPC between Nidra and the module-applications. 
 \end{enumerate}
 
 %\begin{figure}
@@ -190,7 +191,9 @@ The improvements for the following structure are:
 \end{figure}
 
 \subsection{Analytics}
-In Nidra, the analytics part of the implementation is limited to a time-series graph for a single record. However, there are possibilities of extending the \verb|Analytics Fragment| with other graphs based on the current structure. The current action for analytics is A) display a graph for a single record to the user. Similar to sharing, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|Feed Adapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for analytics) for a single record. In this Subsection, we will take a look into the steps that are taken to enable the action.
+Analytics is the part of illustrating and analyzing the records. In Nidra, the analytics part of the implementation is limited to a time-series graph for a single record. However, there are possibilities of extending the \verb|Analytics Fragment| with other graphs based on the current structure. The current action for analytics is A) display a graph for a single record to the user. 
+
+Similar to sharing, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|Feed Adapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for analytics) for a single record. In this Subsection, we will take a look into the steps that are taken to enable the action.
 
 \subsubsection{Action A: Display a Graph for a Single Record}
 In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown. The steps can be narrowed down to:
@@ -208,13 +211,22 @@ In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown.
 
 
 \subsection{Storage}
-%\begin{figure}
-%    \centering
-%    \includegraphics[scale=0.55]{images/Storage_Imp.png}
-%    \caption{Entity Relationship Diagram}
-%    \label{fig:impl_modules}
-%\end{figure}
+Storage facilites persistant data which remain available after application termination. In Nidra, there are four individual data entities (e.g., record, sample, module, and user) that are stored in a database. The access for each
+
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.55]{images/Storage_Imp.png}
+    \caption{Entity Relationship Diagram}
+    \label{fig:impl_modules}
+\end{figure}
 
 
 \subsection{Presentation}
 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.26]{images/Modules_img.pdf}
+    \caption{Entity Relationship Diagram}
+    \label{fig:impl_modules}
+\end{figure}

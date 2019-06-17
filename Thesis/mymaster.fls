@@ -464,9 +464,9 @@ INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Modules.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics.png
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage.png
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage.png
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage.png
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Presentation.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Presentation.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Presentation.png
@@ -496,6 +496,12 @@ INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Module_ImpC.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Anal_Imp.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Anal_Imp.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Anal_Imp.png
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage_Imp.png
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage_Imp.png
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage_Imp.png
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Modules_img.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Modules_img.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Modules_img.pdf
 OUTPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/experiments/index.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/experiments/index.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/experiments/index.tex

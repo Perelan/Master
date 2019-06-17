@@ -29,8 +29,10 @@ We will compare JSON and XML features and performance with the study conducted b
 
 Moreover, a few benchmarks were conducted to measure memory footprint and parsing runtime when serializing and deserializing JSON and XML data. From the conclusion,  in terms of memory footprint and parsing runtime, JSON performances better than XML but at the cost of readability and flexibility. While these format structures are applicable for transmitting data, choosing a format that is compact, human-readable, and a standard format that is extensible and scalable for future data is essential. In our design, we will be using the JSON format for transmission of the data.
 
-\subsection{Data Tables}
-Data tables are a collection of structured and related data in a tabular format in a database. Subsection about Storage introduces four data tables in the application.  In Figure \ref{fig:dataentries}, the relation between these tables are shown. Record and sample are separated in order to reduce data redundancy and improve data integrity; however, samples have a reference to a record so they can be associated with each other. A user can have many records; however, a record can only have one user. The module table has no relation to the other tables in the database. This Subsection will demonstrate the properties of each table in Nidra, with an illustration of a record inside each table.
+\subsection{Data Entities}
+Data entities are objects (e.g., things, persons, or places) that the system models and stores information about. Subsection about Storage introduces four data entities in our application (i.e., user, record, sample, and module). In Figure \ref{fig:dataentries}, the relation between the data entities are shown. Record and sample stores information about the recording, and are separated into two individual entities in order to reduce data redundancy and improve data integrity. Although, samples have a reference to its record so they can be associated with each other. A user stores biometrical information related to the user, the user in the application are patients. A record contains the state of the user's biometrical information at the time of the recording. In other words, the user's biometrical information can change over time (e.g.,  weight changes); therefore, capturing the exact biometrical information at the time of the recording is essential in the context of detecting sleeping illnesses with relation to the biometrical information.  A module is independent of the other data entities and stores information about the name and the package name of the module-application. The package name is used to locate and launch the module-application. 
+
+In this Subsection, we will demonstrate the properties of each data entity in Nidra; storage structure of the entities, and illustration of the data structure for each entity.  
 
 \begin{figure}
     \centering
@@ -45,10 +47,10 @@ A record is a table in the database that stores metadata related to the recordin
 \begin{itemize}
 	\item \verb|ID|: Unique identification of a record, also a primary key for the entry.
 	\item \verb|Name|: A name of the record to easily recognize the recording.
-	\item \verb|Description|: A summary over the recording session, used to describe briefly how the recording session felt (e.g., any abnormalities during the sleep).
+	\item \verb|Description|: A summary over the recording session provided by the user It can be used to briefly describe how the recording session felt (e.g., any abnormalities during the sleep).
 	\item \verb|MonitorTime|: The recording session duration in milliseconds.
 	\item \verb|Rating|: Giving a rating on how the sleeping session felt, in a range between 0-5. 
-	\item \verb|User|: Identification of the user, also a foreign key to the user table.
+	\item \verb|User|: User's biometriocal information encoded into a JSON string format, in order to capture the state of the user at recording. 
 	\item \verb|CreatedAt|: Date of creation of the recording in milliseconds (since January 1, 1970, 00:00:00 GMT).
 	\item \verb|UpdatedAt|: Date of update of the recording in milliseconds (since January 1, 1970, 00:00:00 GMT).
 \end{itemize}
@@ -61,7 +63,7 @@ A record is a table in the database that stores metadata related to the recordin
 \hline
 \textbf{id} & \textbf{name} & \textbf{description} & \textbf{monitorTime} & \textbf{rating} & \textbf{user} & \textbf{createdAt} & \textbf{updatedAt} \\
 \hline
-1 & Record \#1 & & 5963088 & 2.5 & 1 & 1554406256000 & 1554406256000  \\ 
+1 & Record \#1 & - & 5963088 & 2.5 & \{...\} & 1554406256000 & 1554406256000  \\ 
 \hline
 \end{tabular}}
 \caption{Example entry in record table}
@@ -81,15 +83,15 @@ A sample is a single sensor reading containing data and metadata related to the 
 
 \begin{table}
 \begin{center}
-\scalebox{0.65}{
+\scalebox{0.60}{
 \begin{tabular}{ |c|c|c|c|c| } 
 \hline
 \textbf{id} & \textbf{recordId} & \textbf{explicitTS} & \textbf{implicitTS} & \textbf{sample} \\
 \hline
-1 & 1 & & 5963088 & Time=0ms, deltaT=100, data=1906,1891,1884,1881,1876,1718,1690 \\ 
+1 & 1 & 1554393086000 & 1554400286000 & Time=0ms, deltaT=100, data=1906,1891,1884,1881,1876,1718,1690 \\ 
 \hline
 \end{tabular}}
-\caption{Example entry in record table}
+\caption{Example entry in sample table}
 \end{center}
 \end{table}
 
@@ -112,35 +114,37 @@ A module is a table in the database that stores all modules installed by the use
 1 & OSA Predicter & com.package.osa\_predicter \\ 
 \hline
 \end{tabular}}
-\caption{Example entry in record table}
+\caption{Example entry in module table}
 \end{center}
 \end{table}
 
 
 \subsubsection{User}
-Nidra considers the user of the application as the patient, hence storing biometrical data is part of the application to enrich the record data. In Table 4.4, an illustration of the structure of a user is shown, with an entry of dummy data. In Nidra, the fields in the table for a user contains biometrical data related to the user describe the data which are:
+The user of the application is the patient, which provides biometrical data (e.g., weight, height, and age). The biometrical data is part of the application to enrich the record. The record captures the biometrical state of the user at the time of the recording in the context of detecting sleeping illnesses with the relation to the biometrical data. In Nidra, the user entity is not a part of the database, but as an object stored in the device. The design decision of this choice is because the application is limited to one user at the time, and it makes it convenient to capture the state of the object of the given time of recording. It is possible to create a table in the database for the user entity, and for each time the user changes the biometrical data insert it is a separate entry in the database. The record could then have a reference to the latest user entry. However, that increases the complexity of the system, and as of now, the design of the application is to store the user's biometrical data into an object on the device. 
+
+In Listing X, an illustration of the structure of a user is shown, with  dummy data. In Nidra, the user object is structured in a JSON format and contains biometrical data related to the user: 
 \begin{itemize}
-    \item \verb|ID|: Unique identification of a module, also a primary key for the entry.
-    \item \verb|Name|: The name of the module-application.
-    \item \verb|Age|: Age of the user.
-    \item \verb|Weight|: Weight of the user in kilograms.
-    \item \verb|Height|: Height of the user in centimeters.
-    \item \verb|CreatedAt|: Date of creation of the user in milliseconds (since January 1, 1970, 00:00:00 GMT).
+    \item \verb|Name|: Name of of the patient.
+    \item \verb|Age|: Age of the patient.
+    \item \verb|Gender|: Gender of the patient.
+    \item \verb|Weight|: Weight of the patient in kilograms.
+    \item \verb|Height|: Height of the patient in centimeters.
 \end{itemize}
 
-\begin{table}
-\begin{center}
-\scalebox{0.8}{
-\begin{tabular}{ |c|c|c|c|c|c|c| } 
-\hline
-\textbf{id} & \textbf{name} & \textbf{age} & \textbf{gender} & \textbf{height} & \textbf{weight} & \textbf{createdAt} \\
-\hline
-1 & Ola Nordmann & 50 & Male & 180 & 60 & -- \\ 
-\hline
-\end{tabular}}
-\caption{Example entry in record table}
-\end{center}
-\end{table}
+\begin{figure}
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+{
+    "user": {
+        "name": "Ola Nordmann",
+        "age": 50,
+        "gender": "Male",
+        "height": 180,
+        "weight: 60
+    }
+}
+\end{lstlisting}
+\end{figure}
+
 
 \subsection{Data Packets}
 Data packets are parcels of data that Nidra receives from external applications (e.g., sensor wrappers) or send to other application (e.g., sharing). From the design choice In the Section above, the format of all the desired data should be according to the JSON format.  In this Section.
