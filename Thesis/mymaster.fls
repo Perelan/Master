@@ -146,6 +146,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/cleveref/cleveref.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/cleveref/cleveref.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/listings/listings.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/listings/listings.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/listings/lstmisc.sty

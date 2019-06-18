@@ -1,4 +1,4 @@
-\subsection{Data Formats}
+\subsection{Data Formats} \label{sec:dataformat}
 
 The data format is a part of the process of serialization, which enables data storage in a file, transmittal over the Internet, and reconstruction in a different environment. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats; however, JavaScript Object Notation (JSON) and eXtensible Markup Language (XML) are the two most common data serialization formats. In this Section, we will discuss these formats. In the end, we will compare them and choose the format that meets the criteria of being compact, human-readable, and universal. 
 
@@ -41,7 +41,7 @@ In this Subsection, we will demonstrate the properties of each data entity in Ni
     \label{fig:dataentries}
 \end{figure}
 
-\subsubsection{Record}
+\subsubsection{Record} \label{ssec:record}
 
 A record is a table in the database that stores metadata related to the recording session. In Table 4.1, an illustration of the structure of a record is shown, with an entry of dummy data. In Nidra, the fields in the table for a record describe the data that is stored, which is separated into:
 \begin{itemize}
@@ -71,7 +71,7 @@ A record is a table in the database that stores metadata related to the recordin
 \end{table}
 
 
-\subsubsection{Sample}
+\subsubsection{Sample} \label{ssec:sample}
 A sample is a single sensor reading containing data and metadata related to the recording session. Samples are stored separated from a record; however, they are linked with a field in the table.  In Table 4.1, an illustration of the structure of a sample is shown, with an entry of dummy data. In Nidra, the fields in the table for a sample describe the data that is stored accordingly to the data provided by Flow SweetZpot (ref), which are separated into:
 \begin{itemize}
 	\item \verb|ID|: Unique identification of a sample, also a primary key for the entry.
@@ -96,7 +96,7 @@ A sample is a single sensor reading containing data and metadata related to the 
 \end{table}
 
 
-\subsubsection{Module}
+\subsubsection{Module} \label{ssec:module}
 A module is a table in the database that stores all modules installed by the user in the application. In Table 4.3, an illustration of the structure of a module is shown, with an entry of dummy data. In Nidra, the fields in the table contain the name of the module and the reference to the module and can be summarized as: 
 \begin{itemize}
     \item \verb|ID|: Unique identification of a module, also a primary key for the entry.
@@ -119,7 +119,7 @@ A module is a table in the database that stores all modules installed by the use
 \end{table}
 
 
-\subsubsection{User}
+\subsubsection{User} \label{ssec:user}
 The user of the application is the patient, which provides biometrical data (e.g., weight, height, and age). The biometrical data is part of the application to enrich the record. The record captures the biometrical state of the user at the time of the recording in the context of detecting sleeping illnesses with the relation to the biometrical data. In Nidra, the user entity is not a part of the database, but as an object stored in the device. The design decision of this choice is because the application is limited to one user at the time, and it makes it convenient to capture the state of the object of the given time of recording. It is possible to create a table in the database for the user entity, and for each time the user changes the biometrical data insert it is a separate entry in the database. The record could then have a reference to the latest user entry. However, that increases the complexity of the system, and as of now, the design of the application is to store the user's biometrical data into an object on the device. 
 
 In Listing X, an illustration of the structure of a user is shown, with  dummy data. In Nidra, the user object is structured in a JSON format and contains biometrical data related to the user: 
@@ -151,7 +151,7 @@ Data packets are parcels of data that Nidra receives from external applications 
 
 \subsubsection{Sharing}
 
-In Section (ref), a proposal to the structure of exporting and importing data is discussed. Two of the components (\verb|Parse Formatted Content| and \verb|Format File|) uses JSON to either encode or decode the data. Listing 4.3 illustrate the content of the encoded data from our application to gain a broader understanding of how the data exchange in sharing operates. The attractive attributes from the encoding are the record (ref) and the samples.  A record is an object that contains meta-data with name, number of samples, recording time, creation date, and user information. Samples are an array of objects that contains data, timestamp, and identification to correlated record. 
+In \Cref{sec:design_sharing}, a proposal to the structure of exporting and importing data is discussed. Two of the components (\verb|Parse Formatted Content| and \verb|Format File|) uses JSON to either encode or decode the data. Listing 4.3 illustrate the content of the encoded data from our application to gain a broader understanding of how the data exchange in sharing operates. The attractive attributes from the encoding are the record (ref) and the samples.  A record is an object that contains meta-data with name, number of samples, recording time, creation date, and user information. Samples are an array of objects that contains data, timestamp, and identification to correlated record. 
 
 \begin{figure}
     
