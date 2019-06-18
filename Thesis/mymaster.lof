@@ -33,17 +33,23 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Implementation of sharing functionality (A): Exporting one or all Records\relax }}{42}{figure.caption.23}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Implementation of recording functionality (A)\relax }}{42}{figure.caption.23}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Implementation of sharing functionality (B)\relax }}{43}{figure.caption.24}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Implementation of recording functionality (B)\relax }}{44}{figure.caption.24}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Implementation of module functionality(A): Install a Module\relax }}{45}{figure.caption.25}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Implementation of recording functionality (C)\relax }}{45}{figure.caption.25}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Implementation of module functionality(B): Launch a Module\relax }}{46}{figure.caption.26}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Implementation of sharing functionality (A): Exporting one or all Records\relax }}{46}{figure.caption.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of analytics functionality (A): Display a Graph for a Single Record\relax }}{47}{figure.caption.27}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of sharing functionality (B)\relax }}{47}{figure.caption.27}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Entity Relationship Diagram\relax }}{49}{figure.caption.28}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Implementation of module functionality(A): Install a Module\relax }}{49}{figure.caption.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Implementation of module functionality(B): Launch a Module\relax }}{50}{figure.caption.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Implementation of analytics functionality (A): Display a Graph for a Single Record\relax }}{51}{figure.caption.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Entity Relationship Diagram\relax }}{53}{figure.caption.31}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
