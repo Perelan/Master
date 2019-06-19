@@ -11,6 +11,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.2}My Caption}{46}{lstlisting.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.3}My Caption}{48}{lstlisting.5.3}
+\contentsline {lstlisting}{\numberline {5.3}My Caption}{47}{lstlisting.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.4}My Caption}{50}{lstlisting.5.4}
+\contentsline {lstlisting}{\numberline {5.4}My Caption}{49}{lstlisting.5.4}
