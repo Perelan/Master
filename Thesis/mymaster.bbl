@@ -100,6 +100,23 @@
       \field{title}{Extensible data streams dispatching tool for Android}
       \field{year}{201}
     \endentry
+    \entry{cesarinfo}{online}{}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labeltitlesource}{title}
+      \field{title}{CESAR: Using Complex Event Processing for Low-threshold and Non-intrusive Sleep Apnea Monitoring at Home}
+      \field{titleaddon}{UiO: Department of Informatics}
+      \field{urlday}{21}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.mn.uio.no/ifi/english/research/projects/cesar
+      \endverb
+      \verb{url}
+      \verb https://www.mn.uio.no/ifi/english/research/projects/cesar
+      \endverb
+    \endentry
     \entry{w3xml}{misc}{}
       \name{author}{1}{}{%
         {{hash=737a983523b9ded59adc1ddee5977faf}{%
@@ -337,6 +354,23 @@
       \field{title}{Extensible data acquisition tool for Android}
       \field{year}{2016}
     \endentry
+    \entry{architecture}{online}{}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labeltitlesource}{title}
+      \field{title}{Guide to app architecture}
+      \field{titleaddon}{Android Developer}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/jetpack/docs/guide
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/jetpack/docs/guide
+      \endverb
+    \endentry
     \entry{soc}{article}{}
       \name{author}{2}{}{%
         {{hash=6420328b42dd3e5c358108b4c66ef71f}{%
@@ -420,6 +454,57 @@
       \verb https://www.researchgate.net/publication/322498404_Predicting_Smartphone_Battery_Life_based_on_Comprehensive_and_Real-time_Usage_Data
       \endverb
     \endentry
+    \entry{livedata}{online}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labeltitlesource}{title}
+      \field{title}{LiveData Overview}
+      \field{titleaddon}{Android Developer}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/topic/libraries/architecture/livedata
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/topic/libraries/architecture/livedata
+      \endverb
+    \endentry
+    \entry{mvvm}{article}{}
+      \name{author}{1}{}{%
+        {{hash=01450151ccae42465fbb4320b80e5fbe}{%
+           family={Lou},
+           familyi={L\bibinitperiod},
+           given={Tian},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{01450151ccae42465fbb4320b80e5fbe}
+      \strng{fullhash}{01450151ccae42465fbb4320b80e5fbe}
+      \strng{bibnamehash}{01450151ccae42465fbb4320b80e5fbe}
+      \strng{authorbibnamehash}{01450151ccae42465fbb4320b80e5fbe}
+      \strng{authornamehash}{01450151ccae42465fbb4320b80e5fbe}
+      \strng{authorfullhash}{01450151ccae42465fbb4320b80e5fbe}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Analysis and experiments show {MVP} and {MVVM} have better testability, modifiability (low coupling level) and performance (consuming less memory). That is, {MVP} and {MVVM} are better than {MVC} on the selected three criteria. But for {MVP} and {MVVM}, there is no evidence showing that one is superior to another. These two architectures have similar performance, while {MVP} provides better modifiability and {MVVM} provides better testability.}
+      \field{langid}{english}
+      \field{title}{A Comparison of Android Native App Architecture – {MVC}, {MVP} and {MVVM}}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \field{pages}{57}
+      \range{pages}{1}
+      \verb{urlraw}
+      \verb https://pure.tue.nl/ws/portalfiles/portal/48628529/Lou_2016.pdf
+      \endverb
+      \verb{url}
+      \verb https://pure.tue.nl/ws/portalfiles/portal/48628529/Lou_2016.pdf
+      \endverb
+    \endentry
     \entry{flatfilerdbms}{article}{}
       \name{author}{2}{}{%
         {{hash=61e5c37e70627255ffe1f696faf9cd14}{%
@@ -497,6 +582,23 @@
       \range{pages}{3}
       \verb{doi}
       \verb 10.1108/IJMPB-12-2016-0097
+      \endverb
+    \endentry
+    \entry{room}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labeltitlesource}{title}
+      \field{title}{Save data in a local database using Room}
+      \field{titleaddon}{Android Developer}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/training/data-storage/room/index
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/training/data-storage/room/index
       \endverb
     \endentry
     \entry{colorsystem}{online}{}

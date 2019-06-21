@@ -5,57 +5,64 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{part.1}% 5
 \BOOKMARK [1][-]{section.1.1}{Background and Motivation}{chapter.1}% 6
 \BOOKMARK [1][-]{section.1.2}{Problem Statement}{chapter.1}% 7
-\BOOKMARK [1][-]{section.1.3}{}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.3}{Limitations}{chapter.1}% 8
 \BOOKMARK [1][-]{section.1.4}{Research Methods}{chapter.1}% 9
 \BOOKMARK [1][-]{section.1.5}{Contributions}{chapter.1}% 10
 \BOOKMARK [1][-]{section.1.6}{Thesis Outline}{chapter.1}% 11
 \BOOKMARK [0][-]{chapter.2}{Background}{part.1}% 12
-\BOOKMARK [1][-]{section.2.1}{Project Architecture}{chapter.2}% 13
-\BOOKMARK [1][-]{section.2.2}{MVVM}{chapter.2}% 14
-\BOOKMARK [1][-]{section.2.3}{Sleep Apnea}{chapter.2}% 15
-\BOOKMARK [1][-]{section.2.4}{Flow Wrapper}{chapter.2}% 16
-\BOOKMARK [1][-]{section.2.5}{Bluetooth LE}{chapter.2}% 17
-\BOOKMARK [1][-]{section.2.6}{Android OS}{chapter.2}% 18
-\BOOKMARK [1][-]{section.2.7}{Daniel}{chapter.2}% 19
-\BOOKMARK [1][-]{section.2.8}{Viet}{chapter.2}% 20
-\BOOKMARK [1][-]{section.2.9}{Svein}{chapter.2}% 21
-\BOOKMARK [0][-]{chapter.3}{Related Work}{part.1}% 22
-\BOOKMARK [1][-]{section.3.1}{Extensible Data Acquisition Tool}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.2}{Extensible Data Stream Dispatching Tool}{chapter.3}% 24
-\BOOKMARK [-1][-]{part.2}{II Design and Implementation}{}% 25
-\BOOKMARK [0][-]{chapter.4}{Analysis and High-Level Design}{part.2}% 26
-\BOOKMARK [1][-]{section.4.1}{Requirement Analysis}{chapter.4}% 27
-\BOOKMARK [2][-]{subsection.4.1.1}{Stakeholders}{section.4.1}% 28
-\BOOKMARK [2][-]{subsection.4.1.2}{Resource Efficiency}{section.4.1}% 29
-\BOOKMARK [2][-]{subsection.4.1.3}{Security and Privacy}{section.4.1}% 30
-\BOOKMARK [1][-]{section.4.2}{High-Level Design}{chapter.4}% 31
-\BOOKMARK [2][-]{subsection.4.2.1}{Task Analysis}{section.4.2}% 32
-\BOOKMARK [1][-]{section.4.3}{Seperation of Concerns}{chapter.4}% 33
-\BOOKMARK [2][-]{subsection.4.3.1}{Recording}{section.4.3}% 34
-\BOOKMARK [2][-]{subsection.4.3.2}{Sharing}{section.4.3}% 35
-\BOOKMARK [2][-]{subsection.4.3.3}{Modules}{section.4.3}% 36
-\BOOKMARK [2][-]{subsection.4.3.4}{Analytics}{section.4.3}% 37
-\BOOKMARK [2][-]{subsection.4.3.5}{Storage}{section.4.3}% 38
-\BOOKMARK [2][-]{subsection.4.3.6}{Presentation}{section.4.3}% 39
-\BOOKMARK [1][-]{section.4.4}{Data Structure}{chapter.4}% 40
-\BOOKMARK [2][-]{subsection.4.4.1}{Data Formats}{section.4.4}% 41
-\BOOKMARK [2][-]{subsection.4.4.2}{Data Entities}{section.4.4}% 42
-\BOOKMARK [2][-]{subsection.4.4.3}{Data Packets}{section.4.4}% 43
-\BOOKMARK [0][-]{chapter.5}{Implementation}{part.2}% 44
-\BOOKMARK [1][-]{section.5.1}{Architecture Pattern \046 Project Structure}{chapter.5}% 45
-\BOOKMARK [1][-]{section.5.2}{Process Structure \046 Inter-Process Communication}{chapter.5}% 46
-\BOOKMARK [1][-]{section.5.3}{Permissions \046 Android Manifest}{chapter.5}% 47
-\BOOKMARK [1][-]{section.5.4}{Implementation of Concerns}{chapter.5}% 48
-\BOOKMARK [2][-]{subsection.5.4.1}{Recording}{section.5.4}% 49
-\BOOKMARK [2][-]{subsection.5.4.2}{Sharing}{section.5.4}% 50
-\BOOKMARK [2][-]{subsection.5.4.3}{Modules}{section.5.4}% 51
-\BOOKMARK [2][-]{subsection.5.4.4}{Analytics}{section.5.4}% 52
-\BOOKMARK [2][-]{subsection.5.4.5}{Storage}{section.5.4}% 53
-\BOOKMARK [2][-]{subsection.5.4.6}{Presentation}{section.5.4}% 54
-\BOOKMARK [1][-]{section.5.5}{SweetZpot Flow - Sensor Wrapper Development}{chapter.5}% 55
-\BOOKMARK [-1][-]{part.3}{III Evaluation and Conclusion}{}% 56
-\BOOKMARK [0][-]{chapter.6}{Experiments}{part.3}% 57
-\BOOKMARK [0][-]{chapter.7}{Future Work}{part.3}% 58
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{part.3}% 59
-\BOOKMARK [-1][-]{chapter.8}{Appendix}{}% 60
-\BOOKMARK [0][-]{appendix.A}{Power Data}{chapter.8}% 61
+\BOOKMARK [1][-]{section.2.1}{CESAR: Project Structure}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.1.1}{Extensible Data Acquisition Tool}{section.2.1}% 14
+\BOOKMARK [2][-]{subsection.2.1.2}{Extensible Data Stream Dispatching Tool}{section.2.1}% 15
+\BOOKMARK [2][-]{subsection.2.1.3}{SweetZpot Flow}{section.2.1}% 16
+\BOOKMARK [1][-]{section.2.2}{Android OS}{chapter.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.1}{Android Architecture}{section.2.2}% 18
+\BOOKMARK [2][-]{subsection.2.2.2}{Application Components}{section.2.2}% 19
+\BOOKMARK [2][-]{subsection.2.2.3}{Process and Threads}{section.2.2}% 20
+\BOOKMARK [2][-]{subsection.2.2.4}{Inter-Process Communication}{section.2.2}% 21
+\BOOKMARK [2][-]{subsection.2.2.5}{Bluetooth LE}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.6}{Architecture Patterns}{section.2.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.7}{Energy Saving}{section.2.2}% 24
+\BOOKMARK [0][-]{chapter.3}{Related Work}{part.1}% 25
+\BOOKMARK [1][-]{section.3.1}{A Framwork For Screening And Classifying Obstructive Sleep Apnea using Smartphones}{chapter.3}% 26
+\BOOKMARK [-1][-]{part.2}{II Design and Implementation}{}% 27
+\BOOKMARK [0][-]{chapter.4}{Analysis and High-Level Design}{part.2}% 28
+\BOOKMARK [1][-]{section.4.1}{Requirement Analysis}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.1.1}{Stakeholders}{section.4.1}% 30
+\BOOKMARK [2][-]{subsection.4.1.2}{Resource Efficiency}{section.4.1}% 31
+\BOOKMARK [2][-]{subsection.4.1.3}{Security and Privacy}{section.4.1}% 32
+\BOOKMARK [1][-]{section.4.2}{High-Level Design}{chapter.4}% 33
+\BOOKMARK [2][-]{subsection.4.2.1}{Task Analysis}{section.4.2}% 34
+\BOOKMARK [1][-]{section.4.3}{Seperation of Concerns}{chapter.4}% 35
+\BOOKMARK [2][-]{subsection.4.3.1}{Recording}{section.4.3}% 36
+\BOOKMARK [2][-]{subsection.4.3.2}{Sharing}{section.4.3}% 37
+\BOOKMARK [2][-]{subsection.4.3.3}{Modules}{section.4.3}% 38
+\BOOKMARK [2][-]{subsection.4.3.4}{Analytics}{section.4.3}% 39
+\BOOKMARK [2][-]{subsection.4.3.5}{Storage}{section.4.3}% 40
+\BOOKMARK [2][-]{subsection.4.3.6}{Presentation}{section.4.3}% 41
+\BOOKMARK [1][-]{section.4.4}{Data Structure}{chapter.4}% 42
+\BOOKMARK [2][-]{subsection.4.4.1}{Data Formats}{section.4.4}% 43
+\BOOKMARK [2][-]{subsection.4.4.2}{Data Entities}{section.4.4}% 44
+\BOOKMARK [2][-]{subsection.4.4.3}{Data Packets}{section.4.4}% 45
+\BOOKMARK [0][-]{chapter.5}{Implementation}{part.2}% 46
+\BOOKMARK [1][-]{section.5.1}{Architecture Pattern}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.2}{Process Structure \046 Inter-Process Communication}{chapter.5}% 48
+\BOOKMARK [1][-]{section.5.3}{Permissions \046 Android Manifest}{chapter.5}% 49
+\BOOKMARK [1][-]{section.5.4}{Implementation of Concerns}{chapter.5}% 50
+\BOOKMARK [2][-]{subsection.5.4.1}{Recording}{section.5.4}% 51
+\BOOKMARK [2][-]{subsection.5.4.2}{Sharing}{section.5.4}% 52
+\BOOKMARK [2][-]{subsection.5.4.3}{Modules}{section.5.4}% 53
+\BOOKMARK [2][-]{subsection.5.4.4}{Analytics}{section.5.4}% 54
+\BOOKMARK [2][-]{subsection.5.4.5}{Storage}{section.5.4}% 55
+\BOOKMARK [2][-]{subsection.5.4.6}{Presentation}{section.5.4}% 56
+\BOOKMARK [1][-]{section.5.5}{SweetZpot Flow - Sensor Wrapper Development}{chapter.5}% 57
+\BOOKMARK [-1][-]{part.3}{III Evaluation and Conclusion}{}% 58
+\BOOKMARK [0][-]{chapter.6}{Evaluation}{part.3}% 59
+\BOOKMARK [1][-]{section.6.1}{Experiments and Measurements}{chapter.6}% 60
+\BOOKMARK [2][-]{subsection.6.1.1}{Experiment A: Concert}{section.6.1}% 61
+\BOOKMARK [2][-]{subsection.6.1.2}{Experiment B: 8-hours recording}{section.6.1}% 62
+\BOOKMARK [2][-]{subsection.6.1.3}{Experiment C: User-Experience}{section.6.1}% 63
+\BOOKMARK [1][-]{section.6.2}{Main Findings}{chapter.6}% 64
+\BOOKMARK [0][-]{chapter.7}{Future Work}{part.3}% 65
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{part.3}% 66
+\BOOKMARK [-1][-]{chapter.8}{Appendix}{}% 67
+\BOOKMARK [0][-]{appendix.A}{Power Data}{chapter.8}% 68
