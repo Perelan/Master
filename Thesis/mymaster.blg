@@ -1,17 +1,17 @@
 [0] Config.pm:302> INFO - This is Biber 2.11
 [0] Config.pm:305> INFO - Logfile is 'mymaster.blg'
-[47] biber-darwin:313> INFO - === Fri Jun 21, 2019, 16:04:31
-[75] Biber.pm:371> INFO - Reading 'mymaster.bcf'
-[186] Biber.pm:857> INFO - Found 24 citekeys in bib section 0
-[206] Biber.pm:3976> INFO - Processing section 0
-[220] Biber.pm:4136> INFO - Looking for bibtex format file 'sources.bib' for section 0
-[226] bibtex.pm:1500> INFO - LaTeX decoding ...
-[269] bibtex.pm:1316> INFO - Found BibTeX data source 'sources.bib'
-[335] Utils.pm:193> WARN - month field 'Nov' in entry 'machinelearning' is not an integer - this will probably not sort properly.
-[402] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'variable = shifted' with 'variable = non-ignorable'
-[402] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[402] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-UK'
-[402] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-UK'
-[438] bbl.pm:617> INFO - Writing 'mymaster.bbl' with encoding 'UTF-8'
-[449] bbl.pm:720> INFO - Output to mymaster.bbl
-[449] Biber.pm:110> INFO - WARNINGS: 1
+[38] biber-darwin:313> INFO - === Sun Jun 23, 2019, 17:26:23
+[60] Biber.pm:371> INFO - Reading 'mymaster.bcf'
+[155] Biber.pm:857> INFO - Found 31 citekeys in bib section 0
+[169] Biber.pm:3976> INFO - Processing section 0
+[180] Biber.pm:4136> INFO - Looking for bibtex format file 'sources.bib' for section 0
+[183] bibtex.pm:1500> INFO - LaTeX decoding ...
+[225] bibtex.pm:1316> INFO - Found BibTeX data source 'sources.bib'
+[285] Utils.pm:193> WARN - month field 'Nov' in entry 'machinelearning' is not an integer - this will probably not sort properly.
+[345] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[345] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'variable = shifted' with 'variable = non-ignorable'
+[345] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-UK'
+[345] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-UK'
+[375] bbl.pm:617> INFO - Writing 'mymaster.bbl' with encoding 'UTF-8'
+[384] bbl.pm:720> INFO - Output to mymaster.bbl
+[384] Biber.pm:110> INFO - WARNINGS: 1
