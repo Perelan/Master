@@ -18,7 +18,7 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Android Architecture}{section.2.2}% 18
 \BOOKMARK [2][-]{subsection.2.2.2}{Application Components}{section.2.2}% 19
 \BOOKMARK [2][-]{subsection.2.2.3}{Process and Threads}{section.2.2}% 20
-\BOOKMARK [2][-]{subsection.2.2.4}{Inter-Process Communication}{section.2.2}% 21
+\BOOKMARK [2][-]{subsection.2.2.4}{Inter-Process Communication \(IPC\)}{section.2.2}% 21
 \BOOKMARK [2][-]{subsection.2.2.5}{Bluetooth LE}{section.2.2}% 22
 \BOOKMARK [2][-]{subsection.2.2.6}{Architecture Patterns}{section.2.2}% 23
 \BOOKMARK [2][-]{subsection.2.2.7}{Energy Saving}{section.2.2}% 24

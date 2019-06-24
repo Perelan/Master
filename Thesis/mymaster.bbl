@@ -96,6 +96,23 @@
       \verb https://source.android.com/security
       \endverb
     \endentry
+    \entry{aidl}{online}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labeltitlesource}{title}
+      \field{title}{Android Interface Definition Language (AIDL)}
+      \field{titleaddon}{Android Developer}
+      \field{urlday}{24}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/guide/components/aidl
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/guide/components/aidl
+      \endverb
+    \endentry
     \entry{appfundamentals}{online}{}
       \field{sortinit}{A}
       \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
@@ -111,6 +128,23 @@
       \endverb
       \verb{url}
       \verb https://stuff.mit.edu/afs/sipb/project/android/docs/guide/components/fundamentals.html
+      \endverb
+    \endentry
+    \entry{binder}{online}{}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labeltitlesource}{title}
+      \field{title}{Binder}
+      \field{titleaddon}{Android Developer}
+      \field{urlday}{24}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/reference/android/os/Binder
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/reference/android/os/Binder
       \endverb
     \endentry
     \entry{daniel}{article}{}
@@ -456,6 +490,23 @@
       \verb https://developer.android.com/jetpack/docs/guide
       \endverb
     \endentry
+    \entry{intents}{online}{}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{labeltitlesource}{title}
+      \field{title}{Intents and Intent Filters}
+      \field{titleaddon}{Android Developer}
+      \field{urlday}{24}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/guide/components/intents-filters
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/guide/components/intents-filters
+      \endverb
+    \endentry
     \entry{soc}{article}{}
       \name{author}{2}{}{%
         {{hash=6420328b42dd3e5c358108b4c66ef71f}{%
@@ -684,6 +735,23 @@
       \endverb
       \verb{url}
       \verb https://developer.android.com/guide/platform
+      \endverb
+    \endentry
+    \entry{proccessandthread}{online}{}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{labeltitlesource}{title}
+      \field{title}{Processes and Threads}
+      \field{titleaddon}{Android Developer}
+      \field{urlday}{24}
+      \field{urlmonth}{6}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://stuff.mit.edu/afs/sipb/project/android/docs/guide/components/processes-and-threads.html#IPC
+      \endverb
+      \verb{url}
+      \verb https://stuff.mit.edu/afs/sipb/project/android/docs/guide/components/processes-and-threads.html#IPC
       \endverb
     \endentry
     \entry{room}{online}{}
