@@ -19,10 +19,10 @@
 \BOOKMARK [2][-]{subsection.2.2.2}{Application Components}{section.2.2}% 19
 \BOOKMARK [2][-]{subsection.2.2.3}{Process and Threads}{section.2.2}% 20
 \BOOKMARK [2][-]{subsection.2.2.4}{Inter-Process Communication \(IPC\)}{section.2.2}% 21
-\BOOKMARK [2][-]{subsection.2.2.5}{Bluetooth LE}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.5}{Data and File Storage}{section.2.2}% 22
 \BOOKMARK [2][-]{subsection.2.2.6}{Architecture Patterns}{section.2.2}% 23
-\BOOKMARK [2][-]{subsection.2.2.7}{Energy Saving}{section.2.2}% 24
-\BOOKMARK [2][-]{subsection.2.2.8}{Storage}{section.2.2}% 25
+\BOOKMARK [2][-]{subsection.2.2.7}{Power Management}{section.2.2}% 24
+\BOOKMARK [2][-]{subsection.2.2.8}{Bluetooth Low Energy}{section.2.2}% 25
 \BOOKMARK [0][-]{chapter.3}{Related Work}{part.1}% 26
 \BOOKMARK [1][-]{section.3.1}{A Framwork For Screening And Classifying Obstructive Sleep Apnea using Smartphones}{chapter.3}% 27
 \BOOKMARK [-1][-]{part.2}{II Design and Implementation}{}% 28

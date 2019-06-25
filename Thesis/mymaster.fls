@@ -445,6 +445,9 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/jknappen/ec/ectt1095.tfm
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/androidlifecycle.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/androidlifecycle.png
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/androidlifecycle.png
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/MVVM.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/MVVM.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/MVVM.pdf
 OUTPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/relatedwork/index.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/relatedwork/index.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/relatedwork/index.tex
@@ -491,9 +494,6 @@ INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/index.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/archandpro.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/archandpro.tex
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/MVVM.pdf
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/MVVM.pdf
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/MVVM.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/ioc.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/ioc.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Recording_ImpA.pdf

@@ -13,12 +13,12 @@ The Android platform is an open-source and Linux-based software stack, containin
 
 
 \begin{itemize}
-    \item \verb|Applications|: Android provides a core set of applications (e.g., SMS, Mail, and browser) pre-installed on the device. There are support for installing third-party applications, which allows users to install applications developed by external vendors. A user is not bound to use the pre-installed applications for a service (e.g., SMS), and can choose the desired applications for a service. Also, third-party applications can invoke the functionality of the core applications (e.g., SMS), instead of developing the functionality from scratch. 
-    \item \verb|Android Framework|: Is the building blocks to create Android applications by utilizing the core, all exposed through an API. The API enables reuse of core, modular system components, and services; briefly characterized as \textit{View System}: to build the user interface pre-defined components (e.g., lists, grids, and buttons); \textit{Resource Manager}: provides access to resources (e.g., strings, graphics and layout files); \textit{Notification Managers}: allows applications to show custome notifications in the status bar; \textit{Activity Manager}: manages lifecycle of the application; and \textit{Content Providers}: enables applications to access data from other applications.
-    \item \verb|Android Runtime|: Applications run its own process and has its own instance of the Android Runtime (ART). ART is designed to run on multiple virtual machines by executing DEX (Dalvik Executable format) files, which is a bytecode specifcally for Android to optimize memory footprint. Some of the features that ART provides are ahead-of-time (AOT) and just-in-time (JIT) compilation, garbage collection (GC), and debugging support (e.g., sampling profiler, diagnostic exceptions and crash reporting).
-    \item \verb|Native Libraries|: Most of the core Android components and services native code, that requires native libraries, is written in C or C++. The Android platform exposes Java APIs to some of the functionality of the native libraries (with Android NDK).   
-    \item \verb|Hardware Abstract Layer|: Provides an interface to expose hardware capabilities to the Java API framwork. Hardware Abstract Layer (HAL) consists of multiple library modules that implements an interface for specific hardware components (e.g., camera, or bluetooth module).
-    \item \verb|Linux Kernel|: is the fundation of the Android platform. The ART relies on the functionality from the Linux kernal, such as threading and low-level memory management. The Linux kernel provides drivers to services (e.g., Bluetooth, Wifi, and IPC), and incorporates a component for power management. 
+    \item \textbf{Applications}: Android provides a core set of applications (e.g., SMS, Mail, and browser) pre-installed on the device. There are support for installing third-party applications, which allows users to install applications developed by external vendors. A user is not bound to use the pre-installed applications for a service (e.g., SMS), and can choose the desired applications for a service. Also, third-party applications can invoke the functionality of the core applications (e.g., SMS), instead of developing the functionality from scratch. 
+    \item \textbf{Android Framework}: Is the building blocks to create Android applications by utilizing the core, all exposed through an API. The API enables reuse of core, modular system components, and services; briefly characterized as \textit{View System}: to build the user interface pre-defined components (e.g., lists, grids, and buttons); \textit{Resource Manager}: provides access to resources (e.g., strings, graphics and layout files); \textit{Notification Managers}: allows applications to show custome notifications in the status bar; \textit{Activity Manager}: manages lifecycle of the application; and \textit{Content Providers}: enables applications to access data from other applications.
+    \item \textbf{Android Runtime}: Applications run its own process and has its own instance of the Android Runtime (ART). ART is designed to run on multiple virtual machines by executing DEX (Dalvik Executable format) files, which is a bytecode specifcally for Android to optimize memory footprint. Some of the features that ART provides are ahead-of-time (AOT) and just-in-time (JIT) compilation, garbage collection (GC), and debugging support (e.g., sampling profiler, diagnostic exceptions and crash reporting).
+    \item \textbf{Native Libraries}: Most of the core Android components and services native code, that requires native libraries, is written in C or C++. The Android platform exposes Java APIs to some of the functionality of the native libraries (with Android NDK).   
+    \item \textbf{Hardware Abstract Layer}: Provides an interface to expose hardware capabilities to the Java API framwork. Hardware Abstract Layer (HAL) consists of multiple library modules that implements an interface for specific hardware components (e.g., camera, or bluetooth module).
+    \item \textbf{Linux Kernel}: is the fundation of the Android platform. The ART relies on the functionality from the Linux kernal, such as threading and low-level memory management. The Linux kernel provides drivers to services (e.g., Bluetooth, Wifi, and IPC), and incorporates a component for power management. 
 \end{itemize} 
 
 
@@ -94,11 +94,51 @@ Inter-process communication is a mechanism to perform remote procedure calls (RP
 
 Besides AIDL, one can use \verb|Intent| to pass messages across processes. Intent is a messaging object used to request action from another application components \cite{intents}. There are two types of intents: 1) \verb|explicit intents|: used to start a component in the application, by supplying the application package name or component class; and 2) \verb|implicit intents|: declare a genereal action to perform, which enables other applications to handle it. The main uses cases of an intent are to starting an activity; starting a service; and delivering a broadcast.  
 
+\subsection{Data and File Storage}
+Android provides options to store application data on the device, depending on space requirement, data type, and whether the data should be accessible to other application or private to the application \cite{filestorage}. There are four distinctive data storage options, depending on the requirement of data that is being stored:
+\begin{itemize}
+    \item \textbf{Interal File Storage}: The system provides a directory on the file system for the application to store and access files. By default, the files saved in this directory is private to the application. Also, files stored in the interal storage are removed on uninstallation of the application; therefore, storing persistent data that are expected to be on the device regardless of the application removal, should not be using interal file storage. In addition, internal file storage allows for caching, which enables temprarily data storage (that do not require to be persistent). 
+    \item \textbf{External File Storage}: External file storage enables storing of files in a space where users can mount to a computer as an external storage device (or to a physicall removeable storage, such as SD card). Files stored into a external storage makes it possible to transfer files on a computer over USB. Files stored in a external file storage enables other applications to access the data, and the data remain available after application uninstallation (unless specified that the stoarge is application-specific). 
+    \item \textbf{Shared Preferences}: For storing small and unstructured data, \verb|SharedPreference| enables API to read and write persistent key-value pairs of primitive data types (e.g., booleans, floats, ints, longs, and strings). The storage location is specified by uniquly identifying name, and the data is stored into a XML file. Also, the data stored remain persistent (even after application termination). 
+    \item \textbf{Databases}: Android provides support for SQlite databases, which is a relation database management system embedded into the system. The access to the database is private to the application, and accessing the database can be done with the \verb|Room persistence library|. The Room library provides an abstract layer over SQLite APIs.  
+\end{itemize}
 
-\subsection{Bluetooth LE}
 
 \subsection{Architecture Patterns}
 
-\subsection{Energy Saving}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{images/MVVM.pdf}
+    \caption{Entity Relationship Diagram}
+    \label{fig:mvvm}
+\end{figure}
 
-\subsection{Storage}
+The architectural pattern principle enhances the separation of \textit{graphical user interface} logic from the \textit{oparting system} interactions \cite{architecture}. The Model-View-ViewModel (hereafter: MVVM) is an architectural pattern which is well-integrated and incentived by Android. It has three components that consititute the principle:
+\begin{itemize}
+    \item \textbf{Model}: represents the data and the business logic of the application. 
+    \item \textbf{ViewModel}: interacts with the model, and manages the state of the view.
+    \item \textbf{View}: handles and manages the user interface of the application.
+\end{itemize}
+
+In Figure \ref{fig:mvvm}, the interactions amongst the components are illustrated. The connection between the \verb|View| and \verb|ViewModel| occurs over a data binding connection, which enables the view to change automatically based on changes to the binding of the subscribed data \cite{mvvm}. In Android, the \verb|LiveData| is an obserable data holder that enables data binding, which allows components to observe for data changes. \verb|LiveData| respects the lifecycle of the application components (e.g., activities, fragments, or services), ensuring the \verb|LiveData| only updates the components that are in an active lifecycle state \cite{livedata}. Moreover, \verb|Android Room| provides set of components to facilitate the structure of the model component \cite{room}. More spesifically, it models a database and the entities (which are the tables in the database).
+
+\subsection{Power Management}
+Battery life is a concern to the user, as the battery capacity is significantly limited on devices \cite{powermanagement}. Android has feastures to extend battery life by optimizing the behavior of the application and the device, and provides several techniques to improve battery life:
+\begin{itemize}
+    \item \textbf{App Restrictions}: Users can choose to restrict applications (e.g., applications cannot use network in the backgroud, and foreground services). The application that are restricted, functiontions as expected when the user launches the application; however, are restricted to do background tasks. 
+    \item \textbf{App Standby}: An application can be put into standby mode if an user is not actively using it, resulting in the application background activity and jobs is postponed. An application is in standby mode if there is no process in the foreground, a notification is being viewed by the user, and not explicitly being used by the user. 
+    \item \textbf{Doze}: When a device is unused for a long period, applications are delayed to do background activites and tasks. The doze-mode enters maintancen window to complete pending work, and then resume sleep for a longer period of time. This cycles through until a maximum of sleep time is reached. Some applications wants to keep the device running to perform long-running tasks (e.g., collecting data), and \verb|WakeLocks| enables this. \verb|WakeLocks| allows application to perform activties and tasks, even while the screen is turned off \cite{wakelocks}. 
+    \item \textbf{Exemptions}: Another way of keeping an application awake, is to exemtping applications from being forced to \verb|Doze| or to be in \verb|App Standby|. The exmpted applications are listend in the settings of the device, and users can manualy choose application to exempt. Consequently, exempted applications might overconsume the battery of the device. 
+\end{itemize}
+
+
+\subsection{Bluetooth Low Energy}
+Android supports for Bluetooth Low Energy (BLE), which is desgned to provide lower power consumption on data transmittion (in contrast to classic Bluetooth) \cite{bluetoothle}. BLE allows Android applications to communicate with sensors or devices (e.g., heart rate sensor, and fitness devices), that has a stricter power requirements. Sensors that utilize BLE, are designed to last for a longer period of time (e.g., weeks or months before needing to charge or replace battery). The protocol of BLE is optimized for small burst of data exhange, and terms and concepts that form a BLE can be characterized as:
+\begin{itemize}
+    \item \textbf{Generic Attribute Profile (GATT)}: As of now, all Low Energy applications are based on GATT. GATT is a general spesification for sending and receiving burst of data (known as \textit{attributes}) over a BLE link. 
+    \item \textbf{Attribute Protocol (ATT)}: GATT utilites the Attribut Protocol, which uses a few bytes as possible to be uniquely identified by a Universall Unique Identifer (UUID). An UUID is a standardized format for identify information.
+    \item \textbf{Characteristic}: Contains a single value and descriptors that describe the characterstics value (i.e., can be seen as a type). 
+    \item \textbf{Descriptor}: Are defined attributes that describe a characterstic value (e.g., specify a human-readable description, a range of acceptable values, or a unit of measure).
+    \item \textbf{Service}: Is a collection of characterstics (e.g., a service is \textit{Heart Rate Monitor} which includs a characterstic of \textit{heart rate measurement}).
+\end{itemize}
+In order to enable BLE, factiliting for a GATT server and GATT client is required. Either the sensor or the device take the role of being a server or a client. However, the GATT server offers a set of services (i.e., features), where each service has a set of characterstics. And the GATT client can subscribe and read from the services the GATT server provides. 
