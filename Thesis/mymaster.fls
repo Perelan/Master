@@ -492,8 +492,6 @@ INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/DataEntries.png
 OUTPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/index.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/index.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/index.tex
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/archandpro.tex
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/archandpro.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/ioc.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/implementation/ioc.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Recording_ImpA.pdf
@@ -526,15 +524,15 @@ INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Storage_Imp.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Recording_img.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Recording_img.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Recording_img.pdf
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics_img.pdf
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics_img.pdf
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics_img.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Sharing_img.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Sharing_img.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Sharing_img.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Modules_img.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Modules_img.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Modules_img.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics_img.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics_img.pdf
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Analytics_img.pdf
 OUTPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/experiments/index.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/experiments/index.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/experiments/index.tex

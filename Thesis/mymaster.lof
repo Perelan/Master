@@ -39,31 +39,31 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Implementation of recording functionality (A)\relax }}{52}{figure.caption.26}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Implementation of recording functionality: (A) Start a Recording\relax }}{52}{figure.caption.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Implementation of recording functionality (B)\relax }}{54}{figure.caption.27}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Implementation of recording functionality: (B) Stop a Recording\relax }}{54}{figure.caption.27}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Implementation of recording functionality (C)\relax }}{55}{figure.caption.28}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Implementation of sharing functionality (A): Exporting one or all Records\relax }}{56}{figure.caption.29}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of sharing functionality (B)\relax }}{57}{figure.caption.30}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of sharing functionality (B)\relax }}{58}{figure.caption.30}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Implementation of module functionality(A): Install a Module\relax }}{59}{figure.caption.31}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Implementation of module functionality(A): Add a Module\relax }}{60}{figure.caption.31}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Implementation of module functionality(B): Launch a Module\relax }}{60}{figure.caption.32}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Implementation of module functionality(B): Launch a Module\relax }}{61}{figure.caption.32}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Implementation of analytics functionality (A): Display a Graph for a Single Record\relax }}{61}{figure.caption.33}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Implementation of analytics functionality (A): Display a Graph for a Single Record\relax }}{62}{figure.caption.33}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Entity Relationship Diagram\relax }}{62}{figure.caption.34}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Entity Relationship Diagram\relax }}{63}{figure.caption.34}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Entity Relationship Diagram\relax }}{64}{figure.caption.35}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces The recording screen displayed to the user; with the screen: (A) during a recording, (B) real-time analytics, and (C) finalizing the recording\relax }}{65}{figure.caption.35}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Entity Relationship Diagram\relax }}{64}{figure.caption.36}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces The sharing screen displayed to the user\relax }}{66}{figure.caption.36}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Entity Relationship Diagram\relax }}{65}{figure.caption.37}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces The module screen displayed to the user\relax }}{67}{figure.caption.37}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Entity Relationship Diagram\relax }}{65}{figure.caption.38}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces The analytics screen displayed to the user\relax }}{67}{figure.caption.38}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
