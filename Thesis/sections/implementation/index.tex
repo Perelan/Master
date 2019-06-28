@@ -3,11 +3,22 @@
 %\section{Architecture Pattern}
 %\input{sections/implementation/archandpro.tex}
 
-\section{Process Structure \& Inter-Process Communication}
-\section{Permissions \& Android Manifest}
+\section{Android Components}
+The CESAR project is introduced in the Background Chapther; to summarize, the data dispatching module discovers and connects with sensor wrappers (each sensor source has its own senor wrapper), and enables data acquesition to applications that subscribe to the data. As for this thesis, we operate with three different applications: Nidra, Data Stream Dispatching Module, and the sensor wrapper for Flow sensor kit. 
+
+Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service and broadcast receivers) for each applications. All of the applications run in a separate process on a device. In order to perform remote procedure calls (RPC) to application components that run remotely, we can use the IPC mechanism. In Android there are two mechanisms to mechanisms to enable IPC: (1) \verb|Binder| ; and (2) \verb|Intent|
+
+\subsection{Process Structure and Android Components}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.95]{images/Android_Components.pdf}
+    \caption{Applications components}
+    \label{fig:app_components}
+\end{figure}
+
 
 \section{Flow Sensor Kit Development}
-
 
 \section{Implementation of Concerns}
 In Section (ref) we conceptualized the tasks, by decomposing the tasks into components and discussing various techniques and design decisions for implementation. In this Section, we will realize the discussion by implementing the tasks in Android. 
