@@ -26,15 +26,25 @@ plt.style.use('seaborn')
 #   } 
 # ]
 
+sample_count = 0
+
 def get_data(sample):
     data = sample[2].split("=")[1].split(",")
     avg = mean([int(i) for i in data])
     return avg
 
 def get_date(sample):
+    global sample_count
+
+    if sample > '20:10:00' and sample < '21:00:00':
+        sample_count += 1
+
     return datetime.strptime(sample, '%H:%M:%S')
 
 def parse(data, name):
+    global sample_count
+    # Der det står -1, bytt til 3 hvis du analyserer record_1_D og record_2_D
+    # Glemte å konfigurere riktig tid på den ene enheten...
     date = [get_date(i['implicitTS'].split(" ")[-1]) for i in data[0]['samples']]
     data = [get_data(i['sample'].split(", ")) for i in data[0]['samples']]
 
@@ -49,14 +59,15 @@ def parse(data, name):
     ax.set_ylabel("Respiration value")
     ax.set_title(name)
 
-    plt.show();
+    plt.show()
+    
+    print(sample_count)
 
 def read(filename="record_1_B.json"):
     with open(filename) as f:
         json_data = json.load(f)
 
         parse(json_data, filename)
-
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
