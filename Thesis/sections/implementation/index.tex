@@ -4,11 +4,6 @@
 %\input{sections/implementation/archandpro.tex}
 
 \section{Android Components}
-The CESAR project is introduced in the Background Chapther; to summarize, the data dispatching module discovers and connects with sensor wrappers (each sensor source has its own senor wrapper), and enables data acquesition to applications that subscribe to the data. As for this thesis, we operate with three different applications: Nidra, Data Stream Dispatching Module, and the sensor wrapper for Flow sensor kit. 
-
-Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service and broadcast receivers) for each applications. All of the applications run in a separate process on a device. In order to perform remote procedure calls (RPC) to application components that run remotely, we can use the IPC mechanism. In Android there are two mechanisms to mechanisms to enable IPC: (1) \verb|Binder| ; and (2) \verb|Intent|
-
-\subsection{Process Structure and Android Components}
 
 \begin{figure}
     \centering
@@ -16,6 +11,32 @@ Figure \ref{fig:app_components} illustrates the Android components (i.e., activi
     \caption{Applications components}
     \label{fig:app_components}
 \end{figure}
+
+The CESAR project is introduced in the Background Chapther; to summarize, the data dispatching module discovers and connects with sensor wrappers (each sensor source has its own senor wrapper), and enables data acquesition to applications that subscribe to the data. As for this thesis, we operate with three different applications: Nidra, Data Stream Dispatching Module, and the sensor wrapper for Flow sensor kit. 
+
+Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service and broadcast receivers) for each applications. All of the applications run in a separate process on a device. In order to perform remote procedure calls (RPC) to application components that run remotely, we can use the IPC mechanism. In Android there are two mechanisms to mechanisms to enable IPC: (1) \verb|Binder| enables a process to remotely invoke functions in another process; and (2) \verb|Intent| a message passing interface aollowing applications to send messages to each other.
+
+
+
+
+\subsection{Inter-Process Communication: AIDL}
+To perform IPC using Android Interface Definition Language (AIDL) [cite] we need to define a programming interface that both the client and the service agree upon. In order to communicate with processes, the data objects has to be decomposed into primitives that the operating system can understand, and marshall the objects across the boundary. The AIDL interface is defined in an \verb|.AIDL| file, and located in the \verb|src/| directory of the hosting service application (DSDM), and other applications that binds to the service (Nidra and sensor wrappers). It is important to have identical \verb|.AIDL| files across the applications, otherwise the system will not recognize it as the same interface. In Listing 5.1, the interface is based on the functionality the hosting service application exposes (DSDM). In Nidra, some of the functionality is utilized to enable recording. More spesifically, \verb|getPubishers()| method is used to get all of the sensors publishers (e.g., Bitalino provides multiple sensor capabilites ...), the \verb|Subscribe(...)| and \verb|Unsubscribe(...)| is used in order to subscribe and unsubscribe to a spesific sensor capability, and listing for events on the \verb|putJson(...)|, which is used by the sensor wrappers to send data collected to DSDM, and further sent to all subscribing applications (i.e., Nidra). 
+
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+// MainServiceConnection.aidl
+package com.sensordroid;
+
+interface MainServiceConnection {
+    void putJson(in String json);
+    int Subscribe(String capabilityId, int frequency, String componentPackageName, String componentClassName);
+    int Unsubscribe(String capabilityId, String componentClassName);
+    String Publish(String capabilityId, String type, String metric, String description);
+    void Unpublish(String capabilityId, String key);
+    List<String> getPublishers();
+}
+\end{lstlisting}
+
 
 
 \section{Flow Sensor Kit Development}
