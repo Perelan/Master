@@ -1,11 +1,17 @@
 \section{Problem Statement}
 
-As indicated in the background and motivation section, we decided to look into there are opportunity of extending the system even further. The market has new and affordable sensors that can aid with the data acquisition, which we seamlessly can integrate with the extensible data acquisition tool. In the end, we can hopefully strengthen the detection of abnormal sleeping patterns, and decreasing the risk of the symptoms they may endure.
+As indicated in the background and motivation section, we decided to look into opportunity of extending the the CESAR project even further. The market has new and affordable sensors that can aid with the data acquisition, which we seamlessly can integrate with the extensible data acquisition tool. In the end, we can hopefully strengthen the detection of abnormal sleeping patterns, and decreasing the risk of the symptoms they may endure. As the scope of the this thesis, we will be focusing on the completion of three main objectives:
 
-In this thesis, we will continue to build on the project by implementing the following:
+\begin{description}
+    \item[Objective 1] Integrate and support for Flow sensor kit with the \textit{extensible data acqusition tool}
+    \item[Objective 2] Research and develop a user-friendly application which facilitates collection physilogical data through the extensible data acquisition tool.
+    \item[Objective 3] Create a "platform" solution for developers to create modules. 
+\end{description}
 
-\begin{enumerate}
-    \item \textit{Integrate new a sensor wrapper}\\The following section Flow Sensor Kit introduces to a new sensor type to be used in the CESAR project. Thus, creating a new wrapper to integrate it in the system is necessary. By utilizing the library that comes with the sensor, we can integrate that with the interface and protocol of the CESAR project.
-    \item \textit{Visualization of the activities on an Android device}\\Designing, architecting, and modulating an Android application that implements the new sensor data in an adequately layout.
-    \item \textit{Detecting anomalies with the help of Machine Learning}\\Classifying the data so we can detect abnormal sleeping patterns, and hopefully training an model that can detect the sleeping patterns, locally on the device, without any external supervisor (human intervention) analyzing the data. 
-\end{enumerate}
+As part of the objectives of this thesis, which constitute the overall goal of the project, we also define three system requirements to keep in mind while designing and implementing the application. The three system requirements are the following: 
+
+\begin{description}
+    \item[Requirement 1] The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.
+    \item[Requirement 2] The application should ensure a seamless and continuous data stream, uninterrupted from sensor disconnections and human disruptions.
+    \item[Requirement 3] The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.
+\end{description}
