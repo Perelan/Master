@@ -1057,36 +1057,6 @@
       \verb https://material.io/design/color/the-color-system.html
       \endverb
     \endentry
-    \entry{cesar}{book}{}
-      \name{author}{1}{}{%
-        {{hash=173346813d234b7a2ab25a74c7bb526e}{%
-           family={Thomas\bibnamedelimb Peter\bibnamedelima Plagemann},
-           familyi={T\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim P\bibinitperiod},
-           given={Stein\bibnamedelima Kristiansen},
-           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod},
-           suffix={Vera\bibnamedelimb Hermine\bibnamedelima Goebel},
-           suffixi={V\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-      }
-      \strng{namehash}{173346813d234b7a2ab25a74c7bb526e}
-      \strng{fullhash}{173346813d234b7a2ab25a74c7bb526e}
-      \strng{bibnamehash}{173346813d234b7a2ab25a74c7bb526e}
-      \strng{authorbibnamehash}{173346813d234b7a2ab25a74c7bb526e}
-      \strng{authornamehash}{173346813d234b7a2ab25a74c7bb526e}
-      \strng{authorfullhash}{173346813d234b7a2ab25a74c7bb526e}
-      \field{sortinit}{T}
-      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{URL: http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html (visited on 05/05/2018)}
-      \field{title}{Android based eHealth applications with BiTalino sensors}
-      \field{year}{2015}
-      \verb{urlraw}
-      \verb http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html
-      \endverb
-      \verb{url}
-      \verb http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html
-      \endverb
-    \endentry
     \entry{cia}{article}{}
       \name{author}{4}{}{%
         {{hash=7055460aafd1f027e0874314c0fa1faa}{%
