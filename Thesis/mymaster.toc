@@ -1,11 +1,11 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {UKenglish}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Listings}{vi}{chapter*.3}
+\contentsline {chapter}{List of Listings}{vii}{chapter*.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Tables}{vii}{chapter*.4}
+\contentsline {chapter}{List of Tables}{ix}{chapter*.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{ix}{chapter*.5}
+\contentsline {chapter}{List of Figures}{xi}{chapter*.5}
 \defcounter {refsection}{0}\relax 
 \contentsline {part}{I\hspace {1em}Introduction and Background}{1}{part.1}
 \defcounter {refsection}{0}\relax 
@@ -60,6 +60,8 @@
 \contentsline {subsection}{\numberline {2.2.8}Bluetooth Low Energy}{24}{subsection.2.2.8}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Related Work}{27}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Summary}{28}{section.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {part}{II\hspace {1em}Design and Implementation}{29}{part.2}
 \defcounter {refsection}{0}\relax 
@@ -131,94 +133,110 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Implementation}{55}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Android Components}{55}{section.5.1}
+\contentsline {section}{\numberline {5.1}Application Components}{55}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.1}Inter-Process Communication: AIDL}{55}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.1}Data Stream Dispatching Module}{55}{subsection.5.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Flow Sensor Kit Development}{57}{section.5.2}
+\contentsline {subsubsection}{\numberline {5.1.1.1}Sensor Discovery}{57}{subsubsection.5.1.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Implementation of Concerns}{57}{section.5.3}
+\contentsline {subsubsection}{\numberline {5.1.1.2}Start and Stop}{57}{subsubsection.5.1.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.1}Recording}{57}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.1.2}Flow Sensor Wrapper}{57}{subsection.5.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.1.1}Action A: Start a Recording}{58}{subsubsection.5.3.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2.1}Setting Up Connection}{58}{subsubsection.5.1.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.1.2}Action B: Stop a Recording}{60}{subsubsection.5.3.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Nidra}{58}{subsection.5.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.1.3}Action C: Display Recording Analytics}{61}{subsubsection.5.3.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Inter-Process Communication: AIDL}{58}{subsection.5.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.2}Sharing}{62}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.2}Implementation of Concerns}{59}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.2.1}Action A: Exporting one or all Records}{62}{subsubsection.5.3.2.1}
+\contentsline {subsection}{\numberline {5.2.1}Recording}{60}{subsection.5.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.2.2}Action B: Import a Record from the Device}{64}{subsubsection.5.3.2.2}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Action A: Start a Recording}{60}{subsubsection.5.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.3}Modules}{65}{subsection.5.3.3}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Action B: Stop a Recording}{62}{subsubsection.5.2.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.3.1}Action A: Add a Module}{65}{subsubsection.5.3.3.1}
+\contentsline {subsubsection}{\numberline {5.2.1.3}Action C: Display Recording Analytics}{63}{subsubsection.5.2.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.3.2}Action B: Launch a Module}{66}{subsubsection.5.3.3.2}
+\contentsline {subsection}{\numberline {5.2.2}Sharing}{63}{subsection.5.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.4}Analytics}{67}{subsection.5.3.4}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Action A: Exporting one or all Records}{64}{subsubsection.5.2.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.4.1}Action A: Display a Graph for a Single Record}{68}{subsubsection.5.3.4.1}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Action B: Import a Record from the Device}{66}{subsubsection.5.2.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.5}Storage}{69}{subsection.5.3.5}
+\contentsline {subsection}{\numberline {5.2.3}Modules}{67}{subsection.5.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.6}Presentation}{70}{subsection.5.3.6}
+\contentsline {subsubsection}{\numberline {5.2.3.1}Action A: Add a Module}{67}{subsubsection.5.2.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.6.1}UI: Recording}{70}{subsubsection.5.3.6.1}
+\contentsline {subsubsection}{\numberline {5.2.3.2}Action B: Launch a Module}{68}{subsubsection.5.2.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.6.2}UI: Sharing}{71}{subsubsection.5.3.6.2}
+\contentsline {subsection}{\numberline {5.2.4}Analytics}{70}{subsection.5.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.6.3}UI: Modules}{72}{subsubsection.5.3.6.3}
+\contentsline {subsubsection}{\numberline {5.2.4.1}Action A: Display a Graph for a Single Record}{71}{subsubsection.5.2.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.6.4}UI: Analytics}{72}{subsubsection.5.3.6.4}
+\contentsline {subsection}{\numberline {5.2.5}Storage}{71}{subsection.5.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{75}{part.3}
+\contentsline {subsection}{\numberline {5.2.6}Presentation}{72}{subsection.5.2.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Evaluation}{77}{chapter.6}
+\contentsline {subsubsection}{\numberline {5.2.6.1}UI: Recording}{73}{subsubsection.5.2.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Experiments and Measurements}{77}{section.6.1}
+\contentsline {subsubsection}{\numberline {5.2.6.2}UI: Sharing}{74}{subsubsection.5.2.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}Experiment A: Orchestral Concert to Analyze Musical Absorption using Nidra to Collect Breathing Data}{77}{subsection.6.1.1}
+\contentsline {subsubsection}{\numberline {5.2.6.3}UI: Modules}{74}{subsubsection.5.2.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.1.1}Preperations}{79}{subsubsection.6.1.1.1}
+\contentsline {subsubsection}{\numberline {5.2.6.4}UI: Analytics}{75}{subsubsection.5.2.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.1.2}Results}{79}{subsubsection.6.1.1.2}
+\contentsline {section}{\numberline {5.3}Miscellaneous}{75}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.1.3}Analysis \& Discussion}{81}{subsubsection.6.1.1.3}
+\contentsline {subsection}{\numberline {5.3.1}Android Manifest}{75}{subsection.5.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.1.4}Conclusion}{82}{subsubsection.6.1.1.4}
+\contentsline {subsection}{\numberline {5.3.2}Collecting Data Over a Longer Period}{75}{subsection.5.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Experiment B: 8-hours recording}{83}{subsection.6.1.2}
+\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{77}{part.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.3}Experiment C: Performing User-Tests on Two Participants}{83}{subsection.6.1.3}
+\contentsline {chapter}{\numberline {6}Evaluation}{79}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.1}Testing}{83}{subsubsection.6.1.3.1}
+\contentsline {section}{\numberline {6.1}Experiments and Measurements}{79}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.2}Observations}{84}{subsubsection.6.1.3.2}
+\contentsline {subsection}{\numberline {6.1.1}Experiment A: Orchestral Concert to Analyze Musical Absorption using Nidra to Collect Breathing Data}{79}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.3}Discussion}{84}{subsubsection.6.1.3.3}
+\contentsline {subsubsection}{\numberline {6.1.1.1}Preperations}{81}{subsubsection.6.1.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.4}Survey}{85}{subsubsection.6.1.3.4}
+\contentsline {subsubsection}{\numberline {6.1.1.2}Results}{81}{subsubsection.6.1.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.5}Conlusions}{87}{subsubsection.6.1.3.5}
+\contentsline {subsubsection}{\numberline {6.1.1.3}Analysis \& Discussion}{83}{subsubsection.6.1.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Experiment D: Creating a Simple Module}{87}{subsection.6.1.4}
+\contentsline {subsubsection}{\numberline {6.1.1.4}Conclusion}{84}{subsubsection.6.1.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.4.1}Process}{87}{subsubsection.6.1.4.1}
+\contentsline {subsection}{\numberline {6.1.2}Experiment B: 8-hours recording}{85}{subsection.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.4.2}Observations}{87}{subsubsection.6.1.4.2}
+\contentsline {subsection}{\numberline {6.1.3}Experiment C: Performing User-Tests on Two Participants}{85}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.4.3}Results}{88}{subsubsection.6.1.4.3}
+\contentsline {subsubsection}{\numberline {6.1.3.1}Testing}{85}{subsubsection.6.1.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.4.4}Discussion \& Conlusion}{88}{subsubsection.6.1.4.4}
+\contentsline {subsubsection}{\numberline {6.1.3.2}Observations}{86}{subsubsection.6.1.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Main Findings}{88}{section.6.2}
+\contentsline {subsubsection}{\numberline {6.1.3.3}Discussion}{86}{subsubsection.6.1.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion}{89}{chapter.7}
+\contentsline {subsubsection}{\numberline {6.1.3.4}Survey}{87}{subsubsection.6.1.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{Appendix}{90}{chapter.7}
+\contentsline {subsubsection}{\numberline {6.1.3.5}Conlusions}{89}{subsubsection.6.1.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Power Data}{93}{appendix.A}
+\contentsline {subsection}{\numberline {6.1.4}Experiment D: Creating a Simple Module}{89}{subsection.6.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.4.1}Process}{89}{subsubsection.6.1.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.4.2}Observations}{89}{subsubsection.6.1.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.4.3}Results}{90}{subsubsection.6.1.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.4.4}Discussion \& Conlusion}{90}{subsubsection.6.1.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}Main Findings}{91}{section.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Conclusion}{93}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{Appendix}{94}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Power Data}{97}{appendix.A}

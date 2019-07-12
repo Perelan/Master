@@ -3,7 +3,7 @@
 %\section{Architecture Pattern}
 %\input{sections/implementation/archandpro.tex}
 
-\section{Android Components}
+\section{Application Components}
 
 \begin{figure}
     \centering
@@ -16,8 +16,44 @@ The CESAR project is introduced in the Background Chapther; to summarize, the da
 
 Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service and broadcast receivers) for each applications. All of the applications run in a separate process on a device. In order to perform remote procedure calls (RPC) to application components that run remotely, we can use the IPC mechanism. In Android there are two mechanisms to mechanisms to enable IPC: (1) \verb|Binder| enables a process to remotely invoke functions in another process; and (2) \verb|Intent| a message passing interface aollowing applications to send messages to each other.
 
+In the subsequent subsections an brief overview of the structure of the applications are discussed. 
+
+\subsection{Data Stream Dispatching Module}
+The Data Stream Dispatching Module developed by Bugajski provides an interface for application instances to subscribe for data packets from connected sensor sources. The modularity this module provides towards managing and supporting various sensor capabilities, this allows for a faster development time (?). To briefly introduce the steps that enable this component, we will list the steps the component performs when there are one availble sensor source and one application instance subscribing for data for the named sensor source:
+
+\subsubsection{Sensor Discovery}
+The inital design of discovery for new sensor wrappers was performed as following: (1) the DSDM sends out an broadcast and with an action of \textit{HELLO} in the Intent to discover all available sensor wrappers on the mobile device. All sensor wrappers are designed to listen for this event, and respond back to DSDM with their packagename as \textit{id} and the name of the sensor wrapper as \textit{name} with a broadcast to \textit{REGISTER}. The DSDM is then aware of which sensor wrappers that are available on the mobile device. 
+    
+    However, during the development of this thesis, Android had limited and strictend the use of implicit broadcasts on newer Android versions [cite]. Implicit broadcasts are those broadcast that do not target a specific application, however, sends out an action with a message and those application that filters and listens for the actions can proceed to perform their actions towards this message appropiately. To overcome this problem, a re-design of the sensor discovery were made. Instead of DSDM ever so often sends out a HELLO broadcast, the sensor wrapper sends out an explicit broadcast directed to DSDM make it aware of its existance. The broadcast is sent to the \textit{SensorDiscovery} directed explicitly to DSDM broadcast receivers, encapsulated with the name and the packagename of the sensor wrapper. The DSDM stores the sensor wrapper information in a \verb|SharedPreference|. Upon launch of the DSDM, an indentical...
+
+\subsubsection{Start and Stop}
+
+\subsection{Flow Sensor Wrapper}
+As part of the thesis objective is to integrate the support of the Flow sensor kit, we developed a sensor wrapper to establish a connection with the sensor capabilites with the DSDM. We followed the instructions to create a new driver application created by Gjøby, and the brief overview of main the component are:
+
+\begin{description}[font=\normalfont\itshape]
+    \item[WrapperService] Is instansiated by the DSDM during the sensor discovery phase. The events to handle start and stop of the data acquesition is managed within this service, as well as creating an IPC connection between modules (?). 
+    \item[CommunicationHandler] When the data collection is signaled to start by the DSDM, a seperate thread in \verb|CommunicationHandler| is created for communication with the sensor source. The connection is persistent and sends all of the data from the sensor source to DSDM until the signaled to stop (by the call of \verb|interrupt()|). The connection, collection and disconnection assosicated with the data source is implemented in this thread.
+    \item[BluetoothHandler] 
+    \item[DataHandler] Is responsible for preprocessing the collected data, before sending to the DSDM application. Part of this process is to construct the data packet correctly. The packet contains the \verb|id| of the sensor wrapper, the current date and time, and the data with the samples. The packet is then sent using the establish binder connection, in order to send the data packet (on \verb|putJson()|).
+\end{description}
+
+Besides the components which manages the connectivity, collection and disconnection with the sensor source, there are two activites that are resposible for selecting the sensor source, and displaying the state of the sensor source on the users screen:
+\begin{description}
+    \item[MainActivity] Presents the state and informatuon of the connected sensor source. Currently, it presents the connectivty state (connected or disconnected), the battery level of the sensor, the mac address and the firmware to the connected Flow sensor, and the option to remove or connect to another sensor device. 
+    \item[DeviceListActivity] All of the available devices close to the mobile device which have BlueTooth activated is listed for the user to pick. Devices that are assosicated with the Flow sensor kit (e.g., OarZpot) has an distingushable icon to make it easier to select the correct device. 
+\end{description}
+The Flow sensor wrapper stores the selected sensor device in a \verb|SharedPreference| with the name and the mac address of the device. As such, the user has to configure the sensor wrapper once, and the information remain persistent in the application.   
 
 
+
+\subsubsection{Setting Up Connection}
+The Flow sensor kit provides no SDK or API to manage the connection with the sensors. In order to manage the connection with the Flow sensor source, we have to use BlueTooth LowEnergy, which is a protocol for devices which has resitriction on battery capacity to communicate with devices. In the limitations, we decided to only focus on collection respiration data. The Flow sensor kit gatheres data a frequency of 10 Hz, however, the data from the sensor source is sent to the connected devices on approximatly 1.5 Hz. 
+
+ and with that basis the steps to collect data from the Flow sensor kit can be done as following: 
+
+
+\subsection{Nidra}
 
 \subsection{Inter-Process Communication: AIDL}
 To perform IPC using Android Interface Definition Language (AIDL) [cite] we need to define a programming interface that both the client and the service agree upon. In order to communicate with processes, the data objects has to be decomposed into primitives that the operating system can understand, and marshall the objects across the boundary. The AIDL interface is defined in an \verb|.AIDL| file, and located in the \verb|src/| directory of the hosting service application (DSDM), and other applications that binds to the service (Nidra and sensor wrappers). It is important to have identical \verb|.AIDL| files across the applications, otherwise the system will not recognize it as the same interface. In Listing 5.1, the interface is based on the functionality the hosting service application exposes (DSDM). In Nidra, some of the functionality is utilized to enable recording. More spesifically, \verb|getPubishers()| method is used to get all of the sensors publishers (e.g., Bitalino provides multiple sensor capabilites ...), the \verb|Subscribe(...)| and \verb|Unsubscribe(...)| is used in order to subscribe and unsubscribe to a spesific sensor capability, and listing for events on the \verb|putJson(...)|, which is used by the sensor wrappers to send data collected to DSDM, and further sent to all subscribing applications (i.e., Nidra). 
@@ -37,12 +73,14 @@ interface MainServiceConnection {
 }
 \end{lstlisting}
 
+The connection is instantiated 
 
-
-\section{Flow Sensor Kit Development}
 
 \section{Implementation of Concerns}
 In Section (ref) we conceptualized the tasks, by decomposing the tasks into components and discussing various techniques and design decisions for implementation. In this Section, we will realize the discussion by implementing the tasks in Android. 
 
 \input{sections/implementation/ioc.tex}
 
+\section{Miscellaneous}
+\subsection{Android Manifest}
+\subsection{Collecting Data Over a Longer Period}
