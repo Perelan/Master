@@ -247,8 +247,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Source Code}{99}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Folder and Code Structure}{99}{section.A.1}
+\contentsline {section}{\numberline {A.1}File and Folder Structure}{99}{section.A.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Expatiate on Concert Experiement}{103}{appendix.B}
+\contentsline {chapter}{\numberline {B}Expatiate on Concert Experiement}{101}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Module Boilerplate}{105}{appendix.C}
+\contentsline {section}{\numberline {B.1}Concert Day 1: Time-Series Graph}{101}{section.B.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.2}Concert Day 2: Time-Series Graph}{101}{section.B.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.3}Python Code for Plotting}{101}{section.B.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {C}Module Pre-Code}{109}{appendix.C}

@@ -1,7 +1,7 @@
 \chapter{Source Code}
 The source code for the various applications in context of this thesis can be found at following Github repository: \textit{https://github.com/perelan/master}
 
-\section{Folder and Code Structure}
+\section{File and Folder Structure}
 \begin{description}
     \item[Nidra] encompasses the implementation performed in the Chapther 5. The application follows the MVVM architecture pattern, thus the naming scheme of the folders advertently follows the seperation of the components in the architecture pattern. The folder structure for the application code is seperated into:
     \begin{itemize}
@@ -26,7 +26,106 @@ The source code for the various applications in context of this thesis can be fo
 
     \item[TestModule] encompasses a boilerplate code for creating a new module (further discussed in Appendix C).
     \item[Thesis] encompasses the LaTeX for this thesis, including figures and UiO master's thesis format.
-    \item[Graph] encompasses the data acquired from the various mobile devices during the two concert dates, and includes a Python script for plotting it in a time-series graph:
+    \item[Graph] encompasses the data acquired from the various mobile devices during the two concert dates including a Python script for plotting it in a time-series graph.
+
+\end{description}
+
+\chapter{Expatiate on Concert Experiement}
+
+\section{Concert Day 1: Time-Series Graph}
+This Section illustrates the samples collected during the concert the concert on third April of 2019, which lasted 
+for one hour. There are six indiviual records for this day: 
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_1_a.pdf}
+    \caption{Concert Day 1: Device A}
+    \label{fig:concert_day1_a}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_1_b.pdf}
+    \caption{Concert Day 1: Device B}
+    \label{fig:concert_day1_b}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_1_c.pdf}
+    \caption{Concert Day 1: Device C}
+    \label{fig:concert_day1_c}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_1_d.pdf}
+    \caption{Concert Day 1: Device D}
+    \label{fig:concert_day1_d}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_1_e.pdf}
+    \caption{Concert Day 1: Device E}
+    \label{fig:concert_day1_e}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_1_f.pdf}
+    \caption{Concert Day 1: Device F}
+    \label{fig:concert_day1_f}
+\end{figure}
+
+\section{Concert Day 2: Time-Series Graph}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_2_a.pdf}
+    \caption{Concert Day 2: Device A}
+    \label{fig:concert_day2_a}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_2_b.pdf}
+    \caption{Concert Day 2: Device B}
+    \label{fig:concert_day2_b}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_2_c.pdf}
+    \caption{Concert Day 2: Device C}
+    \label{fig:concert_day2_c}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_2_d.pdf}
+    \caption{Concert Day 2: Device D}
+    \label{fig:concert_day2_d}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_2_e.pdf}
+    \caption{Concert Day 2: Device E}
+    \label{fig:concert_day2_e}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{images/record_2_f.pdf}
+    \caption{Concert Day 2: Device F}
+    \label{fig:concert_day2_f}
+\end{figure}
+
+
+\section{Python Code for Plotting}
+The following Listing presents the code used for plotting the data from the concert into a time-series graph. 
 
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
 import json
@@ -89,8 +188,4 @@ if __name__ == "__main__":
 \end{lstlisting}
 
 
-\end{description}
-
-\chapter{Expatiate on Concert Experiement}
-
-\chapter{Module Boilerplate}
+\chapter{Module Pre-Code}

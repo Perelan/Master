@@ -74,6 +74,9 @@
 \BOOKMARK [1][-]{section.7.3}{Future Work}{chapter.7}% 74
 \BOOKMARK [-1][-]{section.7.3}{Appendix}{}% 75
 \BOOKMARK [0][-]{appendix.A}{Source Code}{section.7.3}% 76
-\BOOKMARK [1][-]{section.A.1}{Folder and Code Structure}{appendix.A}% 77
+\BOOKMARK [1][-]{section.A.1}{File and Folder Structure}{appendix.A}% 77
 \BOOKMARK [0][-]{appendix.B}{Expatiate on Concert Experiement}{section.7.3}% 78
-\BOOKMARK [0][-]{appendix.C}{Module Boilerplate}{section.7.3}% 79
+\BOOKMARK [1][-]{section.B.1}{Concert Day 1: Time-Series Graph}{appendix.B}% 79
+\BOOKMARK [1][-]{section.B.2}{Concert Day 2: Time-Series Graph}{appendix.B}% 80
+\BOOKMARK [1][-]{section.B.3}{Python Code for Plotting}{appendix.B}% 81
+\BOOKMARK [0][-]{appendix.C}{Module Pre-Code}{section.7.3}% 82
