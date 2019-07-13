@@ -1,1 +1,41 @@
 \chapter{Conclusion}
+
+\section{Summary}
+In this thesis, we designed an application for recording, sharing and analyzing respiration data collected during sleep. Based on the design choices, we implemented an Android application called Nidra: an extensible application for collecting respiration data over an extended period. The application leveraged the tools provided by the previous work performed on the CESAR project, in order to manage current sensour sources, as well as future sensor sources. We implemented a sensor wrapper for the Flow sensor kit which connected with BlueTooth LE for data acquesition. During the recording, the samples from the sensor sources were unpacked and stored in our SQLite database. Also, we ensured for continous data stream---uninterrupted from sensor disconnections and human disruptions---by reconnecting with the sensor sources. At the end of the recording, metadata related to the recording provided by the users together with the samples were stored into a record with a snapshot of the user's biometrical data is stored. Nidra provide functionality to share the records across applications, such that researchers/doctors can view the record. Also, Nidra provides and built-in time-series graph for selected records. Conclusivly, while Nidra is design for recording sleep with various sensor sources, the application can be applied to other fields (e.g., recording respiration during a workout).  
+
+In the field of detecting and examinating sleep-related breathing disorders, we could see that various related work  collects physilogcal data on various method to predict or examinate sleeping disorders (e.g., Obstructive Sleep Apnea). Therefore, creating an extensible application which can centralize the application of various techniques and methods would be a proper way of creating a general application in this field. As such, Nidra provides an interface for future developers and researchers to create modules which enrich the functionality of Nidra or provide data enrichment to the patients recordings. The modules are ran as independent Android applications, which is installed alongside of Nidra, and utilizes the provided records by Nidra. 
+
+Finally, we performed experiements on the application to determine whether the system requirements were fullfiled. The experiements ranged from a collecting respiration data for analysis of musical absorption, testing the application over an extend period, creating a simple module-application. Including testing the application on real users. The results and observation made during the testing, allowed us to gain a broaded understanding of the application, as well as improvements that can be made---discussed in future work. 
+
+\section{Contribution}
+In the problem statement of this thesis, we defined three research goals. In this Section, we restate the goals in collution with how our work solves the goals. 
+
+\begin{description}
+    \item[Goal 1] \textit{Integrate and support for Flow sensor kit with the extensible data acqusition tool}
+
+    In the implementation chapther of this thesis, we created a sensor wrapper which were integrated into the Data Stream Dispatching Module. The Flow sensor kit uses BlueTooth LE as an communication channel, thus, we used the APIs provided by Android to connect with the sensor. We extracted the data from the sensor, noteworthy the respiration data, as well as the battery level, mac address and firmware number. 
+
+    \item[Goal 2] \textit{Research and develop a user-friendly application which facilitates collection physilogical data through the extensible data acquisition tool.}
+
+
+    Through the course of this thesis, we have discussed the design of an application which facilitates the collection of respiration data, with the focus on the environment of use. The application is of most likely to be used during the night and early morning. Thus, selecting a color pallette that is not eye straining were picked. Also, we focused on limiting the number of actions that a user can perform on each screen. As previously mentioned, the application allows for collecting of data over an extended period of time with sensor sources that are integrated with the tools provided. 
+
+
+    \item[Goal 3] \textit{Create a "platform" solution for developers to create modules.}
+
+    As the field of collecting data 
+\end{description}
+
+\section{Future Work}
+With the exploration performed in design and experiments, we can see that the application can be enhanced or improved for future sensors and user-friendliess. While the system fulfilles the objectives defined in the introduction, there are 
+
+\begin{description}
+    \item[Improve the user-friendliess of Nidra]
+    \item[Add support for other physilogical data] 
+    \item[Create an interface for sharing]
+    \item[Provide an bi-directional channel between Nidra and modules]
+    \item[Add support different languages] 
+    \item[Test]
+    \item[Test2]
+    \item[Test3] 
+\end{description}

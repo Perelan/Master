@@ -237,6 +237,18 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {7}Conclusion}{93}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{Appendix}{94}{chapter.7}
+\contentsline {section}{\numberline {7.1}Summary}{93}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Power Data}{97}{appendix.A}
+\contentsline {section}{\numberline {7.2}Contribution}{94}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Future Work}{95}{section.7.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{Appendix}{96}{section.7.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Source Code}{99}{appendix.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Folder and Code Structure}{99}{section.A.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}Expatiate on Concert Experiement}{103}{appendix.B}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {C}Module Boilerplate}{105}{appendix.C}
