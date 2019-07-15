@@ -11,6 +11,27 @@ We limited the scope of testing for existing sensor source development, and the 
 Additionally, the implementation is Android specific as the previous work performed on the project is designed soley for Android applications. 
 
 \section{Research Methods}
+The work in this thesis can be classified as \textit{computing research} with a principle approach of an \textit{engineering method} as described in [cite]. The engineering method (evolutionary paradigm) is to: (i) observe existing methods, (ii) propose better solution, (iii)  build or develop artifacts\footnote{human-manufactured objects produced during the development}, and (iv) measure and analyze until no further improvements are possible [CITE]. The report identifies patterns amongst various principle approaches and categorizes the the pattern into phases: \textit{(i) informational phase}, \textit{(ii) propositional phase}, \textit{(iii) analytical phase}, and \textit{(iv) evaluation phase}. Below, we give a brief description of each phase and discuss how our work fits into each of them. 
+
+\subsection{Informational Phase}
+The informational phase according to the report is to \textit{"gather or aggregate information via reflection, literature survey, people/organization survey, or poll"}
+
+As part of this thesis is to design and implement an application that collects respiration data during sleep, and to future analyze and examinate the respration data to detect sleep related-breathing disorders (e.g., Obstructive Sleep Apnea), we conducted a survey on previous related work in Chapther 3.
+
+\subsection{Propositional Phase}
+The propositional phase according to the report is to \textit{"propose and/or formulate a hypothesis, method or algorithm, model, theory, or solution"}
+
+Based on the related work, one of the goals of this thesis is to create an extensible application that allows future "related" applications to extend the functionality or enrich the data in our application. Also, to create an application which will be used to record, share and analyze respiration data collected over an extended period. 
+
+\subsection{Analytical Phase}
+The analytical phase according to the report is to \textit{"analyze and explore a proposition, leading to a demonstration and/or formulation of a principle or theory"}
+
+In the design chapther of this thesis, we analyze and explore various methods of implementing a functionality/task. In the implementation chapther of this thesis, we demonstrate the design choices by developing an Android application which follows the design. 
+
+\subsection{Evaluation Phase}
+The evaluation phase according to the report is to \textit{"evaluate a proposition or analytic finding by means of experimentation (controlled) or observation (uncontrolled, such as a case study or protocol analysis), perhaps leading to a substantiated model, principle, or theory"}
+
+Based on the requirements and goal of this thesis, we performed various experiements to evaluate the performance of the application.
 
 \section{Contributions}
 Over the course of this thesis, we design and implemented an application for collecting, sharing and analyzing breathing data and a platform for modules to enrich the applications, called Nidra. The application is focused on creating a generalized application which manges sensor data with focus on sleep apnea / collecting data during sleep over an extended period, which purpose was to enable analyzing and sharing of the data with researchers/doctors.  

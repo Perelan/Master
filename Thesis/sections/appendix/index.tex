@@ -123,7 +123,7 @@ for one hour. There are six indiviual records for this day:
     \label{fig:concert_day2_f}
 \end{figure}
 
-
+\newpage
 \section{Python Code for Plotting}
 The following Listing presents the code used for plotting the data from the concert into a time-series graph. 
 
@@ -188,4 +188,65 @@ if __name__ == "__main__":
 \end{lstlisting}
 
 
-\chapter{Module Pre-Code}
+\chapter{Module Template}
+To expedite the creation of a new module a template with pre-code is provided. The pre-code contains a blank Android project with the latest Gradle version 3.4.0 and support for Android 9 (API level 28). In the subsequent Sections, the instructions of duplicating the template is presented. 
+
+
+
+\section{Application Setup}
+
+\subsection{Download the Application}
+Start by locating the \textit{ModuleTemplate} application in the Github repository for this thesis. Download the application folder, rename it with desired name, and move it to the \verb|Android Studio| project folder. Listing X presents the commands to accomidate for the actions. Next, import the project in Android Studio by pressing \verb|File --> Open --> (Name of Application)|
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+git clone https://github.com/Perelan/Master.git
+cd Master
+mv ModuleTemplate <Path to Android Studio Project>/<Desired Name>
+\end{lstlisting}
+
+\subsection{Change the Name of the Application}
+Change the name of the application such that the user can locate the application in the app drawer, also the name is used as the module-name when listed in Nidra. The name change is performed by locating the \verb|app_name| inside of \verb|strings.xml| which is to be found in \verb|res/value|, see Listing below. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+<resources>
+    <string name="app_name">ModuleTemplate</string> <-- Change this!
+</resources>
+\end{lstlisting}
+
+\subsection{Rename the Package of the Application}
+Change the package name of the application by following Listing X. It is incentivized to keep the prefix of \textit{com.cesar.X} to group future modules by the package name. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+Right Click => Refactor => Rename => Rename Package => *new package name* => Refactor
+\end{lstlisting}
+
+\subsection{Change the Application ID}
+Finally, change the application ID respectivly to the package name defined above---the ID is used to seperate installed applications from each other. The application ID is located in the \verb|build.gradle| file inside of the \verb|app| folder of the project. See Listing X.
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+android {
+    defaultConfig {
+        applicationId "com.cesar.moduletemplate"
+    }
+}
+\end{lstlisting}
+
+\section{Application Execution}
+
+
+\subsection{Add the Module to Nidra}
+In order to retrieve the records data, the module-application has to be added to Nidra. Therefore, launch the Nidra application on the device and navigate to the modules screen. Press the \textit{Add new Module} button, find the module by name in the list and click to add. 
+
+\subsection{Retrieve the Data}
+The data is sent as a JSON string to the module when it is launched within Nidra. The pre-code is seperated into following files and folder:
+
+\begin{description}
+    \item[MainActivity] On creation of the module-application, the bundle of data that is sent as an Intent is passed to the \verb|Extract| method in \verb|DataExtraction|.
+    \item[DataExtraction] The \verb|Extract| method retrieves the JSON string from the bundle with the key \textit{data}, and returns a unmarshalls of the data into a \verb|PayloadFormat| object
+    \item[Payload/PayloadFormat] Is the object in which one of the record with corresponding samples of the data is marshalled. It encompasses a single record that contains metadata and user information, also a list of samples. 
+    \item[Payload/Record] contains the record metadata (see Section X)
+    \item[Payload/Sample] contains a single sample (see Section X)
+    \item[Payload/User] contains the state of the user information at the given time of recording (see Section X).
+\end{description}
+
+As part of the discussion of the module design, the records is sent to the module-application only when it is launched within Nidra. This might become cumbersome in the long run, therefore, it is highly incentivized to temporarly cache the data under development. 
