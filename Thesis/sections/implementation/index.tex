@@ -21,20 +21,23 @@ In the subsequent subsections an brief overview of the structure of the applicat
 \subsection{Data Stream Dispatching Module}
 The Data Stream Dispatching Module developed by Bugajski provides an interface for application instances to subscribe for data packets from connected sensor sources. The modularity this module provides towards managing and supporting various sensor capabilities, this allows for a faster development time (?). To briefly introduce the steps that enable this component, we will list the steps the component performs when there are one availble sensor source and one application instance subscribing for data for the named sensor source:
 
-\subsubsection{Sensor Discovery}
-The inital design of discovery for new sensor wrappers was performed as following: (1) the DSDM sends out an broadcast and with an action of \textit{HELLO} in the Intent to discover all available sensor wrappers on the mobile device. All sensor wrappers are designed to listen for this event, and respond back to DSDM with their packagename as \textit{id} and the name of the sensor wrapper as \textit{name} with a broadcast to \textit{REGISTER}. The DSDM is then aware of which sensor wrappers that are available on the mobile device. 
+\begin{description}
+    \item[Sensor Discovery] The inital design of discovery for new sensor wrappers was performed as following: (1) the DSDM sends out an broadcast and with an action of \textit{HELLO} in the Intent to discover all available sensor wrappers on the mobile device. All sensor wrappers are designed to listen for this event, and respond back to DSDM with their packagename as \textit{id} and the name of the sensor wrapper as \textit{name} with a broadcast to \textit{REGISTER}. The DSDM is then aware of which sensor wrappers that are available on the mobile device. 
     
     However, during the development of this thesis, Android had limited and strictend the use of implicit broadcasts on newer Android versions [cite]. Implicit broadcasts are those broadcast that do not target a specific application, however, sends out an action with a message and those application that filters and listens for the actions can proceed to perform their actions towards this message appropiately. To overcome this problem, a re-design of the sensor discovery were made. Instead of DSDM ever so often sends out a HELLO broadcast, the sensor wrapper sends out an explicit broadcast directed to DSDM make it aware of its existance. The broadcast is sent to the \textit{SensorDiscovery} directed explicitly to DSDM broadcast receivers, encapsulated with the name and the packagename of the sensor wrapper. The DSDM stores the sensor wrapper information in a \verb|SharedPreference|. Upon launch of the DSDM, an indentical...
 
+\end{description}
+
 \subsubsection{Start and Stop}
 
+
+
 \subsection{Flow Sensor Wrapper}
-As part of the thesis objective is to integrate the support of the Flow sensor kit, we developed a sensor wrapper to establish a connection with the sensor capabilites with the DSDM. We followed the instructions to create a new driver application created by Gjøby, and the brief overview of main the component are:
+As part of the thesis objective is to integrate the support for the Flow sensor kit, we developed a sensor wrapper to establish a connection with the sensor capabilites with the DSDM. We followed the instructions to create a new driver application created by Gjøby, and the brief overview of main the component in the template are:
 
 \begin{description}[font=\normalfont\itshape]
     \item[WrapperService] Is instansiated by the DSDM during the sensor discovery phase. The events to handle start and stop of the data acquesition is managed within this service, as well as creating an IPC connection between modules (?). 
     \item[CommunicationHandler] When the data collection is signaled to start by the DSDM, a seperate thread in \verb|CommunicationHandler| is created for communication with the sensor source. The connection is persistent and sends all of the data from the sensor source to DSDM until the signaled to stop (by the call of \verb|interrupt()|). The connection, collection and disconnection assosicated with the data source is implemented in this thread.
-    \item[BluetoothHandler] 
     \item[DataHandler] Is responsible for preprocessing the collected data, before sending to the DSDM application. Part of this process is to construct the data packet correctly. The packet contains the \verb|id| of the sensor wrapper, the current date and time, and the data with the samples. The packet is then sent using the establish binder connection, in order to send the data packet (on \verb|putJson()|).
 \end{description}
 
@@ -45,12 +48,17 @@ Besides the components which manages the connectivity, collection and disconnect
 \end{description}
 The Flow sensor wrapper stores the selected sensor device in a \verb|SharedPreference| with the name and the mac address of the device. As such, the user has to configure the sensor wrapper once, and the information remain persistent in the application.   
 
+The preciding components is a part of a template to connect with the data stream dispatching module. However, the communication with the sensor source is not a part of these components. The communication with the Flow sensor occurs over BlueTooth LE protocols, which described in the background chapther, is designed to provide lower power consumption on data transmittion and sensors that utilize BLE is designed to last for a longer period. Below, an brief overview of how to establish a connection and interpret the collected data with the Flow sensor kit through BLE in Android. However, an intricate detail of implementation can be found in Appendix D.
 
 
-\subsubsection{Setting Up Connection}
-The Flow sensor kit provides no SDK or API to manage the connection with the sensors. In order to manage the connection with the Flow sensor source, we have to use BlueTooth LowEnergy, which is a protocol for devices which has resitriction on battery capacity to communicate with devices. In the limitations, we decided to only focus on collection respiration data. The Flow sensor kit gatheres data a frequency of 10 Hz, however, the data from the sensor source is sent to the connected devices on approximatly 1.5 Hz. 
+\subsubsection{Communication with the Flow Sensor Kit}
+The Flow sensor kit provides no SDK or API to manage the connection with the sensors. In order to manage the connection with the Flow sensor source, we have to use BlueTooth Low Energy (BLE) protocols, which is used for sensors that has a resitriction on battery capacity to communicate with devices. In the limitations, we decided to only focus on collection respiration (breathing) data. Thus, we are 
 
- and with that basis the steps to collect data from the Flow sensor kit can be done as following: 
+To begin with, the user has to select desired Flow sensor kit to use for collecting the data. As such, when the command of starting the collection is passed to the \verb|StartReceiver| broadcast receiver in the application, an seperate thread of \verb|CommunicationHandler| is created. This thread, start the service of \verb|BluetoothHandler| and initializes the connection to the selected Flow sensor based on the MAC address of the sensor. The \verb|BluetoothHandler| is the component we introduce, which manages connection to the sensor source, discovers services provided by the sensor source, and manages decoding of the data received from the sensor. This component, acts as an GATT client which connects with a GATT server. The GATT server in our case is the Flow sensor kit, which provides a services that encompasses several \textit{characterstics} whichs contains values and descriptors. In Bluetooth, the objects are identified by an universally unique identified (UUID)\footnote{A standrdized 128-bit format for string ID to uniquely identify information}, and there is a collection of assigned numbers to standard objects [CITE]. The UUID for GATT attributes for BLE accordingly to Bluetooth is structured as following \textit{PREFIX-0000-1000-8000-00805f9b34fb}, where the prefix is the assigned number that categorize an indiviual characterstic. The most interesting characterstics to us, are the manifacturar name (prefix: 0x2A29), firmware revision (prefix: 0x2A26), battery level (prefix:0x2A19) and flow (breathing) measures (prefix: 0xFFB3). The latter characterstic's prefix is not a part of the standard, however, manifacturer defined prefix. Also, the latter characterstic
+
+In order to receive flow data and the battery level from the sensor source, we have to enable it by notifying the GATT server. This can be performed by spesificying the service and the characterstics for the desired service and the underlying characteristics we want the values from. For example, to enable flow (breathing) data, we specify the service (prefix: OxFFB0) and flow measure (prefix: 0xFFb3) and send it with the API provided by Android.  As such, we enable the Flow sensor to collect breathing data. The Flow sensor kit gatheres data a frequency of 10 Hz, however, the data from the sensor source is sent to the connected devices on approximatly 1.5 Hz. Which means, each packet of the received contains 5-7 data points with a timestamp of acquesition. We proceed to smooth out the data by averaging the values for a timestamp, which in statistically measures is to filter out misfits of values and finding estimate of value on a given time. The is then packed and sent to the \verb|CommunicationHandler| which further sends it to the \verb|DataHandler|. The \verb|DataHandler| formats the data into a JSON string, and sends the data on the binder between the sensor wrapper and DSDM (created in \verb|WrapperService|) in the method \verb|PutJson()|. 
+
+When the command of stopping the collection is passed to \verb|StopReceiving| broadcast receiver, the \verb|CommunicationHandler| thread is interupted. The interuption closes and unbindes the connection with the \verb|BluetoothHandler|. Within the \verb|BluetoothHandler| the connectvity with the GATT server (sensor) is disconnected and closed. Finally, the screen presented to the user shows that the sensor has disconnected.
 
 
 \subsection{Nidra}
@@ -82,5 +90,62 @@ In Section (ref) we conceptualized the tasks, by decomposing the tasks into comp
 \input{sections/implementation/ioc.tex}
 
 \section{Miscellaneous}
-\subsection{Android Manifest}
+
 \subsection{Collecting Data Over a Longer Period}
+In Android, applications which are idle in the background or not visible to the user can be killed in order to reclaim resources for other applications or perserve battery time. However, this mechanisms is not viable for collecting data over an extended time, because it can kill our applications during recording. To overcome this, there are several methods to prevent the Android system from killing our applications, which is presented in the subsequent sections.
+
+\subsubsection{Keep the CPU Alive}
+The Android system provides a wake lock mechanism to keep the CPU running in order to complete work. As long as we keep the CPU alive, we can collect the data over an extended period. Any applications can utilize wake locks in their application; albeit, the documentations states that holding onto a wake lock for a longer period of time, shortens the devics battery time. Therefore, it is important to release the lock when the recording has terminated. In order to use wake locks, the permission has to be added in the application's manifest file. Nidra utilizes the wake lock when the recording has started (inside of the \verb|onCreateView|), and can be seen as in: (LISTING X). Also, the lock is released when the activity is destroyed by terminating the recording session.
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+    powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+    wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+            "CESAR::collection");
+
+    wakeLock.acquire();
+\end{lstlisting}
+
+
+\subsubsection{Priority}
+Process's lifecycle is not directly related with the application itself; however, determiend by the system detecting parts of applications that are running, how important they are to the user, and how much memeory is available in the system. A process can be killed by the system to reclaim memory for other processes to take its place. However, there are certain measures to prolong the servives run time. That is, to increase the process importance in the "hierarchy". By forcing the process to be a \textit{foreground process}, we can for the most cases prevent the system to kill the process. We can create a foreground process by creating a starting a foreground process. 
+
+\subsection{Android Manifest}
+The Android Manifest describes the essential information about our application, such as the application components, permissions and the package name. The application is consituted by application components (e.g., activity, provider, broadcast receiver, and service), and each component contains meta data describing the application component. Also, all of the components has must be declared in the manifest with the reference to the component in the name  (\verb|android:name|). The application components were presented in the Section X, and below we describe the permissions and a few application components that are of interest to us.  
+
+\subsubsection{Nidra}
+
+The Nidra manifest file consitute of four activites, one service, and one provider. The latter is used to share a record between applications. Providers enbles access to between other applications that wish to access a file or data of our applications. With the provider, an direct URI link that passes throught the provider, grants a more secure sharing of data between application. In the Listing X, the attribute \verb|authorities| is the name that identify the data offered by the provider (often distingushed by package name and postfix of "provider"). Also, the meta-data with the resource contains information with the path to the file in the respective application directory. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+    <provider
+        android:name="androidx.core.content.FileProvider"
+        android:authorities="${applicationId}.provider"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/provider_paths" />
+    </provider>
+\end{lstlisting}
+
+As for Nidra, the permission are presented in Listing X. The noteworthy is the wake lock permissions and the permissions to store data in external storage, and the interal storage. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+\end{lstlisting}
+
+\subsubsection{Flow Sensor Wrapper}
+
+As for the Flow sensor wrapper, the application components structure are based on the templated created by Gjøby. With an expection of the activity and the service for Bluetooth. However, the permissions are the interesting part of the manifest. In order to leverge the Bluetooth LE protocol, we need the permissions of \textit{BLUETOOTH}, \textit{BLUETOOTH\_ADMIN}, \textit{ACCESS\_FINE\_LOCATION}. The latter permission is obligatory because it is used to list available sensor source in the area. Without the permission, Android do not present any list of available sensor sources. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    [...]
+\end{lstlisting}
+
+

@@ -6,7 +6,7 @@
 \BOOKMARK [1][-]{section.1.1}{Background and Motivation}{chapter.1}% 6
 \BOOKMARK [1][-]{section.1.2}{Problem Statement}{chapter.1}% 7
 \BOOKMARK [1][-]{section.1.3}{Limitations}{chapter.1}% 8
-\BOOKMARK [1][-]{section.1.4}{Research Methods}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.4}{Research Method}{chapter.1}% 9
 \BOOKMARK [2][-]{subsection.1.4.1}{Informational Phase}{section.1.4}% 10
 \BOOKMARK [2][-]{subsection.1.4.2}{Propositional Phase}{section.1.4}% 11
 \BOOKMARK [2][-]{subsection.1.4.3}{Analytical Phase}{section.1.4}% 12
@@ -62,8 +62,8 @@
 \BOOKMARK [2][-]{subsection.5.2.5}{Storage}{section.5.2}% 62
 \BOOKMARK [2][-]{subsection.5.2.6}{Presentation}{section.5.2}% 63
 \BOOKMARK [1][-]{section.5.3}{Miscellaneous}{chapter.5}% 64
-\BOOKMARK [2][-]{subsection.5.3.1}{Android Manifest}{section.5.3}% 65
-\BOOKMARK [2][-]{subsection.5.3.2}{Collecting Data Over a Longer Period}{section.5.3}% 66
+\BOOKMARK [2][-]{subsection.5.3.1}{Collecting Data Over a Longer Period}{section.5.3}% 65
+\BOOKMARK [2][-]{subsection.5.3.2}{Android Manifest}{section.5.3}% 66
 \BOOKMARK [-1][-]{part.3}{III Evaluation and Conclusion}{}% 67
 \BOOKMARK [0][-]{chapter.6}{Evaluation}{part.3}% 68
 \BOOKMARK [1][-]{section.6.1}{Experiments and Measurements}{chapter.6}% 69
