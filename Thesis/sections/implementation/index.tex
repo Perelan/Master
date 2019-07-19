@@ -98,11 +98,11 @@ In Android, applications which are idle in the background or not visible to the 
 The Android system provides a wake lock mechanism to keep the CPU running in order to complete work. As long as we keep the CPU alive, we can collect the data over an extended period. Any applications can utilize wake locks in their application; albeit, the documentations states that holding onto a wake lock for a longer period of time, shortens the devics battery time. Therefore, it is important to release the lock when the recording has terminated. In order to use wake locks, the permission has to be added in the application's manifest file. Nidra utilizes the wake lock when the recording has started (inside of the \verb|onCreateView|), and can be seen as in: (LISTING X). Also, the lock is released when the activity is destroyed by terminating the recording session.
 
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
-    powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-    wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-            "CESAR::collection");
+powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+        "CESAR::collection");
 
-    wakeLock.acquire();
+wakeLock.acquire();
 \end{lstlisting}
 
 
@@ -117,23 +117,23 @@ The Android Manifest describes the essential information about our application, 
 The Nidra manifest file consitute of four activites, one service, and one provider. The latter is used to share a record between applications. Providers enbles access to between other applications that wish to access a file or data of our applications. With the provider, an direct URI link that passes throught the provider, grants a more secure sharing of data between application. In the Listing X, the attribute \verb|authorities| is the name that identify the data offered by the provider (often distingushed by package name and postfix of "provider"). Also, the meta-data with the resource contains information with the path to the file in the respective application directory. 
 
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
-    <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities="${applicationId}.provider"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/provider_paths" />
-    </provider>
+<provider
+    android:name="androidx.core.content.FileProvider"
+    android:authorities="${applicationId}.provider"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/provider_paths" />
+</provider>
 \end{lstlisting}
 
 As for Nidra, the permission are presented in Listing X. The noteworthy is the wake lock permissions and the permissions to store data in external storage, and the interal storage. 
 
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
 \end{lstlisting}
 
 \subsubsection{Flow Sensor Wrapper}
@@ -141,11 +141,11 @@ As for Nidra, the permission are presented in Listing X. The noteworthy is the w
 As for the Flow sensor wrapper, the application components structure are based on the templated created by Gjøby. With an expection of the activity and the service for Bluetooth. However, the permissions are the interesting part of the manifest. In order to leverge the Bluetooth LE protocol, we need the permissions of \textit{BLUETOOTH}, \textit{BLUETOOTH\_ADMIN}, \textit{ACCESS\_FINE\_LOCATION}. The latter permission is obligatory because it is used to list available sensor source in the area. Without the permission, Android do not present any list of available sensor sources. 
 
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    [...]
+<uses-permission android:name="android.permission.BLUETOOTH"/>
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+<uses-permission android:name="android.permission.WAKE_LOCK"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+[...]
 \end{lstlisting}
 
 

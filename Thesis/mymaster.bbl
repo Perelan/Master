@@ -154,6 +154,23 @@
       \verb https://source.android.com/security
       \endverb
     \endentry
+    \entry{cesar}{online}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labeltitlesource}{title}
+      \field{title}{Android based eHealth applications with BiTalino sensors}
+      \field{titleaddon}{University of Oslo: Institute for Informatics}
+      \field{urlday}{5}
+      \field{urlmonth}{5}
+      \field{urlyear}{2018}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html
+      \endverb
+      \verb{url}
+      \verb http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html
+      \endverb
+    \endentry
     \entry{aidl}{online}{}
       \field{sortinit}{A}
       \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
@@ -827,6 +844,23 @@
       \range{pages}{3}
       \verb{doi}
       \verb 10.1108/IJMPB-12-2016-0097
+      \endverb
+    \endentry
+    \entry{ssb}{online}{}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labeltitlesource}{title}
+      \field{title}{Municipal health care service}
+      \field{titleaddon}{Statistics Norway}
+      \field{urlday}{19}
+      \field{urlmonth}{7}
+      \field{urlyear}{2018}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ssb.no/en/helse/statistikker/helsetjko
+      \endverb
+      \verb{url}
+      \verb https://www.ssb.no/en/helse/statistikker/helsetjko
       \endverb
     \endentry
     \entry{contactless_sleep}{article}{}

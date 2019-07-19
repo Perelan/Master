@@ -159,7 +159,26 @@ To summarize the experiment, we were able to test the application in a real-life
 
 To conclude, the goal of the experiment was to analyze musical absorption during a concert, but that is not the motivation for our application. However, we provided an application that collected the data during the concert. Thus, the collected data can then be used to conclude a correlation between breathing and musical absorption. Also, inconsistency in the sampling of the recordings makes it difficult to determine the source of the problem. We could argue that the analysis of the aggregated data in the tables might indicate that the sensor or the mobile is a malfunctioned, however, due to insufficient data this conclusion cannot be drawn. Although, the application managed to collect data with the use of the Flow sensor kit, in an environment filled with other mobile devices that could have interfered with the signals, as well as reconnecting to the sensors during the recording. [Reflect more on the motivation goals].
 
-\subsection{Experiment B: 8-hours recording}
+\subsection{Experiment B: 8-Hours Recording}
+As part of this thesis is to collect breathing data over en extended period (e.g., during sleep), it is essential to test for battery drainage during this period. The experiement is conducted to demonstrate that the appication is suited for collecting data over an extended period. In most cases, an user connects their device to a power source to charge the device battery. However, in the cases where that is not viable, the battery consumption of the applications might affect the perspection of the applications outcome to the user. Therefore, in this experiment we are checking for the battery consumption on the mobile device, as well as the Flow sensor kit. 
+
+\subsubsection{Description}
+The experiement was conducted by strapping the Flow sensor around the throax (just below the armpits), configuring the the Flow sensor wrapper to connect with the Flow sensor, and pressing the "record" button in Nidra. The device and sensor started with 100\%. Also, the device was disconnected from WiFi, and left stantonary and unattended during the period of recording.  
+
+A techincal description of collecting the data from the Flow sensor and the Nidra, is that the Flow sensor collects data on 10Hz; however, sends a packet of data at approximately 1.5 Hz. The data packet is the processed by the Flow sensor wrapper, and sent to the data stream dispatching module (DSDM). The DSDM has a list of subscribing applications, thus sends the identical packet to all of the subscribing application. In our case, the Nidra application has subscribed for the Flow sensor kit packets. In Nidra, the packet is received, unpacked and immediately stored in a database as a sample entity, with a identifier of the recording session. This process continues until the recording has terminated based on the user's actions.
+
+\subsubsection{Results}
+
+We calculate the energy consumption---which is measured in milliampere hour (mAh)---and estimate the averge energy consumption during the experiment. 
+\begin{equation} \label{losscount}
+Battery\ Consumption = \frac{(Start\% - End\%) * Device\ Capacity\ (mAh)}{Recording\ Duration\ (Hours)}
+\end{equation}
+
+Based on the differance of start mAh and end mAh, multipled by the device battery capacity and divided by the duration of recording, the energy consumption per hour is calculated. 
+
+
+\subsubsection{Conclusion}
+
 
 \subsection{Experiment C: Performing User-Tests on Two Participants}
 One goal of the application is that it should be user-friendly enough for patients to use and understand how the functionality of our application works. To evaluate whether this goal has been achieved, we found two participants that agreed to partake in the experiment. One of these participants is not proficent in the use of modern technology, while the other participant has a lot of experience. For simplicity, we will refer to the participant as participant \verb|A| and \verb|B|, respectively. 

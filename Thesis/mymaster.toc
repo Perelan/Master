@@ -1,11 +1,11 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {UKenglish}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Listings}{vii}{chapter*.3}
+\contentsline {chapter}{List of Tables}{vii}{chapter*.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Tables}{ix}{chapter*.4}
+\contentsline {chapter}{List of Figures}{ix}{chapter*.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{xi}{chapter*.5}
+\contentsline {chapter}{List of Listings}{xii}{chapter*.5}
 \defcounter {refsection}{0}\relax 
 \contentsline {part}{I\hspace {1em}Introduction and Background}{1}{part.1}
 \defcounter {refsection}{0}\relax 
@@ -15,7 +15,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.2}Problem Statement}{5}{section.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Limitations}{5}{section.1.3}
+\contentsline {section}{\numberline {1.3}Limitations}{6}{section.1.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.4}Research Method}{6}{section.1.4}
 \defcounter {refsection}{0}\relax 
@@ -223,29 +223,35 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {6.1.1.4}Conclusion}{88}{subsubsection.6.1.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Experiment B: 8-hours recording}{89}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.2}Experiment B: 8-Hours Recording}{88}{subsection.6.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.2.1}Description}{89}{subsubsection.6.1.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.2.2}Results}{89}{subsubsection.6.1.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.2.3}Conclusion}{89}{subsubsection.6.1.2.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.1.3}Experiment C: Performing User-Tests on Two Participants}{89}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.1}Testing}{89}{subsubsection.6.1.3.1}
+\contentsline {subsubsection}{\numberline {6.1.3.1}Testing}{90}{subsubsection.6.1.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.2}Observations}{90}{subsubsection.6.1.3.2}
+\contentsline {subsubsection}{\numberline {6.1.3.2}Observations}{91}{subsubsection.6.1.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.3}Discussion}{90}{subsubsection.6.1.3.3}
+\contentsline {subsubsection}{\numberline {6.1.3.3}Discussion}{91}{subsubsection.6.1.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.4}Survey}{91}{subsubsection.6.1.3.4}
+\contentsline {subsubsection}{\numberline {6.1.3.4}Survey}{92}{subsubsection.6.1.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.3.5}Conlusions}{93}{subsubsection.6.1.3.5}
+\contentsline {subsubsection}{\numberline {6.1.3.5}Conlusions}{94}{subsubsection.6.1.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Experiment D: Creating a Simple Module}{93}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.4}Experiment D: Creating a Simple Module}{94}{subsection.6.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.4.1}Process}{93}{subsubsection.6.1.4.1}
+\contentsline {subsubsection}{\numberline {6.1.4.1}Process}{94}{subsubsection.6.1.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.4.2}Observations}{93}{subsubsection.6.1.4.2}
+\contentsline {subsubsection}{\numberline {6.1.4.2}Observations}{94}{subsubsection.6.1.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.4.3}Results}{94}{subsubsection.6.1.4.3}
+\contentsline {subsubsection}{\numberline {6.1.4.3}Results}{95}{subsubsection.6.1.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.1.4.4}Discussion \& Conlusion}{94}{subsubsection.6.1.4.4}
+\contentsline {subsubsection}{\numberline {6.1.4.4}Discussion \& Conlusion}{95}{subsubsection.6.1.4.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.2}Main Findings}{95}{section.6.2}
 \defcounter {refsection}{0}\relax 
@@ -257,7 +263,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {7.3}Future Work}{99}{section.7.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{Appendix}{100}{section.7.3}
+\contentsline {part}{Appendix}{101}{section.7.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Source Code}{103}{appendix.A}
 \defcounter {refsection}{0}\relax 
