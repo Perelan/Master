@@ -6,37 +6,52 @@
 \section{Limitations}
 Based on the goals and requirements stated in previous section, the scope of this thesis is to design and implement an application capable of recording breathing data obtained by the Flow sensor kit over an extended period. 
 
-We limited the scope of testing for existing sensor source development, and mainly focus on integrating the support for the Flow sensor kit in Nidra. Further, with the Flow sensor kit provided under development, we restricted the design to collect respiration (breathing) data (opposed to hearth-rate or other physiological data).
+We limite the scope to integrating the support for the Flow sensor kit in Nidra, and exluded to test for already integrated sensor sources (e.g., Bitalino). Further, with the Flow sensor kit provided under development, we restricted the design to collect respiration (breathing) data (opposed to hearth-rate or other physiological data).
 
-Additionally, the implementation is Android specific as the previous work performed on the project is designed soley for Android applications. 
+The application is designed to collect breathing data; we do not perform any analysis to predict or detect sleeping disorders based on the data. However, we facilitate for future developers to utilize the data provided by Nidra to perform such task.
+
+Finally, the implementation is Android specific as the previous work performed on the project is designed soley for Android applications. 
 
 \section{Research Method}
-The work in this thesis can be classified as \textit{computing research} with a principle approach of an \textit{engineering method} as described in [cite]. The engineering method (evolutionary paradigm) is to: (i) observe existing methods, (ii) propose better solution, (iii)  build or develop artifacts\footnote{human-manufactured objects produced during the development}, and (iv) measure and analyze until no further improvements are possible [CITE]. The report identifies patterns amongst various principle approaches and categorizes the the pattern into phases: \textit{(i) informational phase}, \textit{(ii) propositional phase}, \textit{(iii) analytical phase}, and \textit{(iv) evaluation phase}. Below, we give a brief description of each phase and discuss how our work fits into each of them. 
+The work in this thesis can be classified as \textit{computing research} with a principle approach of an \textit{engineering method} as described in \cite{Glass_1995}. The engineering method (evolutionary paradigm) is to: (i) observe existing methods, (ii) propose better solution, (iii)  build or develop artifacts\footnote{human-manufactured objects produced during the development}, and (iv) measure and analyze until no further improvements are possible. The report identifies patterns amongst various principle approaches and categorizes the the pattern into phases: \textit{(i) informational phase}, \textit{(ii) propositional phase}, \textit{(iii) analytical phase}, and \textit{(iv) evaluation phase}. Below, we give a brief description of each phase and discuss how our work fits into each of them. 
 
 \subsection{Informational Phase}
 The informational phase according to the report is to \textit{"gather or aggregate information via reflection, literature survey, people/organization survey, or poll"}
 
-As part of this thesis is to design and implement an application that collects respiration data during sleep, and to future analyze and examinate the breathing data to detect sleep related-breathing disorders (e.g., Obstructive Sleep Apnea), we conducted a survey on previous related work. We found that a vast majority has designed and implementated mobile applications to 
+As part of thesis motivation is to design and implement an application that collects breathing data during sleep, and to aid researchers/doctors analyze tho data to detect sleep related-breathing disorders (e.g., Obstructive Sleep Apnea), we conducted a survey on previous related work. We found that a vast majority has designed and implementated mobile applications to that use various techniques and method to perform such task.
 
 \subsection{Propositional Phase}
 The propositional phase according to the report is to \textit{"propose and/or formulate a hypothesis, method or algorithm, model, theory, or solution"}
 
-Based on the related work, one of the goals of this thesis is to create an extensible application that allows future "related" applications to extend the functionality or enrich the data in our application. Also, to create an application which will be used to record, share and analyze respiration data collected over an extended period. 
+Our solution is to create an application which will be used to record, share and analyze respiration data collected over an extended period. However, based on the related work, we extended the goal of this thesis by providing an extensible application that allows future "related" applications to extend the functionality or enrich the data in our application. Thus, we desire to generalize the mHealth applications into one, to make it easier for future developers, as well as to the users. 
 
 \subsection{Analytical Phase}
 The analytical phase according to the report is to \textit{"analyze and explore a proposition, leading to a demonstration and/or formulation of a principle or theory"}
 
-In the design chapther of this thesis, we analyze and explore various methods of implementing a functionality/task. In the implementation chapther of this thesis, we demonstrate the design choices by developing an Android application which follows the design. 
+In the design chapther of this thesis, we analyze and explore various methods of implementing a functionalitites that fullfiles the system requirements. In the implementation chapther of this thesis, we demonstrate the design choices by developing an Android application. 
 
 \subsection{Evaluation Phase}
 The evaluation phase according to the report is to \textit{"evaluate a proposition or analytic finding by means of experimentation (controlled) or observation (uncontrolled, such as a case study or protocol analysis), perhaps leading to a substantiated model, principle, or theory"}
 
-Based on the requirements and goal of this thesis, we performed various experiements to evaluate the performance of the application.
+Based on the requirements and goal of this thesis, we performed various experiements to evaluate the performance of the application. Most of the experiements are conducted on participants, in order to gain a broader compliance on whether the goals of the thesis is sufficient.
 
 \section{Contributions}
-Over the course of this thesis, we design and implemented an application for collecting, sharing and analyzing breathing data and a platform for modules to enrich the applications, called Nidra. The application is focused on creating a generalized application which manges sensor data with focus on sleep apnea / collecting data during sleep over an extended period, which purpose was to enable analyzing and sharing of the data with researchers/doctors.  
+Over the course of this thesis, we design and implemented an application for collecting, sharing, and analyzing breathing data. Also, we provided an extensible solution for modules to enrich the applications. The application is focused on creating a generalized application which manges sensor data with focus on sleep apnea / collecting data during sleep over an extended period, which purpose was to enable analyzing and sharing of the data with researchers/doctors. As defined in our problem statement, we set three research goals on the basis of three system requirements. Below, we present the goals and requirements and describe how our system meets them:
 
-Through the work produced in this thesis, 
+\begin{description}
+    \item[Requirement 1] \textit{The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.}
+    \item[Requirement 2] \textit{The application should ensure a seamless and continuous data stream, uninterrupted from sensor disconnections and human disruptions.}
+    \item[Requirement 3] \textit{The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.}
+\end{description}
+
+With the requirements fulfilled, we can look at how Nidra solves our three research goals.
+
+\begin{description}
+    \item[Goal 1] \textit{Integrate the support for Flow sensor kit with the extensible data stream dispatching tool}
+    \item[Goal 2] \textit{Research and develop a user-friendly application which facilitates collection of breathing data with the use of the extensible data stream dispatching tool.}
+    \item[Goal 3] \textit{Create an extensible solution such that the developers can integrate stand-alone applications in our application.}
+\end{description}
+
 
 
 \section{Thesis Outline}
