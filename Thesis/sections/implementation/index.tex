@@ -1,35 +1,19 @@
 \chapter{Implementation}
 
-%\section{Architecture Pattern}
-%\input{sections/implementation/archandpro.tex}
+
+The CESAR project facilitates for a \textit{data stream dispatching module} which discovers and connects with supported sensor sources (e.g., BiTalino), and enables data acquesition to applications from the sensor sources to applications that subscribe to a desired sensor source. As part of the goal of this thesis is to integrate the support for the Flow sensor kit with the data stream dispatching module, we look into the possbilities in this chapther. Moreover, based on the design choices and the seperation of the concerns from the previous chapther, we realize the concerns by implementing them as an Android application. 
 
 \section{Application Components}
 
 \begin{figure}
     \centering
     \includegraphics[scale=0.95]{images/Android_Components.pdf}
-    \caption{Applications components}
+    \caption{Applications components for the three indiviual Android applications in the project}
     \label{fig:app_components}
 \end{figure}
 
-The CESAR project is introduced in the Background Chapther; to summarize, the data dispatching module discovers and connects with sensor wrappers (each sensor source has its own senor wrapper), and enables data acquesition to applications that subscribe to the data. As for this thesis, we operate with three different applications: Nidra, Data Stream Dispatching Module, and the sensor wrapper for Flow sensor kit. 
 
-Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service and broadcast receivers) for each applications. All of the applications run in a separate process on a device. In order to perform remote procedure calls (RPC) to application components that run remotely, we can use the IPC mechanism. In Android there are two mechanisms to mechanisms to enable IPC: (1) \verb|Binder| enables a process to remotely invoke functions in another process; and (2) \verb|Intent| a message passing interface aollowing applications to send messages to each other.
-
-In the subsequent subsections an brief overview of the structure of the applications are discussed. 
-
-\subsection{Data Stream Dispatching Module}
-The Data Stream Dispatching Module developed by Bugajski provides an interface for application instances to subscribe for data packets from connected sensor sources. The modularity this module provides towards managing and supporting various sensor capabilities, this allows for a faster development time (?). To briefly introduce the steps that enable this component, we will list the steps the component performs when there are one availble sensor source and one application instance subscribing for data for the named sensor source:
-
-\begin{description}
-    \item[Sensor Discovery] The inital design of discovery for new sensor wrappers was performed as following: (1) the DSDM sends out an broadcast and with an action of \textit{HELLO} in the Intent to discover all available sensor wrappers on the mobile device. All sensor wrappers are designed to listen for this event, and respond back to DSDM with their packagename as \textit{id} and the name of the sensor wrapper as \textit{name} with a broadcast to \textit{REGISTER}. The DSDM is then aware of which sensor wrappers that are available on the mobile device. 
-    
-    However, during the development of this thesis, Android had limited and strictend the use of implicit broadcasts on newer Android versions [cite]. Implicit broadcasts are those broadcast that do not target a specific application, however, sends out an action with a message and those application that filters and listens for the actions can proceed to perform their actions towards this message appropiately. To overcome this problem, a re-design of the sensor discovery were made. Instead of DSDM ever so often sends out a HELLO broadcast, the sensor wrapper sends out an explicit broadcast directed to DSDM make it aware of its existance. The broadcast is sent to the \textit{SensorDiscovery} directed explicitly to DSDM broadcast receivers, encapsulated with the name and the packagename of the sensor wrapper. The DSDM stores the sensor wrapper information in a \verb|SharedPreference|. Upon launch of the DSDM, an indentical...
-
-\end{description}
-
-\subsubsection{Start and Stop}
-
+In this thesis, we operate with three indiviual applications: Nidra, Data Stream Dispatching Module, and the sensor wrapper for the Flow sensor kit. Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service, provider and broadcast receiver) for each applications, which run in a separate process on a device. In the subsequent subsections an brief overview of the structure of the applications are discussed.
 
 
 \subsection{Flow Sensor Wrapper}
@@ -42,17 +26,17 @@ As part of the thesis objective is to integrate the support for the Flow sensor 
 \end{description}
 
 Besides the components which manages the connectivity, collection and disconnection with the sensor source, there are two activites that are resposible for selecting the sensor source, and displaying the state of the sensor source on the users screen:
-\begin{description}
+\begin{description}[font=\normalfont\itshape]
     \item[MainActivity] Presents the state and informatuon of the connected sensor source. Currently, it presents the connectivty state (connected or disconnected), the battery level of the sensor, the mac address and the firmware to the connected Flow sensor, and the option to remove or connect to another sensor device. 
     \item[DeviceListActivity] All of the available devices close to the mobile device which have BlueTooth activated is listed for the user to pick. Devices that are assosicated with the Flow sensor kit (e.g., OarZpot) has an distingushable icon to make it easier to select the correct device. 
 \end{description}
 The Flow sensor wrapper stores the selected sensor device in a \verb|SharedPreference| with the name and the mac address of the device. As such, the user has to configure the sensor wrapper once, and the information remain persistent in the application.   
 
-The preciding components is a part of a template to connect with the data stream dispatching module. However, the communication with the sensor source is not a part of these components. The communication with the Flow sensor occurs over BlueTooth LE protocols, which described in the background chapther, is designed to provide lower power consumption on data transmittion and sensors that utilize BLE is designed to last for a longer period. Below, an brief overview of how to establish a connection and interpret the collected data with the Flow sensor kit through BLE in Android. However, an intricate detail of implementation can be found in Appendix D.
+The preciding components is a part of a template to connect with the data stream dispatching module. However, the communication with the sensor source is not a part of these components. The communication with the Flow sensor occurs over BlueTooth LE (BLE) protocols which is designed to provide lower power consumption on data transmittion, and sensors that utilize BLE is designed to last for a longer period. In order to connect with BLE sensor, we can use the API's provided by Android. The implementation of the API's is introduced as a new component (\textit{BluetoothHandler}), which soley communicates with the Flow sensor kit over BLE. Below, an brief overview of how to establish a connection and interpret the collected data with the Flow sensor kit through BLE in Android is described. However, an intricate detail of implementation can be found in Appendix D.
 
 
 \subsubsection{Communication with the Flow Sensor Kit}
-The Flow sensor kit provides no SDK or API to manage the connection with the sensors. In order to manage the connection with the Flow sensor source, we have to use BlueTooth Low Energy (BLE) protocols, which is used for sensors that has a resitriction on battery capacity to communicate with devices. In the limitations, we decided to only focus on collection respiration (breathing) data. Thus, we are 
+The Flow sensor kit provides no SDK or API to manage the connection with the sensors. In order to communicate with the Flow sensor source, we have to use BlueTooth Low Energy (BLE) protocols, which is used for sensors that has a resitriction on battery capacity to communicate with devices. In the limitations, we decided to only focus on collection respiration (breathing) data. Thus, we are 
 
 To begin with, the user has to select desired Flow sensor kit to use for collecting the data. As such, when the command of starting the collection is passed to the \verb|StartReceiver| broadcast receiver in the application, an seperate thread of \verb|CommunicationHandler| is created. This thread, start the service of \verb|BluetoothHandler| and initializes the connection to the selected Flow sensor based on the MAC address of the sensor. The \verb|BluetoothHandler| is the component we introduce, which manages connection to the sensor source, discovers services provided by the sensor source, and manages decoding of the data received from the sensor. This component, acts as an GATT client which connects with a GATT server. The GATT server in our case is the Flow sensor kit, which provides a services that encompasses several \textit{characterstics} whichs contains values and descriptors. In Bluetooth, the objects are identified by an universally unique identified (UUID)\footnote{A standrdized 128-bit format for string ID to uniquely identify information}, and there is a collection of assigned numbers to standard objects [CITE]. The UUID for GATT attributes for BLE accordingly to Bluetooth is structured as following \textit{PREFIX-0000-1000-8000-00805f9b34fb}, where the prefix is the assigned number that categorize an indiviual characterstic. The most interesting characterstics to us, are the manifacturar name (prefix: 0x2A29), firmware revision (prefix: 0x2A26), battery level (prefix:0x2A19) and flow (breathing) measures (prefix: 0xFFB3). The latter characterstic's prefix is not a part of the standard, however, manifacturer defined prefix. Also, the latter characterstic
 
@@ -60,12 +44,44 @@ In order to receive flow data and the battery level from the sensor source, we h
 
 When the command of stopping the collection is passed to \verb|StopReceiving| broadcast receiver, the \verb|CommunicationHandler| thread is interupted. The interuption closes and unbindes the connection with the \verb|BluetoothHandler|. Within the \verb|BluetoothHandler| the connectvity with the GATT server (sensor) is disconnected and closed. Finally, the screen presented to the user shows that the sensor has disconnected.
 
+\subsection{Data Stream Dispatching Module}
+The data stream dispatching module developed by Bugajski provides an interface for application instances to subscribe to data packets from supported and available sensor sources. The modularity this module provides towards managing and supporting various sensor capabilities, allows for a faster development time and extended functionality for communication with sensor sources. This application, monitors for avaible sensor wrappers that sends a broadcast to \verb|SensorDiscovery| on the device, and manages and forwards data collected from the sensors to the subscribed applications in the \verb|DataStreamDispatchingService| component. Below, we briefly introduce the components and their mechanism in the application. Also, how other application leverge the functionality of this tool. 
+
+\begin{description}[font=\normalfont\itshape]
+    \item[Sensor Discovery] The inital design of discovery for new sensor wrappers was performed as by this application sending out an broadcast and with an action of \textit{HELLO} in the intent to discover all available sensor wrappers on the mobile device. All sensor wrappers are designed to respond to DSDM with their package name as \textit{id} and the name of the sensor wrapper as \textit{name} with a broadcast to \textit{REGISTER}. The DSDM is then aware of which sensor wrappers that are available on the mobile device. 
+    
+    However, during the development of this thesis, Android had limited the use of implicit broadcasts on newer Android versions [cite]. Implicit broadcasts are those broadcast that do not target a specific application, however, sends out an action with a message and those application that filters and listens for the actions can handle this message accordingly. To overcome this problem, a re-design of the sensor discovery were made. Instead of DSDM ever so often sends out a HELLO broadcast, the sensor wrapper sends out an explicit broadcast directed to the DSDM, in order to make it come aware of its existance. The broadcast is sent to the \textit{SensorDiscovery} directed explicitly to DSDM broadcast receivers, encapsulated with the name and the packagename of the sensor wrapper. The DSDM stores the sensor wrapper information in a \verb|SharedPreference|. 
+
+    \item[DataStreamDispatchingService] Encompasses most of the functionality of the application. This component acts a data distributor between applications that desire to connect with sensor sources, and sensor sources forward their data packets to this servive. Also, this component ensures to duplicate and make indentical packages to all subscribed applications. The actions that are exposed to the sensor wrapper and the subscribed applications are managed within this component, by providing an binder for IPC communication (see Section \ref{implement:aidl}). 
+
+\end{description}
+
+
+To summarize, this application acts as a data distributor for supported sensor sources. The data packets received from the sensor sources, are obtained in the sensor wrapper, which further are forwarded to this application. This appication manages a list of subscribing applications that requests to listen to the data obtained from the various data sources, and forward the data to all subscribed applications accordingly. 
+
 
 \subsection{Nidra}
+This thesis is focused on creating an Android application that can record, share, and analyze breathing data of a patient over an extend period using Flow sensor kit. In order to provide an interface for the patient, we developed an application called Nidra. Nidra is designed with the goal and requirement of this thesis, and to make that possibl the components in Nidra pays a part, which is: 
 
-\subsection{Inter-Process Communication: AIDL}
-To perform IPC using Android Interface Definition Language (AIDL) [cite] we need to define a programming interface that both the client and the service agree upon. In order to communicate with processes, the data objects has to be decomposed into primitives that the operating system can understand, and marshall the objects across the boundary. The AIDL interface is defined in an \verb|.AIDL| file, and located in the \verb|src/| directory of the hosting service application (DSDM), and other applications that binds to the service (Nidra and sensor wrappers). It is important to have identical \verb|.AIDL| files across the applications, otherwise the system will not recognize it as the same interface. In Listing 5.1, the interface is based on the functionality the hosting service application exposes (DSDM). In Nidra, some of the functionality is utilized to enable recording. More spesifically, \verb|getPubishers()| method is used to get all of the sensors publishers (e.g., Bitalino provides multiple sensor capabilites ...), the \verb|Subscribe(...)| and \verb|Unsubscribe(...)| is used in order to subscribe and unsubscribe to a spesific sensor capability, and listing for events on the \verb|putJson(...)|, which is used by the sensor wrappers to send data collected to DSDM, and further sent to all subscribing applications (i.e., Nidra). 
+\begin{description}[font=\normalfont\itshape]
+    \item[MainActivity] Encompassess all of the functionality, besides recording, by using fragments to seperate the functionality. The fragments lies on top of the this host activity, and a transition amongst the fragments is triggered based on user interactions. 
+    \item[RecordingActivity] This activity manages the recording part of the application by invoking the \verb|RecordingFragment|. The fragment handles the connectivity with the data stream dispatching module, handling the data packets from the sensor sources, and assuring for continous data stream (uninterrupted from human distruptions and sensor disconnections). Also, it manages the interactions that can be performed on the recording screen (e.g., real-time graph).
+    \item[LandingActivity] When launching the application for the first time, a screen with an introduction to the application is shown to the user. Further, the user is prompted to type in biometrical data (e.g., name, gender, age, height, weight), which will be used to enrich the metadata of a recording by the patient. 
+\end{description}
 
+Moreover, Nidra leverages the functionality that the data stream dispatching module provides. To use the functionality, the recording activity connects with the data stream dispatching module, and the reference that will be used to receive data packets are to the service of \textit{DSDService}. The data obtained within this service, are directly sent to the \verb|RecordingActivity| for processing.
+
+%In addition, 
+
+To conclude, the components discussed in this section consitute into an application that enables recording, sharing, and analysis of breathing data obtain from the Flow sensor kit. We will further eloborate on the actions of Nidra in the subsequent section. 
+
+
+\subsection{Inter-Process Communication}\label{implement:aidl}
+In order to communicate with between the applications, such as remote procedure calls (RPC) to application components that run remotely, we can use the IPC mechanisms. In Android there are two viable mechanisms to enable IPC: (1) \verb|Binder| enables a process to remotely invoke functions in another process; and (2) \verb|Intent| a message passing interface allowing applications to send messages to each other.
+
+The Intent mechanism is mainly used for sharing bundles of primitive data types (e.g., strings or floats) across activites, regardless of application, as long as the package name is valid. Another possbility of using intent's are during boardcasts within the application or to other application. Likewise, by explicitly specifying the packagename. In Nidra, Intent's are used for local broadcast receivers, as well as when launching a module. 
+
+In order to implement the binder mechanism, we can use the Android Interface Definition Language (AIDL) [cite]. AIDL is programming interface that both the client and the service agree upon. In order to communicate with processes, the data objects has to be decomposed into primitives that the operating system can understand. The AIDL interface is defined in an \verb|.AIDL| file, and located in the \verb|src/| directory of the hosting service application (DSDM), and other applications that binds to the service (Nidra and sensor wrappers). It is important to have identical \verb|.AIDL| files across the applications, otherwise the system will not recognize it as the same interface. In Listing 5.1, the interface is based on the functionality the hosting service application exposes (DSDM). In Nidra, some of the functionality is utilized to enable recording. More spesifically, \verb|getPubishers()| method is used to get all of the sensors publishers (e.g., Bitalino provides multiple sensor capabilites ...), the \verb|Subscribe(...)| and \verb|Unsubscribe(...)| is used in order to subscribe and unsubscribe to a spesific sensor capability, and listing for events on the \verb|putJson(...)|, which is used by the sensor wrappers to send data collected to DSDM, and further sent to all subscribing applications (i.e., Nidra). 
 
 \begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
 // MainServiceConnection.aidl
@@ -80,8 +96,6 @@ interface MainServiceConnection {
     List<String> getPublishers();
 }
 \end{lstlisting}
-
-The connection is instantiated 
 
 
 \section{Implementation of Concerns}

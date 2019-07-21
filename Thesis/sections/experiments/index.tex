@@ -36,12 +36,18 @@ During the concert, there were approximately 800 attendees on the first day and 
 \hline
 \textbf{Model} & \textbf{Samsung Galaxy S9} & \textbf{OnePlus 3T} & \textbf{Google Pixel XL} \\
 \hline
-Operating System & Android 8.0 & - & Android 9.0 \& Android 7.1.2  \\
+Operating System & Android 8.0 & Android 8.1 & Android 9.0 \& Android 7.1.2  \\
+\hline
 Chipset & Exynos 9810  & Qualcomm MSM8996 Snapdragon 821 & Qualcomm MSM8996 Snapdragon 821  \\
+\hline
 CPU & Octa-core & Quad-core & Quad-core \\
+\hline
 GPU & Mali-G72 MP18 & Adreno 530 & Adreno 530  \\
+\hline
 RAM & 4 GB & 6 GB & 4 GB \\
+\hline
 Battery & Li-Ion 3000 mAh & Li-Ion 3400 mAh & Li-Ion 3450 mAh  \\
+\hline
 Bluetooth & 5.0, A2DP, LE, aptX & 4.2, A2DP, aptX HD, LE & 4.2, A2DP, LE, aptX \\
 
 \hline
@@ -159,13 +165,13 @@ To summarize the experiment, we were able to test the application in a real-life
 
 To conclude, the goal of the experiment was to analyze musical absorption during a concert, but that is not the motivation for our application. However, we provided an application that collected the data during the concert. Thus, the collected data can then be used to conclude a correlation between breathing and musical absorption. Also, inconsistency in the sampling of the recordings makes it difficult to determine the source of the problem. We could argue that the analysis of the aggregated data in the tables might indicate that the sensor or the mobile is a malfunctioned, however, due to insufficient data this conclusion cannot be drawn. Although, the application managed to collect data with the use of the Flow sensor kit, in an environment filled with other mobile devices that could have interfered with the signals, as well as reconnecting to the sensors during the recording. [Reflect more on the motivation goals].
 
-\subsection{Experiment B: 8-Hours Recording}
+\subsection{Experiment B: 9-Hours Recording}
 As part of this thesis is to collect breathing data over en extended period (e.g., during sleep), it is essential to test for battery drainage during this period. The experiement is conducted to demonstrate that the appication is suited for collecting data over an extended period. In most cases, an user connects their device to a power source to charge the device battery. However, in the cases where that is not viable, the battery consumption of the applications might affect the perspection of the applications outcome to the user. Therefore, in this experiment we are checking for the battery consumption on the mobile device, as well as the Flow sensor kit. 
 
 \subsubsection{Description}
-The experiement was conducted by strapping the Flow sensor around the throax (just below the armpits), configuring the the Flow sensor wrapper to connect with the Flow sensor, and pressing the "record" button in Nidra. The device and sensor started with 100\%. Also, the device was disconnected from WiFi, and left stantonary and unattended during the period of recording.  
+The experiement was conducted on OnePlus 3T device (spesifications in Table X), and we started of by configuring the the Flow sensor wrapper to connect with the Flow sensor, and pressing the "record" button in Nidra. The device and sensor started with 100\%. Also, the device was disconnected from WiFi, and left stantonary and unattended during the period of recording.  
 
-A techincal description of collecting the data from the Flow sensor and the Nidra, is that the Flow sensor collects data on 10Hz; however, sends a packet of data at approximately 1.5 Hz. The data packet is the processed by the Flow sensor wrapper, and sent to the data stream dispatching module (DSDM). The DSDM has a list of subscribing applications, thus sends the identical packet to all of the subscribing application. In our case, the Nidra application has subscribed for the Flow sensor kit packets. In Nidra, the packet is received, unpacked and immediately stored in a database as a sample entity, with a identifier of the recording session. This process continues until the recording has terminated based on the user's actions.
+A techincal description of collecting the data from the Flow sensor and the Nidra, is that the Flow sensor collects data on 10Hz; however, sends a packet of data at approximately 1.5 Hz. The data packet is the processed by the Flow sensor wrapper, and sent to the data stream dispatching module (DSDM). The DSDM has a list of subscribing applications, and distribute the data packet to all of the subscribing application. In our case, the Nidra application has subscribed for the Flow sensor kit packets. In Nidra, the packet is received, unpacked and immediately stored in a database as a sample entity, with a identifier of the recording session. This process continues until the recording has terminated based on the user's actions.
 
 \subsubsection{Results}
 
@@ -173,12 +179,19 @@ We calculate the energy consumption---which is measured in milliampere hour (mAh
 \begin{equation} \label{losscount}
 Battery\ Consumption = \frac{(Start\% - End\%) * Device\ Capacity\ (mAh)}{Recording\ Duration\ (Hours)}
 \end{equation}
-
 Based on the differance of start mAh and end mAh, multipled by the device battery capacity and divided by the duration of recording, the energy consumption per hour is calculated. 
 
+The application collected 45468 samples from the Flow sensor over the course of 9 hours. That means, the sensor sent data packets on a frequency of 1.4 Hz, which is accurate in relation to previous tests. The mobile device had a battery level of \textit{59\%} and the Flow sensor had a battery level of \textit{94\%} at the end of the recording. Using the Equation \ref{losscount}, we can calculate the average mAh consumbed during 9 hours of recording. As a result, the device uses approximately 155 mAh per hour. 
+
+\begin{equation}
+\frac{0.41 * 3400}{9} = 154.89\ mAh
+\end{equation}
+This means, that the total battery consumtion over the course of the recording was 1395 mAh. Moreover, the device could have been continue recording for approximately 13 hours more, before running out of battery. Keeping in consideration that the mobile device has a average battery capacity, and has degrated battery capacity due to age, the results seems aduqate. 
 
 \subsubsection{Conclusion}
+To summarize, in this experiment we used the recording functionality in Nidra. To enable this functionality, Nidra notifies the the Flow sensor wrapper through the data stream dispatching module to start the data acquestion. The Flow sensor kit samples data on a frequency of approximately 1.5Hz, and the data are forwarded from the sensor wrapper to the data stream dispatching module, which further distributes the data packets to the subscribed applications. Nidra, processes the data packets by unpacking and storing them respectivly in the database. At the end of the 9-hours recording, the application collected 45468 samples, as a result, the mobile device used \textit{41\%} of the battery (1395 mAh) and the Flow sensor kit used \textit{6\%}. Moreover, the device had the possibility of recording for an extra 13 hours.
 
+To conclude, the results of the experiements shows that the requirements for recording over an extended period are statisfied. The application is able to collect data from the Flow sensor kit and it is sufficent enough to do it for an extended period. The energy consumption might be higher than expected, and that might be due to three applications running simultaneously in the background. A proposition to reduce the amount of background processing in order to perserve battery capacity of the mobile device, is to extend the sensor wrapper with an temporary cache or data storage. As such, the data packets are stored in the sensor wrapper during the recording, and sent to the subscribing application on recording termination. However, this complicates the structure of a sensor wrapper and might not be feaseable in all cases (e.g., the real-time graph becomes obsolite). Although, it can be part of a power-saving configuration in the future.  Nonetheless, the experiement was successfully conducted, with no appearent from for disconnects or abruptions during the recording. 
 
 \subsection{Experiment C: Performing User-Tests on Two Participants}
 One goal of the application is that it should be user-friendly enough for patients to use and understand how the functionality of our application works. To evaluate whether this goal has been achieved, we found two participants that agreed to partake in the experiment. One of these participants is not proficent in the use of modern technology, while the other participant has a lot of experience. For simplicity, we will refer to the participant as participant \verb|A| and \verb|B|, respectively. 
@@ -318,6 +331,14 @@ The interview questions were performed after the tasks. The questions followed a
 
 \subsubsection{Conlusions}
 
+To summarize, we conducted an experiement on two participant with predefined set of tasks in order to measure the user-friendliess of the application (Nidra). Most of the tasks were regarding the functionality of recording, sharing, and analyzing. The participants were presented with a brief overview of the functionality of the application before starting the testing. The tests were mainly designed to evalute comprehensibility and usability of the application. During the testing, we observed the interactions the participant's made for each tasks and followed up with a survey for them to answer. Based on this, we gained broader understading of the user-friendliess of the application.
+
+To conclude, the participant found the application to be pleasent and practical to use. However, their feedback to the recording screen were unforseen. In our prespective, the amount of action that can be performed in that particilar screen, is limited to three actions (e.g., starting the screen, viewing the statistics, and stopping the recording). However, the participants were not familiarized with the setting of the recording functionality, in which, we could have introduced the functionality of the recording even further. In retrospect, the application might seem lacking when it comes to informing the users on if the recording has started. Besides this functionality, the participant found the rest of the application to be pleasent. Noteworthy, the user is stricted to perform the maximum of three actions per screen, which is cautious to reduce the number of actions that can be performed on a screen and for the simplicity of the application. 
+
+To have extended this experiement, we could have invoked tests to measure the cognative load and memorability of the application. As such, we could have determined whether the application is to teadous to use in the longer run. 
+
+However, the lack of participants makes it hard to conclude on the experiment and the goal of the tests. Final remarks, are that is room for improvements.
+
 \subsection{Experiment D: Creating a Simple Module}
 One of the goals of the application is to provide an interface for the developers to create modules, which allows for data enrichment and extended functionality. In order to test for this, we found one participant that had experience in software development, and with some experience in Android development. The tests was for the participant to create a new module in our application, which utilized the records in order to find the record that has the highest number of samples. The development of a user-interface was not evaluted, thus displaying the correct answer on the screen was sufficent. 
 
@@ -346,5 +367,22 @@ The second noticable occurances, was the the parsing of the JSON data. JSON is a
 
 %Any changes commited in the module or Nidra, is not reflected with each other. When changing the code in the module application, 
 
-\section{Main Findings}
-Any changes commited in the module or Nidra, is not reflected with each other. When changing the code in the module application, Any changes commited in the module or Nidra, is not reflected with each other. When changing the code in the module application, Any changes commited in the module or Nidra, is not reflected with each other. When changing the code in the module application, 
+\section{Final Remarks}
+In the beginning of this chapther, we reinstated the system requirements of this thesis. The purpose of the experiements were to test the requirements in order to evaluate on whether the requirements suffice towards the goal of this thesis. Below, we describe the goals and discuss how the outcome of the experiments has affected our perspective of the application.
+
+\begin{enumerate}
+    \item \textit{The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.}
+    
+    Experiments A, B, and C used the interface to (1) record breathing data. From the results of these experiements, we realize that the functionality of recording works as intended. The experiements proved that the application can collect data in an crowded environment with other mobile devices interfering with the results, and that the application is capable of collecting data over an extended period. However, the user-interface for this particilar screen, can be improved in the future. Moreover, in Experiment A and C were able to test the functionality of both (2) presting the results on a time-series graph and (3) sharing the records across applications by using a media-application (e.g., mail). 
+
+    \item \textit{The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.}
+    
+    Experiment D was most considered with testing the feaseability of creating and adding a new module into Nidra. The participant in the experiement did not examine the code of the Nidra in order to create a module-application that use the data provided by Nidra. With simple instruction of how the data structure that are sent on launch to the module, the participant were able to create a simple module that extend the functionality of Nidra. This proves that future developers can create any form applications without having to understand how Nidra operates. However, while it were bit cumbersume to parse the data that was sent to the application, and having to start the mobile-application through Nidra, the functionality worked as intended. Thus, we provide an template to follow for future developers (in Appendix C). 
+    
+    \item \textit{The application should ensure a seamless and continuous data stream, uninterrupted from sensor disconnections and human disruptions.}
+    
+    In the analysis of experiement A, we observe that various mobile devices disconnected during the concert. Even though, there is gaps of missing data, the recording is able to reinitate with the sensor source during recording, without having to restart the recording session. As such, every samples count towards a complete recording, in which viable samples are accquired. This provies that the application is capable of providing an continous data stream with the sensor source, even when occurances of human disruptions or sensor disconnections happens. 
+    
+\end{enumerate}
+
+Besides few subtle improvements that can be made to Nidra, the system requirements suffice towards the goal of making an application that can record, share, and analyze breathing data with the Flow sensor kit over an extended period. Also, the possbilies for future developers to create independent applications, witout having to operate with Nidra, in which provides extended functionality and enrich the collected data in Nidra. 
