@@ -33,23 +33,40 @@ With the proposition of this thesis, we analyze the tasks and separate them into
 \subsection{Evaluation Phase}
 The evaluation phase according to the report is to \textit{"evaluate a proposition or analytic finding by means of experimentation (controlled) or observation (uncontrolled, such as a case study or protocol analysis), perhaps leading to a substantiated model, principle, or theory"}
 
-Based on the requirements and goal of this thesis, we evaluate the application by conducting experiments. The experiments include participants in order to test the application in the hands of human beings without prior knowledge of the application. In the end, evaluation and conclude whether the goals and requirements of this thesis are sufficient.
+Based on the requirements and goal of this thesis, we evaluate the application by conducting experiments. The experiments include participants that perform various tasks in order to test the application on people without prior knowledge of the application. In the end, evaluation and conclude whether the goals and requirements of this thesis are sufficient.
 
 \section{Contributions}
-Over the course of this thesis, we design and implemented an application for collecting, sharing, and analyzing breathing data. Also, we provided an extensible solution for modules to enrich the applications. The application is focused on creating a generalized application which manges sensor data with focus on sleep apnea / collecting data during sleep over an extended period, which purpose was to enable analyzing and sharing of the data with researchers/doctors. As defined in our problem statement, we set three research goals on the basis of three system requirements. Below, we present the goals and requirements and describe how our system meets them:
+Over the course of this thesis, we designed and implemented an application for collecting, sharing, and analyzing breathing data, called Nidra. Also, we provided an extensible solution for developers to create modules that enrich the data and the functionality of Nidra. The motivation of application is to aid in collecting breathing data with the Flow sensor kit over an extended period. Conclusively, the patient should be able to send the records with breathing data to researchers/doctors, in which they can analyze and diagnose the patient for sleep apnea. However, the application can also be used in other fields of study (e.g., physical activity)  due to its extensible approach of design. As defined in our problem statement, we set three research goals with three system requirements. Below, we present the goals and requirements and describe how our system meets them:
 
 \begin{description}
     \item[Requirement 1] \textit{The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.}
+    
+    In the design of this thesis, we separate the tasks into concerns. Respectively, the task to record breathing data is part of the \textit{recording} concern, where we discuss the possibilities of realizing this functionality. Likewise, we separate the functionality to present the results in \textit{analysis} concern, and to share the result in \textit{sharing} concern. Moreover, we implement the concerns in Android and evaluate whether the functionalities are sufficient. Based on the results, we conclude that the requirements are fulfilled to its extent.
+    
     \item[Requirement 2] \textit{The application should ensure a seamless and continuous data stream, uninterrupted from sensor disconnections and human disruptions.}
+        
+    As part of the recording concern, we discuss various methods of implementing the functionality of having a continuous data stream. The solution is to reconnect with the sensor when we detect that the application is not receiving samples within a time frame. The proposition of design was implemented and evaluated in the experiments, and the functionality works as intended.
+
     \item[Requirement 3] \textit{The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.}
+
+    In the concern for \textit{modules}, we design the functionality of having separate applications that leverage the data provided by Nidra. The design is that Nidra provides a module with records on module-application launch. As such, the developers can create independent applications without having to understand how Nidra operates. The functionality was tested in the evaluation and worked seamlessly.
+
 \end{description}
 
 With the requirements fulfilled, we can look at how Nidra solves our three research goals.
 
 \begin{description}
     \item[Goal 1] \textit{Integrate the support for Flow sensor kit with the extensible data stream dispatching tool}
+    
+    In the implementation of this thesis, we added the support for the Flow sensor kit in the data streams dispatching module. We created a separate application that solely connects with the sensor sources which uses BlueTooth LowEnergy protocols to communicate.
+
     \item[Goal 2] \textit{Research and develop a user-friendly application which facilitates collection of breathing data with the use of the extensible data stream dispatching tool.}
+    
+    With the system requirements, we fulfilled this goal in the design and implementation of this thesis. The application is precautious to the environment (e.g., the application is most likely to be used during the night) of use. Also, we ensured to limit the action a user can perform on each screen. As such, we created an efficient but straightforward application that can collect breathing data over an extended period using the data stream dispatching tool. 
+    
     \item[Goal 3] \textit{Create an extensible solution such that the developers can integrate stand-alone applications in our application.}
+
+    As part of the system requirement, we designed the application to support the integration of standalone-applications, called modules. These modules utilize the data forwarded by Nidra on launch. The developers of the modules do not need to know how the Nidra operates and can create functionality extends the functionality of Nidra (e.g., a module predict sleep apnea with machine learning) or enrich the data (e.g., with other physiological data).   
 \end{description}
 
 
