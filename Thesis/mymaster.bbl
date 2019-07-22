@@ -673,6 +673,91 @@
       \verb https://developer.android.com/training/scheduling/wakelock
       \endverb
     \endentry
+    \entry{kumar2013mobile}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{hash=fa2c1bfb5e6bd2d441002f9a4d51234c}{%
+           family={Kumar},
+           familyi={K\bibinitperiod},
+           given={Santosh},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d7677d2c01a90e1a3b3199071942bcda}{%
+           family={Nilsen},
+           familyi={N\bibinitperiod},
+           given={Wendy\bibnamedelima J},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=78b5041dc42e5048f2a8fc3f28313ccc}{%
+           family={Abernethy},
+           familyi={A\bibinitperiod},
+           given={Amy},
+           giveni={A\bibinitperiod}}}%
+        {{hash=330709f677d7bb654cbf38f18c134366}{%
+           family={Atienza},
+           familyi={A\bibinitperiod},
+           given={Audie},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e4735efbef525c7d3b6bfc45b47761b5}{%
+           family={Patrick},
+           familyi={P\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=0f1b2819bf9d87b124c2b8c069c6a9e1}{%
+           family={Pavel},
+           familyi={P\bibinitperiod},
+           given={Misha},
+           giveni={M\bibinitperiod}}}%
+        {{hash=5d54eae4d40b5b548bc34e6d9d4d7f74}{%
+           family={Riley},
+           familyi={R\bibinitperiod},
+           given={William\bibnamedelima T},
+           giveni={W\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=82b12c0c707368752bdf211845873e70}{%
+           family={Shar},
+           familyi={S\bibinitperiod},
+           given={Albert},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7ac17ad91d49ca6c0f8056cd2568c1de}{%
+           family={Spring},
+           familyi={S\bibinitperiod},
+           given={Bonnie},
+           giveni={B\bibinitperiod}}}%
+        {{hash=7f206a68c6bd15e41f1e9030a4da855a}{%
+           family={Spruijt-Metz},
+           familyi={S\bibinithyphendelim M\bibinitperiod},
+           given={Donna},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{4f7a6a4ca1b0ce1c95cd87a91ed0ae1c}
+      \strng{fullhash}{0fd1666e54dd2b0b9e8bc0b560e53599}
+      \strng{bibnamehash}{4f7a6a4ca1b0ce1c95cd87a91ed0ae1c}
+      \strng{authorbibnamehash}{4f7a6a4ca1b0ce1c95cd87a91ed0ae1c}
+      \strng{authornamehash}{4f7a6a4ca1b0ce1c95cd87a91ed0ae1c}
+      \strng{authorfullhash}{0fd1666e54dd2b0b9e8bc0b560e53599}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American journal of preventive medicine}
+      \field{number}{2}
+      \field{title}{Mobile health technology evaluation: the mHealth evidence workshop}
+      \field{volume}{45}
+      \field{year}{2013}
+      \field{pages}{228\bibrangedash 236}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/j.amepre.2013.03.017
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0749379713002778
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0749379713002778
+      \endverb
+    \endentry
     \entry{soc}{article}{}
       \name{author}{2}{}{%
         {{hash=6420328b42dd3e5c358108b4c66ef71f}{%
@@ -1083,6 +1168,23 @@
       \endverb
       \verb{url}
       \verb https://stuff.mit.edu/afs/sipb/project/android/docs/guide/components/services.html
+      \endverb
+    \endentry
+    \entry{sleep_disorder}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labeltitlesource}{title}
+      \field{title}{Sleep Disorders: Sleep-Related Breathing Disorders}
+      \field{titleaddon}{PubMed}
+      \field{urlday}{19}
+      \field{urlmonth}{7}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ncbi.nlm.nih.gov/pubmed/28845957
+      \endverb
+      \verb{url}
+      \verb https://www.ncbi.nlm.nih.gov/pubmed/28845957
       \endverb
     \endentry
     \entry{flow}{book}{}

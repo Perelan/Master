@@ -458,9 +458,9 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/vf/adobe/palatino/pplr8t.vf
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/vf/adobe/palatino/pplr8t.vf
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/introduction/problem.tex
+INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/introduction/problem.tex
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplri8t.tfm
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/introduction/problem.tex
-INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/introduction/problem.tex
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/vf/adobe/palatino/pplri8t.vf
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplri8r.tfm
 OUTPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/background/index.aux

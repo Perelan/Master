@@ -1,18 +1,16 @@
 \chapter{Background}
 
-\section{CESAR: Project Structure}
-The CESAR project is a collaberation between the Univeristy of Oslo and Oslo Universitetssykehus, with a goal to reduce the the threshold to perform a clinical diagnosis of Obstructive Sleep Apnea (OSA) and to reduce the time to diagonize the disorder. Obstructive Sleep Apnea is a common sleeping disorder which affects the natural breathing cycle by reducing respiration or all airflow. As a consequence, OSA can lead to serious health implications, and in some cases, death through suffocation \cite{cesarinfo}. 
+\section{The CESAR Project}
+The goal of the CESAR project is to reduce the threshold to perform a clinical diagnosis of obstructive sleep apnea (OSA) and to reduce the time to diagnose the disorder. Obstructive sleep apnea is a common sleeping disorder which affects the natural breathing cycle by reducing respiration or all airflow. As a consequence, OSA can lead to serious health implications, and in some cases, death through suffocation \cite{cesarinfo}.  Moreover, the project aims to use low-cost sensor kit to prototype applications using physiological signals related to heart rate, brain activity, the oxygen level in the blood to monitor sleep and breathing-related illnesses \cite{cesar}.
 
-The CESAR project aim to use low cost sensor kit to prototype applications using physiological signals related to heart rate, brain activity, oxygen level in blood to monitor sleep and breathing related illnesses (e.g., Obstructive Sleep Apnea). As of now, the development in the project facilities for data acqusistion from various sensor sources and delegation of the data to subscribed applications. The Section X and Section X is a summary of the development and results of the development, and Figure X is an illustration of the projects development pipeline. 
+As of now, the development in the project facilities for data acquisition from various sensor sources and forwarding of the data packets to subscribed applications. Section \ref{background:svein} and Section \ref{background:daniel} is a summary and results of the development on the project. Moreover, the previous work has incorporated support for a few sensor sources (e.g., Bitalino) in order to collect physiological signals. With the support for more sensor sources allows for more precise detection and analysis of the disorder. In Section X, a new affordable sensor source is introduced.
 
-Moreover, the previous work has incorporated support for a few sensor sources (i.e., Bitalino) in order to collect physiological signals. With the support for more sensor sources enables more precise detection and analysis of the disorder can be made. In Section X, a new sensor source is introduced. 
-
-The project has been developed by various people over the years, and the system has been divided into three parts (illustrated in Figure \ref{fig:parts}). The data acquisition part, the data streams dispatching part, and the application part. The first two parts are already implemented (summarized in the section below), thus, the last part is what we will be focusing throughout this thesis. 
+As an overview, Figure \ref{fig:parts} is an illustration of the structure for the CESAR project. The system is divided into three parts: data acquisition part, data streams dispatching part, application part. The first part enables developers to create sensor wrappers that connect with sensor sources through different Link Layer technology (e.g., Ethernet, USB, Bluetooth, WiFi, ANT+, and ZigBee). The second part manages the discovery and collection of these sensor wrappers and package distribution to subscribing applications. The third part uses the interface that the second part provides in order to collect data from the desired sensor sources.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{images/parts.png}
-    \caption{Structure of the project, separating functionality into three independent layers \cite{daniel}}
+    \caption{Structure of the project, separating functionality into three independent parts \cite{daniel}}
     \label{fig:parts}
 \end{figure}
 
