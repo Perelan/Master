@@ -2036,6 +2036,8 @@
     <bcf:citekey order="60">w3xml</bcf:citekey>
     <bcf:citekey order="60">jsonvxml</bcf:citekey>
     <bcf:citekey order="61">jsonvxml</bcf:citekey>
+    <bcf:citekey order="62">uuid</bcf:citekey>
+    <bcf:citekey order="63">broadcasterror</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

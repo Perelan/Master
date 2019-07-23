@@ -1,0 +1,18 @@
+- A solution for early detection of OSA: Tegn slik at man kan dra til leger for diagnose
+
+- Ulike aspekter for 
+
+- Minsst 10 sekunder
+-- Bedre beskrivelse av DSDM i introduksjon.
+
+
+-- Støtte for flow sensor --> 
+-- Brukervennelig application skal dra nytte av dataen. 
+
+-- Det ekstistere et application, brukt for samle dataen .
+
+-- Laget enkel, og bare for formellet av sleep monitioring (data sharing er ikke støtte og må kopieres manuelt).
+
+-- If possible not interrupted, but if it happens, minimize the data loss and affects on data analytics. 
+
+-- Mange ehelse appiksjoner som fokuser på noen få sensorere for å støtte en spesiell disorder, men formålet et platform for å utnytte DSDM for utvidlesel av sensorer (data acq.), bruk av deleing av sykdommer. 

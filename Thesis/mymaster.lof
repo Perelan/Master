@@ -5,106 +5,108 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Structure of the project, separating functionality into three independent parts \cite {daniel}\relax }}{12}{figure.caption.7}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Structure of the project, separating functionality into three independent parts \cite {daniel}\relax }}{10}{figure.caption.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Sharing the collected data between multiple applications \cite {gjoby}\relax }}{14}{figure.caption.8}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Sharing the collected data between multiple applications \cite {gjoby}\relax }}{12}{figure.caption.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Sharing the collected data between multiple applications \cite {daniel}\relax }}{16}{figure.caption.9}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Sharing the collected data between multiple applications \cite {daniel}\relax }}{14}{figure.caption.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Recording\relax }}{17}{figure.caption.10}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Recording\relax }}{15}{figure.caption.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Recording\relax }}{20}{figure.caption.11}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Recording\relax }}{18}{figure.caption.11}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Entity Relationship Diagram\relax }}{24}{figure.caption.12}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Recording\relax }}{33}{figure.caption.13}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Recording\relax }}{36}{figure.caption.14}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Sharing\relax }}{39}{figure.caption.15}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Modules\relax }}{40}{figure.caption.16}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Analytics\relax }}{42}{figure.caption.17}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Storage\relax }}{43}{figure.caption.18}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Presentation\relax }}{45}{figure.caption.19}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Modules\relax }}{48}{figure.caption.20}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Applications components for the three indiviual Android applications in the project\relax }}{56}{figure.caption.26}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Implementation of recording functionality: (A) Start a Recording\relax }}{63}{figure.caption.27}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Implementation of recording functionality: (B) Stop a Recording\relax }}{65}{figure.caption.28}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Implementation of recording functionality (C)\relax }}{66}{figure.caption.29}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of sharing functionality (A): Exporting one or all Records\relax }}{67}{figure.caption.30}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Implementation of sharing functionality (B)\relax }}{69}{figure.caption.31}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Implementation of module functionality(A): Add a Module\relax }}{70}{figure.caption.32}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Implementation of module functionality(B): Launch a Module\relax }}{71}{figure.caption.33}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Implementation of analytics functionality (A): Display a Graph for a Single Record\relax }}{73}{figure.caption.34}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Entity Relationship Diagram\relax }}{74}{figure.caption.35}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.11}{\ignorespaces The recording screen displayed to the user; with the screen: (A) during a recording, (B) real-time analytics, and (C) finalizing the recording\relax }}{75}{figure.caption.36}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.12}{\ignorespaces The sharing screen displayed to the user\relax }}{76}{figure.caption.37}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.13}{\ignorespaces The module screen displayed to the user\relax }}{77}{figure.caption.38}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.14}{\ignorespaces The analytics screen displayed to the user\relax }}{78}{figure.caption.39}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Concert Day 1---Mobile Device B\relax }}{88}{figure.caption.41}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Concert Day 2---Mobile Device B\relax }}{88}{figure.caption.41}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Entity Relationship Diagram\relax }}{22}{figure.caption.12}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Recording\relax }}{31}{figure.caption.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Concert Day 1: Device A\relax }}{110}{figure.caption.45}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Recording\relax }}{34}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Concert Day 1: Device B\relax }}{110}{figure.caption.46}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Sharing\relax }}{37}{figure.caption.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Concert Day 1: Device C\relax }}{111}{figure.caption.47}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Modules\relax }}{38}{figure.caption.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Concert Day 1: Device D\relax }}{111}{figure.caption.48}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Analytics\relax }}{40}{figure.caption.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Concert Day 1: Device E\relax }}{112}{figure.caption.49}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Storage\relax }}{41}{figure.caption.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Concert Day 1: Device F\relax }}{112}{figure.caption.50}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Presentation\relax }}{43}{figure.caption.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.7}{\ignorespaces Concert Day 2: Device A\relax }}{113}{figure.caption.51}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Concert Day 2: Device B\relax }}{113}{figure.caption.52}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Concert Day 2: Device C\relax }}{114}{figure.caption.53}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Concert Day 2: Device D\relax }}{114}{figure.caption.54}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.11}{\ignorespaces Concert Day 2: Device E\relax }}{115}{figure.caption.55}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.12}{\ignorespaces Concert Day 2: Device F\relax }}{115}{figure.caption.56}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Modules\relax }}{46}{figure.caption.20}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Applications components for the three indiviual Android applications in the project\relax }}{52}{figure.caption.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Legend over the figures in implementation of concerns: (A) ; (B) objects that contains; (C) an interface for callbacks or listeners; (D) Android spesific objects and components; (E) other install applications; (F) steps/flow direction; and (G) data flow direction\relax }}{59}{figure.caption.27}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Implementation of recording functionality: (A) Start a Recording\relax }}{59}{figure.caption.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Implementation of recording functionality: (B) Stop a Recording\relax }}{61}{figure.caption.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of recording functionality (C)\relax }}{62}{figure.caption.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Implementation of sharing functionality (A): Exporting one or all Records\relax }}{63}{figure.caption.31}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Implementation of sharing functionality (B)\relax }}{65}{figure.caption.32}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Implementation of module functionality(A): Add a Module\relax }}{66}{figure.caption.33}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Implementation of module functionality(B): Launch a Module\relax }}{67}{figure.caption.34}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Implementation of analytics functionality (A): Display a Graph for a Single Record\relax }}{68}{figure.caption.35}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Entity Relationship Diagram\relax }}{70}{figure.caption.36}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.12}{\ignorespaces The recording screen displayed to the user; with the screen: (A) during a recording, (B) real-time analytics, and (C) finalizing the recording\relax }}{71}{figure.caption.37}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.13}{\ignorespaces The sharing screen displayed to the user\relax }}{72}{figure.caption.38}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.14}{\ignorespaces The module screen displayed to the user\relax }}{73}{figure.caption.39}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.15}{\ignorespaces The analytics screen displayed to the user\relax }}{74}{figure.caption.40}
+\defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {D.1}{\ignorespaces Flow Sensor Wrapper---A\relax }}{124}{figure.caption.57}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Concert Day 1---Mobile Device B\relax }}{82}{figure.caption.42}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Concert Day 2---Mobile Device B\relax }}{82}{figure.caption.42}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Concert Day 1: Device A\relax }}{106}{figure.caption.46}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Concert Day 1: Device B\relax }}{106}{figure.caption.47}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Concert Day 1: Device C\relax }}{107}{figure.caption.48}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Concert Day 1: Device D\relax }}{107}{figure.caption.49}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Concert Day 1: Device E\relax }}{108}{figure.caption.50}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Concert Day 1: Device F\relax }}{108}{figure.caption.51}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Concert Day 2: Device A\relax }}{109}{figure.caption.52}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Concert Day 2: Device B\relax }}{109}{figure.caption.53}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Concert Day 2: Device C\relax }}{110}{figure.caption.54}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Concert Day 2: Device D\relax }}{110}{figure.caption.55}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Concert Day 2: Device E\relax }}{111}{figure.caption.56}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Concert Day 2: Device F\relax }}{111}{figure.caption.57}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {D.1}{\ignorespaces Flow Sensor Wrapper---A\relax }}{118}{figure.caption.58}

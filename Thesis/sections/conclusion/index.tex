@@ -28,6 +28,42 @@ In the problem statement of this thesis, we defined three research goals. In thi
     In the design and implementation of this thesis, we facilitate for modules that future developers can create to integrate their functionality into Nidra without having to understand how Nidra operates. The motivation for this functionality is to allow future developers to enrich the data or extend the functionality by using the data provided by Nidra, and for patients to operate with one application for detection for sleep apnea. 
 \end{description}
 
+
+\section{Contributions}
+Over the course of this thesis, we designed and implemented an application for collecting, sharing, and analyzing breathing data, called Nidra. Also, we provided an extensible solution for developers to create modules that enrich the data and the functionality of Nidra. The motivation of application is to aid in collecting breathing data with the Flow sensor kit over an extended period. The patient should be able to send the records with breathing data to researchers/doctors, in which they can analyze and diagnose the patient for sleep apnea. However, the application can also be used in other fields of study (e.g., physical activity)  due to its extensible approach of design. As defined in our problem statement, we set three research goals with three system requirements. Below, we present the goals and requirements and describe how our system meets them:
+
+\begin{description}
+    \item[Requirement 1] \textit{The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.}
+    
+    In the design of this thesis, we separate the tasks into concerns. Respectively, the task to record breathing data is part of the \textit{recording} concern, where we discuss the possibilities of realizing this functionality. Likewise, we separate the functionality to present the results in \textit{analysis} concern, and to share the result in \textit{sharing} concern. Moreover, we implement the concerns in Android and evaluate whether the functionalities are sufficient. Based on the results, we conclude that the requirements are fulfilled to its extent.
+    
+    \item[Requirement 2] \textit{The application should ensure a seamless and continuous data stream, uninterrupted from sensor disconnections and human disruptions.}
+        
+    As part of the recording concern, we discuss various methods of implementing the functionality of having a continuous data stream. The solution is to reconnect with the sensor when we detect that the application is not receiving samples within a time frame. The proposition of design was implemented and evaluated in the experiments, and the functionality works as intended.
+
+    \item[Requirement 3] \textit{The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.}
+
+    In the concern for \textit{modules}, we design the functionality of having separate applications that leverage the data provided by Nidra. The design is that Nidra provides a module with records on module-application launch. As such, the developers can create independent applications without having to understand how Nidra operates. The functionality was tested in the evaluation and worked seamlessly.
+
+\end{description}
+
+With the requirements fulfilled, we can look at how Nidra solves our three research goals.
+
+\begin{description}
+    \item[Goal 1] \textit{Integrate the support for Flow sensor kit with the extensible data streams dispatching tool.}
+    
+    In the implementation of this thesis, we added the support for the Flow sensor kit in the data streams dispatching module. We created a separate application that solely connects with the sensor sources which uses BlueTooth LowEnergy protocols to communicate.
+
+    \item[Goal 2] \textit{Research and develop a user-friendly application which facilitates collection of breathing data with the use of the extensible data streams dispatching tool.}
+    
+    With the system requirements, we fulfilled this goal in the design and implementation of this thesis. The application is precautious to the environment (e.g., the application is most likely to be used during the night) of use. Also, we ensured to limit the action a user can perform on each screen. As such, we created an efficient but straightforward application that can collect breathing data over an extended period using the data streams dispatching tool. 
+    
+    \item[Goal 3] \textit{Create an extensible solution such that the developers can integrate stand-alone applications in our application.}
+
+    As part of the system requirement, we designed the application to support the integration of standalone-applications, called modules. These modules utilize the data forwarded by Nidra on launch. The developers of the modules do not need to know how the Nidra operates and can create functionality extends the functionality of Nidra (e.g., a module predict sleep apnea with machine learning) or enrich the data (e.g., with other physiological data).   
+\end{description}
+
+
 \section{Future Work}
 Over the course of this thesis, we were able observe enhancements and improvements that can be made to the application. While the application fulfilles the goals defined in the problem statement, there are possibilities to make the experience of the application even richer. Below, we present the a short description of future work alongside with our proposition. 
 
