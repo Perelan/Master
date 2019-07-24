@@ -1,63 +1,63 @@
 \subsection{Recording}
-Recording is the process of collecting and storing physiological signals from sensors over an extended period. To enable a recording, we need to establish a connection with the available sensors and store the samples retrieved by the sensors on the device. We will use the Data Stream Dispatching Module (hereafter: DSDM) which manages sensor discovery and sensor establishment to supported sensor sources. DSDM facilitates an interface for data acquistion, and the communication between the DSDM and Nidra occurs over IPC. Moreover, we will implement functionality to check for connectivity during record, to ensure the sensors are collecting data to at appropriate rate. At the end of recording, we will store metadata related to the recording session and finialize the recording process. 
+The design choices for this concern is described in Section X. To give a brief overview; recording is the process of collecting and storing data received from sensors over an extended period. To enable a recording, we need to establish a connection with the available sensors and store the samples retrieved by the sensors on the device. In this thesis, we focus on collecting breathing data from the Flow sensor. 
 
+We will use the data streams dispatching module (hereafter: DSDM), which manages sensor discovery and sensor establishment to supported sensor sources, in our case the Flow sensor.  Moreover, the DSDM facilitates an interface for data acquisition, and the communication between the DSDM and Nidra occurs over IPC using binder's. During recording, we will check for connectivity with the sensors to ensure the sensors are collecting data at an appropriate rate. At the end of the recording, we will store metadata related to the recording and finalize the recording process. 
 
-The functionality of recording can be divided into three actions: (A) start a recording; (B) stop a recording; and (C) display recording analytics. In the following Subsection for recording, we will review the steps to enable these actions. 
+The functionality of recording can be separated into three actions: (A) start recording; (B) stop recording; and (C) display recording statistics. In the following sections, we will review the steps that enable these actions. 
 
-\subsubsection{Action A: Start a Recording}
+\subsubsection{Action A: Start Recording}
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{images/Recording_ImpA.pdf}
-    \caption{Implementation of recording functionality: (A) Start a Recording}
+    \caption{Implementation of recording functionality: (A) start recording}
     \label{fig:impl_recordingA}
 \end{figure}
 
 In Figure \ref{fig:impl_recordingA}, an illustration of the component interactions are shown. Action A is to start a recording by connecting and starting data aqusition with the use of DSDM, and to ensure persistent connectivity with the sensor sources. The steps and interactions for this action are: 
 
 \begin{itemize}
-    \item[A.1] Commence the recording by creating a record entity and inserting it into the database. An empty record has to be inserted into the database in order to associate new samples to the recording. 
-    \item[A.2] Once the record is inserted into the storage, unique identification is returned. 
-    \item[A.3] \verb|ConnectionHandler| manages the establishment, connection, and disconnection of the IPC between Nidra and DSDM. It starts by establishing a connection to the DSDM:
-\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+    \item[A.1] The recording process starts by creating a new record entity (see: Section X) that is inserted into the SQLite database. An empty record has to be inserted into the database in order to associate new samples with the record (based on the record's id). 
+    \item[A.2] Once the record is inserted into the storage, a unique identification (id) is returned. 
+    \item[A.3] \verb|ConnectionHandler| is invoked in order to manage the establishment, connection, and disconnection of the IPC between Nidra and DSDM service. The code for establishing the connection is described in the following listing:
+\begin{lstlisting}[language=json, caption={Code snippet for connecting with the DSDM (MainServiceConnection is the AIDL file as discussed in Section X)}, captionpos=b]
     Intent intent = new Intent(MainServiceConnection.class.getName());
     intent.setAction("com.sensordroid.ADD_DRIVER");
     intent.setPackage("com.sensordroid");
     context.bindService(intent, serviceCon, Service.BIND_AUTO_CREATE);
 \end{lstlisting}
-    \verb|MainServiceConnection| is the AIDL file (discussed in IPC).
-    \item[A.4] We bind to service by using the \verb|BindService|. If the service is offline, the flag \verb|Service.BIND_AUTO_CREATE| will ensure the service is started. \verb|BindService| allows components to send requests, receive responses, and perform inter-process communication (IPC) [CITE]. 
-    \item[A.5] Once the service has bound, we can proceed to communicate with the DSDM. 
-   	\item[A.6] The \verb|ConnectionHandler| proceeds to initialize the connection with the sensor through the DSDM.  A request to the DSDM for available publishers with \verb|getPublishers()| is made, to retrieve all available sensor publishers connected to the DSDM. Occasionally, the DSDM uses extended time to discover all of the active sensors connected to the device; therefore, we have an interval that checks whether DSDM has any available sensors connected.
-	\item[A.7] Moving on,  a request to the DSDM to \verb|Subscribe| to a sensor is made.  In the \verb|Subscribe| function, a reference to the package name and a service object (\verb|DSDService|) from Nidra is sent. The service object is where all of the parcels of data from the DSDM is received.   
-	\item[A.8] A callback to \verb|RecordingFragment|  with the available sensor publishers is made. 
-	\item[A.9] The recording has now started, and a timer to measure the time spent on the record is started. 
-	\item[A.10] The \verb|ConnectivityHandler| is the component we discussed in Section ... , which checks for sample arrival and activity to reconnect with the sensor. The \verb|ConnectivityHandler| is implemented with a \verb|Handler| with a \verb|PostDelay|. If the event for the \verb|PostDelay| is triggered, it is equivalent for a sample not being acquired from the sensor. 
-	\item[A.11] Periodically, the DSDM receives samples from the subscribed sensor. DSDM forwards the sample from the sensor to the service object (\verb|DSDService) on the \verb|putJson| function. The DSDService uses a \verb|LocalBroadcastManger| to send bundles of data across components in the application. The \verb|RecordingFragment| is listening for the event, and receives all of the data. 
-	\item[A.12] The data received from the sensor (through the DSDM, to DSDService, and LocalBroadcast), is stored as a new sample entry with the current recording identification associated with it. 
+    
+    \item[A.4] If the service is offline when binding, the flag \verb|Service.BIND_AUTO_CREATE| will ensure for starting the service. \verb|BindService| allows components to send requests, receive responses, and perform inter-process communication (IPC) based on the interface provided by the host service (DSDM). 
+    \item[A.5] Once the service is bound, we can proceed to communicate with the DSDM service. 
+       \item[A.6] The \verb|ConnectionHandler| proceeds to initialize the connection with the sensor through the DSDM.  A request to the DSDM for available publishers with \verb|getPublishers()| is made, to retrieve all available sensor publishers connected to the DSDM. Occasionally, the DSDM uses extended time to discover all of the active sensors connected to the device; therefore, we have an interval that checks whether DSDM has any available sensors connected. 
+    \item[A.7] Moving on,  a request to the DSDM to \verb|Subscribe| to a sensor is made. We specify that we want the Flow sensor in the \verb|Subscribe| method, in addition, a reference to the package name (Nidra) and a service object (\verb|DSDService|). The service object is where all of the data packets from the subscribed Flow sensor is received (on the \verb|putJson()| method).   
+    \item[A.8] Also, a callback to \verb|RecordingFragment| with information of the sensor source (i.e., Flow) that we subscribe to is made, in order to display the information on the user's screen. 
+    \item[A.9] The recording has now started, and a timer to measure the time spent on the recording is started. The \verb|ConnectivityHandler| is also initialized, which actively checks that the samples arrive within a specified time frame (as discussed in the design, a frame of 10 seconds that increases throughout the recording). The \verb|ConnectivityHandler| is implemented with a \verb|Handler| with a \verb|PostDelay| that counts down. Upon a sample arrival, the timer is reset. 
+    \item[A.10] Periodically, the DSDM receives samples from the subscribed sensor. DSDM forwards the sample from the sensor to the service object (\verb|DSDService|) on the \verb|putJson()| method. The DSDService uses a \verb|LocalBroadcastManger| to send the data packet to the \verb|RecordingFragment|.  
+    \item[A.11] \verb|RecordingFragment| listens for the events on the local broadcast receiver. Upon an event, the data that is received from the sensor is inserted as a new sample entity with the current record's id as an association. 
+    \item[A.12] Recalling the functionality from step A.9; if the event for the \verb|PostDelay| is triggered, it is equivalent to a sample not being acquired from the sensor. Therefore, we try to reconnect with the subscribed sensor by disconnecting with the DSDM (which will close the connection with the sensor source), followed up by a reconnection with the DSDM and subscribing to the same sensor source. Most of the times, the process of reconnecting works instantaneously; however, some times the sensor might require to be reconnected with several times. 
 \end{itemize}
 
-\subsubsection{Action B: Stop a Recording}
+\subsubsection{Action B: Stop Recording}
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{images/Recording_ImpB.pdf}
-    \caption{Implementation of recording functionality: (B) Stop a Recording}
+    \caption{Implementation of recording functionality: (B) stop recording}
     \label{fig:impl_recordingB}
 \end{figure}
 
-In Figure \ref{fig:impl_recordingB}, an illustration of the components to stop a recording is shown. The action is based on the user input to stop the recording session. For the user, the recording has terminated and the user is presented with a screen to provide information regarding the recording (e.g., title, description and rating). For the application, has to notify and unsubscribe to the connected sensors through DSDM, as well as disconnect from the DSDM service. In addition, manage the metadata the user provides at the end of the recording session, and storing recording metadata on the device. The steps and interaction for this action are:
+In Figure \ref{fig:impl_recordingB}, an illustration of the component interactions are shown. Action B is based on user input to stop the recording process. To the user, the recording has terminated, and the user is presented with a screen to provide extra information regarding the recording (e.g., title, description, and rating). For the application, it has to unsubscribe from the connected sensor sources (i.e., Flow), and disconnect the connectivity with the DSDM. Also, transition the user to the screen where the user can provide extra information that will be stored alongside the record.
 
 \begin{itemize}
-	\item[B.1] The user of application decides when to stop a recording with a press of a button. The event to stop recording is sent to the \verb|ConnectionHandler|.
-	\item[B.2] A call to the \verb|Unsubscribe| function on the subscribed subscribe with the service object is sent to the DataStreamsDispatchingModule (hereafter: DSDM). The DSDM has to ensure to unsubscribe unpublish the sensor in order to signal the sensor to stop sampling. 
-	\item[B.3] The IPC connection between Nidra and DSDM is discontinued by unbinding the service. 
-	\item[B.4] The estimated time of recording is calculated, and a transition from \verb|RecordingFragment| to \verb|StoreFragment| is made to finalize the recording with extra information (e.g., title, description, and rating). 
-	\item[B.5] The \verb|StoreFragment| uses the record identification retrieved on recording (A.1) in order to enrich the record with statistics and user-defined metadata. The statistics are the monitoring time, number of samples during recording, and retrieving the current state user biometrical data and storing it in the record. The user-defined metadata are the title of the recording, a description enabling the user to add a note to the recording, and a rating between 1--5 (to give a rating on how the recording felt). 
-	\item[B.6] The modified record is updated in the database, and the user is transitioned to the \verb|FeedFragment|.
+    \item[B.1] The user decides when to stop a recording with a press of a button. The event to stop the recording is sent to the \verb|ConnectionHandler|.
+    \item[B.2] A call to the \verb|Unsubscribe()| method that contains the service object (i.e., DSDService) and the identification of the sensor source (e.g., Flow) is sent to DSDM. The DSDM has to ensure unsubscribing the sensor from a specific application and disconnect the IPC between the application. If there are no subscribing applications to the specific sensor source, the DSDM will signal the sensor to stop sampling and disconnect with the sensor. 
+    \item[B.3] The IPC connection between Nidra and DSDM is discontinued by unbinding the service. 
+    \item[B.4] The estimated time of recording is calculated, and a transition from \verb|RecordingFragment| to \verb|StoreFragment| is made to finalize the recording with extra information (e.g., title, description, and rating). 
+    \item[B.5] The \verb|StoreFragment| uses the record identification retrieved on recording (A.1) in order to enrich the record with statistics and user-defined metadata. The statistics are the monitoring time, number of samples during recording, and retrieving the current state user biometrical data and storing it in the record. The user-defined metadata are the title of the recording, a description enabling the user to add a note to the recording, and a rating between 1--5 (to give a rating on how the recording felt). 
+    \item[B.6] The modified record is updated in the database, and the user is transitioned to the \verb|MainActivity|.
 \end{itemize}
 
-
-\subsubsection{Action C: Display Recording Analytics}
-During a recording, the user can view the analytics for the recording. More spesifically, the user can see the available connected sensors, and a graph of respiration (based on the samples acquesitions from the sensor) in real-time. In Figure \ref{fig:impl_recordingC}, an illustration of the components display recording analytics is shown, and the steps and interaction for this action are: 
+\subsubsection{Action C: Display Recording Statistics}
+During a recording, the user can view the statistics for the recording. More specifically, the user can see the available connected sensors and a graph of the breathing data in real-time. In Figure \ref{fig:impl_recordingC}, an illustration of the component interactions are shown, and the steps and interaction for this action are: 
 
 \begin{figure}
     \centering
@@ -67,9 +67,9 @@ During a recording, the user can view the analytics for the recording. More spes
 \end{figure}
 
 \begin{itemize}
-    \item[C.1] The data is graphically represented as an intractable time-series graph. By using the Graph library, we can in similarities to the implementation of the analytics concern (see Subsection), implement a graph to illustrate the respiration data to the user.
-    \item[C.2] In addition to the time-series graph, we have a list of sensors that are sampling in the recording. 
-    \item[C.3] The \verb|Sensor Adapter| populates and illustrates the connected sensor to the user.
+    \item[C.1] The data is graphically represented as an intractable time-series graph. By using the Graph library [CITE], we can in similarities to the implementation of the analytics concern (see Section X), implement a graph to illustrate the respiration data to the user.
+    \item[C.2] In addition to the time-series graph, we have a list of publishers (e.g., Flow) that we acquired in the begging of the recording. As such, a list of publishers is sent to \verb|SensorAdapter|. 
+    \item[C.3] The \verb|SensorAdapter| populates a view with the connected sensor to the user.
 \end{itemize}
 
 
