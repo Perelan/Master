@@ -2038,6 +2038,7 @@
     <bcf:citekey order="61">jsonvxml</bcf:citekey>
     <bcf:citekey order="62">uuid</bcf:citekey>
     <bcf:citekey order="63">broadcasterror</bcf:citekey>
+    <bcf:citekey order="64">room</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

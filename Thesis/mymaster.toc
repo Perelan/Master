@@ -157,7 +157,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.1.1}Action A: Start Recording}{61}{subsubsection.5.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.1.2}Action B: Stop Recording}{64}{subsubsection.5.2.1.2}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Action B: Stop Recording}{63}{subsubsection.5.2.1.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.1.3}Action C: Display Recording Statistics}{65}{subsubsection.5.2.1.3}
 \defcounter {refsection}{0}\relax 
@@ -165,7 +165,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.2.1}Action A: Exporting one or all Records}{66}{subsubsection.5.2.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.2.2}Action B: Import a Record from the Device}{68}{subsubsection.5.2.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Action B: Import a Record from the Device}{67}{subsubsection.5.2.2.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2.3}Modules}{69}{subsection.5.2.3}
 \defcounter {refsection}{0}\relax 
@@ -187,15 +187,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.6.3}UI: Modules}{76}{subsubsection.5.2.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.6.4}UI: Analytics}{76}{subsubsection.5.2.6.4}
+\contentsline {subsubsection}{\numberline {5.2.6.4}UI: Analytics}{77}{subsubsection.5.2.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Miscellaneous}{78}{section.5.3}
+\contentsline {section}{\numberline {5.3}Miscellaneous}{77}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.1}Collecting Data Over a Longer Period}{78}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.1}Collecting Data Over a Longer Period}{77}{subsection.5.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.3.1.1}Keep the CPU Alive}{78}{subsubsection.5.3.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.1.2}Priority}{78}{subsubsection.5.3.1.2}
+\contentsline {subsubsection}{\numberline {5.3.1.2}Priority}{79}{subsubsection.5.3.1.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.3.2}Android Manifest}{79}{subsection.5.3.2}
 \defcounter {refsection}{0}\relax 

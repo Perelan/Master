@@ -5,21 +5,22 @@ We will use the data streams dispatching module (hereafter: DSDM), which manages
 
 The functionality of recording can be separated into three actions: (A) start recording; (B) stop recording; and (C) display recording statistics. In the following sections, we will review the steps that enable these actions. 
 
-\subsubsection{Action A: Start Recording}
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.7]{images/Recording_ImpA.pdf}
     \caption{Implementation of recording functionality: (A) start recording}
     \label{fig:impl_recordingA}
 \end{figure}
 
+\subsubsection{Action A: Start Recording}
+
 In Figure \ref{fig:impl_recordingA}, an illustration of the component interactions are shown. Action A is to start a recording by connecting and starting data aqusition with the use of DSDM, and to ensure persistent connectivity with the sensor sources. The steps and interactions for this action are: 
 
 \begin{itemize}
     \item[A.1] The recording process starts by creating a new record entity (see: Section X) that is inserted into the SQLite database. An empty record has to be inserted into the database in order to associate new samples with the record (based on the record's id). 
     \item[A.2] Once the record is inserted into the storage, a unique identification (id) is returned. 
-    \item[A.3] \verb|ConnectionHandler| is invoked in order to manage the establishment, connection, and disconnection of the IPC between Nidra and DSDM service. The code for establishing the connection is described in the following listing:
-\begin{lstlisting}[language=json, caption={Code snippet for connecting with the DSDM (MainServiceConnection is the AIDL file as discussed in Section X)}, captionpos=b]
+    \item[A.3] \verb|ConnectionHandler| is invoked in order to manage the establishment, connection, and disconnection of the IPC between Nidra and DSDM service. The code for establishing the connection is described in the following listing (MainServiceConnection is the AIDL file as discussed in Section X):
+\begin{lstlisting}[language=json, caption={}, captionpos=b]
     Intent intent = new Intent(MainServiceConnection.class.getName());
     intent.setAction("com.sensordroid.ADD_DRIVER");
     intent.setPackage("com.sensordroid");
@@ -56,15 +57,17 @@ In Figure \ref{fig:impl_recordingB}, an illustration of the component interactio
     \item[B.6] The modified record is updated in the database, and the user is transitioned to the \verb|MainActivity|.
 \end{itemize}
 
-\subsubsection{Action C: Display Recording Statistics}
-During a recording, the user can view the statistics for the recording. More specifically, the user can see the available connected sensors and a graph of the breathing data in real-time. In Figure \ref{fig:impl_recordingC}, an illustration of the component interactions are shown, and the steps and interaction for this action are: 
-
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.7]{images/Recording_ImpC.pdf}
     \caption{Implementation of recording functionality (C)}
     \label{fig:impl_recordingC}
 \end{figure}
+
+
+\subsubsection{Action C: Display Recording Statistics}
+During a recording, the user can view the statistics for the recording. More specifically, the user can see the available connected sensors and a graph of the breathing data in real-time. In Figure \ref{fig:impl_recordingC}, an illustration of the component interactions are shown, and the steps and interaction for this action are: 
+
 
 \begin{itemize}
     \item[C.1] The data is graphically represented as an intractable time-series graph. By using the Graph library [CITE], we can in similarities to the implementation of the analytics concern (see Section X), implement a graph to illustrate the respiration data to the user.
@@ -75,31 +78,31 @@ During a recording, the user can view the statistics for the recording. More spe
 
 \subsection{Sharing}
 
-Sharing enables users to transmitt records across application over a media. The functionality of sharing is separated into two concerns, namely importing and exporting records. Hence, the actions for sharing are separated into: (A) exporting one or all records; and (B) import a record from the device. 
+The design choices for this concern is described in Section X. To summarize, sharing enables users to transmit records across application over a media (e.g., e-mail). The functionality of sharing is separated into two concerns, namely exporting and importing records. The exporting consists of packing the records the user has selected for transmittal to another mobile device while importing consists of locating the file on the user's device and parsing the data and storing in the database.
 
-Before a user can take these actions, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|Feed Adapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for exporting) for a single record. 
+Before a user can proceed with these actions, the records from the database have to be presented. The \verb|FeedFragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|FeedAdapter| (steps: 1-4). The adapter contains all the interactions and the event handling (e.g., button event listener for exporting) for a single record. 
 
-In this Subsection, we will take a look into the steps that are taken to enable the actions:
+The functionality of sharing can be separated into two actions: (A) exporting one or all records; and (B) import a record from the device. In the following sections, we will review the steps that enable these actions:
+
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.6]{images/Sharing_ImpA.png}
+    \includegraphics[scale=0.5]{images/Sharing_ImpA.png}
     \caption{Implementation of sharing functionality (A): Exporting one or all Records}
     \label{fig:impl_sharingA}
 \end{figure}
 
 \subsubsection{Action A: Exporting one or all Records}
-In Figure \ref{fig:impl_sharingA}, an illustration of the steps to export one single recording is shown. However, the \verb|Feed Fragment| has an option to export all record; therefore, by disregarding the first step (A.1), the same structure applies to export all records. In essence, exporting consists of bundling the records and corresponding samples into a formated file, and prompting the user with options to select a media (e.g., mail) for transmittion. The steps can be narrowed down to: 
+In Figure \ref{fig:impl_sharingA}, an illustration of the steps to export one single recording is shown. However, the \verb|Feed Fragment| has an option to export all record; therefore, by disregarding the first step (A.1), the same structure applies to export all records. In essence, exporting consists of bundling the records and corresponding samples into a formatted file, and prompting the user with options to select a media (e.g., mail) for transmission. The steps can be narrowed down to: 
 
 \begin{itemize}
-    \item[A.1] Upon an event for exporting a selected record in \verb|Feed Adapter|, the record information is sent to the \verb|Feed Fragment| through the callback reference (\verb|onRecordAnalyticsClick|) between these components. The record information will be used to determine the corresponding samples for the record.
-    \item[A.2] The \verb|Feed Fragment| delegates record information to the \verb|export| method inside of the \verb|Export| class. The class is responsible for enabling exportation. 
+    \item[A.1] Upon an event for exporting a selected record in \verb|FeedAdapter|, the record information is sent to the \verb|FeedFragment| through the callback reference (\verb|onRecordAnalyticsClick|) between these components. The record information will be used to determine the corresponding samples for the record.
+    \item[A.2] The \verb|FeedFragment| sends the record information to the \verb|export| method inside of the \verb|Export| object, which is responsible for enabling exportation. 
     \item[A.3] An operation to retrieve all samples related to the record with the use of the \verb|SampleViewModel| is done. 
-    \item[A.4] The \verb|export| method retrieves all of the samples related to the record. Next, the record and the samples are encoded into an exportable JSON format (Ref: Data Format). To enable the sharing interface provided by Android, the content has to be stored on the device. Thus, the encoded data is written into a file on the device, with a filename of \verb|record_(current_date).json|, and the next component uses the reference to the file location. 
-    \item[A.5] The encoded file is retrieved with the use of \verb|FileProvider| (facilitates secure sharing of files [ref]). The code for this step are
-\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+    \item[A.4] The \verb|export| method retrieves all of the samples related to the record. Next, the record and the samples are encoded into an exportable JSON format (Ref: Data Format). In order to share files between applications, the content has to be stored on the device. Thus, the encoded data is written into a file on the device, with a filename of \verb|record_(current_date).json|, and the next step uses the reference to the file location. 
+    \item[A.5] The encoded file URL is retrieved with the use of \verb|FileProvider| (facilitates secure sharing of files across applications). The code snippet for this step is shown in the following listing: 
+\begin{lstlisting}[language=json, caption={}, captionpos=b]
 static void shareFileIntent(Activity a, File file) {
-
     Uri fileUri = FileProvider.getUriForFile(a.getApplicationContext(), a.getApplicationContext().getPackageName() + ".provider", file);
 
     Intent iShareFile = new Intent(Intent.ACTION_SEND);
@@ -108,14 +111,13 @@ static void shareFileIntent(Activity a, File file) {
         Intent.EXTRA_SUBJECT, "Share Records");
     iShareFile.putExtra(Intent.EXTRA_STREAM, fileUri);
     ...
-
     a.startActivity(
         Intent.createChooser(iShareFile, "Share Via"));
 }
 
 \end{lstlisting}
 
-    \item[A.6] The user is displayed with a popup interface with several options to share the file over a media. An illustration of the layout can be found in Section Representation. 
+    \item[A.6] The user is displayed with a popup interface with several options to share the file over a media (e.g., e-mail). An illustration of the layout can be found in Section X. 
 
 
 \end{itemize}
@@ -123,17 +125,17 @@ static void shareFileIntent(Activity a, File file) {
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.6]{images/Sharing_ImpB.png}
+    \includegraphics[scale=0.5]{images/Sharing_ImpB.png}
     \caption{Implementation of sharing functionality (B)}
     \label{fig:impl_sharingB}
 \end{figure}
 
 \subsubsection{Action B: Import a Record from the Device}
-In Figure \ref{fig:impl_sharingB}, an illustration of importing a record from the device is shown. Importing conists of locating the formated file (the user has to obtain the file and store it on the device on beforehand), parsing the content in the file, and storing the data respective to the users database. The steps can be narrowed down to:
+In Figure \ref{fig:impl_sharingB}, an illustration of importing a record from the device is shown. Importing consists of locating the formated file (the user has to obtain the file and store it on the device on beforehand), parsing the content in the file, and storing the data respective to the user's database. The steps can be narrowed down to:
 
 \begin{itemize}
-    \item[B.1] The user requests to view the import record interface. The interface is provided by Android, and allows the user to select particular kind of data on the device (ref). The code for this action is:
-\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+    \item[B.1] The user requests to view the import interface. The interface is provided by Android and allows the user to select files on the device. The code snippet for this step is shown in the following listing:
+\begin{lstlisting}[language=json, caption={}, captionpos=b]
 private void importRecords() {
     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
     intent.setType("*/*");
@@ -141,20 +143,18 @@ private void importRecords() {
 }
 
 \end{lstlisting}
-    \item[B.2] Once the user has selected the desired file, the method \verb|onActivityResult| inside of \verb|Feed Fragment| is called, and location of the selected file can be located. 
-    \item[B.3] The file location is an obscured path to the file on the device; thus, parsing the path with the use of \verb|Cursor| method has to be done. After the absolute path is found, the data is decoded accordingly to the data format, and the records are sent back to \verb|Feed Fragment|.
-    \item[B.4] The necessary record information and the samples are extracted from the decoded data, and are inserted into the users database. 
+    \item[B.2] Once the user has selected the desired file, the method \verb|onActivityResult| inside of \verb|FeedFragment| is called, and location of the selected file can be located. 
+    \item[B.3] The file location is an obscured path to the file on the device; thus, parsing the path with the use of \verb|Cursor| method has to be done. After the absolute path is found, the data is decoded accordingly to the data format.
+    \item[B.4] The record information and the samples are extracted from the decoded data. The information is then put into a new record entity alongside new samples entities, and are inserted into the user's database. 
 \end{itemize}
 
 \subsection{Modules}
-Modules are standalone application, that provides data enrichment and extended functionality to the application. The modules leverages the records and samples to analyze, evalutate or detect sleeping disorders. In order to add and launch a module in Nidra, we need the modules package name. The package name and the name of the module-application can be obtained in Android. Thus, the actions to enable modules in the application are: (A) add a module; and (B) launch a module. 
+The design choices for this concern is described in Section X. To summarize, modules are standalone application that provides data enrichment or extended functionality to Nidra. For example, a module can use the records with samples provided by Nidra, in order to feed a machine learning algorithm that predicts sleep apnea. Moreover, to add and launch a module from Nidra we need the modules package name. The package name and the name of the module-application is easily obtained within Android. 
 
-Before a user can take these actions, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|Feed Adapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for exporting) for a single record. 
-
-In this Subsection, we will take a look into the steps that are taken to enable the actions.
+The functionality of modules can be separated into two actions: (A) add a module; and (B) launch a module.  In the following sections, we will take a look into the steps that are taken to enable the actions.
 
 \subsubsection{Action A: Add a Module}
-In order to add a new module, the user has to install the module-application on the device on beforehand. By listing through the installed application on the device, the user can select the desired module to be added in Nidra. In Figure \ref{fig:impl_modulesA}, an illustration of adding a module is shown, and the steps can be narrowed down to:
+In order to add a new module, the user has to install the module-application on the device beforehand. By listing through the installed application on the device, the user can select the desired module to be added in Nidra. In Figure \ref{fig:impl_modulesA}, an illustration of adding a module is shown, and the steps can be narrowed down to:
 
 \begin{figure}
     \centering
@@ -164,28 +164,28 @@ In order to add a new module, the user has to install the module-application on 
 \end{figure}
 
 \begin{itemize}
-    \item[A.1] Upon an event for adding a new module in \verb|Modules Adapter|, the \verb|Feed Fragment| is notified through the callback reference (\verb|onNewModuleClick|) between these components.
-    \item[A.2] The \verb|Modules Fragment| lauches a custome Android dialog, which will list all of the installed application on the device. 
-    \item[A.3] The \verb|Apps Adapter| will fetch all of the application that is not a system package, already installed module, or the current application (Nidra). Next, the the adapter for the dialog will be populated with the eligible applications. 
-    \item[A.4] Once the user has selected the desired module-application, an event to the \verb|Modules Fragment| through the callback reference \verb|onAppItemClick| between these components are made. The callback contains an object with the \verb|PackageInfo| for the selected module-application.
-    \item[A.5] The dialog is dismissed, and the application name and packagename are extracted from the \verb|PackageInfo| for the selected module-application. 
-    \item[A.6] Furthermore, the acquired information is stored in our database for modules through the DAO interface. 
+    \item[A.1] Upon an event for adding a new module in \verb|ModulesAdapter|, the \verb|ModulesFragment| is notified through the callback reference (onNewModuleClick()) between these components.
+    \item[A.2] The \verb|ModulesFragment| launches a custom Android dialog, which will list all of the installed application on the device. 
+    \item[A.3] The \verb|AppsAdapter| will fetch all of the application that is not a system package, already an installed module, or the current application (Nidra). Next, the adapter for the dialog will be populated with the eligible applications. 
+    \item[A.4] Once the user has selected the desired module-application, an event to the \verb|ModulesFragment| through the callback reference \verb|onAppItemClick| between these components are made. The callback contains an object with the \verb|PackageInfo| for the selected module-application.
+    \item[A.5] The dialog is dismissed, and the application name and package name are extracted from the \verb|PackageInfo| for the selected module-application. 
+    \item[A.6] Furthermore, the acquired information is stored in our database as a module entity. 
 \end{itemize}
 
-\subsubsection{Action B: Launch a Module}
-A module is launched in a seperate process, due to Android prohibits launching for other applications inside of an application. All added modules are listed and presented to the user in a separate screen, and on launch of a module, all of the data that Nidra obtains from recordings, are encoded into a JSON format and bundled with the launch of the module. In Figure \ref{fig:impl_modulesB}, an illustration of launching a module, and the steps can be narrowed down to:
-
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.7]{images/Module_ImpB.pdf}
     \caption{Implementation of module functionality(B): Launch a Module}
     \label{fig:impl_modulesB}
 \end{figure}
 
+\subsubsection{Action B: Launch a Module}
+A module is launched a separate application with a separate process, due to Android prohibits launching for other applications inside of an application. All added modules are listed and presented to the user on a separate screen. On the launch of a module, all records (including corresponding samples) in Nidra are encoded into a JSON format and bundled with the launch of the module. In Figure \ref{fig:impl_modulesB}, an illustration of launching a module, and the steps can be narrowed down to:
+
 \begin{itemize}
-    \item[B.1] Upon an event for launching a module in \verb|Module Adapter|, the packagename of the module is sent to the \verb|Modules Fragment| through the callback reference (\verb|onLaunchModuleClick|) between these components. The packagename  will be used to launch the module-application.
-    \item[B.2] All of the records and samples on the device for the user, is bundled and formated into a JSON, and launched:
-\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+    \item[B.1] Upon an event for launching a module in \verb|ModuleAdapter|, the package name of the module is sent to the \verb|ModulesFragment| through the callback reference (onLaunchModuleClick()) between these components. The package name will be used to launch the module-application.
+    \item[B.2] All records (including their samples) on the device for the user, formated into a JSON string and bundled into the launch. The code snippet for this step is shown in the following listing:
+\begin{lstlisting}[language=json, caption={}, captionpos=b]
 public void onLaunchModuleClick(String packageName) {
     Intent moduleApplication = context.getPackageManager().getLaunchIntentForPackage(packageName);
 
@@ -202,134 +202,127 @@ public void onLaunchModuleClick(String packageName) {
 }
 \end{lstlisting}
 
-    \item[B.3] The activity uses the data provided in the \verb|Intent| that includes the packagename (the name of the module-application to determine the correct application).
-    \item[B.4] The selected module is then launched, and presented to the user. The user can at anytime press the back button, to return to Nidra.  
+    \item[B.3] The activity uses the data provided in the \verb|Intent|, which includes the package name (the name of the module-application to determine the correct application) to launch the application.
+    \item[B.4] The selected module is then launched and presented to the user. The user can at anytime press the back button, to return to Nidra.  
 \end{itemize}
-
-%\begin{figure}
-%    \centering
-%    \includegraphics[scale=0.6]{images/Module_ImpA.png}
-%    \caption{Implementation of module functionality(A)}
-%    \label{fig:impl_modulesA}
-%\end{figure}
-
-
-
-%\subsubsection{Data Exchange Implementation}
-
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.6]{images/Anal_Imp.png}
+    \includegraphics[scale=0.5]{images/Anal_Imp.png}
     \caption{Implementation of analytics functionality (A): Display a Graph for a Single Record}
     \label{fig:impl_analytics}
 \end{figure}
 
 \subsection{Analytics}
-Analytics is the part of illustrating and analyzing the records. In Nidra, the analytics part of the implementation is limited to a time-series graph for a single record. However, there are possibilities of extending the \verb|Analytics Fragment| with other graphs based on the current structure. The current action for analytics is A) display a graph for a single record to the user. 
+The design choices for this concern is described in Section X. To summarize, analytics is the part of illustrating and analyzing the records. In Nidra, the analytics part of the implementation is limited to a time-series graph for a single record. While there are possibilities of extending the \verb|AnalyticsFragment| with other graphs based on the current structure, the facilitation of modules allows for easier integration of various analytical techniques and methods.
 
-Similar to sharing, the records from the database have to be presented. The \verb|Feed Fragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|Feed Adapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for analytics) for a single record. 
+Similar to sharing, the records from the database have to be presented. The \verb|FeedFragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|FeedAdapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for analytics) for a single record. 
 
-In this Subsection, we will take a look into the steps that are taken to enable the action.
+The functionality of analytics can be identified by one action: (A) display a graph for a single record to the user. In the following section, we will take a look into the steps that are taken to enable the action.
 
 \subsubsection{Action A: Display a Graph for a Single Record}
-Nidra provides a simple time-series graph of respiration data obtained during the recording. The graph data is plotted into a Library, which enables interactions (e.g., zoom and scrolling) on the data. The X-axis is the respiration value based on the Y-axis time of sampling. In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown. The steps can be narrowed down to:
+Nidra provides a simple time-series graph of breathing data obtained during the recording. The graph data is plotted into a Graph Library [cite], which enables interactions (e.g., zoom and scrolling) on the data samples. The X-axis is the breathing value based on the Y-axis of time of sampling. In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown, and the steps can be narrowed down to:
 
 \begin{itemize}
-    \item[A.1] Upon an event for analytics on a selected record in \verb|Feed Adapter|, the record information is sent to the \verb|Feed Fragment| through the callback reference (\verb|onRecordAnalyticsClick|) between these components. The record information will be used to determine the corresponding samples for the record.
-    \item[A.2] A new instance of the \verb|Analytics Fragment| is created, and an transition from the \verb|Feed Fragment| to the \verb|Analytics Fragment| is made. Alongside, the record information is transmitted.
+    \item[A.1] Upon an event for analytics on a selected record in \verb|FeedAdapter|, the record information is sent to the \verb|FeedFragment| through the callback reference (\verb|onRecordAnalyticsClick()|) between these components. The record information will be used to determine the corresponding samples for the record.
+    \item[A.2] A new instance of the \verb|AnalyticsFragment| is created, and a transition from the \verb|FeedFragment| to the \verb|Analytics Fragment| is made. Alongside, the record information is transmitted as a bundle.
     \item[A.3] An operation to retrieve all samples related to the record with the use of the \verb|SampleViewModel| is done. 
-    \item[A.4] The \verb|Analytics Fragment| retrieves all of the samples related to the record. The samples has to be structured according to the graph library to display an interactive time-series graph. (GraphView (ref)).
-    \item[A.5] Each sample has to be extracted from the sample-data, acccordingly to the sensor data structure.
-    \item[A.6] The sample value is returned, and inserted into an array over datapoints used in the graph. 
-    \item[A.7] The use is presented with a graph, which is interactable. The Y-axis has the sample value on given time (in HH:MM:SS) on the X-axis. The graph library enables interactions (e.g., zooming and scrolling) the user can do, to gain a better understanding of the recording. 
+    \item[A.4] The \verb|Analytics Fragment| retrieves all of the samples related to the record. The samples have to be structured according to the graph library to display an interactive time-series graph. (GraphView (ref)).
+    \item[A.5] Each sample has to be extracted from the sample-data according to the sensor data structure (see Section X).
+    \item[A.6] The sample value is returned and inserted into an array over data points used in the graph. 
+    \item[A.7] The user is presented with a graph, which is intractable. The Y-axis has the sample value on the given time (in HH:MM:SS) on the X-axis. The graph library enables interactions (e.g., zooming and scrolling) the user can do, to gain a better understanding of the recording. 
 \end{itemize}
 
-
-
-\subsection{Storage}
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.60]{images/Storage_Imp.pdf}
     \caption{Entity Relationship Diagram}
     \label{fig:impl_storage}
 \end{figure}
 
+\subsection{Storage}
 
-Storage facilities persistent data which remain available after application termination. In Nidra, there are four individual data entities (i.e., record, sample, module, and user). In the Subsection about Data Entities, we discussed the design choices of the individual data entity. The standard CRUD operations on each data entities are: insert, update, and delete. Also, the user has an operation to retrieve the biometrical data, module and record have an operation to retrieve all of the entries in the database, and samples have an operation to retrieve all of the entries corresponding to a record. 
+Storage facilities persistent data which remain on the device after application termination. In Nidra, there are four individual data entities (i.e., record, sample, module, and user). In Section X, we discussed the design choices of the individual data entity. The standard CRUD operations on each data entities are: insert, update, and delete. In addition to the standard CRUD operation, we extend some of the entities with extra operations: record entity has an operation to retrieve all of the records on the user's device, sample entity has an operation to retrieve all of the samples for a given record (based on record's id); the module entity has an operation to retrieve all of the samples on the user's device.
 
-Android Room provides an abstract layer over SQLite to enable easy database access [Cite]. In Figure \ref{fig:impl_storage}, the flow for accessing and retrieving the data from the database based on the Android Room architecture is shown and can be described as:
+Android Room provides an abstract layer over SQLite to enable easy database access \cite{room}. In Figure \ref{fig:impl_storage}, the flow for accessing and retrieving the data from the database based on the Android Room architecture is shown and can be described as:
 
 \begin{itemize}
-	\item[1] Each data entity has a \verb|ViewModel| where all of the CRUD operation (e.g., insert, update, delete, or retrieve) goes through.  A view model is designed to store and manage UI-related data in a conscious way, that allows data to be persistent through configuration changes (e.g., screen rotations) [CITE]. 
- 	\item[2a] The predefined operations point to the repository. Repository modules handle data operations and provide an API  which makes data access easy. A repository is a mediator between different data sources (e.g., database, web services, and cache) [CITE]. In Nidra, the only data source is the database, but repository facilities future data sources. 
-	\item[2b] The storage of the user is not in the database; however, in a \verb|SharedPreference| on the device. Shared preference points to a file containing key-value pairs and provides methods to read and write. The location of the user's shared preference is \verb|no.uio.cesar.user_storage|. 
-	\item[3] Each data entity (disregarding user) has a data access object (DAO), where the SQL operations to the database are defined. 
-	\item[4] Based on the operation, the data is accessed and retrieved from the SQLite database.
+    \item[1] Each data entity has a \verb|ViewModel| where all of the CRUD operation (e.g., insert, update, delete, or retrieve) goes through.  A view model is designed to store and manage UI-related data in a conscious way, that allows data to be persistent through configuration changes (e.g., screen rotations). 
+     \item[2a] The predefined operations point to the repository. Repository modules handle data operations and provide an API  which makes data access easy. A repository is a mediator between different data sources (e.g., database, web services, and cache). In Nidra, the only data source is the database, but repository facilities future data sources. 
+    \item[2b] The storage of the user is not in the database; however, in a \verb|SharedPreference| on the device. Shared preference points to a file containing key-value pairs and provides methods to read and write. The location of the user's shared preference is \verb|no.uio.cesar.user_storage|. 
+    \item[3] Each data entity (disregarding user) has a data access object (DAO), where the SQL operations to the database are defined. 
+    \item[4] Based on the operation, the data is accessed and retrieved from the SQLite database. 
+    \item[ret] Based on the operation, the data is returned back to the caller.
 \end{itemize}
 
+Conclusively, all of the preceding concerns (i.e., recording, sharing, modules, and analytics) access the storage as described in this section. As such, future operations can easily be integrated into described components, which enforce modularity and extensibility to the application.
 
 \subsection{Presentation}
-In this Subsection we will present the user-interface (UI) based on the functionality of recording, sharing, module and analytics. The interface is developed based on the design descisions of the application, as well as creating a user-interface that is simple and efficent for a user to interact with. We try to limit the actions the user can take on a screen, to make the application simpler to understand and comprehend. 
+The interface is developed based on the design descisions made in Section X, as well as creating a user-interface that is simple and efficent for a user to interact with. We try to limit the actions the user can take on a screen, to make the application simpler to understand and comprehend. In the following sections we will present the user-interface (UI) based on the functionality of recording, sharing, module and analytics. 
 
-\subsubsection{UI: Recording}
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.26]{images/Recording_img.pdf}
     \caption{The recording screen displayed to the user; with the screen: (A) during a recording, (B) real-time analytics, and (C) finalizing the recording}
     \label{fig:screen_recording}
 \end{figure}
 
-Figure \ref{fig:screen_recording} shows the screen for: (A) during a recording, (B) the real-time analytics, and (C) finalizing the recording. 
+\subsubsection{UI: Recording}
+
+Figure \ref{fig:screen_recording} presents the screen for (A) the screen displayed during recording, (B) the interface for analytics, and (C) the screen displayed at the end of the recording. 
 
 \begin{itemize}
-    \item[A] The screen has a ripple effect to indicate the state of the recording to the user. There are two types of ripple colours; a blue ripple effect for samples acquistion, and a grey ripple effect if the sensor has disconnected. The ripple effect is only active if the screen is turned on, in order to perserve battery life. During disconnects between the sensor and the device, the user provide no extra input to resolve the issue. However, if the numbers of attempts is reached, the user is presented with the finalizing screen (C). Also, this screen display the elapsed recording time, and has a visible button to stop the recording. 
-    \item[B] The user can extend the interface for viewing statistics regarding the recording session. Currently, the interface lists all of the available sensor sources, also a real-time interactable graph of respiration.
-    \item[C] The finalzing screen allows users to specify the title and description of recording, to make it distingushable, in addition to giving a feedback on recording so the doctors/researchers can review it. Also, the user can give a rating between 1--5 (where 1 is bad, and 5 is good) to rate the sleeping.
+    \item[A] The screen displays the elapsed time of recording right below the center of the screen. The button color has a different nuance from the background color to make more distinguishable to the user. On button click, an alert specifying whether the recording should be stopped or not is presented to the user in order to prevent undesired stopping of recording due to misclicks. 
+    
+    Moreover, the screen has a ripple-effect to indicate the state of the recording to the user. There are two types of ripple-effect colors: a blue ripple-effect indicates for samples acquisition, while a grey ripple-effect indicates that the sensor has disconnected or trying to reconnect. The ripple effect is only active if the screen is turned on in order to preserve battery life. 
+    
+    As a side note, during disconnects between the sensor and the device, the user provides no extra input to resolve the issue. The attempts to reconnect occurs in the background, and the only state of change is the ripple-effect color. 
+    \item[B] The user can expand the interface for viewing statistics with information about the recording. Currently, the interface lists all of the available sensor sources, also a real-time interactable graph of breathing data.
+    \item[C] The finalizing screen allows users to specify the title and description of recording, as well as giving a rating between the values of 1--5 (where one is bad, and five is good).
 
 \end{itemize}
 
 \subsubsection{UI: Sharing}
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.26]{images/Sharing_img.pdf}
     \caption{The sharing screen displayed to the user}
     \label{fig:screen_sharing}
 \end{figure}
 
-Figure \ref{fig:screen_sharing} shows the screen for: (A) option to import or export, (B) the media selection for exporting, and (C) the file selection for importing.
+Figure \ref{fig:screen_sharing} presents the screen for: (A) option to import or export, (B) the media selection for exporting, and (C) the file selection for importing.
 
 \begin{itemize}
-    \item[A] The feed screen is where all of the records are presented to the user. The user can choose to export one single record, or export all. 
-    \item[B] By pressing export all, an overlay with a Android provided sharing screen is presented, where the user can choose a media to export the file on. 
-    \item[C] By pressing import, an overlay with downloaded files on the users device is presented. The user can press on the desired file, and the file will be parsed and added to the users collection of records.  
+    \item[A] The feed screen is where all of the records are presented to the user as a list. The items in the list are expandable and collapsible to prevent fluttering on the screen, as well as displaying the most important information to the user. The user can press the share icon on a given record, or press on the options menu at the top of the screen to export all or import records.
+    \item[B] By pressing export all or a single record, an overlay with an Android provided sharing screen is presented. The interface lists of all applications that provide a method of sharing data, and to us, the e-mail application is the most interesting method to use for sending records. 
+    \item[C] By pressing import, an activity that presents all of the downloaded files on the user's device. The user can press on the desired file, and the file will be parsed and added to the user's collection of records.  
 \end{itemize}
 
 \subsubsection{UI: Modules}
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.26]{images/Modules_img.pdf}
     \caption{The module screen displayed to the user}
     \label{fig:screen_modules}
 \end{figure}
 
-Figure \ref{fig:screen_modules} shows the screen for: (A) list without any modules, (B) list of installed application, and (C) list with modules. 
+Figure \ref{fig:screen_modules} shows the screen for (A) module screen without any modules, (B) list of installed applications on the device, and (C) module screen with modules. 
 
 \begin{itemize}
-    \item[A] The modules screen is shows all of the added modules to the users.
+    \item[A] The modules screen without any installed modules; however, a button for adding new modules.
     \item[B] The user can press the \textit{add new module} button, in order to be presented with a list of all installed applications. 
-    \item[C] Once the user has selected a module-application to be added in Nidra, the list of modules are updated and presented to the user.
+    \item[C] Once the user has selected a module-application to be added in Nidra, the list of modules are updated and presented to the user. The modules are hereafter added in Nidra and can be launched by clicking on the module. The module can also be removed by long-pressing (holding down for at least 2 seconds) on the button.
 \end{itemize}
 
 \subsubsection{UI: Analytics}
-Figure \ref{fig:screen_analytics} shows the screen for: (A) single record in the list, and (B) the analytics for the record
+Figure \ref{fig:screen_analytics} shows the screen for (A) feed screen with a record expanded and (B) the analytics for the record
 
 \begin{itemize}
-    \item[A] The user can expend records in order to view more functionality and statistics of the record. One of the functionalities are to view the analytics of the record.
-    \item[B] An interactable graph is presented to the users, and the graph is populated with the samples obtained from the recording for selected records. The graph shows the respiration value (Y-axis) on given time (X-axis) of sampling. 
+    \item[A] The user can expand the records to view more information and actions. One of the actions is to view the analytics for the record.
+    \item[B] A new screen with Aa interactable graph is presented to the users, and the graph is populated with the samples associated with the selected record. The graph shows the respiration (breathing) value (Y-axis) on given time (X-axis) of sampling. Also, information on the number of samples and elapsed time of recording. 
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[scale=0.26]{images/Analytics_img.pdf}
     \caption{The analytics screen displayed to the user}

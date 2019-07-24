@@ -1,19 +1,19 @@
 [0] Config.pm:302> INFO - This is Biber 2.11
-[0] Config.pm:305> INFO - Logfile is 'mymaster.blg'
-[43] biber-darwin:313> INFO - === Wed Jul 24, 2019, 12:15:03
-[72] Biber.pm:371> INFO - Reading 'mymaster.bcf'
-[176] Biber.pm:857> INFO - Found 49 citekeys in bib section 0
-[191] Biber.pm:3976> INFO - Processing section 0
-[203] Biber.pm:4136> INFO - Looking for bibtex format file 'sources.bib' for section 0
-[206] bibtex.pm:1500> INFO - LaTeX decoding ...
-[272] bibtex.pm:1316> INFO - Found BibTeX data source 'sources.bib'
-[277] Utils.pm:193> WARN - Duplicate entry key: 'flow' in file 'sources.bib', skipping ...
-[298] Utils.pm:193> WARN - month field 'Oct' in entry 'sam' is not an integer - this will probably not sort properly.
-[392] Utils.pm:193> WARN - month field 'Nov' in entry 'machinelearning' is not an integer - this will probably not sort properly.
-[468] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'variable = shifted' with 'variable = non-ignorable'
-[468] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[468] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-UK'
-[468] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-UK'
-[517] bbl.pm:617> INFO - Writing 'mymaster.bbl' with encoding 'UTF-8'
-[532] bbl.pm:720> INFO - Output to mymaster.bbl
-[532] Biber.pm:110> INFO - WARNINGS: 3
+[1] Config.pm:305> INFO - Logfile is 'mymaster.blg'
+[57] biber-darwin:313> INFO - === Wed Jul 24, 2019, 17:49:50
+[90] Biber.pm:371> INFO - Reading 'mymaster.bcf'
+[200] Biber.pm:857> INFO - Found 49 citekeys in bib section 0
+[218] Biber.pm:3976> INFO - Processing section 0
+[233] Biber.pm:4136> INFO - Looking for bibtex format file 'sources.bib' for section 0
+[237] bibtex.pm:1500> INFO - LaTeX decoding ...
+[306] bibtex.pm:1316> INFO - Found BibTeX data source 'sources.bib'
+[310] Utils.pm:193> WARN - Duplicate entry key: 'flow' in file 'sources.bib', skipping ...
+[331] Utils.pm:193> WARN - month field 'Oct' in entry 'sam' is not an integer - this will probably not sort properly.
+[433] Utils.pm:193> WARN - month field 'Nov' in entry 'machinelearning' is not an integer - this will probably not sort properly.
+[516] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'variable = shifted' with 'variable = non-ignorable'
+[516] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[516] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-UK'
+[516] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-UK'
+[571] bbl.pm:617> INFO - Writing 'mymaster.bbl' with encoding 'UTF-8'
+[589] bbl.pm:720> INFO - Output to mymaster.bbl
+[589] Biber.pm:110> INFO - WARNINGS: 3
