@@ -1,6 +1,6 @@
 \chapter{Evaluation}
 
-In this chapther, experiements are performed in order to evaluate the application based on the requirements defined the problem statement: 
+In this chapter, experiments are conducted in order to evaluate the application based on the system requirements defined in the problem statement: 
 
 \begin{enumerate}
     \item The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.
@@ -8,26 +8,21 @@ In this chapther, experiements are performed in order to evaluate the applicatio
     \item The application should ensure a seamless and continuous data stream, uninterrupted from sensor disconnections and human disruptions.
 \end{enumerate}
 
-The experiements are designed to test the application in a crowded environment, a extended recording to measure battery usage, user test the application, and creating a simple module. When evaluating the experiments, the observations and the results are the most interesting metric to us, because it gives us a heads up on whether the design (Chapther 4) and implementation (Chapther 5) of our perspection meets the demand and persieved (the application is adequently accomplished). Moreover, the feedback on the experiments allows for discussion on improvements that can be made, which is part of the future work on the on the application.
+The experiments are designed to test the application in (A) a crowded environment with multiple Flow sensors and without different Android OS versions; (B) recording over an extended period to measure battery consumption; (C) user-friendliness on participants; and (D) creating a simple module. When evaluating the experiments, the observations and the results are the most interesting metric as it provides a better perception of whether the design choices (Chapter 4) and implementation (Chapter 5) suffice towards the goal of this thesis. Moreover, the observations and results allow for discussion on improvements which can be made in future work.  
 
 
+\section{Experiment A: Orchestral Concert to Analyze Musical Absorption using Nidra to Collect Breathing Data}
+This experiment was conducted in collaboration with master student Joachim Dalgard at the University of Oslo at \textit{RITMO: Centre for Interdisciplinary Studies in Rhythm, Time and Motion}. 
 
-\section{Experiments and Measurements}
-\subsection{Experiment A: Orchestral Concert to Analyze Musical Absorption using Nidra to Collect Breathing Data}
-The experiment was conducted in collaboration with master student Joachim Dalgard at the University of Oslo at the faculty of \textit{RITMO: Centre for Interdisciplinary Studies in Rhythm, Time and Motion}. 
+The goal of the experiment for Dalgard was to analyze musical absorption, which is a state when individuals allow music to draw them into an emotional experience and becomes unaware of time and space. In order to analyze the effect of musical absorption on individuals, Dalgard gathered 20 participants who were experienced listeners with musical education. The participants attended an orchestral concert by Richard Strauss' Alpine Symphony---a symphonic poem that portrays the experience of eleven hours spent climbing an Alpine mountain---that lasted approximately 50 minutes at Oslo Concert Hall on April 3rd and April 4th, 2019.  
 
-The goal of the experiment was to analyze musical absorption, which is a state an individuals ability and willingness allows music to draw them into an emotional experience and becomes unaware of time and space. In order to analyze the effect of musical absorption on individuals, we gathered 20 participants who were experienced listeners with musical education. The participants attended an orchestral concert by Richard Strauss' Alpine Symphony---a symphonic poem that portrays the experience of eleven hours spent climbing an Alpine mountain---that lasted around 50 minutes at Oslo Concert Hall on third of April and fourth of April 2019.  
+With respect to Nidra, the motivation for this experiment can be summarized into: (1) to test the application in a real-life and crowded environment, in order to analyze whether other mobile devices interfere or obstruct with the signals between the collecting sensors and mobile devices; (2) to test whether the samples gathered are meaningful, in the sense that the application is collecting the samples from the sensors correctly and handling unexpected disconnections; and (3) to test the application on different Android OS versions, and to put the application in the hands of participants. 
 
-However, the motivation for this experiment for our application can be summarized into: (1) to test the application in a real-life and crowded environment, in order to analyze whether other mobile devices interfere or obstruct with the signals between the collecting sensor and the device; (2) to test whether the samples gathered are meaningfull, in the sense that the application is collecting the samples from the sensors correctly, and handling unexpected disconnections; and (3) to test the application on different Android OS versions, and to put the application in the hands of participants. 
+The participants were divided into two groups to attend the concert on the two dates. Each participant was equipped with a wireless electromyographic sensor from DELSYS in order to measure heart rate, and a Flow sensor to measure respiration during the concert. RITMO had multiple Flow sensors for disposal; however, they had no suitable mobile application that could record data from these sensors. Also, with the equipment they indented to us, they experienced that Flow sensor tended to disconnect every 10-15 minutes resulting in fragmented recordings for a single session. Therefore, they reached out to the \textit{Insitute for Informatics} in hopes of a solution. Our application was a suiting match for both parties, and we could combine the analysis of musical absorbation with the evaluation of Nidra. We arranged for six Android devices and reached out to the participants to bring their Android devices if they had one. Thus, there were ten participants in each group and six assessed devices. As a precaution, we decided to give out the devices to the participants who scored highest on a test performed on beforehand.
 
-The participants were divided into two groups to attend the concert on the two dates. Each participant was equipped with a wireless electromyographic sensor from DELSYS in order to measure heart rate, and a Flow sensor kit to measure respiration during the concert. RITMO had multiple Flow sensors for disposal; however, they had no suitable mobile application that could record with these sensors. Also, with their equipment they experienced that Flow sensor kits tended to disconnect every 10-15 minutes, resulting in fragmented recordings for a single session. Therefore, they reached out to \textit{Insitute for Informatics} in hopes of a solution. Our application was a suiting match for both parties, hence a collaboration was formed [? do i need this]. We arranged for six Android devices and reached out to the participants to bring their Android devices if they had one. There were ten participants in each group and six assessed devices. As a precaution, we decided to give out the devices to the participants who scored highest on a test performed on beforehand.
+During the concert, there were approximately 800 attendees on the first day and approximately 1500 attendees on the second day. We assume that most of the attendees had a mobile device, and probably many of them had BlueTooth activated on the device. As such, we were able to replicate an environment (on a larger scale) where other devices might interfere with the signals between the collecting sensor and the mobile device during recording. Also, we were able to install the application on multiple mobile devices with different Android OS versions and put the application in the hands of the participants. 
 
-During the concert, there were approximately 800 attendees on the first day and approximately 1500 attendees on the second day. We assume that most of the attendees had a mobile device, and a few shares of them had BlueTooth activated on the device. Based on these estimates, we were able to replicate an environment (on a larger scale) where other devices might interfere with the signals between the collecting sensor and the application. Also, we were able to install the application on multiple mobile devices with different Android OS versions and put the application in the hands of the participants. 
-
-
-
-
-\subsubsection{Preperations}
+\subsection{Preperations}
 
 \begin{table}
 \begin{center}
@@ -56,39 +51,42 @@ Bluetooth & 5.0, A2DP, LE, aptX & 4.2, A2DP, aptX HD, LE & 4.2, A2DP, LE, aptX \
 \end{center}
 \end{table}
 
-In order to partake in the experiments, we had to ensure that the participant had the sensor placed accurately on their body and the mobile devices were configured correctly. Additional tests were also performed in order to ensure the application worked as intended, and also to prevent any unforeseen events or bugs that could have occurred during the recording. 
+To prepare for the experiments, we configured the applications on the assessed mobile device and stress-tested the application to prevent any unforeseen events or bugs that could occur during the recording. Also, before the concert, we had to ensure that each participant had the sensors placed correctly on their body and given the right mobile device. Below, we describe the preparation in more detail.
 
 \begin{description}
-    \item[Device Configuration] The device models in our disposal had to be configured with the applications to enable recording on Nidra. First, the data stream dispatching module was installed on the devices. Second, the sensor wrapper for the Flow sensor kit was configured with one Flow sensor on beforehand---in order to reduce the time to set up the mobile device and the sensor on the participant before the concert. Lastly, the Nidra application was initiated with a unique name (A-F), as such to distinguish each participant with the sensor and device model. In Figure 6.1, the device models are listed with their specifications and the OS ... [Skriv mer]
-    \item[Body Placement] The respiration value is based on the participant body circumference, and changes are associated with breathing. The participant was instructed to place the sensor around their thorax (just below the armpits), in order to measure the expansion and contraction of the rib cage.
+    \item[Device Configuration] The device models in our disposal had to be configured with the applications to enable recording on Nidra. First, the data stream dispatching module was installed on the devices. Second, the sensor wrapper for the Flow sensor was installed on the devices and configured with one Flow sensor---in order to reduce the time to set up the mobile device with a Flow sensor on the participant before the concert. Lastly, the Nidra application was initiated with the id (A--F) of the sensor that the participant should use to keep track of each participant's sensor and device model. In Figure 6.1, the device models are listed with their specifications and Android version. In the following list the id is mapped with the device model; the experiment will describe the device model based on the id, respectively: (A, B, C) Samsung Galaxy S9; (D) Google Pixel XL (version: 9.0); (E) Google Pixel XL (version: 7.1.2); and (F) OnePlus 3T. 
+    \item[Body Placement] The respiration (breathing) value is based on the participant body circumference, and changes are associated with breathing. The participant was instructed to place the sensor around their thorax (just below the armpits), in order to measure the expansion and contraction of the rib cage.
 
 \end{description}
 
-\subsubsection{Results}
+\subsection{Results}
 
 We gathered all of the recordings from the various devices by using the sharing functionality in the application and sent it to our application. There were thirteen mobile devices combined for both dates---one of the participants had an Android device---however, the application crashed on one of the mobile devices during the recording. Therefore, we have access to twelve recordings from the concerts. 
 
-\begin{figure}
-\parbox{7cm}{
-\includegraphics[width=8cm]{images/Record_1_B.pdf}
-\caption{Concert Day 1---Mobile Device B}
-\label{fig:day_1}}
-\qquad
-\begin{minipage}{6cm}
-\includegraphics[width=7cm]{images/Record_2_B.pdf}
-\caption{Concert Day 2---Mobile Device B}
-\label{fig:day_2}
-\end{minipage}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{images/Record_1_B.pdf}
+    \caption{Implementation of recording functionality (A): start recording}
+    \label{fig:day_1}
 \end{figure}
 
-Figure \ref{fig:day_1} and Figure \ref{fig:day_2} present two of these twelve recordings (rest can is found in Appendix B) that are of most interest to us in a time-series graph. The Y-axis represents the respiration (breathing) value, and the X-axis the time of respiration value acquisition---\textit{day one} of the concert started at the time of 19:00 and ended at 20:00, while \textit{day two} started at the time of 20:10 and ended 21:00. The graphs are plotted with Python and the library MatPlotLib in order to analyze and evaluate the sample values; however, an identical graph is also presented in the application.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{images/Record_2_B.pdf}
+    \caption{Implementation of recording functionality (A): start recording}
+    \label{fig:day_2}
+\end{figure}
 
-From the thesis "..." by Løberg, we can group the signals strengths based on four types of breathing patterns: (1) normal breathing---normal exhaling and inhaling (12-18 breaths per minute); (2) no breathing---close to flat rates over a long period; (3) shallow breathing---rapid inhaling and exhaling; and (4) deep breathing---prolonged inhaling or exhaling (also denoted as fluctuations). From the Figures, we can see that the respiration value is stable with some fluctuations and disconnections. Disconnections are defined as when the line is sloping or benching in an extended period (e.g., 20 seconds or more), while fluctuations are samples that spikes (deep breathing) in the graph. We should keep in mind that the margin for the normal breathing respiration value can vary throughout the recording based on body or sensor position and movements (e.g., sitting relax or tense in a chair). 
 
-Figure 6.1 has many disconnections (further analyzed later) with unstable breathing. There are multiple occurrences of deep breathing throughout the recording, with some shallow breathing at the start and the end of the recording. Hypothetically, deep breathing might be a sign of musical absorption; however, we have no concrete analysis of this matter, and it is out of the scope for this experiment motivation. Moving on, Figure 6.2 shows fewer disconnects compared to Figure 6.1, and with much more concise breathing patterns and resemblance to normal breathing. Although, there are noticably deep breathing throughout the recording, with a few shallow breathings at the beginning. Conclusively, both Figures shows no nuances for no breathing during the recording. However, there are signs of normal breathing, with few instances of shallow and deep breathing. 
 
-\subsubsection{Analysis \& Discussion}
-We will discuss all twelve records by analyzing the respiration values. It is of special interest to find occurrences of disconnections---when the samples are stagnant in more extended period---and the time the sensor is disconnected during the recording.
+Figure \ref{fig:day_1} and Figure \ref{fig:day_2} present two of these twelve recordings (rest can is found in Appendix B) that are of most interest to us in a time-series graph. The Y-axis represents the respiration (breathing) value, and the X-axis the time of respiration value acquisition---\textit{day one} of the concert started at the time of 19:00 and ended at 20:00, while \textit{day two} started at the time of 20:10 and ended 21:00.
+
+From the thesis "..." by Løberg, we can group the signals strengths based on four types of breathing patterns: (1) \textit{normal breathing}---normal exhaling and inhaling (12-18 breaths per minute); (2) \textit{no breathing}---close to flat rates over a long period; (3) \textit{shallow breathing}---rapid inhaling and exhaling; and (4) \textit{deep breathing}---prolonged inhaling or exhaling (also denoted as fluctuations). From the figures, we can see that the respiration value is stable with some fluctuations and disconnections. Disconnections are defined as when the line is sloping or benching in an extended period (e.g., 20 seconds or more), while fluctuations are samples that spikes (deep breathing) in the graph. We should keep in mind that the margin for the normal breathing respiration value can vary throughout the recording based on body or sensor position and movements (e.g., sitting relax or tense on a chair). 
+
+Figure 6.1 has many disconnections (further analyzed later) with unstable breathing. There are multiple occurrences of deep breathing throughout the recording, with some shallow breathing at the start and end of the recording. Hypothetically, deep breathing might be a sign of musical absorption; however, we have no concrete analysis of this matter, and it is out of the scope for this experiment motivation. Moving on, Figure 6.2 shows fewer disconnects compared to Figure 6.1, and with much more concise breathing patterns and resemblance to normal breathing. Although, there are noticeably deep breathing throughout the recording, with a few shallow breathings at the beginning. Conclusively, both Figures shows no signs for no breathing during the recording. However, there are signs of normal breathing, with few instances of shallow and deep breathing. 
+
+\subsection{Analysis \& Discussion}
+We will discuss all twelve records by analyzing the breathing values. It is of special interest to find occurrences of disconnections---when the samples are stagnant in more extended period---and the time the sensor is disconnected during the recording.
 
 \begin{table}[!h]
 \begin{center}
@@ -110,7 +108,7 @@ E & 5144 & 1 & 0.02 \% & 0 & 00:00  \\
 F & 5145 & 0  & 0 \% & 0 & 00:00  \\
 \hline
 \end{tabular}}
-\caption{Day 1---Duration: 1 hour \& Roof Samples: 5145}
+\caption{Day 1---Duration: 1 hour \& Expected Sample Count: 5145}
 \end{center}
 \end{table}
 
@@ -135,45 +133,64 @@ E & 4285 & 3 & 0.06 \% & 0 & 00:00  \\
 F & 4288 & 0  & 0 \% & 0 & 00:00  \\
 \hline
 \end{tabular}}
-\caption{Day 2---Duration: 50 mins. \& Roof Samples: 4288}
+\caption{Day 2---Duration: 50 mins. \& Expected Sample Count: 4288}
 \end{center}
 \end{table}
 
 The recordings for the six devices for the two dates are represented in Table 6.2 and Table 6.3. Each table exhibits data that is extracted from each recording from the mobile device and can be characterized as: 
 
 \begin{description}
-    \item[Roof Sample] The expected number of samples that can be acquired in the period of the recording (based on the frequency of sample output by Flow Sensor).
+    \item[Expected Sample Count] The expected number of samples that can be acquired in the period of the recording (based on the frequency of sample output by Flow sensor, which is approximately 1.5 Hz).
     \item[Sample Count] The number of samples that were gathered in the duration of the recording. 
-    \item[Loss Count] The number of missing samples based on \verb|Roof Samples|. This can be calculated as: 
+    \item[Loss Count] The number of missing samples based on "Expected Sample Count". This can be calculated as: 
 \begin{equation} \label{losscount}
-Loss\ Count = Roof\ Samples - Samples\ Count
+Loss\ Count = Expected\ Sample\ Count - Samples\ Count
 \end{equation}
     \item[Loss Percentage] The percentage of missing samples based on the expected samples. This can be calculated as:
 \begin{equation} \label{losscount}
-Loss\ Percentage = (1 - \frac{Samples\ Count}{Roof\ Samples}) * 100
+Loss\ Percentage = (1 - \frac{Samples\ Count}{Expected\ Sample\ Count}) * 100
 \end{equation}
     \item[Disconnection Count] Is the number of disconnections that occurred within the duration of the recording.
-    \item[Disconnection Time] Is the accumulated time of disconnection. 
+    \item[Disconnection Time] Is the accumulated time of disconnections. 
 \end{description}
 
-The device models A, E, and F are noticeably accurate (with some noises which presumably occurred during parsing), there are no apparent disconnects occurred during the recording for these models both of the days. In contrast, device model B, C, D shows an outburst of disconnections during recording. Especially, model D has high loss percentage both of the days, which is reflected in the disconnection time. Also, model B had a high loss percentage on the first day; however, significantly less loss percentage the second day. Similar resemblance can also be seen in model C.
+The device models A, E, and F are noticeably accurate (with some noises which presumably occurred during parsing); there are no apparent disconnects during the recording for these models both of the days. However, model B and C show a high loss count on the first day---with a disconnection count of 13 of which the disconnection time is 19 minutes and 14 seconds (34\% loss percentage) for model B, and a disconnection count of 7 of which the disconnection time is 8 minutes and 20 seconds (19\% loss percentage) for model C---while on the second day, the loss percentage decreased with 31\% for model B and 18.95\% for model C, resulting in a close to  0\% loss percentage for both devices; noticeably, model B shows four disconnects during the recording, however, they only last for 1 minute and 25 seconds in total. Moreover, device model D shows an alarmingly high loss percentage, which is reflected in the disconnection time, both of the days. The mobile device has a loss percentage of 32\% on the first day and 40\% the second day, that is an increase of 8\% of the day before. 
 
-We could conclude on the fact that some mobile device models or some sensors is malfunctioned, and for this reason we see higher loss rate. Unfortunately, with insufficent data to point out whether that is correct, is is something we cannot conclude on. Moreover, [Skriv mer om Android OS version].
+Based on the analysis, we can see a variety of behavior of disconnections on the mobile devices for the two dates. An assumption is that the mobile device or Flow sensor is malfunctioned; however, we have no data that indicates whether a sensor was connected with the same mobile device for the both dates---we had the data for the first date, however, the sensors and mobile devices were switched at the second date because of unforeseen events---therefore, this assumption is debunked. Moreover, we see that model D (Google Pixel XL, version 9.0) is unstable for both of the days, in contrast to the other device models which ran a lower Android version. However, yet again, we no accurate data that can prove that the Android version, mobile device, or the Flow sensor is causing the disconnects---albeit, this can be further tested in the lab.
 
-\subsubsection{Conclusion}
-To summarize the experiment, we were able to test the application in a real-life and crowded environment. The application managed to record samples that lasted up to 1 hour with the Flow senor and various device models with different Android OS versions. However, one of the application crashed, and we were unable to find the source of the problem. Based on samples from the recording, it is identified that the Flow sensor has a tendency of disconnecting, but the application managed to provide a continuous data stream by reconnecting with the sensor during recording. In the end, the records were successfully shared across applications, which enabled us to analyze the recordings.  
+\subsection{Conclusion}
+To summarize the experiment, we were able to test the application in a real-life and crowded environment. The application managed to record samples that lasted up to 1 hour with the Flow senor and various device models with different Android OS versions. However, one of the application crashed, and we were unable to find the source of the problem. Based on samples from the recording, it is identified that the Flow sensor has a tendency of disconnecting, but the application managed to reconnect with the sensor during the recording. In the end, the records were successfully shared across applications, which enabled us to analyze the recordings.  
 
-To conclude, the goal of the experiment was to analyze musical absorption during a concert, but that is not the motivation for our application. However, we provided an application that collected the data during the concert. Thus, the collected data can then be used to conclude a correlation between breathing and musical absorption. Also, inconsistency in the sampling of the recordings makes it difficult to determine the source of the problem. We could argue that the analysis of the aggregated data in the tables might indicate that the sensor or the mobile is a malfunctioned, however, due to insufficient data this conclusion cannot be drawn. Although, the application managed to collect data with the use of the Flow sensor kit, in an environment filled with other mobile devices that could have interfered with the signals, as well as reconnecting to the sensors during the recording. [Reflect more on the motivation goals].
+To conclude, we will evaluate on whether the tests sufficed the motivation of the experiement:
 
-\subsection{Experiment B: 9-Hours Recording}
-As part of this thesis is to collect breathing data over en extended period (e.g., during sleep), it is essential to test for battery drainage during this period. The experiement is conducted to demonstrate that the appication is suited for collecting data over an extended period. In most cases, an user connects their device to a power source to charge the device battery. However, in the cases where that is not viable, the battery consumption of the applications might affect the perspection of the applications outcome to the user. Therefore, in this experiment we are checking for the battery consumption on the mobile device, as well as the Flow sensor kit. 
+\begin{enumerate}
+    \item \textit{test the application in a real-life and crowded environment, in order to analyze whether other mobile devices interfere or obstruct with the signals between the collecting sensors and mobile devices.}
+    
+    While we are able to conduct an experiment which had approximately 800 attendees on the first day and approximately 1500 attendees on the second day of which probably most had their BlueTooth activated, the experiments lack data to support that the interference did affect the sampling from the Flow sensor to a mobile device. However, all of the recordings show at least 60\% of the concert was recorded (and some recordings are 100\%). To conclude this test, there is insufficient data to show for inference affected the recording; however, were are able to test the application in a real-life and crowded environment. 
 
-\subsubsection{Description}
+    \item \textit{test whether the samples gathered are meaningful, in the sense that the application is collecting the samples from the sensors correctly and handling unexpected disconnections.}
+    
+    As discussed in the analytics section, model device A, E, and F were able to collect data throughout the concert for both days. Model B, C, D had disconnects during the recording; however, all managed to reconnect during the recording. As a result, no more than 40\% of the recording was lost for both of the days. To conclude this test, the application can successfully reconnect with the connected Flow sensor during the recording, which results in the data is more meaningful for further analysis. 
+
+    \item \textit{test the application on different Android OS versions, and to put the application in the hands of participants.} 
+    
+    We had a wide variety of device models with different Android OS versions running the application (Nidra). To conclude this test, the application was able to run all of the Android version, regardless of the device model, successfully. Also, we were able to put the application in the hands of other participants that used the application in order to measure their breathing data during the concert.
+
+    As a side note, a questionnaire was sent to the participants in order to get feedback on the user-friendliness of the application; however, none of them took the time to answer the questions.
+
+
+\end{enumerate}
+
+
+\section{Experiment B: 9-Hours Recording}
+As part of this thesis is to collect breathing data over en extended period (e.g., during sleep), it is essential to test for battery drainage during this period. The experiement is conducted to demonstrate that the appication is suited for collecting data over an extended period. In most cases, an user connects their device to a power source to charge the device battery. However, in the cases where that is not viable, the battery consumption of the applications might affect the perspection of the applications outcome to the user. Therefore, in this experiment we are checking for the battery consumption on the mobile device, as well as the Flow sensor. 
+
+\subsection{Description}
 The experiement was conducted on OnePlus 3T device (spesifications in Table X), and we started of by configuring the the Flow sensor wrapper to connect with the Flow sensor, and pressing the "record" button in Nidra. The device and sensor started with 100\%. Also, the device was disconnected from WiFi, and left stantonary and unattended during the period of recording.  
 
-A techincal description of collecting the data from the Flow sensor and the Nidra, is that the Flow sensor collects data on 10Hz; however, sends a packet of data at approximately 1.5 Hz. The data packet is the processed by the Flow sensor wrapper, and sent to the data stream dispatching module (DSDM). The DSDM has a list of subscribing applications, and distribute the data packet to all of the subscribing application. In our case, the Nidra application has subscribed for the Flow sensor kit packets. In Nidra, the packet is received, unpacked and immediately stored in a database as a sample entity, with a identifier of the recording session. This process continues until the recording has terminated based on the user's actions.
+A techincal description of collecting the data from the Flow sensor and the Nidra, is that the Flow sensor collects data on 10Hz; however, sends a packet of data at approximately 1.5 Hz. The data packet is the processed by the Flow sensor wrapper, and sent to the data stream dispatching module (DSDM). The DSDM has a list of subscribing applications, and distribute the data packet to all of the subscribing application. In our case, the Nidra application has subscribed for the Flow sensor packets. In Nidra, the packet is received, unpacked and immediately stored in a database as a sample entity, with a identifier of the recording session. This process continues until the recording has terminated based on the user's actions.
 
-\subsubsection{Results}
+\subsection{Results}
 
 We calculate the energy consumption---which is measured in milliampere hour (mAh)---and estimate the averge energy consumption during the experiment. 
 \begin{equation} \label{losscount}
@@ -188,12 +205,12 @@ The application collected 45468 samples from the Flow sensor over the course of 
 \end{equation}
 This means, that the total battery consumtion over the course of the recording was 1395 mAh. Moreover, the device could have been continue recording for approximately 13 hours more, before running out of battery. Keeping in consideration that the mobile device has a average battery capacity, and has degrated battery capacity due to age, the results seems aduqate. 
 
-\subsubsection{Conclusion}
-To summarize, in this experiment we used the recording functionality in Nidra. To enable this functionality, Nidra notifies the the Flow sensor wrapper through the data stream dispatching module to start the data acquestion. The Flow sensor kit samples data on a frequency of approximately 1.5Hz, and the data are forwarded from the sensor wrapper to the data stream dispatching module, which further distributes the data packets to the subscribed applications. Nidra, processes the data packets by unpacking and storing them respectivly in the database. At the end of the 9-hours recording, the application collected 45468 samples, as a result, the mobile device used \textit{41\%} of the battery (1395 mAh) and the Flow sensor kit used \textit{6\%}. Moreover, the device had the possibility of recording for an extra 13 hours.
+\subsection{Conclusion}
+To summarize, in this experiment we used the recording functionality in Nidra. To enable this functionality, Nidra notifies the the Flow sensor wrapper through the data stream dispatching module to start the data acquestion. The Flow sensor samples data on a frequency of approximately 1.5Hz, and the data are forwarded from the sensor wrapper to the data stream dispatching module, which further distributes the data packets to the subscribed applications. Nidra, processes the data packets by unpacking and storing them respectivly in the database. At the end of the 9-hours recording, the application collected 45468 samples, as a result, the mobile device used \textit{41\%} of the battery (1395 mAh) and the Flow sensor used \textit{6\%}. Moreover, the device had the possibility of recording for an extra 13 hours.
 
-To conclude, the results of the experiements shows that the requirements for recording over an extended period are statisfied. The application is able to collect data from the Flow sensor kit and it is sufficent enough to do it for an extended period. The energy consumption might be higher than expected, and that might be due to three applications running simultaneously in the background. A proposition to reduce the amount of background processing in order to perserve battery capacity of the mobile device, is to extend the sensor wrapper with an temporary cache or data storage. As such, the data packets are stored in the sensor wrapper during the recording, and sent to the subscribing application on recording termination. However, this complicates the structure of a sensor wrapper and might not be feaseable in all cases (e.g., the real-time graph becomes obsolite). Although, it can be part of a power-saving configuration in the future.  Nonetheless, the experiement was successfully conducted, with no appearent from for disconnects or abruptions during the recording. 
+To conclude, the results of the experiements shows that the requirements for recording over an extended period are statisfied. The application is able to collect data from the Flow sensor and it is sufficent enough to do it for an extended period. The energy consumption might be higher than expected, and that might be due to three applications running simultaneously in the background. A proposition to reduce the amount of background processing in order to perserve battery capacity of the mobile device, is to extend the sensor wrapper with an temporary cache or data storage. As such, the data packets are stored in the sensor wrapper during the recording, and sent to the subscribing application on recording termination. However, this complicates the structure of a sensor wrapper and might not be feaseable in all cases (e.g., the real-time graph becomes obsolite). Although, it can be part of a power-saving configuration in the future.  Nonetheless, the experiement was successfully conducted, with no appearent from for disconnects or abruptions during the recording. 
 
-\subsection{Experiment C: Performing User-Tests on Two Participants}
+\section{Experiment C: Performing User-Tests on Two Participants}
 One goal of the application is that it should be user-friendly enough for patients to use and understand how the functionality of our application works. To evaluate whether this goal has been achieved, we found two participants that agreed to partake in the experiment. One of these participants is not proficent in the use of modern technology, while the other participant has a lot of experience. For simplicity, we will refer to the participant as participant \verb|A| and \verb|B|, respectively. 
 
 The testing process consisted of three parts: a presentation of the application, tests to record and share the recording, and an interview. The tests were not performed during the night, due to ... However, this tests focuses on user-friendliness, rather than recording over an extended period. The participant was informed with the scinario the application was designed for. 
@@ -204,7 +221,7 @@ The testing process consisted of three parts: a presentation of the application,
     \item[Interview] The interview was conducted after thes tests were performed, so the participant had their feedback fresh in memory. We structured the questions in the interview accordingly to the PACMAD methodology. 
 \end{description}
 
-\subsubsection{Testing}
+\subsection{Testing}
 To evaluate whether the application presents the functionality adequently and suffice the goal of the tests, we tested the participants with certain tasks:
 \begin{itemize}
     \item[T1] Proceed to navigate in the application and start a recording.
@@ -218,13 +235,13 @@ To evaluate whether the application presents the functionality adequently and su
 For this test to be successful, the participants must for all of the tasks be able to correctly identify the actions. There were no interference or guidance on how to perform the tests, besides guiding the participants into performing each task. These tests were designed to observe and simulate the primary actions the user mainly focuses on in the application. Thus, the functionality of modules and importing recordings were left behind. 
 
 
-\subsubsection{Observations}
+\subsection{Observations}
 Participants \verb|A|---less technical---had to familiarize with the setting of the application, thus had a hard start to begin with. It took the participant longer than exepected to perform T1, however, managed to proceed on recording and was bit uncertain whether the recording had started or not. Also, the participant was flabbergasted by the rippling effect the recording screen presented. The T2 was somewhat tedious to perform, because the participant tried to click on the interface where it says it should be expanded (by swiping). Also, the graph was bit hard to interact with because the interface above the graph kept moving while performing interactions with the graph. T3 and T4 went fine, the participant filled out the title, description and a rating and saved the recording, and find the recording on the feed screen. However, the T5 and T6 was bit unclear to the participant, because the functionality is hidden, and in order to find the actions you have to press the record to expand the information. However, after that was clear, the participant managed to perform both task sufficently. 
 
 Participants \verb|B| outperformed participant \verb|A|, due to the participent were more fimilar with technical systems. The participant managed to start the recording quickly, however, were unsure whether the recording had starting (clicking around on the interface for feedback), untill the ripple effects appeared on the screen. Similar to participant A, participant B clicked on the interface for statistics, rather than swiping. Also, had a hard time to interact with the graph due to the interface moving. The particpent B managed to perform T3-T6 with ease and without any interupts or objections. 
 
 
-\subsubsection{Discussion}
+\subsection{Discussion}
 
 Conclusively, the tests were not performed to its desired intent, due to the fiddeling in on the recording screen. However, the participant managed to perform most of the tasks regardless, albeit the task T1 and T2 were hard to comprehend. 
 
@@ -234,7 +251,7 @@ Also, the interface to view for expanding the statistics was bit tedeous to unde
 
 Besides this, there we no noticably complains by the participant. They found the color scheme of the application to be smooth and fitting, and the application to be moderen. Also, they find stuff to be well organized and were not drowned in selections and actions to perform. All of the functionality is restricted to few and simple actions per screen. 
 
-\subsubsection{Survey}
+\subsection{Survey}
 The interview questions were performed after the tasks. The questions followed a PACMAD survey structure, which is a model to identify the usability attributes and are structed into: effectiveness, efficency, statisfaction, learnability, memorability, errors, and cogitive load. We created a survey based on some of the structure, however, we were unable to perform any cogitive load or memoriability tasks during the testing. Hence, the participant filled out the questions regarding: 
 
 \noindent \textbf{Effectiveness \& Efficency}
@@ -329,7 +346,7 @@ The interview questions were performed after the tasks. The questions followed a
 \end{itemize}
 
 
-\subsubsection{Conlusions}
+\subsection{Conlusions}
 
 To summarize, we conducted an experiement on two participant with predefined set of tasks in order to measure the user-friendliess of the application (Nidra). Most of the tasks were regarding the functionality of recording, sharing, and analyzing. The participants were presented with a brief overview of the functionality of the application before starting the testing. The tests were mainly designed to evalute comprehensibility and usability of the application. During the testing, we observed the interactions the participant's made for each tasks and followed up with a survey for them to answer. Based on this, we gained broader understading of the user-friendliess of the application.
 
@@ -339,27 +356,27 @@ To have extended this experiement, we could have invoked tests to measure the co
 
 However, the lack of participants makes it hard to conclude on the experiment and the goal of the tests. Final remarks, are that is room for improvements.
 
-\subsection{Experiment D: Creating a Simple Module}
+\section{Experiment D: Creating a Simple Module}
 One of the goals of the application is to provide an interface for the developers to create modules, which allows for data enrichment and extended functionality. In order to test for this, we found one participant that had experience in software development, and with some experience in Android development. The tests was for the participant to create a new module in our application, which utilized the records in order to find the record that has the highest number of samples. The development of a user-interface was not evaluted, thus displaying the correct answer on the screen was sufficent. 
 
 Before the the participant started on creating a new module, an simple introduction on the concepts and data was performed. Mainly, the fact that Nidra formats the all of the data (e.g., records and corresponding samples) into a JSON string, and the JSON string is put into a bundle with the key \textit{data}, and sent up on launching the module-application (with Intent). The data structure were also introduced, i.e., an array of records with meta-data and correlated samples.
 
-\subsubsection{Process}
+\subsection{Process}
 
 The participent created a new Android project named \textit{TestModule}. For the simplicity, all of the development occurred in one activity. The first task was to get the JSON string that was bundled on launch in an Intent with the key of \textit{data}. The second task was to decode the data, the participant used  \verb|Gson| library in order to parse the data accordingly to the struture. And the final task was to display the results, which the participant did by iterating through the records and finding the one with the highest sample count.
 
-\subsubsection{Observations}
+\subsection{Observations}
 Despite the tasks seemlingly looks easy of making a simple module, the participant had a rough start. The participant was aware that module-application received data in a bundle, and the extraction could . However, for each time the participant compiled, the module-application crashed. That is because the bundle is empty if the module-application is launched directly, and not through the Nidra application (while supplies the module with the data). Albeit, the participant managed to handle this error early. 
 
 The next challenge for the participant was to understand how to transform the JSON string into valid objects in Java. First, the participant had to create an object which encapsulates the record and and a list of samples (\verb|ExportObject|). Then, three seperate objects (i.e., record, sample, and user) had to be created, that were identical to the payload. As such, the participant could decode the JSON string into an list of the \verb|ExportObject|, and retrieve the necessary data.
 
 Once the participant had all of the data, the rest of the tasks was simily accomplished. THe participant iterated through the list of records, and found the one with the highest sample count, and displayed it on the screen. 
 
-\subsubsection{Results}
+\subsection{Results}
 
 In Figure X, the module-application is illustrated. As of the experiement, there were five records on the mobile device---and the highest was the record named \verb|Record 17| with \verb|163| samples---thus, the experiement was successful conducted. It took the participant approximately 30 minutes to develop this module-application, where most of the time went to parse the data.
 
-\subsubsection{Discussion \& Conlusion}
+\subsection{Discussion \& Conlusion}
 
 Conclusively, the participant managed to create a module, with some hurdles in the way. Noticably, while compling the project the participant had to open its module through the Nidra application in order to get the data. There are two ways to prevent this from happening, one way is to establish an IPC (discueed in the design chapther) with the use of an AIDL file and output the data from Nidra to the application through the IPC connection. The second way is to cache the data in the module-application, for temporary storage of the data. However, both methods increases the complexity of the module-application. Nonetheless, the former improvement can be made in Nidra.
 
@@ -385,4 +402,4 @@ In the beginning of this chapther, we reinstated the system requirements of this
     
 \end{enumerate}
 
-Besides few subtle improvements that can be made to Nidra, the system requirements suffice towards the goal of making an application that can record, share, and analyze breathing data with the Flow sensor kit over an extended period. Also, the possbilies for future developers to create independent applications, witout having to operate with Nidra, in which provides extended functionality and enrich the collected data in Nidra. 
+Besides few subtle improvements that can be made to Nidra, the system requirements suffice towards the goal of making an application that can record, share, and analyze breathing data with the Flow sensor over an extended period. Also, the possbilies for future developers to create independent applications, witout having to operate with Nidra, in which provides extended functionality and enrich the collected data in Nidra. 
