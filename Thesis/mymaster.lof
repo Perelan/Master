@@ -43,31 +43,31 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Legend for the figures in implementation of concerns: (A) application components with integration of our logic; (B) objects that contains specifics of our logic; (C) an interface for callbacks or listeners; (D) Android-specific objects and components; (E) other installed applications; (F) steps direction; and (G) reference or data flow direction\relax }}{61}{figure.caption.27}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Implementation of recording functionality: (A) start recording\relax }}{62}{figure.caption.28}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Implementation of recording functionality (A): start recording\relax }}{62}{figure.caption.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Implementation of recording functionality: (B) stop recording\relax }}{64}{figure.caption.29}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Implementation of recording functionality (B): stop recording\relax }}{64}{figure.caption.29}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of recording functionality (C)\relax }}{65}{figure.caption.30}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Implementation of recording functionality (C): display recording statistics\relax }}{65}{figure.caption.30}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Implementation of sharing functionality (A): Exporting one or all Records\relax }}{66}{figure.caption.31}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Implementation of sharing functionality (A): exporting one or all records\relax }}{66}{figure.caption.31}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Implementation of sharing functionality (B)\relax }}{68}{figure.caption.32}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Implementation of sharing functionality (B): import a record from the device\relax }}{68}{figure.caption.32}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Implementation of module functionality(A): Add a Module\relax }}{69}{figure.caption.33}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Implementation of module functionality (A): add a module\relax }}{69}{figure.caption.33}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Implementation of module functionality(B): Launch a Module\relax }}{70}{figure.caption.34}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Implementation of module functionality (B): launch a module\relax }}{70}{figure.caption.34}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Implementation of analytics functionality (A): Display a Graph for a Single Record\relax }}{72}{figure.caption.35}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Implementation of analytics functionality (A): display a graph for a single record\relax }}{72}{figure.caption.35}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Entity Relationship Diagram\relax }}{73}{figure.caption.36}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Implementation of storage functionality\relax }}{73}{figure.caption.36}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.12}{\ignorespaces The recording screen displayed to the user; with the screen: (A) during a recording, (B) real-time analytics, and (C) finalizing the recording\relax }}{75}{figure.caption.37}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces The recording screen displayed to the user: (A) during a recording, (B) statistics interface, and (C) stopping the recording\relax }}{75}{figure.caption.37}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.13}{\ignorespaces The sharing screen displayed to the user\relax }}{76}{figure.caption.38}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces The sharing screen displayed to the user: (A) option to import or export, (B) the media selection for exporting, and (C) the file selection for importing.\relax }}{76}{figure.caption.38}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.14}{\ignorespaces The module screen displayed to the user\relax }}{77}{figure.caption.39}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces The module screen displayed to the user: (A) module screen without any modules, (B) list of installed applications on the device, and (C) module screen with modules.\relax }}{77}{figure.caption.39}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.15}{\ignorespaces The analytics screen displayed to the user\relax }}{78}{figure.caption.40}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces The analytics screen displayed to the user: (A) the feed screen; (B) the analytics screen\relax }}{78}{figure.caption.40}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

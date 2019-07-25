@@ -9,16 +9,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.1}An interface provided by the host service (i.e., DSDM) that provides functionality other applications can use (e.g., Nidra and sensor wrappers)}{60}{lstlisting.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.2}My Caption}{78}{lstlisting.5.2}
-\defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.3}My Caption}{79}{lstlisting.5.3}
-\defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.4}My Caption}{80}{lstlisting.5.4}
-\defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.5}My Caption}{80}{lstlisting.5.5}
-\defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.6}My Caption}{81}{lstlisting.5.6}
-\defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {B.1}My Caption}{118}{lstlisting.B.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {C.1}My Caption}{121}{lstlisting.C.1}

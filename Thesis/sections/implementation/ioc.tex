@@ -6,7 +6,7 @@ The functionality of recording can be separated into three actions: (A) start re
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.7]{images/Recording_ImpA.pdf}
-    \caption{Implementation of recording functionality: (A) start recording}
+    \caption{Implementation of recording functionality (A): start recording}
     \label{fig:impl_recordingA}
 \end{figure}
 
@@ -40,7 +40,7 @@ In Figure \ref{fig:impl_recordingA}, an illustration of the component interactio
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{images/Recording_ImpB.pdf}
-    \caption{Implementation of recording functionality: (B) stop recording}
+    \caption{Implementation of recording functionality (B): stop recording}
     \label{fig:impl_recordingB}
 \end{figure}
 
@@ -58,7 +58,7 @@ In Figure \ref{fig:impl_recordingB}, an illustration of the component interactio
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.7]{images/Recording_ImpC.pdf}
-    \caption{Implementation of recording functionality (C)}
+    \caption{Implementation of recording functionality (C): display recording statistics}
     \label{fig:impl_recordingC}
 \end{figure}
 
@@ -85,8 +85,8 @@ The functionality of sharing can be separated into two actions: (A) exporting on
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{images/Sharing_ImpA.png}
-    \caption{Implementation of sharing functionality (A): Exporting one or all Records}
+    \includegraphics[scale=0.7]{images/Sharing_ImpA.pdf}
+    \caption{Implementation of sharing functionality (A): exporting one or all records}
     \label{fig:impl_sharingA}
 \end{figure}
 
@@ -123,8 +123,8 @@ static void shareFileIntent(Activity a, File file) {
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{images/Sharing_ImpB.png}
-    \caption{Implementation of sharing functionality (B)}
+    \includegraphics[scale=0.7]{images/Sharing_ImpB.pdf}
+    \caption{Implementation of sharing functionality (B): import a record from the device}
     \label{fig:impl_sharingB}
 \end{figure}
 
@@ -157,7 +157,7 @@ In order to add a new module, the user has to install the module-application on 
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{images/Module_ImpA.pdf}
-    \caption{Implementation of module functionality(A): Add a Module}
+    \caption{Implementation of module functionality (A): add a module}
     \label{fig:impl_modulesA}
 \end{figure}
 
@@ -173,7 +173,7 @@ In order to add a new module, the user has to install the module-application on 
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.7]{images/Module_ImpB.pdf}
-    \caption{Implementation of module functionality(B): Launch a Module}
+    \caption{Implementation of module functionality (B): launch a module}
     \label{fig:impl_modulesB}
 \end{figure}
 
@@ -206,8 +206,8 @@ public void onLaunchModuleClick(String packageName) {
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{images/Anal_Imp.png}
-    \caption{Implementation of analytics functionality (A): Display a Graph for a Single Record}
+    \includegraphics[scale=0.7]{images/Anal_Imp.pdf}
+    \caption{Implementation of analytics functionality (A): display a graph for a single record}
     \label{fig:impl_analytics}
 \end{figure}
 
@@ -234,7 +234,7 @@ Nidra provides a simple time-series graph of breathing data obtained during the 
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.60]{images/Storage_Imp.pdf}
-    \caption{Entity Relationship Diagram}
+    \caption{Implementation of storage functionality}
     \label{fig:impl_storage}
 \end{figure}
 
@@ -262,13 +262,13 @@ The interface is developed based on the design descisions made in Section \ref{s
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.26]{images/Recording_img.pdf}
-    \caption{The recording screen displayed to the user; with the screen: (A) during a recording, (B) real-time analytics, and (C) finalizing the recording}
+    \caption{The recording screen displayed to the user: (A) during a recording, (B) statistics interface, and (C) stopping the recording}
     \label{fig:screen_recording}
 \end{figure}
 
 \subsubsection{UI: Recording}
 
-Figure \ref{fig:screen_recording} presents the screen for (A) the screen displayed during recording, (B) the interface for analytics, and (C) the screen displayed at the end of the recording. 
+Figure \ref{fig:screen_recording} presents the screen for (A) the screen displayed during recording, (B) the interface for statistics, and (C) the screen displayed at the end of the recording. 
 
 \begin{itemize}
     \item[A] The screen displays the elapsed time of recording right below the center of the screen. The button color has a different nuance from the background color to make more distinguishable to the user. On button click, an alert specifying whether the recording should be stopped or not is presented to the user in order to prevent undesired stopping of recording due to misclicks. 
@@ -285,7 +285,7 @@ Figure \ref{fig:screen_recording} presents the screen for (A) the screen display
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.26]{images/Sharing_img.pdf}
-    \caption{The sharing screen displayed to the user}
+    \caption{The sharing screen displayed to the user: (A) option to import or export, (B) the media selection for exporting, and (C) the file selection for importing.}
     \label{fig:screen_sharing}
 \end{figure}
 
@@ -301,7 +301,7 @@ Figure \ref{fig:screen_sharing} presents the screen for: (A) option to import or
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.26]{images/Modules_img.pdf}
-    \caption{The module screen displayed to the user}
+    \caption{The module screen displayed to the user: (A) module screen without any modules, (B) list of installed applications on the device, and (C) module screen with modules.}
     \label{fig:screen_modules}
 \end{figure}
 
@@ -324,6 +324,6 @@ Figure \ref{fig:screen_analytics} shows the screen for (A) feed screen with a re
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.26]{images/Analytics_img.pdf}
-    \caption{The analytics screen displayed to the user}
+    \caption{The analytics screen displayed to the user: (A) the feed screen; (B) the analytics screen}
     \label{fig:screen_analytics}
 \end{figure}
