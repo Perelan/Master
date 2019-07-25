@@ -1,5 +1,5 @@
 
-\subsection{Recording}
+\subsection{Recording}\label{soc:recording}
 The structure of a recording is restrictive in terms of arranging the components due to the design of CESAR. There are numerous ways of presenting the recording view; however, a recording structure is limited to the components of starting a recording, establishing sensor connection, monitoring of samples, and finalize sensors and recording. Additional components can be incorporated to aid a recording without causing disruption. For instance, the connectivity state component (see \Cref{sssec:csc}) provides extended functionality to the recording structure. In Figure \ref{fig:hta_recording}, the illustration of a recording structure with the components and their dependencies are shown:
 
 \begin{figure}
@@ -63,7 +63,7 @@ The distribute component uses the formatted file and transfers it across applica
 
 While the first option might be favorable in terms of practicality, this solution introduces additional concerns (e.g., the privacy matters of storing user data on a server) which is out of the scope for this project. For this reason, using the interface provided by Android is a reasonable solution. The user of the application can utilize the Android interface for sharing files over installed applications; however, e-mail is a flexible media to transfer the file, and the user can specify the recipients accordingly.  
 
-\subsection{Modules}
+\subsection{Modules}\label{soc:modules}
 
 \begin{figure}
     \centering
@@ -89,7 +89,7 @@ Android provides an interface to attach extra data on activity launch. The first
 
 One could argue that new records are not obtained while managing and using a module. However, there might be future modules that do a real-time analysis of a recording, but that will require an interface for continuous data flow. For the simplicity of our design, we will be going with the first option of bundling all of the data and sending it on launch.
 
-\subsection{Analytics}
+\subsection{Analytics}\label{soc:analytics}
 
 \begin{figure}
     \centering
@@ -111,7 +111,7 @@ The analytic method component uses the records on the device for representation 
 
 In Nidra, a time series graph is used to represent the data of a record. The time series graph represents the respiration data on the Y-axis and the time on the X-axis. Essentially, the facilitation of modules in the application is designed to enable advanced techniques to predict, analyze, and interpret the data acquisition. Therefore, in Nidra, the analytic methods are limited; however, the modules enable developers to construct any method they desire. 
 
-\subsection{Storage}
+\subsection{Storage}\label{soc:storage}
 
 \begin{figure}
     \centering
@@ -141,7 +141,7 @@ SQLite is a relational database management system, which is embedded and support
 
 While a flat file database is applicable to store small and unchangeable data, it is not suitable for scalable and invasive data change. In Nidra, the samples acquisition makes it unreasonable to use a flat file database. Therefore, SQLite is a preferable solution to storing samples. Also, establishing a relationship between a record and a sample is made possible [rewrite]. 
 
-\subsection{Presentation}
+\subsection{Presentation}\label{soc:presentation}
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{images/Presentation.png}

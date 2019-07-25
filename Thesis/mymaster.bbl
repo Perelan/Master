@@ -171,6 +171,23 @@
       \verb http://www.mn.uio.no/ifi/studier/masteroppgaver/dmms/android-based-ehealth-applications-with-bitalino-s.html
       \endverb
     \endentry
+    \entry{androidgraph}{online}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labeltitlesource}{title}
+      \field{title}{Android Graph Library}
+      \field{titleaddon}{Github Inc.}
+      \field{urlday}{20}
+      \field{urlmonth}{3}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/jjoe64/GraphView
+      \endverb
+      \verb{url}
+      \verb https://github.com/jjoe64/GraphView
+      \endverb
+    \endentry
     \entry{aidl}{online}{}
       \field{sortinit}{A}
       \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}

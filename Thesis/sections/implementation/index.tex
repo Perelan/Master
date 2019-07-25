@@ -21,7 +21,7 @@ As part of the thesis, the goal is to integrate the support for the Flow sensor.
 
 \begin{description}[font=\normalfont\itshape]
     \item[WrapperService:] Is instantiated by the DSDM during the sensor discovery phase (described in Section \ref{imp:dsdm}). This component is responsible for handling starting and stopping of the data acquisition (event sent as broadcasts from DSDM), as well as establish an IPC connection using a binder with the DSDM application. 
-    \item[CommunicationHandler:] Upon IPC connection with the DSDM and a request to start data collection, a separate thread of this component is created for interacting with the component that is resposible for integration of the Flow sensor (described in Section \ref{imp:comflow}). This component is mainly resposible for forwarding the data acquired from the sensor to the \verb|DataHandler| component. 
+    \item[CommunicationHandler:] Upon IPC connection with the DSDM and a request to start data collection, a separate thread of this component is created for interacting with the component that is responsible for integration of the Flow sensor (described in Section \ref{imp:comflow}). This component is mainly responsible for forwarding the data acquired from the sensor to the \verb|DataHandler| component. 
     \item[DataHandler:] Preprocesses the collected data from the Flow source into a data packet before forwarding the packet to the DSDM application. Part of this process is to construct the data packet correctly. The data packet is formatted as JSON string and contains the id (Flow) of the sensor wrapper, the current date and time, and the data points from the sensor source. The data packet is then sent, using the established binder connection, to the DSDM application.
 \end{description}
 
@@ -139,6 +139,36 @@ wakeLock.acquire();
 
 \subsubsection{Priority}
 Process's lifecycle is not directly related with the application itself; however, determiend by the system detecting parts of applications that are running, how important they are to the user, and how much memeory is available in the system. A process can be killed by the system to reclaim memory for other processes to take its place. However, there are certain measures to prolong the servives run time. That is, to increase the process importance in the "hierarchy". By forcing the process to be a \textit{foreground process}, we can for the most cases prevent the system to kill the process. We can create a foreground process by creating a starting a foreground process. 
+
+\begin{lstlisting}[language=json, caption={My Caption}, captionpos=b]
+public void toForeground() {
+    NotificationManager notificationManager = 
+        (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationCompat.Builder builder = null;
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel notificationChannel = new NotificationChannel("ID", "Name", importance);
+        notificationManager.createNotificationChannel(notificationChannel);
+        builder = new NotificationCompat.Builder(this, notificationChannel.getId());
+    } else {
+        builder = new NotificationCompat.Builder(this);
+    }
+
+    builder.setSmallIcon(R.drawable.ic_info_black_24dp);
+    builder.setContentTitle("Nidra");
+    builder.setTicker("Recording");
+    builder.setContentText("Recoding data");
+
+    Intent i = new Intent(this, DSDService.class);
+    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
+    builder.setContentIntent(pi);
+
+    final Notification note = builder.build();
+
+    startForeground(android.os.Process.myPid(), note);
+}
+\end{lstlisting}
 
 \subsection{Android Manifest}
 The Android Manifest describes the essential information about our application, such as the application components, permissions and the package name. The application is consituted by application components (e.g., activity, provider, broadcast receiver, and service), and each component contains meta data describing the application component. Also, all of the components has must be declared in the manifest with the reference to the component in the name  (\verb|android:name|). The application components were presented in the Section X, and below we describe the permissions and a few application components that are of interest to us.  
