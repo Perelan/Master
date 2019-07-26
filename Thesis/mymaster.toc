@@ -227,21 +227,21 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.2.4}Conclusion}{94}{subsection.6.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Experiment C: Performing User-Tests on Two Participants}{94}{section.6.3}
+\contentsline {section}{\numberline {6.3}Experiment C: Performing User-Tests}{94}{section.6.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.3.1}Testing}{95}{subsection.6.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.2}Observations}{96}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.2}Observations}{95}{subsection.6.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.3}Discussion}{96}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.3}Survey}{96}{subsection.6.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.4}Survey}{97}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.4}Discussion}{98}{subsection.6.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.5}Conlusions}{98}{subsection.6.3.5}
+\contentsline {subsection}{\numberline {6.3.5}Conlusion}{98}{subsection.6.3.5}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.4}Experiment D: Creating a Simple Module}{99}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.1}Observations}{100}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.1}Observations}{99}{subsection.6.4.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.4.2}Results}{100}{subsection.6.4.2}
 \defcounter {refsection}{0}\relax 

@@ -209,9 +209,9 @@ As a result, the device uses approximately 155 mAh. This means that the total ba
 Using Equation 6.3, we have a rough estimate of the battery usage for the Spotify application. The application drained close to 3\% of the battery percentage during 1 hour of streaming; resulting in an approximately 85 mAh consumption.  
 
 \subsection{Discussion}
-The results show that the Nidra application consumes close to two times more battery in comparison to the Spotify application. While the Spotify application plays a downloaded song in the background, the Nidra application operates with two other applications that forward data collected over BlueTooth in the background. As such, the amount of battery consumption is reflected in the usage of Nidra. 
+The results show that the process of recording consumes close to two times more battery in comparison with listing to music in the background. While the Spotify application plays a downloaded song in the background, the Nidra application operates with two other applications that forward data collected over BlueTooth in the background. As such, the amount of battery consumption is reflected in the process of recording. 
 
-A proposition to reduce the amount of background processing in order to preserve the battery capacity of the mobile device is to extend the sensor wrapper with a temporary cache or data storage. As such, the data packets are stored in the sensor wrapper during the recording and sent to the subscribing application when the recording is stopped. However, this complicates the structure of a sensor wrapper and might not be feasible in all cases (e.g., the real-time graph becomes obsolete). Although, it can be part of a power-saving configuration in the future. 
+A proposition to reduce the amount of background processing in order to preserve the battery capacity of the mobile device, is to extend the sensor wrapper with a temporary cache or data storage. As such, the data packets are stored in the sensor wrapper during the recording and sent to the subscribing application when the recording is stopped. However, this complicates the structure of a sensor wrapper and might not be feasible in all cases (e.g., the real-time graph becomes obsolete). Although, it can be part of a power-saving configuration in the future. 
 
 
 \subsection{Conclusion}
@@ -219,101 +219,89 @@ To summarize, in this experiment, we used the recording functionality in Nidra. 
 
 To conclude, the results of the experiments show that the requirements for recording over an extended period are satisfied. The application can collect data from the Flow sensor, and it is sufficient enough to do it for an extended period. The energy consumption might seem high; however, that is reflected by three applications running simultaneously in the background and data being collected over BlueTooth. Nonetheless, the experiment was successfully conducted, with no apparent form for disconnects or abruptions during the recording. 
 
-\section{Experiment C: Performing User-Tests on Two Participants}
-One goal of this thesis is that it should be user-friendly for patients to use and understand the functionality of Nidra. To evaluate whether this goal has been achieved, we found two participants that agreed to partake in the experiment. One of these participants was not proficient in the use of modern technology, while the other participant is tech-savvy\footnote{well proficient in the use of modern technology.}. For simplicity, we will refer to the participant as participant \verb|A| and \verb|B|, respectively. 
+\section{Experiment C: Performing User-Tests}
+One goal of this thesis is that it should be user-friendly for patients to use and understand the functionality of Nidra. To evaluate whether this goal has been achieved, we found two participants that agreed to partake in the experiment. One of these participants was not proficient in the use of modern technology, while the other participant was tech-savvy\footnote{well proficient in the use of modern technology.}. For simplicity, we will refer to the participant as participant \verb|A| and \verb|B|, respectively. 
 
-The testing process consisted of three parts: a presentation of the application, tests to record and share the recording, and an interview. The tests were not performed during the night, due to ... However, this tests focuses on user-friendliness, rather than recording over an extended period. The participant was informed with the scinario the application was designed for. 
+The process of this experiment consisted of three parts: a presentation of the application; testing the function of recording, sharing, analyzing; and a survey to evaluate the experience. The testing was not performed overnight, as we focus on user-friendliness, rather than recording over an extended period. 
 
 \begin{description}
-    \item[Presentation] We presented the goal and the functionality of the application to the participants in a simple and intuity way. However, we mainly focused on explaining the recording functionality and the methods of sharing the recording across applications. The presentation was took around 10 minutes, including questions and clarifications.  
-    \item[Tests] The tests were mainly desgined to evaluate comprehensibility and usability in the application. Comprehensibility is to evalute the participants ability to understand the functionality of the application, while usability to measure ease of use of the application.
-    \item[Survey] The interview was conducted after thes tests were performed, so the participant had their feedback fresh in memory. We structured the questions in the interview accordingly to the PACMAD methodology. 
+    \item[Presentation] We described the functionality of the application to the participants simply and intuitively---without showing the application. That included the explanation of the recording functionality, possibilities of viewing the data in a graph, and the methods of sharing the recording across applications. The presentation took approximately 10 minutes, including questions and clarifications.  
+    \item[Tests] The tests were mainly designed to evaluate \textit{comprehensibility} and \textit{usability} in the application. Comprehensibility is to evaluate the participants' ability to understand the functionality of the application, while usability to measure ease of use of the application.
+    \item[Survey] The participants were instructed to fill out a questionnaire after these tests were conducted---such that the participant had their feedback fresh in memory. We structured the questions in the questionnaire accordingly to the PACMAD methodology. 
 \end{description}
 
 \subsection{Testing}
-To evaluate whether the application presents the functionality adequently and suffice the goal of the tests, we tested the participants with certain tasks:
+To evaluate whether the application presents the functionality adequately and suffice the goal of the tests, we tested the participants with certain tasks:
 \begin{itemize}
     \item[T1] Proceed to navigate in the application and start a recording.
-    \item[T2] Find the interface to check for connected sensor sources, and the graph for the sampling
-    \item[T3] Stop the recording, and finialize the recording session by giving it a name, description and rating.
-    \item[T4] Find the recording in the feed of recordings. 
-    \item[T5] Share the recording over e-email.
-    \item[T6] View the analytics for the recording by interacting with it (e.g., zooming and scrolling). 
+    \item[T2] Find the interface to view statistics in order to check for connected sensor sources and the graph for the sampling.
+    \item[T3] Stop the recording and give the record a name, description, and rating.
+    \item[T4] Find the record in the feed of recordings. 
+    \item[T5] Share the record over e-email.
+    \item[T6] View the analytics for the record and interacting with the graph (e.g., zooming and scrolling). 
 \end{itemize}
 
-For this test to be successful, the participants must for all of the tasks be able to correctly identify the actions. There were no interference or guidance on how to perform the tests, besides guiding the participants into performing each task. These tests were designed to observe and simulate the primary actions the user mainly focuses on in the application. Thus, the functionality of modules and importing recordings were left behind. 
+For this test to be successful, the participants must for all of the tasks be able to identify the actions correctly. These tests were designed to observe the process of recording, sharing, and analyzing. Thus, the functionality of modules were left behind. 
 
 
 \subsection{Observations}
-Participants \verb|A|---less technical---had to familiarize with the setting of the application, thus had a hard start to begin with. It took the participant longer than exepected to perform T1, however, managed to proceed on recording and was bit uncertain whether the recording had started or not. Also, the participant was flabbergasted by the rippling effect the recording screen presented. The T2 was somewhat tedious to perform, because the participant tried to click on the interface where it says it should be expanded (by swiping). Also, the graph was bit hard to interact with because the interface above the graph kept moving while performing interactions with the graph. T3 and T4 went fine, the participant filled out the title, description and a rating and saved the recording, and find the recording on the feed screen. However, the T5 and T6 was bit unclear to the participant, because the functionality is hidden, and in order to find the actions you have to press the record to expand the information. However, after that was clear, the participant managed to perform both task sufficently. 
+Participants \verb|A|---less technical---had to familiarize with the setting of the application, thus had a hard start. It took the participant longer than expected to perform T1, however, managed to proceed on the recording. The participant was a bit uncertain whether the recording had started or not. However, the participant was flabbergasted by the rippling effect the recording screen presented. The T2 was somewhat tedious to perform because the participant tried to click on the interface where it says it should be expanded (by swiping). Also, the graph was a bit hard to interact with because the interface above the graph kept moving while performing interactions with the graph. T3 and T4 went fine, the participant filled out the title, description, and a rating and saved the recording, and found the recording on the feed screen. However, T5 and T6 were a bit unclear to the participant, because the records in the list are collaped, and in order to find the actions you have to press the record to expand the information. However, after that figuring out how to expand the records, the participant managed to perform both tasks sufficiently.
 
-Participants \verb|B| outperformed participant \verb|A|, due to the participent were more fimilar with technical systems. The participant managed to start the recording quickly, however, were unsure whether the recording had starting (clicking around on the interface for feedback), untill the ripple effects appeared on the screen. Similar to participant A, participant B clicked on the interface for statistics, rather than swiping. Also, had a hard time to interact with the graph due to the interface moving. The particpent B managed to perform T3-T6 with ease and without any interupts or objections. 
-
-
-\subsection{Discussion}
-
-Conclusively, the tests were not performed to its desired intent, due to the fiddeling in on the recording screen. However, the participant managed to perform most of the tasks regardless, albeit the task T1 and T2 were hard to comprehend. 
-
-Both of the participants had a hard time to understand whether the sensor was collecting data, despite the ripple effects on the screen. Argueably, the user can familiaries with the state of the recording and the ripple effects which indicates sample acquestion, however, to a new user that is bit hard to time understand this. The source of this problem is that the sensor takes some time (i.e., 30-60 seconds) to output the samples, however, the sensor establishment between Nidra and the sensor wrapper occurres imediately. 
-
-Also, the interface to view for expanding the statistics was bit tedeous to understand. 
-
-Besides this, there we no noticably complains by the participant. They found the color scheme of the application to be smooth and fitting, and the application to be moderen. Also, they find stuff to be well organized and were not drowned in selections and actions to perform. All of the functionality is restricted to few and simple actions per screen. 
+Participants \verb|B| outperformed participant \verb|A|, due to the participant was more familiar with technical systems. The participant managed to start the recording quickly, however, was unsure whether the recording had started (clicking around on the interface for feedback) until the ripple effects appeared on the screen. Similar to participant A, participant B clicked on the interface for statistics, rather than swiping, and had a hard time to interact with the graph due to the interface moving. The participant B managed to perform T3-T6 with ease and without any interrupts or objections. 
 
 \subsection{Survey}
-The interview questions were performed after the tasks. The questions followed a PACMAD survey structure, which is a model to identify the usability attributes and are structed into: effectiveness, efficency, statisfaction, learnability, memorability, errors, and cogitive load. We created a survey based on some of the structure, however, we were unable to perform any cogitive load or memoriability tasks during the testing. Hence, the participant filled out the questions regarding: 
+A questionnaire was filled out by the patients after the tests. The questions followed a PACMAD survey structure, which is a model to identify the usability attributes and are structured into: effectiveness, efficiency, satisfaction, learnability, memorability, errors, and cognitive load. We created a survey based on some of the structure; however, we were unable to perform any cognitive load or memorability tasks during the testing. Hence, the participant filled out the questions regarding---where 1 is very-hard/very-bad/not-satisfied, and 5 is very-good/very-easy/very-satisfied: 
 
 \noindent \textbf{Effectiveness \& Efficency}
 \begin{itemize}
-    \item What were your inital thoughts on the application
+    \item What were your initial thoughts on the application
     
     \begin{description}[font=\normalfont\itshape]
-        \item[Participent A:] The application looked nice and simple-
-        \item[Participent B:] 
+        \item[Participent A:] It looked nice and simple.
+        \item[Participent B:] The application seemed very modern and elegant.  
     \end{description}
     
-
-    \item How difficult was it to start a recording (very hard (1)--very easy (5))
+    \item How difficult was it to start a recording
     
     \begin{description}[font=\normalfont\itshape]
-        \item[Participent A:] 1
-        \item[Participent B:] 3
+        \item[Participent A:] 3
+        \item[Participent B:] 4
     \end{description}
 
-    \item How would you rate the feedback you got during a recording (very bad (1)--very good (5))
+    \item How would you rate the feedback you got during a recording 
     \begin{description}[font=\normalfont\itshape]
         \item[Participent A:] 2
         \item[Participent B:] 3
     \end{description}
 
-    \item How difficult was it to stop a recording? (very hard (1)--very easy (5))
+    \item How difficult was it to stop a recording?
     \begin{description}[font=\normalfont\itshape] 
         \item[Participent A:] 5
         \item[Participent B:] 5
     \end{description}
-    \item How difficult was to browse/find previous recordings? (very hard (1)--very easy (5))
+    \item How difficult was to browse/find previous recordings? 
     \begin{description}[font=\normalfont\itshape]
         \item[Participent A:] 3
         \item[Participent B:] 5
     \end{description}
     \item Did you have any encounters were the application did not supply you with enough information?
     \begin{description}[font=\normalfont\itshape]
-        \item[Participent A:]
-        \item[Participent B:] 
+        \item[Participent A:] On the recording screen. 
+        \item[Participent B:] The recording screen could have been more informing, with more text or an introduction of how the process of recording works. Besides this, everything worked fine.
     \end{description}
 \end{itemize}
 
 \noindent \textbf{Satisfaction}
 
 \begin{itemize}
-    \item How satisfied were you with the "journey"? (not satisfied (1)--very satistifed (5))
-    \begin{description}[font=\normalfont\itshape]
-        \item[Participent A:] 3
-        \item[Participent B:] 3
-    \end{description}
-    \item How satisfied were you with this application overall? (Not satisifed (1)--very satisfied (5))
+    \item How satisfied were you with the "journey"?
     \begin{description}[font=\normalfont\itshape]
         \item[Participent A:] 4
+        \item[Participent B:] 4
+    \end{description}
+    \item How satisfied were you with this application overall?
+    \begin{description}[font=\normalfont\itshape]
+        \item[Participent A:] 5
         \item[Participent B:] 4 
     \end{description}
 \end{itemize}
@@ -332,38 +320,42 @@ The interview questions were performed after the tasks. The questions followed a
 \noindent \textbf{Feedback and Improvements}
 
 \begin{itemize}
-    \item How user friendly did you find the application to be? (Not so friendly (1)--Very friendly (5))
+    \item How user friendly did you find the application to be? 
     \begin{description}[font=\normalfont\itshape]
         \item[Participent A:] 4
         \item[Participent B:] 4
     \end{description}
-    \item How would you rate the color palette of the application? (Not so pleasing colors (1)--Very pelasing colors (5))
+    \item How would you rate the color palette of the application? 
     \begin{description}[font=\normalfont\itshape]
         \item[Participent A:] 5
         \item[Participent B:] 5
     \end{description}
-    \item How would you rate the general layout of the application (buttons, text, navigation, etc...)? (Very bad (1)--Very good (5))
+    \item How would you rate the general layout of the application (buttons, text, navigation, etc...)?
     \begin{description}[font=\normalfont\itshape]
-        \item[Participent A:] 4
+        \item[Participent A:] 5
         \item[Participent B:] 5
     \end{description}
     \item Do you have any feedback/improvements to the application itself?
     \begin{description}[font=\normalfont\itshape]
-        \item[Participent A:]
-        \item[Participent B:] 
+        \item[Participent A:] No.
+        \item[Participent B:] Nothing more than I described earlier.
     \end{description}
 \end{itemize}
 
+\subsection{Discussion}
 
-\subsection{Conlusions}
+As for the observations, the participant managed to perform most of the tasks, albeit the task T1 and T2 were hard to comprehend. Both participants had difficulties in understanding whether the sensor was collecting data, despite the ripple-effects on the screen. The source of this problem is that the sensor some times takes up to 30-60 seconds to start collecting data, making the user wait on the ripple-effect that indicates that the recording has started. Arguably, the user can familiarise with the state of the recording and the ripple-effects; however, to a new user that is not feasible. Also, the interface for statistics was a bit tedious to work with, mainly due to the swiping effect to show the interface and the interactions with the graph making the interface move. Besides this, there were no noticeable complains by the participant. 
 
-To summarize, we conducted an experiement on two participant with predefined set of tasks in order to measure the user-friendliess of the application (Nidra). Most of the tasks were regarding the functionality of recording, sharing, and analyzing. The participants were presented with a brief overview of the functionality of the application before starting the testing. The tests were mainly designed to evalute comprehensibility and usability of the application. During the testing, we observed the interactions the participant's made for each tasks and followed up with a survey for them to answer. Based on this, we gained broader understading of the user-friendliess of the application.
+As for the survey, the observations reflect the answers in the questionnaire. Most of the poor feedback was directed towards the recording screen being less informative than expected. They found the color scheme of the application to be smooth and fitting, and the application to be modern. Also, they found the general layout to be well organized and overall the application to be user-friendly.
 
-To conclude, the participant found the application to be pleasent and practical to use. However, their feedback to the recording screen were unforseen. In our prespective, the amount of action that can be performed in that particilar screen, is limited to three actions (e.g., starting the screen, viewing the statistics, and stopping the recording). However, the participants were not familiarized with the setting of the recording functionality, in which, we could have introduced the functionality of the recording even further. In retrospect, the application might seem lacking when it comes to informing the users on if the recording has started. Besides this functionality, the participant found the rest of the application to be pleasent. Noteworthy, the user is stricted to perform the maximum of three actions per screen, which is cautious to reduce the number of actions that can be performed on a screen and for the simplicity of the application. 
 
-To have extended this experiement, we could have invoked tests to measure the cognative load and memorability of the application. As such, we could have determined whether the application is to teadous to use in the longer run. 
+\subsection{Conlusion}
 
-However, the lack of participants makes it hard to conclude on the experiment and the goal of the tests. Final remarks, are that is room for improvements.
+To summarize, we conducted an experiment on two participants with a predefined set of tasks in order to measure the user-friendliness of the application (Nidra). Most of the tasks were regarding the functionality of recording, sharing, and analyzing. The participants were presented with a brief overview of the functionality of the application before starting the testing. The tests were mainly designed to evaluate the comprehensibility and usability of the application. During the testing, we observed the interactions the participants made for each task and followed up with a survey for them to answer. Based on this, we gained a broader understanding of the user-friendliness of the application.
+
+To conclude, the tests were created to measure the comprehensibility and the useability. Overall, the application suffices these measurements; however, the recording screen can be improved in the future. In our perspective, the amount of action that can be performed in that particular screen is limited to three actions (e.g., starting the screen, viewing the statistics, and stopping the recording). However, the participants were not familiarized with the setting of the recording functionality, in which we could have introduced the functionality of the recording even further (e.g., with more text or an introduction before the recording screen). Besides this functionality, the participants found the rest of the application to be pleasant. Noteworthy, the user is restricted to perform the maximum of three actions per screen, in order to reduce the number of actions that can be performed on a screen and for the simplicity of the application. 
+
+To have extended this experiment, we could have invoked tests to measure the cognitive load and memorability of the application. As such, we could have determined whether the application is too tedious to use in the longer run. However, the lack of participants made it hard to evaluate the user-friendliness of the application in the long run.
 
 \section{Experiment D: Creating a Simple Module}
 One of the requirements in this thesis is to provide an interface for the developers to create modules, which allows for data enrichment and extended functionality. In order to test for this, we found one participant that had experience in software development, and with some experience in Android development.
@@ -374,7 +366,7 @@ Before the participant started on creating a new module, we introduced the conce
 
 
 \subsection{Observations}
-Although the first task seem intuitive, the participant had a rough start. The participant was aware that module-application received data in a bundle, and the data extraction could be performed by specifying the id. However, for each time the participant compiled, the module-application crashed---that is because the bundle is empty if the module-application is launched directly, and not through the Nidra application (which supplies the module with the data). However, that was corrected quite quickly. 
+Although the first task seem intuitive, the participant had a rough start. The participant was aware that module-application received data in a bundle, and the data extraction could be performed by specifying the key. However, for each time the participant compiled, the module-application crashed---that is because the bundle is empty if the module-application is launched directly, and not through the Nidra application (which supplies the module with the data). However, that was corrected quite quickly. 
 
 The next challenge for the participant was to understand how to decode the JSON string into valid objects in Java. The participant studied the structure of the string received on the launch and managed to come up with a solution. First, the participant had created an object which encapsulates the record and a list of samples. Then, three separate objects (i.e., record, sample, and user) had to be created that were identical to the data structure. In the end, the participant could decode the JSON string into a list and retrieve the necessary data.
 
@@ -382,17 +374,17 @@ Once the participant had all of the data, the final task was easily accomplished
 
 \subsection{Results}
 
-At the time of the experiement, there were five records on the mobile device---and the highest was the record named \textit{Record 17} with \textit{163 samples}. The participant's module display the same information. Thus, the experiement was successful conducted. It took the participant approximately 20 minutes to develop this module-application, where most of the time went on parsing the data.
+At the time of the experiement, there were five records on the mobile device and the highest was the record named \textit{Record 17} with \textit{163 samples}. The participant's module display the same information. Thus, the experiement was successful conducted. It took the participant approximately 20 minutes to develop this module-application, where most of the time went on parsing the data.
 
 \subsection{Discussion}
 
 The participant managed to create a module with some hurdles in the way. The first noticeable occurrence was after compiling the application, the participant had to open its module through Nidra in order to get the data. To overcome this, there are two ways to improve the relationship between Nidra and a module. One way is to establish an IPC connection (discussed in the design chapter) with the use of a binder, and send the data from Nidra to the application through the IPC connection. The second way is to cache the data in the module-application for the temporary storage of the data. However, both methods increase the complexity of module-application and Nidra. 
 
-The second noticeable occurrence was the parsing of the JSON data. JSON is a bit tedious to work with in Java. As of now, there is no direct support for parsing JSON in Java; hence, third-party libraries have to be used in order to do so. 
+The second noticeable occurrence was the parsing of the JSON data, as JSON is a bit tedious to work with in Java. As of now, there is no direct support for parsing JSON in Java; hence, third-party libraries have to be used in order to do so. 
 
 \subsection{Conclusion}
 
-As a result of the observation and time spent initializing a module-application, we have included a template code (found in Appendix C) to make module implementation easier for future developers. To conclude this experiment, the participant was able to create a new module that used the data from Nidra to display the record with the highest sample count. As such, the facilitation of modules allows future developers to create modules, without having to understand how Nidra operates; besides the structure and how to receive the data.
+As a result of the observation of the time spent initializing a module-application, we have included a template code (found in Appendix C) to make module implementation easier for future developers. To conclude this experiment, the participant was able to create a new module that used the data from Nidra to display the record with the highest sample count. As such, the facilitation of modules allows future developers to create modules, without having to understand how Nidra operates---besides the data structure and how to receive the data---to create modules that can extend the functionality of Nidra.
 
 
 %Any changes commited in the module or Nidra, is not reflected with each other. When changing the code in the module application, 
