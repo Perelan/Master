@@ -909,6 +909,37 @@
       \verb https://developer.android.com/topic/libraries/architecture/livedata
       \endverb
     \endentry
+    \entry{fredrik}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=19641952ee562e923d351452aea63ed1}{%
+           family={Løbberg},
+           familyi={L\bibinitperiod},
+           given={Fredrik},
+           giveni={F\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Oslo}%
+      }
+      \strng{namehash}{19641952ee562e923d351452aea63ed1}
+      \strng{fullhash}{19641952ee562e923d351452aea63ed1}
+      \strng{bibnamehash}{19641952ee562e923d351452aea63ed1}
+      \strng{authorbibnamehash}{19641952ee562e923d351452aea63ed1}
+      \strng{authornamehash}{19641952ee562e923d351452aea63ed1}
+      \strng{authorfullhash}{19641952ee562e923d351452aea63ed1}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Measuring the Signal Quality of Respiratory Effort Sensors for Sleep Apnea Monitoring: A Metric Based Approach}
+      \field{type}{mathesis}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://www.duo.uio.no/handle/10852/62777
+      \endverb
+      \verb{url}
+      \verb https://www.duo.uio.no/handle/10852/62777
+      \endverb
+    \endentry
     \entry{mvvm}{article}{}
       \name{author}{1}{}{%
         {{hash=01450151ccae42465fbb4320b80e5fbe}{%

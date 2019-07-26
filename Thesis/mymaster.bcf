@@ -2041,6 +2041,7 @@
     <bcf:citekey order="64">androidgraph</bcf:citekey>
     <bcf:citekey order="65">androidgraph</bcf:citekey>
     <bcf:citekey order="66">room</bcf:citekey>
+    <bcf:citekey order="67">fredrik</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
