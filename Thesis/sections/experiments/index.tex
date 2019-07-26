@@ -366,30 +366,34 @@ To have extended this experiement, we could have invoked tests to measure the co
 However, the lack of participants makes it hard to conclude on the experiment and the goal of the tests. Final remarks, are that is room for improvements.
 
 \section{Experiment D: Creating a Simple Module}
-One of the goals of the application is to provide an interface for the developers to create modules, which allows for data enrichment and extended functionality. In order to test for this, we found one participant that had experience in software development, and with some experience in Android development. The tests was for the participant to create a new module in our application, which utilized the records in order to find the record that has the highest number of samples. The development of a user-interface was not evaluted, thus displaying the correct answer on the screen was sufficent. 
+One of the requirements in this thesis is to provide an interface for the developers to create modules, which allows for data enrichment and extended functionality. In order to test for this, we found one participant that had experience in software development, and with some experience in Android development.
 
-Before the the participant started on creating a new module, an simple introduction on the concepts and data was performed. Mainly, the fact that Nidra formats the all of the data (e.g., records and corresponding samples) into a JSON string, and the JSON string is put into a bundle with the key \textit{data}, and sent up on launching the module-application (with Intent). The data structure were also introduced, i.e., an array of records with meta-data and correlated samples.
+ The tests consisted of creating a new module that utilizes the records from Nidra, and to find the record with the highest number of samples. Moreover, it was sufficient to display the correct answer on the screen (the development of a user-interface was not evaluated). Based on these tests, we will evaluate the procedure and the difficulties of creating a new module. 
 
-\subsection{Process}
+Before the participant started on creating a new module, we introduced the concepts and data structure of Nidra. Mainly, that Nidra formats the all of the data (e.g., records and corresponding samples) into a JSON string, and the JSON string is put into a bundle with the key \textit{data}, and sent upon launch of the module-application. 
 
-The participent created a new Android project named \textit{TestModule}. For the simplicity, all of the development occurred in one activity. The first task was to get the JSON string that was bundled on launch in an Intent with the key of \textit{data}. The second task was to decode the data, the participant used  \verb|Gson| library in order to parse the data accordingly to the struture. And the final task was to display the results, which the participant did by iterating through the records and finding the one with the highest sample count.
 
 \subsection{Observations}
-Despite the tasks seemlingly looks easy of making a simple module, the participant had a rough start. The participant was aware that module-application received data in a bundle, and the extraction could . However, for each time the participant compiled, the module-application crashed. That is because the bundle is empty if the module-application is launched directly, and not through the Nidra application (while supplies the module with the data). Albeit, the participant managed to handle this error early. 
+Although the first task seem intuitive, the participant had a rough start. The participant was aware that module-application received data in a bundle, and the data extraction could be performed by specifying the id. However, for each time the participant compiled, the module-application crashed---that is because the bundle is empty if the module-application is launched directly, and not through the Nidra application (which supplies the module with the data). However, that was corrected quite quickly. 
 
-The next challenge for the participant was to understand how to transform the JSON string into valid objects in Java. First, the participant had to create an object which encapsulates the record and and a list of samples (\verb|ExportObject|). Then, three seperate objects (i.e., record, sample, and user) had to be created, that were identical to the payload. As such, the participant could decode the JSON string into an list of the \verb|ExportObject|, and retrieve the necessary data.
+The next challenge for the participant was to understand how to decode the JSON string into valid objects in Java. The participant studied the structure of the string received on the launch and managed to come up with a solution. First, the participant had created an object which encapsulates the record and a list of samples. Then, three separate objects (i.e., record, sample, and user) had to be created that were identical to the data structure. In the end, the participant could decode the JSON string into a list and retrieve the necessary data.
 
-Once the participant had all of the data, the rest of the tasks was simily accomplished. THe participant iterated through the list of records, and found the one with the highest sample count, and displayed it on the screen. 
+Once the participant had all of the data, the final task was easily accomplished. The participant iterated through the list of records, and found the one with the highest sample count, and displayed it on the screen. 
 
 \subsection{Results}
 
-In Figure X, the module-application is illustrated. As of the experiement, there were five records on the mobile device---and the highest was the record named \verb|Record 17| with \verb|163| samples---thus, the experiement was successful conducted. It took the participant approximately 30 minutes to develop this module-application, where most of the time went to parse the data.
+At the time of the experiement, there were five records on the mobile device---and the highest was the record named \textit{Record 17} with \textit{163 samples}. The participant's module display the same information. Thus, the experiement was successful conducted. It took the participant approximately 20 minutes to develop this module-application, where most of the time went on parsing the data.
 
-\subsection{Discussion \& Conlusion}
+\subsection{Discussion}
 
-Conclusively, the participant managed to create a module, with some hurdles in the way. Noticably, while compling the project the participant had to open its module through the Nidra application in order to get the data. There are two ways to prevent this from happening, one way is to establish an IPC (discueed in the design chapther) with the use of an AIDL file and output the data from Nidra to the application through the IPC connection. The second way is to cache the data in the module-application, for temporary storage of the data. However, both methods increases the complexity of the module-application. Nonetheless, the former improvement can be made in Nidra.
+The participant managed to create a module with some hurdles in the way. The first noticeable occurrence was after compiling the application, the participant had to open its module through Nidra in order to get the data. To overcome this, there are two ways to improve the relationship between Nidra and a module. One way is to establish an IPC connection (discussed in the design chapter) with the use of a binder, and send the data from Nidra to the application through the IPC connection. The second way is to cache the data in the module-application for the temporary storage of the data. However, both methods increase the complexity of module-application and Nidra. 
 
-The second noticable occurances, was the the parsing of the JSON data. JSON is a bit tedeous to work with in Java. As of now, there is no direct support for parsing JSON in Java, hence third-party libraries has to be used in order to do so. To combat the start-up face of a new module-application, we will include boilplate code (found in Appendix C), to make module implementation easily comprehenceable for future developers.
+The second noticeable occurrence was the parsing of the JSON data. JSON is a bit tedious to work with in Java. As of now, there is no direct support for parsing JSON in Java; hence, third-party libraries have to be used in order to do so. 
+
+\subsection{Conclusion}
+
+As a result of the observation and time spent initializing a module-application, we have included a template code (found in Appendix C) to make module implementation easier for future developers. To conclude this experiment, the participant was able to create a new module that used the data from Nidra to display the record with the highest sample count. As such, the facilitation of modules allows future developers to create modules, without having to understand how Nidra operates; besides the structure and how to receive the data.
+
 
 %Any changes commited in the module or Nidra, is not reflected with each other. When changing the code in the module application, 
 
