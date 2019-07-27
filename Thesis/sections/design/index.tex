@@ -1,20 +1,9 @@
 
 \chapter{Analysis and High-Level Design}
 
-It is the goal of this thesis to enable detection of sleep-related illnesses 
-with the aid of an Android device and low-cost sensors, and to further analyze 
-and evaluate sleep- and breath-related patterns. We developed an application, 
-called \textit{Nidra}, which attempts to collect, analyze and share data collected 
-from external sensors, all on a mobile device. Also, Nidra acts as a platform for 
-modules to enrich the data, thus extending the functionality of the application.
+It is the goal of this thesis to enable detection of sleep-related disorders with the aid of an Android device and low-cost sensors, and to further analyze and evaluate sleep- and breath-related patterns. We developed an application, called \textit{Nidra}, which attempts to collect, analyze, and share data collected from external sensors, all on a mobile device. Also, Nidra acts as a platform for modules to enrich the data, thus extending the functionality of the application.
 
-The motivation behind this application is to provide an interface for patients 
-to potentially run a self-diagnostic from home, and to aid 
-researchers and doctors with analysis of sleep- and breathing-related illnesses 
-(e.g., Obstructive Sleep Apnea). An overview of the Nidra application pipeline 
-can be found in Figure x, beginning with data acquired from a sensor, and ending 
-with the data in the Nidra application. As for now, Nidra consists of three 
-main functionalities, each related to the requirements defined in Section [Problem Statement]. 
+The motivation behind this application is to provide an interface for patients to potentially run a self-diagnostic from home, and to aid researchers and doctors with analysis of sleep- and breathing-related illnesses (e.g., Obstructive Sleep Apnea). An overview of the Nidra application pipeline can be found in Figure \ref{fig:parts}, beginning with data acquired from a sensor, and ending with the data in the Nidra application. As for now, Nidra consists of three main functionalities, each related to the requirements defined in the problem statement: 
 
 \begin{enumerate}
     \item The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.
@@ -22,7 +11,7 @@ main functionalities, each related to the requirements defined in Section [Probl
     \item The application should ensure a seamless and continuous data stream, uninterrupted from sensor disconnections and human disruptions.
 \end{enumerate}
 
-This chapter will give a detailed look at the design of Nidra, including the tasks which constitute the structure of the application, the seperate concerns in relation to the tasks, and the structure of the data in the application.
+This chapter will give a detailed look at the design of Nidra, including the tasks which constitute the structure of the application, the separate concerns in relation to the tasks, and the structure of the data in the application.
 
 \section{Requirement Analysis}
 
@@ -31,7 +20,7 @@ This chapter will give a detailed look at the design of Nidra, including the tas
 \section{High-Level Design}
 
 \subsection{Task Analysis}
-Task analysis is a methodology to facilitate the design of complex systems. Hierarchical task analysis (HTA) is an underlying technique that analyzes and decomposes complex tasks such as planning, diagnosis, and decision making into specific subtasks \cite{ta}. In Figure \ref{fig:hta_overview}, an illustration of the the tasks of the application is presented. This Subsection will introduce these tasks, which are an integral part to the development of the application.
+Task analysis is a methodology to facilitate the design of complex systems. Hierarchical task analysis (HTA) is an underlying technique that analyzes and decomposes complex tasks such as planning, diagnosis, and decision making into specific subtasks \cite{ta}. In Figure \ref{fig:hta_overview}, an illustration of the tasks of the application is presented. This section introduces these tasks, which are an integral part of the development of the application.
 
 \begin{figure}
     \centering
@@ -43,7 +32,7 @@ Task analysis is a methodology to facilitate the design of complex systems. Hier
 \input{sections/design/systemtasks}
 
 \section{Seperation of Concerns}\label{design_soc}
-Separation of concern is a paradigm that classifies an application into concerns at a conceptual and implementational level. It is beneficial for reducing complexity, improving understandability, and increasing reusability \cite{soc}. The concerns in this thesis are the individual tasks defined in task analysis. Each concern is conceptualized with a graph of components, the functionality of each component when combined constitutes a structure. The structure of each concern is derived based on research and development. In this Section, we will analyze and decompose the tasks defined in task analysis into subtasks (hereafter: components), where each component is functionality   
+Separation of concern is a paradigm that classifies an application into concerns at a conceptual and implementational level. It is beneficial for reducing complexity, improving understandability, and increasing reusability \cite{soc}. The concerns in this thesis are the individual tasks defined in the task analysis. Each concern is conceptualized with a graph of \textit{components}, the functionality of each component when combined constitutes a {structure}, that is derived based on research and development. In this section, we propose a solution for the structure of each concern, by analyzing and decomposing the tasks defined in task analysis into components.
 
 \input{sections/design/soc}
 
