@@ -10,6 +10,31 @@ In the field of detecting and diagnosing sleep-related breathing disorders, we c
 Finally, we performed experiments on the application to determine whether the system requirements were sufficient. The experiments ranged from collecting respiration data for analysis of musical absorption, testing the application over an extended period, creating a simple module-application, including testing the application on real users. The results and observation made during the testing, allowed us to gain a broader understanding of the application, as well as improvements that can be made--discussed in future work. 
 
 \section{Contribution}
+Over the course of this thesis, we designed and implemented an application for collecting, sharing, and analyzing breathing data, called Nidra. Also, we provided an extensible solution for developers to create modules that enrich the data and the functionality of Nidra. The motivation of application is to aid in collecting breathing data with the Flow sensor kit over an extended period. The patient should be able to send the records with breathing data to researchers/doctors, in which they can analyze and diagnose the patient for sleep apnea. However, the application can also be used in other fields of study (e.g., physical activity)  due to its extensible approach of design. As defined in our problem statement, we set three research goals with three system requirements, in the following sections, we will reinstate them and describe how this thesis contribute towards them.
+
+
+\subsection{System Requirements}
+In the beginning of this chapther, we reinstated the system requirements of this thesis. The purpose of the experiements were to test the requirements in order to evaluate on whether the requirements suffice towards the goal of this thesis. Below, we describe the goals and discuss how the outcome of the experiments has affected our perspective of the application.
+
+\begin{enumerate}
+    \item \textit{The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.}
+    
+    Experiments A, B, and C used the interface to (1) record breathing data. From the results of these experiements, we realize that the functionality of recording works as intended. The experiements proved that the application can collect data in an crowded environment with other mobile devices interfering with the results, and that the application is capable of collecting data over an extended period. However, the user-interface for this particilar screen, can be improved in the future. Moreover, in Experiment A and C were able to test the functionality of both (2) presting the results on a time-series graph and (3) sharing the records across applications by using a media-application (e.g., mail). 
+
+    \item \textit{The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.}
+    
+    Experiment D was most considered with testing the feaseability of creating and adding a new module into Nidra. The participant in the experiement did not examine the code of the Nidra in order to create a module-application that use the data provided by Nidra. With simple instruction of how the data structure that are sent on launch to the module, the participant were able to create a simple module that extend the functionality of Nidra. This proves that future developers can create any form applications without having to understand how Nidra operates. However, while it were bit cumbersume to parse the data that was sent to the application, and having to start the mobile-application through Nidra, the functionality worked as intended. Thus, we provide an template to follow for future developers (in Appendix C). 
+    
+    \item \textit{The application should ensure a seamless and continuous data stream, uninterrupted from sensor disconnections and human disruptions.}
+    
+    In the analysis of experiement A, we observe that various mobile devices disconnected during the concert. Even though, there is gaps of missing data, the recording is able to reinitate with the sensor source during recording, without having to restart the recording session. As such, every samples count towards a complete recording, in which viable samples are accquired. This provies that the application is capable of providing an continous data stream with the sensor source, even when occurances of human disruptions or sensor disconnections happens. 
+    
+\end{enumerate}
+
+Besides few subtle improvements that can be made to Nidra, the system requirements suffice towards the goal of making an application that can record, share, and analyze breathing data with the Flow sensor over an extended period. Also, the possbilies for future developers to create independent applications, witout having to operate with Nidra, in which provides extended functionality and enrich the collected data in Nidra. 
+
+\subsection{Goals}
+
 In the problem statement of this thesis, we defined three research goals. In this Section, we restate the goals in together with how our work solves the goals. 
 
 \begin{description}
