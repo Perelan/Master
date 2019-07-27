@@ -10,7 +10,7 @@ In this chapter, experiments are conducted in order to evaluate the application 
 
 The experiments are designed to test the application in (A) a crowded environment with multiple Flow sensors and without different Android OS versions; (B) recording over an extended period to measure battery consumption; (C) user-friendliness on participants; and (D) creating a simple module. When evaluating the experiments, the observations and the results are the most interesting metric as it provides a better perception of whether the design choices (Chapter 4) and implementation (Chapter 5) suffice towards the goal of this thesis. Moreover, the observations and results allow for discussion on improvements which can be made in future work.  
 
-
+\newpage
 \section{Experiment A: Orchestral Concert to Analyze Musical Absorption using Nidra to Collect Breathing Data}
 This experiment was conducted in collaboration with master student Joachim Dalgard at the University of Oslo at \textit{RITMO: Centre for Interdisciplinary Studies in Rhythm, Time and Motion}. 
 
@@ -390,3 +390,15 @@ Moreover, as a result of the observation of the time spent initializing a module
 
 %Any changes commited in the module or Nidra, is not reflected with each other. When changing the code in the module application, 
 
+
+\section{Summary of Results}
+
+In this chapter, we conducted various experiements with  the application (Nidra). The experiements consisted of testing the application in a real-life and crowded environment; recording over an extendned period to measure the battery consumption; user-testing of the application; and creating a simple module. Also, the experiements were constructed in order to evaluate the system requirements, which we will discuss in Section X; however, in this section, we reinstate the main findings from the results of the experiements.
+
+As for the first experiment, we were able to test the application in a real-life and crowded environment with the opportunity of attending a concert that had approximately 800 attendees the first day 1500 attendees the second day. As for the result of the experiment, we were able to test the application on various mobile devices running different Android version. Some of the mobile devices were able to collect all of breathing data throughout the concert, while others disconnected during recording. However, Nidra was able to reconnect with the disconnected sensor sources, resulting in that the worst-case of sample loss was no more than 40\%. As such, the functionality of reconnection with the sensor source on disconnects allows for more meaningful analysis of the data.
+
+As for the second experiment, the application was tested for battery consumption over the period of 9-hours of recording. To enable the recording functionality, the application (Nidra) operates with two other applications (DSDM and Flow Sensor Wrapper) that run in the background, in which the Flow sensor transmits data over BlueTooth. As for the results of the experiment, the recording process consumes approximately \textit{155 mAh}; thus, after 9-hours of recording the mobile device has consumbed \textit{1395 mAh} of its battery. Moreover, the average battery capacity of low-end mobile devices is approximately 2000 mAh. As such, the user has enough battery to operate the mobile device after the recording has stopped. 
+
+As for the third experiment, we evaluated the user-friendliness of the application based on comprehensibility and usability. In the experiment, we had two participants with different knowledge and perspective of technology, that tested the application while we observed the interactions. As for the results of the experiment, the participants managed to complete all of the tasks that were defined, sufficiently; however, some minuscule complications made some of the tasks harder to comprehend. Overall, the participants found the application to be user-friendly and easy to use. 
+
+As for the final experiment, we allowed a participent to create a module application that used the records from Nidra in order to find the record with the highest sample count. As for the results of the experiment, the participant managed to create a module that fulfilled the goals; however, the time that took parsing the data, lead us to create a template (found in Appendix C), which expedite the creation of future modules. 
