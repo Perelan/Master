@@ -85,8 +85,8 @@ Moreover, from the thesis by Løberg \cite{fredrik}, we can group the signals st
 
 Figure 6.1 has many disconnections (further analyzed later) with unstable breathing. There are multiple occurrences of deep breathing throughout the recording, with some shallow breathing at the start and end of the recording. Hypothetically, deep breathing might be a sign of musical absorption; however, we have no concrete analysis of this matter, and it is out of the scope for this experiment motivation. Moving on, Figure 6.2 shows fewer disconnects compared to Figure 6.1, and with much more concise breathing patterns and resemblance to normal breathing. Although, there are noticeably deep breathing throughout the recording, with a few shallow breathings at the beginning. Conclusively, both Figures shows no signs for no breathing during the recording. However, there are signs of normal breathing, with few instances of shallow and deep breathing. 
 
-\subsection{Analysis \& Discussion}
-In this section, we will discuss all twelve records by analyzing the data. It is of special interest to find occurrences of disconnections---when the samples are stagnant in more extended period---and the time the sensor is disconnected during the recording.
+\subsection{Analysis}
+In this section, we discuss all twelve records by analyzing the data. It is of special interest to find occurrences of disconnections---when the samples are stagnant in more extended period---and the time the sensor is disconnected during the recording.
 
 \begin{table}[!h]
 \begin{center}
@@ -156,12 +156,15 @@ Loss\ Percentage = (1 - \frac{Samples\ Count}{Expected\ Sample\ Count}) * 100
 
 The device models A, E, and F are noticeably accurate (with some noises which presumably occurred during parsing); there are no apparent disconnects during the recording for these models both of the days. However, model B and C show a high loss count on the first day---with a disconnection count of 13 of which the disconnection time is 19 minutes and 14 seconds (34\% loss percentage) for model B, and a disconnection count of 7 of which the disconnection time is 8 minutes and 20 seconds (19\% loss percentage) for model C---while on the second day, the loss percentage decreased with 31\% for model B and 18.95\% for model C, resulting in a close to  0\% loss percentage for both devices; noticeably, model B shows four disconnects during the recording, however, they only last for 1 minute and 25 seconds in total. Moreover, device model D shows an alarmingly high loss percentage, which is reflected in the disconnection time, both of the days. The mobile device has a loss percentage of 32\% on the first day and 40\% the second day, that is an increase of 8\% of the day before. 
 
-Based on the analysis, we can see a variety of behavior of disconnections on the mobile devices for the two dates. An assumption is that the mobile device or Flow sensor is malfunctioned; however, we have no data that indicates whether a sensor was connected with the same mobile device for the both dates---we had the data for the first date, however, the sensors and mobile devices were switched at the second date because of unforeseen events---therefore, this assumption is debunked. Moreover, we see that model D (Google Pixel XL, version 9.0) is unstable for both of the days, in contrast to the other device models which ran a lower Android version. However, yet again, we no accurate data that can prove that the Android version, mobile device, or the Flow sensor is causing the disconnects---albeit, this can be further tested in the lab.
+\subsection{Discussion}
+
+Based on the analysis, we can see a variety of behavior of disconnections on the mobile devices for the two dates. An assumption is that the mobile device or Flow sensor is malfunctioned; however, we have no data that indicates whether a sensor was connected with the same mobile device for the both dates---we had the data for the first date, however, the sensors and mobile devices were switched at the second date because of unforeseen events---therefore, this assumption is debunked. Moreover, we see that model D (Google Pixel XL, version 9.0) is unstable for both of the days, in contrast to the other device models which ran a lower Android version. However, yet again, we have no accurate data that can prove that the Android version, mobile device, or the Flow sensor is causing the disconnects---albeit, this can be further tested in the lab. Moreover, the ability of reconnecting with the sensor source on disconnects, shows that data obtained from the recording is more meaningful (worst-case 40\% of the data was lossed) on analysis.
+
 
 \subsection{Conclusion}
 To summarize the experiment, we were able to test the application in a real-life and crowded environment. The application managed to record samples that lasted up to 1 hour with the Flow sensor and various device models with different Android OS versions. However, one of the application crashed, and we were unable to find the source of the problem. Based on the samples from the records, it is identified that the Flow sensor has a tendency of disconnecting, but the application managed to reconnect with the sensor during the recording. In the end, the records were successfully shared across applications, which enabled us to analyze the recordings.  
 
-To conclude, we will evaluate whether the tests sufficed the motivation of the experiement:
+To conclude, we evaluate whether the tests sufficed the motivation of the experiement:
 
 \begin{enumerate}
     \item \textit{test the application in a real-life and crowded environment, and analyze whether other mobile devices interfere or obstruct with the signals between the collecting sensors and mobile devices.}
@@ -220,7 +223,7 @@ To summarize, in this experiment, we used the recording functionality in Nidra. 
 To conclude, the results of the experiments show that the requirements for recording over an extended period are satisfied. The application can collect data from the Flow sensor, and it is sufficient enough to do it for an extended period. The energy consumption might seem high; however, that is reflected by three applications running simultaneously in the background and data being collected over BlueTooth. Nonetheless, the experiment was successfully conducted, with no apparent form for disconnects or abruptions during the recording. 
 
 \section{Experiment C: Performing User-Tests}
-One goal of this thesis is that it should be user-friendly for patients to use and understand the functionality of Nidra. To evaluate whether this goal has been achieved, we found two participants that agreed to partake in the experiment. One of these participants was not proficient in the use of modern technology, while the other participant was tech-savvy\footnote{well proficient in the use of modern technology.}. For simplicity, we will refer to the participant as participant \verb|A| and \verb|B|, respectively. 
+One goal of this thesis is that it should be user-friendly for patients to use and understand the functionality of Nidra. To evaluate whether this goal has been achieved, we found two participants that agreed to partake in the experiment. One of these participants was not proficient in the use of modern technology, while the other participant was tech-savvy\footnote{well proficient in the use of modern technology.}. For simplicity, we refer to the participant as participant \verb|A| and \verb|B|, respectively. 
 
 The process of this experiment consisted of three parts: a presentation of the application; testing the function of recording, sharing, analyzing; and a survey to evaluate the experience. 
 
@@ -348,6 +351,7 @@ As for the observations, the participant managed to perform most of the tasks, a
 
 As for the survey, the observations reflect the answers in the questionnaire. Most of the poor feedback was directed towards the recording screen being less informative than expected. They found the color scheme of the application to be smooth and fitting, and the application to be modern. Also, they found the general layout to be well organized and overall the application to be user-friendly.
 
+A proposition is to enlargen the recording button and provide more informative text on the recording screen. As briefly discussed, a possibility is to create an introduction screen, that showcases the functionality of Nidra, the first time the user starts the application. Moreover, the statistics interface can be moved into a separate screen, to preventing the interface from moving while interacting with the graph.
 
 \subsection{Conlusion}
 
@@ -359,7 +363,7 @@ To conclude, the tests were created to measure the comprehensibility and the use
 \section{Experiment D: Creating a Simple Module}
 One of the requirements in this thesis is to provide an interface for the developers to create modules, which allows for data enrichment and extended functionality. In order to test for this, we found one participant that had experience in software development, and with some experience in Android development.
 
- The tests consisted of creating a new module that utilizes the records from Nidra, and to find the record with the highest number of samples---it was sufficient to display the correct answer on the screen (the development of a user-interface was not evaluated). Based on these tests, we will evaluate the procedure and the difficulties of creating a new module. 
+ The tests consisted of creating a new module that utilizes the records from Nidra, and to find the record with the highest number of samples---it was sufficient to display the correct answer on the screen (the development of a user-interface was not evaluated). Based on these tests, we evaluate the procedure and the difficulties of creating a new module. 
 
 Before the participant started on creating a new module, we introduced the concepts and data structure of Nidra. Mainly, that Nidra formats the all of the data (e.g., records and corresponding samples) into a JSON string, and the JSON string is put into a bundle with the key \textit{data}, and sent upon launch of the module-application. 
 
@@ -379,7 +383,7 @@ At the time of the experiement, there were five records on the mobile device and
 
 The participant managed to create a module with some hurdles in the way. The first noticeable occurrence was after compiling the application, the participant had to open its module through Nidra in order to get the data. To overcome this, there are two ways to improve the relationship between Nidra and a module. One way is to establish an IPC connection (discussed in the design chapter) with the use of a binder, and send the data from Nidra to the application through the IPC connection. The second way is to cache the data in the module-application for the temporary storage of the data. However, both methods increase the complexity of module-application and Nidra. 
 
-The second noticeable occurrence was the parsing of the JSON data, as JSON is a bit tedious to work with in Java. As of now, there is no direct support for parsing JSON in Java; hence, third-party libraries have to be used in order to do so. 
+The second noticeable occurrence was the parsing of the JSON data, as JSON is a bit tedious to work with in Java. As of now, there is no direct support for parsing JSON in Java; hence, third-party libraries have to be used in order to do so. Hence, we included a template (in Appendix C), to reduce the setup time for new modules.
 
 \subsection{Conclusion}
 
@@ -393,7 +397,7 @@ Moreover, as a result of the observation of the time spent initializing a module
 
 \section{Summary of Results}
 
-In this chapter, we conducted various experiements with  the application (Nidra). The experiements consisted of testing the application in a real-life and crowded environment; recording over an extendned period to measure the battery consumption; user-testing of the application; and creating a simple module. Also, the experiements were constructed in order to evaluate the system requirements, which we will discuss in Section X; however, in this section, we reinstate the main findings from the results of the experiements.
+In this chapter, we conducted various experiements with  the application (Nidra). The experiements consisted of testing the application in a real-life and crowded environment; recording over an extendned period to measure the battery consumption; user-testing of the application; and creating a simple module. Also, the experiements were constructed in order to evaluate the system requirements, which we discuss in Section X; however, in this section, we reinstate the main findings from the results of the experiements.
 
 As for the first experiment, we were able to test the application in a real-life and crowded environment with the opportunity of attending a concert that had approximately 800 attendees the first day 1500 attendees the second day. As for the result of the experiment, we were able to test the application on various mobile devices running different Android version. Some of the mobile devices were able to collect all of breathing data throughout the concert, while others disconnected during recording. However, Nidra was able to reconnect with the disconnected sensor sources, resulting in that the worst-case of sample loss was no more than 40\%. As such, the functionality of reconnection with the sensor source on disconnects allows for more meaningful analysis of the data.
 

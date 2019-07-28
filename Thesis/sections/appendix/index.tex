@@ -254,18 +254,63 @@ As part of the discussion of the module design, the records is sent to the modul
 
 \chapter{Flow Sensor Wrapper}
 
-\section{Implementation}
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.7]{images/Flow_Imp.pdf}
     \caption{Implementation of recording functionality (A): start recording}
-    \label{fig:impl_recordingA}
+    \label{fig:impl_flowsensor}
 \end{figure}
+
+A description of flow sensor wrapper is described in Section \ref{imp:flowsensor}. In the following sections, we describe the functionality of the sensor wrapper by separating them into following actions: (A) starting the data acquisition; (B) handle the samples from the sensor; and (C) stopping the data acquistion. The flow for the actions is presented in Figure \ref{fig:impl_flowsensor}.
+
+\section{Implementation}
+
+
+\subsection{Action A: Starting the Data Acquistion}
+Action A is to start the data acquestion based on the command sent by 
+
+\begin{itemize}
+    \item[A.1] A broadcast from the DSDM with a Intent of \textit{Start} is sent to the \verb|WrapperService|.
+    \item[A.2] Within the \verb|WrapperService|, a binder between the between this service component and the DSDM is created (which will be used for sending data by the Flow sensor). Moreover, a new thread for the \verb|CommuncationHandler| is created and started.
+    \item[A.3] This component initalizes the connectivity with the \verb|BluetoothHandler| service, and listens for data packets from that component.
+    \item[A.4] A reference to the \verb|BlueToothHandler| with a binder is created, in order to communicate with the service. 
+    \item[A.5] Moreover, the request to connect and start the acquesition is sent to the \verb|BluetoothHandler|. 
+    \item[A.6] \verb|BluetootHandler| creates an object of the \verb|BluetoothHandler|, which contains the state of the sensor source (e.g., battery level, breathing data enabled, and manufacturer name). 
+    \item[A.7] The \verb|BluetootHandler| connects with the GATT server (the Flow sensor), and once the connectivity is established (using the Android provided API's for connecting with the Bluetooth LE devices), we can ask the sensor source for available services. 
+    \item[A.8] The sensor source responds with all of the avaiable services and characterstics, and we can proceed to notify the sensor source to enable the breathing data and the battery level service.  
+\end{itemize}
+
+
+\subsection{Action B: Handle the Samples from the Sensor}
+
+\begin{itemize}
+    \item[B.1] Peridocally, the Flow sensor sends data to the connected mobile device, based on the activated service (i.e., breathing data and battery level). These samples are sent to the connectivity established earlier. 
+    \item[B.2]  The BlueToothHandler handles these data packets (by filtering them out on GattAttributes) and reads the value from the characterstics that is encompassed in the service.
+    \item[B.3] The values are sent as a callback to the \verb|CommunicationHandler|. 
+    \item[B.4] Which further sends it to the \verb|DataHandler|.
+    \item[B.5] The \verb|DataHandler| creates a JSON string that contains meta-data (e.g., the ID of the sensor wrapper) together with the data, and sends the data to the DSDM for further processing.    
+\end{itemize}
+
+
+\subsection{Action C: Stopping the Data Acquestion}
+
+\begin{itemize}
+    \item[C.1] A broadcast from the DSDM with a Intent of \textit{Stop} is sent to the \verb|WrapperService|. The \verb|WrapperService| disconnect with the binder that was created between this component service and DSDM. As a result, the \verb|CommunicationHandler| thread is interrupted.
+    \item[C.2] The \verb|CommunicationHandler| notifies the \verb|BluetootHandler| to disconnect with the GATT server and terminate.
+    \item[C.3] The \verb|BluetootHandler| disconnects the connectivity with the Flow sensor wrapper, and further notifies the components that the communication is closed (e.g., the main screen can change the state displaying that it is connected to disconnected) 
+\end{itemize}
+
+
 
 \section{Presentation}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.35]{images/flow_app.pdf}
+    \includegraphics[scale=0.3]{images/flow_app.pdf}
     \caption{Flow Sensor Wrapper---A}
     \label{fig:flowapp}
 \end{figure}
+
+\begin{itemize}
+    \item[A] Is the main screen, that shows the state of the Flow sensor (e.g., battery level, MAC address, firmware version), including the button actions to either remove the sensor or change to another Flow sensor. 
+    \item[B] In the cases, where there is no Flow sensor configured for the mobile device or the action to change the sensor, the device list screen display all available sensor or devices within range of BlueTooth connectivity to the user. The Flow sensors are distincitly from the other bluetooth devices, in order to make it easier to select.
+\end{itemize}

@@ -1,7 +1,7 @@
 \subsection{Recording}
-The design choices for this concern is described in Section \ref{soc:recording}. To summarize, recording is the process of collecting and storing data received from sensors over an extended period. To enable a recording, we need to establish a connection with the available sensors and store the samples retrieved by the sensors on the device. In this thesis, we focus on collecting breathing data from the Flow sensor. Moreover, we will use the data streams dispatching module (hereafter: DSDM), which manages sensor discovery and sensor establishment to supported sensor sources, in our case the Flow sensor.  Moreover, the DSDM facilitates an interface for data acquisition, and the communication between the DSDM and Nidra occurs over IPC using binder's. During recording, we will check for connectivity with the sensors to ensure the sensors are collecting data at an appropriate rate. At the end of the recording, we will store metadata related to the recording and finalize the recording process. 
+The design choices for this concern is described in Section \ref{soc:recording}. To summarize, recording is the process of collecting and storing data received from sensors over an extended period. To enable a recording, we need to establish a connection with the available sensors and store the samples retrieved by the sensors on the device. In this thesis, we focus on collecting breathing data from the Flow sensor. Moreover, we use the data streams dispatching module (hereafter: DSDM), which manages sensor discovery and sensor establishment to supported sensor sources, in our case the Flow sensor.  Moreover, the DSDM facilitates an interface for data acquisition, and the communication between the DSDM and Nidra occurs over IPC using binder's. During recording, we check for connectivity with the sensors to ensure the sensors are collecting data at an appropriate rate. At the end of the recording, we store metadata related to the recording and finalize the recording process. 
 
-The functionality of recording can be separated into three actions: (A) start recording; (B) stop recording; and (C) display recording statistics. In the following sections, we will review the steps that enable these actions. 
+The functionality of recording can be separated into three actions: (A) start recording; (B) stop recording; and (C) display recording statistics. In the following sections, we review the steps that enable these actions. 
 
 \begin{figure}[!h]
     \centering
@@ -80,7 +80,7 @@ The design choices for this concern is described in Section \ref{sec:design_shar
 
 Before a user can proceed with these actions, the records from the database have to be presented. The \verb|FeedFragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|FeedAdapter| (steps: 1-4). The adapter contains all the interactions and the event handling (e.g., button event listener for exporting) for a single record. 
 
-The functionality of sharing can be separated into two actions: (A) exporting one or all records; and (B) import a record from the device. In the following sections, we will review the steps that enable these actions:
+The functionality of sharing can be separated into two actions: (A) exporting one or all records; and (B) import a record from the device. In the following sections, we review the steps that enable these actions:
 
 
 \begin{figure}
@@ -149,7 +149,7 @@ private void importRecords() {
 \subsection{Modules}
 The design choices for this concern is described in Section \ref{soc:modules}. To summarize, modules are standalone application that provides data enrichment or extended functionality to Nidra. For example, a module can use the records with samples provided by Nidra in order to feed a machine learning algorithm that predicts sleep apnea. Moreover, to add and launch a module from Nidra we need the modules package name. The package name and the name of the module-application is easily obtained within Android. 
 
-The functionality of modules can be separated into two actions: (A) add a module; and (B) launch a module.  In the following sections, we will take a look into the steps that are taken to enable the actions.
+The functionality of modules can be separated into two actions: (A) add a module; and (B) launch a module.  In the following sections, we review the steps that enable these actions. 
 
 \subsubsection{Action A: Add a Module}
 In order to add a new module, the user has to install the module-application on the device beforehand. By listing through the installed application on the device, the user can select the desired module to be added in Nidra. In Figure \ref{fig:impl_modulesA}, an illustration of adding a module is shown, and the steps can be narrowed down to:
@@ -216,7 +216,7 @@ The design choices for this concern is described in Section \ref{soc:analytics}.
 
 Similar to sharing, the records from the database have to be presented. The \verb|FeedFragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|FeedAdapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for analytics) for a single record. 
 
-The functionality of analytics can be identified by one action: (A) display a graph for a single record to the user. In the following section, we will take a look into the steps that are taken to enable the action.
+The functionality of analytics can be identified by one action: (A) display a graph for a single record to the user. In the following sections, we review the steps that enable this action. 
 
 \subsubsection{Action A: Display a Graph for a Single Record}
 Nidra provides a simple time-series graph of breathing data obtained during the recording. The graph data is plotted into a GraphView library \cite{androidgraph}, which enables interactions (e.g., zoom and scrolling) on the data samples. The X-axis is the breathing value based on the Y-axis of time of sampling. In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown, and the steps can be narrowed down to:
@@ -257,7 +257,7 @@ Android Room provides an abstract layer over SQLite to enable easy database acce
 Conclusively, all of the preceding concerns (i.e., recording, sharing, modules, and analytics) access the storage as described in this section. As such, future operations can easily be integrated into described components, which enforce modularity and extensibility to the application.
 
 \subsection{Presentation}\label{ioc:presentation}
-The interface is developed based on the design descisions made in Section \ref{soc:presentation}, as well as creating a user-interface that is simple and efficent for a user to interact with. We try to limit the actions the user can take on a screen, to make the application simpler to understand and comprehend. In the following sections we will present the user-interface (UI) based on the functionality of recording, sharing, module and analytics. 
+The interface is developed based on the design descisions made in Section \ref{soc:presentation}, as well as creating a user-interface that is simple and efficent for a user to interact with. We try to limit the actions the user can take on a screen, to make the application simpler to understand and comprehend. In the following sections we present the user-interface (UI) based on the functionality of recording, sharing, module and analytics. 
 
 \begin{figure}[!h]
     \centering

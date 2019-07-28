@@ -14,7 +14,7 @@ This chapter starts with a brief overview of application components for the thre
 In this thesis, we operate with three individual applications: Nidra, data streams dispatching module, and the sensor wrapper for the Flow sensor. Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service, provider, and broadcast receiver) for each application, which run in a separate process on the user's mobile device. The subsequent sections present a brief overview of the applications structure and components.
 
 
-\subsection{Flow Sensor Wrapper}
+\subsection{Flow Sensor Wrapper}\label{imp:flowsensor}
 As part of the thesis, the goal is to integrate the support for the Flow sensor. We developed a sensor wrapper that connects with the sensor source by using the BlueTooth LE protocol. To create a sensor wrapper, we followed the instructions provided by Gjøby in order to create a new driver application that connects with the data streams dispatching module (DSDM). Below, a brief overview of the main components of the driver is discussed.
 
 \begin{description}[font=\normalfont\itshape]
@@ -77,11 +77,11 @@ In this thesis, we focus on creating an interface that can record, share, and an
 Moreover, Nidra leverages the functionality that the data stream dispatching module provides. To use the functionality, the recording activity connects with the data stream dispatching module, and the reference that will be used to receive data packets are sent to the service of \textit{DSDService}. This service implements the interface provided by the data streams dispatching module, and the data obtained within this service are directly sent to the \verb|RecordingActivity| for processing. 
 
 
-To summarize, the components discussed in this section constitute an application that enables recording, sharing, and analysis of breathing data obtained from the Flow sensor. We will further elaborate on the actions and functionality of Nidra in Section \ref{impl:ioc}.  
+To summarize, the components discussed in this section constitute an application that enables recording, sharing, and analysis of breathing data obtained from the Flow sensor. Further, we elaborate on the actions and functionality of Nidra in Section \ref{impl:ioc}.  
 
 
 \subsection{Inter-Process Communication}\label{implement:aidl}
-In order to communicate with between the applications, such as remote procedure calls (RPC) to application components that run remotely, we can use the IPC mechanisms. In Android there are two viable mechanisms to enable IPC: (1) \verb|Binder| enables a process to invoke functions in another process remotely; and (2) \verb|Intent| a message passing interface allowing applications to send messages to each other. In this section we will describe how these mechanisms are used in Nidra.
+In order to communicate with between the applications, such as remote procedure calls (RPC) to application components that run remotely, we can use the IPC mechanisms. In Android there are two viable mechanisms to enable IPC: (1) \verb|Binder| enables a process to invoke functions in another process remotely; and (2) \verb|Intent| a message passing interface allowing applications to send messages to each other. In this section we describe how these mechanisms are used in Nidra.
 
 The Intent mechanism is mainly used for sharing bundles of primitive data types (e.g., strings or floats) across activities and applications, as long as the reference (e.g., package name) is valid. Another possibility of using intent is during broadcasts within the application or to other application. In Nidra, \verb|Intent|'s are used to start activites, share data between components with local broadcasts, as well as when launching a module (discussed in Section \ref{impl:ioc}).
 
