@@ -3,9 +3,9 @@
 In this chapter, experiments are conducted in order to evaluate the application based on the system requirements defined in the problem statement: 
 
 \begin{enumerate}
-    \item The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.
-    \item The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application. 
-    \item The application should ensure a seamless and continuous data streams, uninterrupted from sensor disconnections and human disruptions.
+    \item The application must provide an interface for the patient to (i) record physiological signals (e.g., breathing data); (ii) present the results; and (iii) share the results.
+    \item The application must ensure that upon sensor disconnections, the connectivity is reinstated in order to minimize the data loss and affects on the data analysis. 
+    \item The application must provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.
 \end{enumerate}
 
 The experiments are designed to test the application in (A) a crowded environment with multiple Flow sensors and without different Android OS versions; (B) recording over an extended period to measure battery consumption; (C) user-friendliness on participants; and (D) creating a simple module. When evaluating the experiments, the observations and the results are the most interesting metric as it provides a better perception of whether the design choices (Chapter 4) and implementation (Chapter 5) suffice towards the goal of this thesis. Moreover, the observations and results allow for discussion on improvements which can be made in future work.  
@@ -137,7 +137,7 @@ F & 4288 & 0  & 0 \% & 0 & 00:00  \\
 \end{center}
 \end{table}
 
-After analyzing the data from the record, Table 6.2 and Table 6.3 presents the six devices for the two dates. Each table exhibits data that is extracted from each record from the mobile device and can be characterized as: 
+After analyzing the data from the record, Table 6.2 and Table 6.3 presents the six devices for the two dates. Each table exhibits data that is extracted from each record from the mobile device and are characterized as: 
 
 \begin{description}
     \item[Expected Sample Count] The expected number of samples that can be acquired in the period of the recording (based on the frequency of sample output by Flow sensor, which is approximately 1.5 Hz).

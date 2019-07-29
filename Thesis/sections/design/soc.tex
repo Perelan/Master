@@ -1,6 +1,6 @@
 
 \subsection{Recording}\label{soc:recording}
-The structure of a recording is restrictive in terms of arranging the components due to the design of the CESAR project. That is, the recording structure is based on the interface (e.g., establishment and receiving data) facilitated for the sensor sources by the project. Besides this, the structure can be extended with components that monitor the data acquisition and the connectivity with the sensor and the device. In Figure \ref{fig:hta_recording}, a proposition of the structure for recording with components and their dependencies is illustrated, and the components can be described as:
+The structure of a recording is restrictive in terms of arranging the components due to the design of the CESAR project. That is, the recording structure is based on the interface (e.g., establishment and receiving data) facilitated for the sensor sources by the project. Besides this, the structure can be extended with components that monitor the data acquisition and the connectivity with the sensor and the device. In Figure \ref{fig:hta_recording}, a proposition of the structure for recording with components and their dependencies is illustrated, and the components are described as:
 
 \begin{figure}
     \centering
@@ -11,18 +11,18 @@ The structure of a recording is restrictive in terms of arranging the components
 
 \begin{itemize}
     \item[1.1] \verb|Sensor Discover:| Find all eligible sensors that can enable a recording.
-    \item[1.1.1] \verb|Select Sensors:| From the sensor discovery, we can choose preferable sensors sources.
-    \item[1.1.2] \verb|All Sensors:| More straightforward, we sample from all of the available sensors.
-    \item[1.2] \verb|Sensor Initialization:| Once we have a list of sensors sources selected, we need to establish and initialize a connection with them. Occasionally a sensor might use some time to connect, or unforeseen occurrence is hindering the initialization of the sensor. Therefore, halting the sensor initalization or actively checking for sensor initalization is important. 
+    \item[1.1.1] \verb|Select Sensors:| Select a preferable sensor source for data acquisition. 
+    \item[1.1.2] \verb|All Sensors:| Select all available sensors source for data acquisition.
+    \item[1.2] \verb|Sensor Initialization:| Establish and initialize a connection with the selected sensor source. Occasionally a sensor might use some time to connect, or unforeseen occurrence is hindering the initialization of the sensor. Therefore, halting the sensor initalization or actively checking for sensor initalization is important. 
     \item[1.3] \verb|Sensor Connectivity Setup:| Establish a connection between the application and the sensor source using the protocols the sensor sources provides (e.g., BlueTooth). All data exchange will occur over the established interface. 
     \item[1.4] \verb|Connection State:| Is the state that determines whether the recording has started (ongoing) or stopped (finalized).
-    \item[1.4.1] \verb|Start:| By starting, we notify the sensors to begin collecting data, and the application should display that a recording has begun accordingly. Also, start a timer to display time elapsed on the current recording. 
+    \item[1.4.1] \verb|Start:| Notify the sensors to begin collecting data, and the application should display that a recording has started to the user. Also, start a timer to display time elapsed on the current recording. 
     \item[1.4.1.1] \verb|Monitor:| Is a mechanism to handle the connectivty state and the incoming samples. It is actively listening to the interface for new data from the sensors, and forwarding the data to the sample management component.  
     \item[1.4.1.1.1] \verb|Sample Management:| Handles a single sample from a sensor by parsing the content according to the payload of the data tuple from the sensor.
     \item[1.4.1.1.2] \verb|Connectivity State:| Makes sure that the connectivity between the sensor and the device is maintained. Further described in Section \ref{sssec:csc}.
     \item[1.4.2] \verb|Stop:| Stop the recording timer and proceed to display results.
     \item[1.4.2.1] \verb|Sensor Finalization:| Notify the sensor to stop sampling data, and close establishment.
-    \item[1.4.2.2] \verb|Close Sensor Connectivity:| Close the interface connections between the application and the sensors. 
+    \item[1.4.2.2] \verb|Close Sensor Connectivity:| Close the interface connections between the application and the connected sensors. 
     \item[1.4.2.3] \verb|Stop Recording:| Once all connections are closed, add additional information to the recording (e.g., title, description, rating). In the end, the recording has concluded and it is stored on the mobile device.
 \end{itemize}
 
@@ -37,7 +37,7 @@ Connectivity state is a component that monitors for unexpected sensor disconnect
 
 \subsection{Sharing} \label{sec:design_sharing}
 
-Sharing is separated into two concerns: export and import. The scope of exporting in Nidra is to select desired records, format and bundle the records into a transmittable file, and sendting the bundle over a media (e.g., mail). The scope of importing is to locate the file on the device, parse the content based on the format, and store it on the device. In Figure \ref{fig:hta_sharing}, a proposition of the structure for sharing with components and their dependencies is illustrated, and the components can be described as:
+Sharing is separated into two concerns: export and import. The scope of exporting in Nidra is to select desired records, format and bundle the records into a transmittable file, and sendting the bundle over a media (e.g., mail). The scope of importing is to locate the file on the device, parse the content based on the format, and store it on the device. In Figure \ref{fig:hta_sharing}, a proposition of the structure for sharing with components and their dependencies is illustrated, and the components are described as:
 
 
 \begin{figure}
@@ -52,7 +52,7 @@ Sharing is separated into two concerns: export and import. The scope of exportin
     \item[2.1.1] \verb|Locate File|: To enable this, the user has to download the file on the device. Then, locate the file on the device by using an interface to browse downloaded files. An interface can be developed; however, using the interface Android provides to locate downloaded files is a more straightforward solution.
     \item[2.1.2] \verb|Parse Formated Content|: Parse the content of the file accordingly to the data format discussed in \Cref{sec:dataformat}.
     \item[2.1.3] \verb|Insert Storage|: Retrieve the necessary data from the parsed file, to store on the device without overriding existing data.   
-    \item[2.2] \verb|Export|: Is a mechanism that selects all or a specific record, transforms the record into a formatted file (see \Cref{sec:dataformat}), and exports the file across application (e.g., sending records from the patient's installed application to the researcher/doctor's installed application with the use of an e-mail application). 
+    \item[2.2] \verb|Export|: Is a mechanism that selects all or a specific record, transforms the record into a formatted file (see \Cref{sec:dataformat}), and transmits the file across application (e.g., sending records from the patient's installed application to the researcher/doctor's installed application with the use of an e-mail application). 
     \item[2.2.1.1] \verb|All Records|: Export all of the records on the device.
     \item[2.2.1.2] \verb|Select Record|: Pick one specific record to export. 
     \item[2.2.2] \verb|Format File|: When a preferred format for the records is selected, bundling the data into a formatted (see \Cref{sec:dataformat}) file for transmission. It is essential to identify the name of the file uniquely to prevent duplicates and overrides of data. For instance, identifying the name of the file with the device identification appended with the time of exporting. 
@@ -74,7 +74,7 @@ While the first option might be favorable in terms of practicality, this solutio
 
 \subsection{Modules}\label{soc:modules}
 
-Modules are independent applications that provide extended functionality and data enrichment to Nidra. The components for locating and launching a module is given by the Android design; however, the component for data exchange between a module and Nidra can be independently designed.  In Figure \ref{fig:hta_modules}, a proposition of the structure for modules with components and their dependencies is illustrated, and the components can be described as:
+Modules are independent applications that provide extended functionality and data enrichment to Nidra. The components for locating and launching a module is given by the Android design; however, the component for data exchange between a module and Nidra can be independently designed.  In Figure \ref{fig:hta_modules}, a proposition of the structure for modules with components and their dependencies is illustrated, and the components are described as:
 
 \begin{itemize}
     \item[3.1.1] \verb|Install Modules|: Is the process of locating the application on the device, and storing the reference of the application package name in the storage.  
@@ -122,7 +122,7 @@ In Nidra, a time series graph is used to represent the data of a record. The tim
     \label{fig:hta_storage}
 \end{figure}
 
-Storage is the objective of achieving persistent data; data that is available after application termination. The data is characterized into four data entities (i.e., record, sample, module, and user) that contain individual properties.  The components in the storage structure are constructed to be extensible and scalable in terms of future data, restructure of data, and removal of data.  In Figure \ref{fig:hta_storage}, a proposition of the structure for storage with components and their dependencies is illustrated, and the components can be described as:
+Storage is the objective of achieving persistent data; data that is available after application termination. The data is characterized into four data entities (i.e., record, sample, module, and user) that contain individual properties.  The components in the storage structure are constructed to be extensible and scalable in terms of future data, restructure of data, and removal of data.  In Figure \ref{fig:hta_storage}, a proposition of the structure for storage with components and their dependencies is illustrated, and the components are described as:
 
 \begin{itemize}
     \item[5.1] \verb|Data Access Layer|: It exposes specific operations (such as insertion of a record) without revealing the database logic. This component is also known as a data access object (DAO), that provides an abstract interface to a database. The advantage of this interface is to have a single entry point for each database operation and to extend and modify the operation for future data easily. 
@@ -141,7 +141,7 @@ Flat files database encode a database model (e.g., table) as a collection of rec
 
 SQLite is a relational database management system, which is embedded and supported in Android. A relational database management system (RDBMS) provides data storage in fields and record, represented as columns (fields) and rows (records), in a table. The advantage is the ability to index records, relations between data stored in tables, and support querying of complex data with a query language (e.g., SQL). Also, RDBMS provides data integrity between transactions, improved security, and backup and recovery controls \cite{flatfilerdbms}. 
 
-While a flat-file database is applicable to store small and unchangeable data, it is not suitable for scalable and invasive data change. The samples acquisition during recording makes it unreasonable to use a flat-file database. As such, SQLite is a preferable solution for storing sample entities. As a result, the record entity should also be stored in an SQLite database, in order to associate it with the sample entity (with a foreign key). As for the module entity, it is more convenient to store and update a list of records inside a database; therefore, we prefer the SQLite database for the module entity. Finally, the user entity can be stored in the flat file, that is because there only is one user in the application at the time; hence, it is more convenient to use a flat-file (e.g., JSON) to store this type of information.
+While a flat-file database is applicable to store small and unchangeable data, it is not suitable for scalable and invasive data change. The samples acquisition during recording makes it unreasonable to use a flat-file database. As such, SQLite is a preferable solution for storing sample entities. As a result, the record entity should also be stored in an SQLite database, in order to associate it with the sample entity (with a foreign key). As for the module entity, it is more convenient to store and update a list of records inside a database; therefore, we prefer the SQLite database for the module entity. Finally, the user entity is stored in the flat file, that is because there only is one user in the application at the time; hence, it is more convenient to use a flat-file (e.g., JSON) to store this type of information.
 
 \subsection{Presentation}\label{soc:presentation}
 \begin{figure}
@@ -151,7 +151,7 @@ While a flat-file database is applicable to store small and unchangeable data, i
     \label{fig:hta_presentation}
 \end{figure}
 
-Presentation facilitates the user interface of the application, in terms of visualizing the functionality of the application to the user. The user interface design is guided by the the functionality (concerns discussed) in the application and itertive work on the topic. In Figure \ref{fig:hta_presentation}, a proposition of the structure for presentation with components and their dependencies is illustrated, and the components can be described as:
+Presentation facilitates the user interface of the application, in terms of visualizing the functionality of the application to the user. The user interface design is guided by the the functionality (concerns discussed) in the application and itertive work on the topic. In Figure \ref{fig:hta_presentation}, a proposition of the structure for presentation with components and their dependencies is illustrated, and the components are described as:
 
 \begin{itemize}
     \item[6.1] \verb|UI|: The user interface where interaction between users and the application occurs. 

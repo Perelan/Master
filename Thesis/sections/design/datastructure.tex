@@ -1,6 +1,6 @@
 \subsection{Data Formats} \label{sec:dataformat}
 
-The data format is a part of the process of serialization, which enables data storage in a file, transmittal over the Internet, and reconstruction in a different environment. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats; however, JavaScript Object Notation (JSON) and eXtensible Markup Language (XML) are the two most common data serialization formats. In this ection, we discuss these formats. In the end, will compare them and choose the format that meets the criteria of being compact, human-readable, and universal. 
+The data format is a part of the process of serialization, which enables data storage in a file, transmittal over the Internet, and reconstruction in a different environment. Serialization is the process of converting the state of an object into a stream of bytes, which later can be deserialized by rebuilding the stream of bytes to the original object. There are several data serialization formats; however, JavaScript Object Notation (JSON) and eXtensible Markup Language (XML) are the two most common data serialization formats. This section discuss these formats. In the end, will compare them and choose the format that meets the criteria of being compact, human-readable, and universal. 
 
 \subsubsection{JSON}
 JSON or JavaScript Object Notation is a light-weight and human-readable format that is commonly used for interchanging data on the web. The format is a text-based solution where the data structure is built on two structures: a collection of name-value pairs (known as objects) and ordered list of values (known as arrays). The JSON format is language-independent and the data structure universally recognized \cite{jsonorg, jsonvxml}. However, it is limited to a few predefined data types (i.e., string, number, boolean, object, array, and null), and extending the data type has to be done with the preliminary types. 
@@ -25,7 +25,7 @@ XML or eXtensible Markup Language is a simple and flexible format derived from S
 \end{lstlisting}
 
 \subsubsection{Comparing}
-With the study conducted by Saurabh and D’Souza \cite{jsonvxml}, we compare JSON and XML features and performance . There are apparent differences in the two data formats which affect the overall readability, extensibility, bandwidth performance, and ease of mapping. XML documents are easy to read, while JSON is obscure due to the parenthesis delimiters. XML allows for extended data types, while JSON is limited to a few data types. XML takes more bandwidth due to the metadata overhead, while JSON data is compact and use less amount of bandwidth.
+With the study conducted by Saurabh and D’Souza \cite{jsonvxml}, we compare JSON and XML features and performance. There are apparent differences in the two data formats which affect the overall readability, extensibility, bandwidth performance, and ease of mapping. XML documents are easy to read, while JSON is obscure due to the parenthesis delimiters. XML allows for extended data types, while JSON is limited to a few data types. XML takes more bandwidth due to the metadata overhead, while JSON data is compact and use less amount of bandwidth.
 
 Moreover, a few benchmarks were conducted to measure memory footprint and parsing runtime when serializing and deserializing JSON and XML data. From the conclusion,  in terms of memory footprint and parsing runtime, JSON performances better than XML but at the cost of readability and flexibility. While these format structures are applicable for transmitting data, choosing a format that is compact, human-readable, and a standard format that is extensible and scalable for future data is essential. In our design, we use the JSON format for transmission of the data.
 
@@ -47,7 +47,7 @@ A record is a table in the database that stores metadata related to the recordin
 \begin{itemize}
 	\item \verb|ID|: Unique identification of a record, also a primary key for the entry.
 	\item \verb|Name|: A name of the record to easily recognize the recording.
-	\item \verb|Description|: A summary over the recording session provided by the user It can be used to briefly describe how the recording session felt (e.g., any abnormalities during the sleep).
+	\item \verb|Description|: A summary over the recording session provided by the user. It can be used to briefly describe how the recording session felt (e.g., any abnormalities during the sleep).
 	\item \verb|MonitorTime|: The recording session duration in milliseconds.
 	\item \verb|Rating|: Giving a rating on how the sleeping session felt, in a range between 0-5. 
 	\item \verb|User|: User's biometriocal information encoded into a JSON string format, in order to capture the state of the user at recording. 

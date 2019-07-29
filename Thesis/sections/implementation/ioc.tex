@@ -1,7 +1,7 @@
 \subsection{Recording}
-The design choices for this concern is described in Section \ref{soc:recording}. To summarize, recording is the process of collecting and storing data received from sensors over an extended period. To enable a recording, we need to establish a connection with the available sensors and store the samples retrieved by the sensors on the device. In this thesis, we focus on collecting breathing data from the Flow sensor. Moreover, we use the data streams dispatching module (hereafter: DSDM), which manages sensor discovery and sensor establishment to supported sensor sources, in our case the Flow sensor.  Moreover, the DSDM facilitates an interface for data acquisition, and the communication between the DSDM and Nidra occurs over IPC using binder's. During recording, we check for connectivity with the sensors to ensure the sensors are collecting data at an appropriate rate. At the end of the recording, we store metadata related to the recording and finalize the recording process. 
+The design choices for this concern is described in Section \ref{soc:recording}. To summarize, recording is the process of collecting and storing data received from sensors over an extended period. To enable a recording, we need to establish a connection with the available sensors and store the samples retrieved by the sensors on the device. In this thesis, we focus on collecting breathing data from the Flow sensor. Moreover, we use the data streams dispatching module (hereafter: DSDM), which manages sensor discovery and sensor establishment to supported sensor sources. The DSDM facilitates an interface for data acquisition, and the communication between the DSDM and Nidra occurs over IPC using binder's. During recording, we check for connectivity with the sensors to ensure the sensors are collecting data at an appropriate rate. At the end of the recording, we store metadata related to the recording and finalize the recording process. 
 
-The functionality of recording can be separated into three actions: (A) start recording; (B) stop recording; and (C) display recording statistics. In the following sections, we review the steps that enable these actions. 
+The functionality of recording are separated into three actions: (A) start recording; (B) stop recording; and (C) display recording statistics. The following sections review the steps that enable these actions. 
 
 \begin{figure}[!h]
     \centering
@@ -80,7 +80,7 @@ The design choices for this concern is described in Section \ref{sec:design_shar
 
 Before a user can proceed with these actions, the records from the database have to be presented. The \verb|FeedFragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|FeedAdapter| (steps: 1-4). The adapter contains all the interactions and the event handling (e.g., button event listener for exporting) for a single record. 
 
-The functionality of sharing can be separated into two actions: (A) exporting one or all records; and (B) import a record from the device. In the following sections, we review the steps that enable these actions:
+The functionality of sharing are separated into two actions: (A) exporting one or all records; and (B) import a record from the device. The following sections review the steps that enable these actions:
 
 
 \begin{figure}
@@ -91,7 +91,7 @@ The functionality of sharing can be separated into two actions: (A) exporting on
 \end{figure}
 
 \subsubsection{Action A: Exporting one or all Records}
-In Figure \ref{fig:impl_sharingA}, an illustration of the steps to export one single recording is shown. However, the \verb|Feed Fragment| has an option to export all record; therefore, by disregarding the first step (A.1), the same structure applies to export all records. In essence, exporting consists of bundling the records and corresponding samples into a formatted file, and prompting the user with options to select a media (e.g., mail) for transmission. The steps can be narrowed down to: 
+In Figure \ref{fig:impl_sharingA}, an illustration of the steps to export one single recording is shown. However, the \verb|Feed Fragment| has an option to export all record; therefore, by disregarding the first step (A.1), the same structure applies to export all records. In essence, exporting consists of bundling the records and corresponding samples into a formatted file, and prompting the user with options to select a media (e.g., mail) for transmission. The steps are narrowed down to: 
 
 \begin{itemize}
     \item[A.1] Upon an event for exporting a selected record in \verb|FeedAdapter|, the record information is sent to the \verb|FeedFragment| through the callback reference (\verb|onRecordAnalyticsClick|) between these components. The record information will be used to determine the corresponding samples for the record.
@@ -115,7 +115,7 @@ static void shareFileIntent(Activity a, File file) {
 
 \end{lstlisting}
 
-    \item[A.6] The user is displayed with a popup interface with several options to share the file over a media (e.g., e-mail). An illustration of the layout can be found in Section \ref{ioc:presentation}. 
+    \item[A.6] The user is displayed with a popup interface with several options to share the file over a media (e.g., e-mail). An illustration of the layout is found in Section \ref{ioc:presentation}. 
 
 
 \end{itemize}
@@ -129,7 +129,7 @@ static void shareFileIntent(Activity a, File file) {
 \end{figure}
 
 \subsubsection{Action B: Import a Record from the Device}
-In Figure \ref{fig:impl_sharingB}, an illustration of importing a record from the device is shown. Importing consists of locating the formated file (the user has to obtain the file and store it on the device on beforehand), parsing the content in the file, and storing the data respective to the user's database. The steps can be narrowed down to:
+In Figure \ref{fig:impl_sharingB}, an illustration of importing a record from the device is shown. Importing consists of locating the formated file (the user has to obtain the file and store it on the device on beforehand), parsing the content in the file, and storing the data respective to the user's database. The steps are narrowed down to:
 
 \begin{itemize}
     \item[B.1] The user requests to view the import interface. The interface is provided by Android and allows the user to select files on the device. The code snippet for this step is shown in the following listing:
@@ -149,10 +149,10 @@ private void importRecords() {
 \subsection{Modules}
 The design choices for this concern is described in Section \ref{soc:modules}. To summarize, modules are standalone application that provides data enrichment or extended functionality to Nidra. For example, a module can use the records with samples provided by Nidra in order to feed a machine learning algorithm that predicts sleep apnea. Moreover, to add and launch a module from Nidra we need the modules package name. The package name and the name of the module-application is easily obtained within Android. 
 
-The functionality of modules can be separated into two actions: (A) add a module; and (B) launch a module.  In the following sections, we review the steps that enable these actions. 
+The functionality of modules are separated into two actions: (A) add a module; and (B) launch a module.  The following sections review the steps that enable these actions. 
 
 \subsubsection{Action A: Add a Module}
-In order to add a new module, the user has to install the module-application on the device beforehand. By listing through the installed application on the device, the user can select the desired module to be added in Nidra. In Figure \ref{fig:impl_modulesA}, an illustration of adding a module is shown, and the steps can be narrowed down to:
+In order to add a new module, the user has to install the module-application on the device beforehand. By listing through the installed application on the device, the user can select the desired module to be added in Nidra. In Figure \ref{fig:impl_modulesA}, an illustration of adding a module is shown, and the steps are narrowed down to:
 
 \begin{figure}
     \centering
@@ -178,7 +178,7 @@ In order to add a new module, the user has to install the module-application on 
 \end{figure}
 
 \subsubsection{Action B: Launch a Module}
-A module is launched a separate application with a separate process, due to Android prohibits launching for other applications inside of an application. All added modules are listed and presented to the user on a separate screen. On the launch of a module, all records (including corresponding samples) in Nidra are encoded into a JSON format and bundled with the launch of the module. In Figure \ref{fig:impl_modulesB}, an illustration of launching a module, and the steps can be narrowed down to:
+A module is launched a separate application with a separate process, due to Android prohibits launching for other applications inside of an application. All added modules are listed and presented to the user on a separate screen. On the launch of a module, all records (including corresponding samples) in Nidra are encoded into a JSON format and bundled with the launch of the module. In Figure \ref{fig:impl_modulesB}, an illustration of launching a module, and the steps are narrowed down to:
 
 \begin{itemize}
     \item[B.1] Upon an event for launching a module in \verb|ModuleAdapter|, the package name of the module is sent to the \verb|ModulesFragment| through the callback reference (onLaunchModuleClick()) between these components. The package name will be used to launch the module-application.
@@ -216,10 +216,10 @@ The design choices for this concern is described in Section \ref{soc:analytics}.
 
 Similar to sharing, the records from the database have to be presented. The \verb|FeedFragment| contains a \verb|RecyclerView| which populates the records into inside the \verb|FeedAdapter| (steps: 1-4). The adapter contains all the interactions and the event handling (i.e., button event listener for analytics) for a single record. 
 
-The functionality of analytics can be identified by one action: (A) display a graph for a single record to the user. In the following sections, we review the steps that enable this action. 
+The functionality of analytics is identified by one action: (A) display a graph for a single record to the user. The following sections review the steps that enable this action. 
 
 \subsubsection{Action A: Display a Graph for a Single Record}
-Nidra provides a simple time-series graph of breathing data obtained during the recording. The graph data is plotted into a GraphView library \cite{androidgraph}, which enables interactions (e.g., zoom and scrolling) on the data samples. The X-axis is the breathing value based on the Y-axis of time of sampling. In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown, and the steps can be narrowed down to:
+Nidra provides a simple time-series graph of breathing data obtained during the recording. The graph data is plotted into a GraphView library \cite{androidgraph}, which enables interactions (e.g., zoom and scrolling) on the data samples. The X-axis is the breathing value based on the Y-axis of time of sampling. In Figure \ref{fig:impl_analytics}, an illustration of displaying a graph shown, and the steps are narrowed down to:
 
 \begin{itemize}
     \item[A.1] Upon an event for analytics on a selected record in \verb|FeedAdapter|, the record information is sent to the \verb|FeedFragment| through the callback reference (\verb|onRecordAnalyticsClick()|) between these components. The record information will be used to determine the corresponding samples for the record.
@@ -244,7 +244,7 @@ Storage facilities persistent data which remain on the device after application 
 
 The data entities has support for the standard CRUD operations (i.e., create, read, update, and delete); however, some of the entities has extra operations: record entity has an operation to retrieve all of the records on the user's device, sample entity has an operation to retrieve all of the samples for a given record (based on record's id); the module entity has an operation to retrieve all of the samples on the user's device.
 
-Android Room provides an abstract layer over SQLite to enable easy database access \cite{room}. In Figure \ref{fig:impl_storage}, the flow for accessing and retrieving the data from the database based on the Android Room architecture is shown and can be described as:
+Android Room provides an abstract layer over SQLite to enable easy database access \cite{room}. In Figure \ref{fig:impl_storage}, the flow for accessing and retrieving the data from the database based on the Android Room architecture is shown and are described as:
 
 \begin{itemize}
     \item[1] Each data entity has a \verb|ViewModel| where all of the CRUD operation goes through.  A view model is designed to store and manage UI-related data in a conscious way, that allows data to be persistent through configuration changes (e.g., screen rotations). 
@@ -257,7 +257,7 @@ Android Room provides an abstract layer over SQLite to enable easy database acce
 Conclusively, all of the preceding concerns (i.e., recording, sharing, modules, and analytics) access the storage as described in this section. As such, future operations can easily be integrated into described components, which enforce modularity and extensibility to the application.
 
 \subsection{Presentation}\label{ioc:presentation}
-The interface is developed based on the design descisions made in Section \ref{soc:presentation}, as well as creating a user-interface that is simple and efficent for a user to interact with. We try to limit the actions the user can take on a screen, to make the application simpler to understand and comprehend. In the following sections we present the user-interface (UI) based on the functionality of recording, sharing, module and analytics. 
+The interface is developed based on the design descisions made in Section \ref{soc:presentation}, as well as creating a user-interface that is simple and efficent for a user to interact with. We try to limit the actions the user can take on a screen, to make the application simpler to understand and comprehend. The following sections present the user-interface (UI) based on the functionality of recording, sharing, module and analytics. 
 
 \begin{figure}[!h]
     \centering

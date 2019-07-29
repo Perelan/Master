@@ -1,21 +1,21 @@
 \section{Problem Statement}
 
-As indicated in the background and motivation section, we decided to look into opportunity of extending the the CESAR project even further. The market has new and affordable sensors that can aid with the data acquisition, which we seamlessly can integrate with the extensible data streams dispatching tool. The Flow sensor is a interesting sensor source due to its versatility and adaptability of collecting breathing data and connecting to devices with BlueTooth. As of now, the applications that support Flow sensor, are not user-friendly or designed to collect data over an extend period. Therefore, we look into designing and implementing an Android application that record, share, and analyze breathing data over an extended period (e.g., during sleep) by using the Flow sensor. Also, we want to facilitate for an extensible application such that future developers can extend functionality of the application or enrich the data in our application. 
+The market has new and affordable sensors that can aid with the data acquisition, which we seamlessly can integrate with the extensible data streams dispatching tool. The Flow sensor is a interesting sensor source due to its versatility and adaptability of collecting breathing data and connecting to devices with the BlueTooth protocol. As for the state of this thesis: (A) there is no sensor wrappers that support the Flow sensor; (B) the applications that support the Flow sensor is not designed for end-users, in essence, there is no user-friendly application that allows for sharing the data in the application. In order to gather the data, the mobile device has to be connected with a PC over USB for data transfer; and (C) the data streams dispatching module is not ready to be used by the end-users, because the project faciliates no user-friendly inteface for user's to record the data from the supported sensor sources.
 
-In the end, we can hopefully strengthen the analysis of abnormal sleeping patterns to decreasing the risk of the symptoms they may come as a consequence. Also, as a bi-product, the application that can be used in other fields of studies (e.g., physical activites). As the scope of the this thesis, we focus on the completion of three main goals:
+As such, we look into designing and implementing an Android application that record, share, and analyze breathing data over an extended period (e.g., during sleep) by using the Flow sensor. Also, we want to facilitate for an extensible application such that future developers can extend functionality or enrich the data of the application. In the end, we can hopefully strengthen the analysis of abnormal sleeping patterns to decreasing the risk of the symptoms they may come as a consequence. Also, as a bi-product, the application that can be used in other fields of studies (e.g., physical activites). As the scope of the this thesis, we focus on the completion of three main goals:
 
 \begin{description}
-    \item[Goal 1] Integrate the support for Flow sensor with the extensible data streams dispatching tool
-    \item[Goal 2] Research and develop a user-friendly application which facilitates collection of breathing data with the use of the extensible data streams dispatching tool.
-    \item[Goal 3] Create an extensible solution such that the developers can integrate stand-alone applications in our application. 
+    \item[Goal 1] Integrate the support for Flow sensor by creating a sensor wrapper that integrate with the extensible data streams dispatching tool.
+    \item[Goal 2] Research and develop a user-friendly application which facilitates collection of breathing data with the Flow sensor, sharing of the data, and analysis of the data with the use of the extensible data streams dispatching tool.
+    \item[Goal 3] Create an extensible solution such that the developers can create stand-alone applications that integrates with our application. 
 \end{description}
 
 As part of the goals of this thesis, we also define three system requirements to keep in mind while designing and implementing the application. The three system requirements are the following: 
 
 \begin{description}
-    \item[Requirement 1] The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.
-    \item[Requirement 2] The application should ensure a seamless and continuous data streams, uninterrupted from sensor disconnections and human disruptions.
-    \item[Requirement 3] The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.
+    \item[Requirement 1] The application must provide an interface for the patient to (i) record physiological signals (e.g., breathing data); (ii) present the results; and (iii) share the results.
+    \item[Requirement 2] The application must ensure that upon sensor disconnections, the connectivity is reinstated in order to minimize the data loss and affects on the data analysis.
+    \item[Requirement 3] The application must provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.
 \end{description}
 
 %With the goals in place, we started on designing and implementing an application that suffice the system requirements. The application would then help us on answering the 

@@ -3,12 +3,12 @@
 
 It is the goal of this thesis to enable detection of sleep-related disorders with the aid of an Android device and low-cost sensors, and to further analyze and evaluate sleep- and breath-related patterns. We developed an application, called \textit{Nidra}, which attempts to collect, analyze, and share data collected from external sensors, all on a mobile device. Also, Nidra acts as a platform for modules to enrich the data, thus extending the functionality of the application.
 
-The motivation behind this application is to provide an interface for patients to potentially run a self-diagnostic from home, and to aid researchers and doctors with analysis of sleep- and breathing-related illnesses (e.g., Obstructive Sleep Apnea). An overview of the Nidra application pipeline can be found in Figure \ref{fig:parts}, beginning with data acquired from a sensor, and ending with the data in the Nidra application. As for now, Nidra consists of three main functionalities, each related to the requirements defined in the problem statement: 
+The motivation behind this application is to provide an interface for patients to potentially run a self-diagnostic from home, and to aid researchers and doctors with analysis of sleep- and breathing-related illnesses (e.g., Obstructive Sleep Apnea). An overview of the Nidra application pipeline is found in Figure \ref{fig:parts}, beginning with data acquired from a sensor, and ending with the data in the Nidra application. As for now, Nidra consists of three main functionalities, each related to the requirements defined in the problem statement: 
 
 \begin{enumerate}
-    \item The application should provide an interface for the patient to 1) record physiological signals (e.g., during sleep); 2) present the results; and 3) share the results.
-    \item The application should provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application. 
-    \item The application should ensure a seamless and continuous data streams, uninterrupted from sensor disconnections and human disruptions.
+    \item The application must provide an interface for the patient to (i) record physiological signals (e.g., breathing data); (ii) present the results; and (iii) share the results.
+    \item The application must ensure that upon sensor disconnections, the connectivity is reinstated in order to minimize the data loss and affects on the data analysis. 
+    \item The application must provide an interface for the developers to create modules to enrich the data from records or extend the functionality of the application.
 \end{enumerate}
 
 This chapter will give a detailed look at the design of Nidra, including the tasks which constitute the structure of the application, the separate concerns in relation to the tasks, and the structure of the data in the application.
@@ -32,7 +32,7 @@ Task analysis is a methodology to facilitate the design of complex systems. Hier
 \input{sections/design/systemtasks}
 
 \section{Seperation of Concerns}\label{design_soc}
-Separation of concern is a paradigm that classifies an application into concerns at a conceptual and implementational level. It is beneficial for reducing complexity, improving understandability, and increasing reusability \cite{soc}. The concerns in this thesis are the individual tasks defined in the task analysis. Each concern is conceptualized with a graph of \textit{components}, the functionality of each component when combined constitutes a {structure}, that is derived based on research and development. In this section, we propose a solution for the structure of each concern, by analyzing and decomposing the tasks defined in task analysis into components.
+Separation of concern is a paradigm that classifies an application into concerns at a conceptual and implementational level. It is beneficial for reducing complexity, improving understandability, and increasing reusability \cite{soc}. The concerns in this thesis are the individual tasks defined in the task analysis. Each concern is conceptualized with a graph of \textit{components}, the functionality of each component when combined constitutes a {structure}, that is derived based on research and development. This section proposes a solution for the structure of each concern, by analyzing and decomposing the tasks defined in task analysis into components.
 
 \input{sections/design/soc}
 
