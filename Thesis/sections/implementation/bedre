@@ -16,3 +16,5 @@
 -- If possible not interrupted, but if it happens, minimize the data loss and affects on data analytics. 
 
 -- Mange ehelse appiksjoner som fokuser på noen få sensorere for å støtte en spesiell disorder, men formålet et platform for å utnytte DSDM for utvidlesel av sensorer (data acq.), bruk av deleing av sykdommer. 
+
+\\caption\{(.*?)\}

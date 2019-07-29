@@ -4,8 +4,8 @@ The structure of a recording is restrictive in terms of arranging the components
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{images/Recording.png}
-    \caption{Recording}
+    \includegraphics[scale=0.7]{images/Recording_Design.pdf}
+    \caption{A design proposal for the structure of the recording concern.}
     \label{fig:hta_recording}
 \end{figure}
 
@@ -42,8 +42,8 @@ Sharing is separated into two concerns: export and import. The scope of exportin
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.3]{images/Sharing.png}
-    \caption{Sharing}
+    \includegraphics[scale=0.8]{images/Sharing_Design.pdf}
+    \caption{A design proposal for the structure of the sharing concern.}
     \label{fig:hta_sharing}
 \end{figure}
 
@@ -65,12 +65,6 @@ The distribute component uses the formatted file and transfer it to other instan
 While the first option might be favorable in terms of practicality, this solution introduces additional concerns (e.g., the privacy matters of storing user data on a server) which is out of the scope for this project. For this reason, using the interface provided by Android is a reasonable solution. The user of the application can utilize the Android interface for sharing files over installed applications (e.g., the e-mail is a flexible media to transfer the file, and the user can specify the recipients accordingly).  
 
 
-\begin{figure}[!h]
-    \centering
-    \includegraphics[scale=0.6]{images/Modules.png}
-    \caption{Modules}
-    \label{fig:hta_modules}
-\end{figure}
 
 \subsection{Modules}\label{soc:modules}
 
@@ -82,6 +76,14 @@ Modules are independent applications that provide extended functionality and dat
     \item[3.2] \verb|Launch Module|: Get the application location stored in the module, and launch the application with the use of Android Intent. 
     \item[3.3] \verb|Data Exchange|: Enrich the module with data from the application (see Section \ref{des:des}).
 \end{itemize}
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.8]{images/Modules_Design.pdf}
+    \caption{A design proposal for the structure of the modules concern.}
+    \label{fig:hta_modules}
+\end{figure}
 
 \subsubsection{Data Exchange Component}\label{des:des}
 
@@ -95,8 +97,8 @@ One could argue that new records are not obtained while managing and using a mod
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.6]{images/Analytics.png}
-    \caption{Analytics}
+    \includegraphics[scale=0.8]{images/Analytics_Design.pdf}
+    \caption{A design proposal for the structure of the analytics concern.}
     \label{fig:hta_analytics}
 \end{figure}
 
@@ -117,8 +119,8 @@ In Nidra, a time series graph is used to represent the data of a record. The tim
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.7]{images/Storage.pdf}
-    \caption{Storage}
+    \includegraphics[scale=0.8]{images/Storage_Design.pdf}
+    \caption{A design proposal for the structure of the storage concern.}
     \label{fig:hta_storage}
 \end{figure}
 
@@ -146,8 +148,8 @@ While a flat-file database is applicable to store small and unchangeable data, i
 \subsection{Presentation}\label{soc:presentation}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{images/Presentation.png}
-    \caption{Presentation}
+    \includegraphics[scale=0.7]{images/Presentation_Design.pdf}
+    \caption{A design proposal for the structure of the presentation concern.}
     \label{fig:hta_presentation}
 \end{figure}
 
