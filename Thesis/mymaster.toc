@@ -291,7 +291,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {C.2.1}Add the Module to Nidra}{128}{subsection.C.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.2.2}Retrieve the Data}{129}{subsection.C.2.2}
+\contentsline {subsection}{\numberline {C.2.2}Retrieve the Data}{128}{subsection.C.2.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {D}Flow Sensor Wrapper}{131}{appendix.D}
 \defcounter {refsection}{0}\relax 
