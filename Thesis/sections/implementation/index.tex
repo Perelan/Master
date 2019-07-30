@@ -1,6 +1,5 @@
 \chapter{Implementation}
-This chapter starts with a brief overview of application components for the three individual applications (i.e., Nidra, data streams dispatching module, and flow sensor wrapper), alongside a description of the applications. Moreover, implementation of the concerns for the tasks identified in the previous chapter, which is implemented as an Android application, called \textit{Nidra}. In the end, some miscellaneous functionality is presented, which contributes to the application Nidra. 
-
+This chapter starts with a brief overview of application components for the three individual applications (i.e., Nidra, data streams dispatching module, and flow sensor wrapper), alongside a description of the applications. Moreover, implementation of the concerns for the tasks identified in the previous chapter, which is implemented as an Android application, called \textit{Nidra}. 
 \section{Application Components} \label{impl:appcomp}
 
 \begin{figure}
@@ -11,7 +10,7 @@ This chapter starts with a brief overview of application components for the thre
 \end{figure}
 
 
-In this thesis, we operate with three individual applications: Nidra, data streams dispatching module, and the sensor wrapper for the Flow sensor. Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service, provider, and broadcast receiver) for each application, which run in a separate process on the user's mobile device. The subsequent sections present a brief overview of the applications structure and components.
+In this thesis, we operate with three individual applications: Nidra, data streams dispatching module, and the sensor wrapper for the Flow sensor. Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service, and broadcast receiver) for each application, which run in a separate process on the user's mobile device. The subsequent sections present a brief overview of the applications structure and components.
 
 
 \subsection{Flow Sensor Wrapper}\label{imp:flowsensor}
@@ -106,7 +105,7 @@ In Nidra, some of the functionality is utilized to enable recording. More specif
 As for the Flow sensor wrapper, uses the same interface to communicate with the data streams dispatching module. However, the only method call is towards \verb|putJson()| when forwarding its data packets. The data streams dispatching module is aware of which type of connectivity (e.g., publisher or subscriber) that forwards the data, therefore, the call by the sensor wrapper is processed as data packets that will be sent to the subscribing applications. 
 
 \section{Implementation of Concerns} \label{impl:ioc}
-In the design chapter of this thesis, we conceptualized the tasks by decomposing them into separate concerns and discussing design choices for implementation. This section realizes the discussion by implementing the concerns in Android and developing the application Nidra. For each concern, we illustrate the components and objects that interact with each other, step-by-step; the legend for the figures are shown in \Cref{fig:legend}. As an overview, the four subsequent sections (i.e., recording, sharing, module, and analytics) uses the functionality storage functionality, and each of the four sections are illustrated in the last section [rewrite].
+In the design chapter of this thesis, we conceptualized the tasks by decomposing them into separate concerns and discussing design choices for implementation. This section realizes the discussion by implementing the concerns in Android and developing the application Nidra. For each concern, we illustrate the components and objects that interact with each other, step-by-step; the legend for the figures are shown in \Cref{fig:legend}. 
 
 \begin{figure}[!h]
     \centering

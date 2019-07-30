@@ -155,7 +155,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.1.1}Action A: Start Recording}{63}{subsubsection.5.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.1.2}Action B: Stop Recording}{66}{subsubsection.5.2.1.2}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Action B: Stop Recording}{65}{subsubsection.5.2.1.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.1.3}Action C: Display Recording Statistics}{67}{subsubsection.5.2.1.3}
 \defcounter {refsection}{0}\relax 
@@ -163,7 +163,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.2.1}Action A: Exporting one or all Records}{68}{subsubsection.5.2.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.2.2}Action B: Import a Record from the Device}{70}{subsubsection.5.2.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Action B: Import a Record from the Device}{69}{subsubsection.5.2.2.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2.3}Modules}{71}{subsection.5.2.3}
 \defcounter {refsection}{0}\relax 
@@ -187,9 +187,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.2.6.4}UI: Analytics}{79}{subsubsection.5.2.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Miscellaneous}{80}{section.5.3}
+\contentsline {section}{\numberline {5.3}Miscellaneous}{79}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.1}Collecting Data Over a Longer Period}{80}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.1}Collecting Data Over a Longer Period}{79}{subsection.5.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {5.3.1.1}Keep the CPU Alive}{80}{subsubsection.5.3.1.1}
 \defcounter {refsection}{0}\relax 
@@ -251,19 +251,17 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.5}Summary of Results}{103}{section.6.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion}{105}{chapter.7}
+\contentsline {section}{\numberline {6.6}Concluding Remarks}{104}{section.6.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Summary}{105}{section.7.1}
+\contentsline {chapter}{\numberline {7}Conclusion}{107}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Contribution}{105}{section.7.2}
+\contentsline {section}{\numberline {7.1}Summary}{107}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.1}System Requirements}{106}{subsection.7.2.1}
+\contentsline {section}{\numberline {7.2}Contributions}{108}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2.2}Goals}{107}{subsection.7.2.2}
+\contentsline {section}{\numberline {7.3}Future Work}{109}{section.7.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Future Work}{108}{section.7.3}
-\defcounter {refsection}{0}\relax 
-\contentsline {part}{Appendix}{110}{section.7.3}
+\contentsline {part}{Appendix}{111}{section.7.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Source Code}{113}{appendix.A}
 \defcounter {refsection}{0}\relax 
