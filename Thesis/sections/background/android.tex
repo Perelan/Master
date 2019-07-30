@@ -6,7 +6,7 @@ The Android platform is an open-source and Linux-based software stack, containin
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.85]{images/Android.pdf}
-    \caption{Recording}
+    \caption{Android architecture stack, containing six major components.}
     \label{fig:androidarhitecture}
 \end{figure}
 
@@ -48,7 +48,7 @@ Activities are part of an activity lifecycle, in Figure \ref{fig:lifecycle}, the
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{images/androidlifecycle.png}
-    \caption{Recording}
+    \caption{Android activity lifecycle.}
     \label{fig:lifecycle}
 \end{figure}
 
@@ -110,7 +110,7 @@ Android provides options to store application data on the device, depending on s
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{images/MVVM.pdf}
-    \caption{Entity Relationship Diagram}
+    \caption{Structure of the Model-View-ViewModel architectural pattern.}
     \label{fig:mvvm}
 \end{figure}
 
@@ -133,6 +133,13 @@ Battery life is a concern to the user, as the battery capacity is significantly 
 \end{itemize}
 
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.85]{images/BLE2.pdf}
+    \caption{The structure of BlueTooth Low Energy; illustrating the GATT Server with a service contains many characteristics, and the GATT client connecting with the GATT server.}
+    \label{fig:BLE}
+\end{figure}
+
 \subsection{Bluetooth Low Energy}
 Android supports for Bluetooth Low Energy (BLE), which is designed to provide lower power consumption on data transmission (in contrast to classic Bluetooth) \cite{bluetoothle}. BLE allows Android applications to communicate with sensors or devices (e.g., heart rate sensor, and fitness devices), that has stricter power requirements. Sensors that utilize BLE are designed to last for a longer period (e.g., weeks or months before needing to charge or replace battery). The protocol of BLE is optimized for a small burst of data exchange, and terms and concepts that form a BLE can be characterized as:
 \begin{itemize}
@@ -143,3 +150,4 @@ Android supports for Bluetooth Low Energy (BLE), which is designed to provide lo
     \item \textbf{Service}: Is a collection of characteristics (e.g., a service is \textit{Heart Rate Monitor} which includes a characteristic of \textit{heart rate measurement}).
 \end{itemize}
 In order to enable BLE, facilitating for a GATT server and GATT client is required. Either the sensor or the device takes the role of being a server or a client. However, the GATT server offers a set of services (i.e., features), where each service has a set of characteristics. Moreover, the GATT client can subscribe and read from the services the GATT server provides. 
+

@@ -63,244 +63,244 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.8}Bluetooth Low Energy}{26}{subsection.2.2.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Related Work}{27}{chapter.3}
+\contentsline {chapter}{\numberline {3}Related Work}{29}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Summary}{28}{section.3.1}
+\contentsline {section}{\numberline {3.1}Summary}{30}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{II\hspace {1em}Design and Implementation}{29}{part.2}
+\contentsline {part}{II\hspace {1em}Design and Implementation}{31}{part.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Analysis and High-Level Design}{31}{chapter.4}
+\contentsline {chapter}{\numberline {4}Analysis and High-Level Design}{33}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Requirement Analysis}{32}{section.4.1}
+\contentsline {section}{\numberline {4.1}Requirement Analysis}{34}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.1}Stakeholders}{32}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.1}Stakeholders}{34}{subsection.4.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.2}Resource Efficiency}{32}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.2}Resource Efficiency}{34}{subsection.4.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.3}Security and Privacy}{32}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.3}Security and Privacy}{34}{subsection.4.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}High-Level Design}{33}{section.4.2}
+\contentsline {section}{\numberline {4.2}High-Level Design}{35}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.1}Task Analysis}{33}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.1}Task Analysis}{35}{subsection.4.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Seperation of Concerns}{35}{section.4.3}
+\contentsline {section}{\numberline {4.3}Seperation of Concerns}{37}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.1}Recording}{35}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.1}Recording}{37}{subsection.4.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.1.1}Connectivity State Component}{37}{subsubsection.4.3.1.1}
+\contentsline {subsubsection}{\numberline {4.3.1.1}Connectivity State Component}{39}{subsubsection.4.3.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.2}Sharing}{38}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.2}Sharing}{40}{subsection.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.2.1}Distribute Component}{39}{subsubsection.4.3.2.1}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Distribute Component}{41}{subsubsection.4.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.3}Modules}{40}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.3}Modules}{42}{subsection.4.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.3.1}Data Exchange Component}{40}{subsubsection.4.3.3.1}
+\contentsline {subsubsection}{\numberline {4.3.3.1}Data Exchange Component}{42}{subsubsection.4.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.4}Analytics}{41}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.4}Analytics}{43}{subsection.4.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.4.1}Analytic Method Component}{42}{subsubsection.4.3.4.1}
+\contentsline {subsubsection}{\numberline {4.3.4.1}Analytic Method Component}{44}{subsubsection.4.3.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.5}Storage}{42}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.5}Storage}{44}{subsection.4.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.5.1}Database Component}{44}{subsubsection.4.3.5.1}
+\contentsline {subsubsection}{\numberline {4.3.5.1}Database Component}{46}{subsubsection.4.3.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.6}Presentation}{45}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.6}Presentation}{47}{subsection.4.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.6.1}Color Palette Component}{46}{subsubsection.4.3.6.1}
+\contentsline {subsubsection}{\numberline {4.3.6.1}Color Palette Component}{48}{subsubsection.4.3.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Data Structure}{46}{section.4.4}
+\contentsline {section}{\numberline {4.4}Data Structure}{48}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.1}Data Formats}{46}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.1}Data Formats}{48}{subsection.4.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.1.1}JSON}{47}{subsubsection.4.4.1.1}
+\contentsline {subsubsection}{\numberline {4.4.1.1}JSON}{49}{subsubsection.4.4.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.1.2}XML}{47}{subsubsection.4.4.1.2}
+\contentsline {subsubsection}{\numberline {4.4.1.2}XML}{49}{subsubsection.4.4.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.1.3}Comparing}{47}{subsubsection.4.4.1.3}
+\contentsline {subsubsection}{\numberline {4.4.1.3}Comparing}{49}{subsubsection.4.4.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.2}Data Entities}{48}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.2}Data Entities}{50}{subsection.4.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.2.1}Record Entity}{49}{subsubsection.4.4.2.1}
+\contentsline {subsubsection}{\numberline {4.4.2.1}Record Entity}{51}{subsubsection.4.4.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.2.2}Sample Entity}{49}{subsubsection.4.4.2.2}
+\contentsline {subsubsection}{\numberline {4.4.2.2}Sample Entity}{51}{subsubsection.4.4.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.2.3}Module Entity}{50}{subsubsection.4.4.2.3}
+\contentsline {subsubsection}{\numberline {4.4.2.3}Module Entity}{52}{subsubsection.4.4.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.2.4}User Entity}{50}{subsubsection.4.4.2.4}
+\contentsline {subsubsection}{\numberline {4.4.2.4}User Entity}{52}{subsubsection.4.4.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.3}Data Packets}{51}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.3}Data Packets}{53}{subsection.4.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.3.1}Sharing}{51}{subsubsection.4.4.3.1}
+\contentsline {subsubsection}{\numberline {4.4.3.1}Sharing}{53}{subsubsection.4.4.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.4.3.2}Single Sensor Reading}{52}{subsubsection.4.4.3.2}
+\contentsline {subsubsection}{\numberline {4.4.3.2}Single Sensor Reading}{54}{subsubsection.4.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Implementation}{55}{chapter.5}
+\contentsline {chapter}{\numberline {5}Implementation}{57}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Application Components}{55}{section.5.1}
+\contentsline {section}{\numberline {5.1}Application Components}{57}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.1}Flow Sensor Wrapper}{55}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.1}Flow Sensor Wrapper}{57}{subsection.5.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.1.1.1}Communicating with the Flow Sensor}{58}{subsubsection.5.1.1.1}
+\contentsline {subsubsection}{\numberline {5.1.1.1}Communicating with the Flow Sensor}{60}{subsubsection.5.1.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.2}Data Streams Dispatching Module}{59}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.2}Data Streams Dispatching Module}{61}{subsection.5.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.3}Nidra}{60}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.3}Nidra}{62}{subsection.5.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.4}Inter-Process Communication}{61}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.4}Inter-Process Communication}{63}{subsection.5.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Implementation of Concerns}{62}{section.5.2}
+\contentsline {section}{\numberline {5.2}Implementation of Concerns}{64}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.1}Recording}{63}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.1}Recording}{65}{subsection.5.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.1.1}Action A: Start Recording}{63}{subsubsection.5.2.1.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Action A: Start Recording}{65}{subsubsection.5.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.1.2}Action B: Stop Recording}{65}{subsubsection.5.2.1.2}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Action B: Stop Recording}{67}{subsubsection.5.2.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.1.3}Action C: Display Recording Statistics}{67}{subsubsection.5.2.1.3}
+\contentsline {subsubsection}{\numberline {5.2.1.3}Action C: Display Recording Statistics}{69}{subsubsection.5.2.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.2}Sharing}{68}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.2}Sharing}{70}{subsection.5.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.2.1}Action A: Exporting one or all Records}{68}{subsubsection.5.2.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Action A: Exporting one or all Records}{70}{subsubsection.5.2.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.2.2}Action B: Import a Record from the Device}{69}{subsubsection.5.2.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Action B: Import a Record from the Device}{71}{subsubsection.5.2.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.3}Modules}{71}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.3}Modules}{73}{subsection.5.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.3.1}Action A: Add a Module}{71}{subsubsection.5.2.3.1}
+\contentsline {subsubsection}{\numberline {5.2.3.1}Action A: Add a Module}{73}{subsubsection.5.2.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.3.2}Action B: Launch a Module}{72}{subsubsection.5.2.3.2}
+\contentsline {subsubsection}{\numberline {5.2.3.2}Action B: Launch a Module}{74}{subsubsection.5.2.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.4}Analytics}{73}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.4}Analytics}{75}{subsection.5.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.4.1}Action A: Display a Graph for a Single Record}{74}{subsubsection.5.2.4.1}
+\contentsline {subsubsection}{\numberline {5.2.4.1}Action A: Display a Graph for a Single Record}{76}{subsubsection.5.2.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.5}Storage}{75}{subsection.5.2.5}
+\contentsline {subsection}{\numberline {5.2.5}Storage}{77}{subsection.5.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.6}Presentation}{76}{subsection.5.2.6}
+\contentsline {subsection}{\numberline {5.2.6}Presentation}{78}{subsection.5.2.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.6.1}UI: Recording}{76}{subsubsection.5.2.6.1}
+\contentsline {subsubsection}{\numberline {5.2.6.1}UI: Recording}{78}{subsubsection.5.2.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.6.2}UI: Sharing}{77}{subsubsection.5.2.6.2}
+\contentsline {subsubsection}{\numberline {5.2.6.2}UI: Sharing}{79}{subsubsection.5.2.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.6.3}UI: Modules}{78}{subsubsection.5.2.6.3}
+\contentsline {subsubsection}{\numberline {5.2.6.3}UI: Modules}{80}{subsubsection.5.2.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.6.4}UI: Analytics}{79}{subsubsection.5.2.6.4}
+\contentsline {subsubsection}{\numberline {5.2.6.4}UI: Analytics}{81}{subsubsection.5.2.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Miscellaneous}{79}{section.5.3}
+\contentsline {section}{\numberline {5.3}Miscellaneous}{81}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.1}Collecting Data Over a Longer Period}{79}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.1}Collecting Data Over a Longer Period}{81}{subsection.5.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.1.1}Keep the CPU Alive}{80}{subsubsection.5.3.1.1}
+\contentsline {subsubsection}{\numberline {5.3.1.1}Keep the CPU Alive}{82}{subsubsection.5.3.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.1.2}Priority}{81}{subsubsection.5.3.1.2}
+\contentsline {subsubsection}{\numberline {5.3.1.2}Priority}{83}{subsubsection.5.3.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.3.2}Android Manifest}{82}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.2}Android Manifest}{84}{subsection.5.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.2.1}Nidra}{82}{subsubsection.5.3.2.1}
+\contentsline {subsubsection}{\numberline {5.3.2.1}Nidra}{84}{subsubsection.5.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.3.2.2}Flow Sensor Wrapper}{83}{subsubsection.5.3.2.2}
+\contentsline {subsubsection}{\numberline {5.3.2.2}Flow Sensor Wrapper}{85}{subsubsection.5.3.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{85}{part.3}
+\contentsline {part}{III\hspace {1em}Evaluation and Conclusion}{87}{part.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Evaluation}{87}{chapter.6}
+\contentsline {chapter}{\numberline {6}Evaluation}{89}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Experiment A: Orchestral Concert to Analyze Musical Absorption using Nidra to Collect Breathing Data}{88}{section.6.1}
+\contentsline {section}{\numberline {6.1}Experiment A: Orchestral Concert to Analyze Musical Absorption using Nidra to Collect Breathing Data}{90}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.1}Preperations}{89}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.1}Preperations}{91}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.2}Results}{90}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.2}Results}{92}{subsection.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.3}Analysis}{91}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.3}Analysis}{93}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.4}Discussion}{93}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.4}Discussion}{95}{subsection.6.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1.5}Conclusion}{93}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.5}Conclusion}{95}{subsection.6.1.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Experiment B: 9-Hours Recording}{94}{section.6.2}
+\contentsline {section}{\numberline {6.2}Experiment B: 9-Hours Recording}{96}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Description}{94}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.1}Description}{96}{subsection.6.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Results}{95}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.2}Results}{97}{subsection.6.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.3}Discussion}{96}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.3}Discussion}{98}{subsection.6.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.4}Conclusion}{96}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.4}Conclusion}{98}{subsection.6.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Experiment C: Performing User-Tests}{96}{section.6.3}
+\contentsline {section}{\numberline {6.3}Experiment C: Performing User-Tests}{98}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.1}Testing}{97}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.1}Testing}{99}{subsection.6.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.2}Observations}{98}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.2}Observations}{100}{subsection.6.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.3}Survey}{98}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.3}Survey}{100}{subsection.6.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.4}Discussion}{100}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.4}Discussion}{102}{subsection.6.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3.5}Conlusion}{101}{subsection.6.3.5}
+\contentsline {subsection}{\numberline {6.3.5}Conlusion}{103}{subsection.6.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Experiment D: Creating a Simple Module}{101}{section.6.4}
+\contentsline {section}{\numberline {6.4}Experiment D: Creating a Simple Module}{103}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.1}Observations}{102}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.1}Observations}{104}{subsection.6.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.2}Results}{102}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.2}Results}{104}{subsection.6.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.3}Discussion}{102}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.3}Discussion}{104}{subsection.6.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.4}Conclusion}{103}{subsection.6.4.4}
+\contentsline {subsection}{\numberline {6.4.4}Conclusion}{105}{subsection.6.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.5}Summary of Results}{103}{section.6.5}
+\contentsline {section}{\numberline {6.5}Summary of Results}{105}{section.6.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.6}Concluding Remarks}{104}{section.6.6}
+\contentsline {section}{\numberline {6.6}Concluding Remarks}{106}{section.6.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion}{107}{chapter.7}
+\contentsline {chapter}{\numberline {7}Conclusion}{109}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Summary}{107}{section.7.1}
+\contentsline {section}{\numberline {7.1}Summary}{109}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Contributions}{108}{section.7.2}
+\contentsline {section}{\numberline {7.2}Contributions}{110}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Future Work}{109}{section.7.3}
+\contentsline {section}{\numberline {7.3}Future Work}{111}{section.7.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{Appendix}{111}{section.7.3}
+\contentsline {part}{Appendix}{113}{section.7.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Source Code}{113}{appendix.A}
+\contentsline {chapter}{\numberline {A}Source Code}{115}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}File and Folder Structure}{113}{section.A.1}
+\contentsline {section}{\numberline {A.1}File and Folder Structure}{115}{section.A.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Expatiate on Concert Experiement}{115}{appendix.B}
+\contentsline {chapter}{\numberline {B}Expatiate on Concert Experiement}{117}{appendix.B}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.1}Concert Day 1: Time-Series Graph}{115}{section.B.1}
+\contentsline {section}{\numberline {B.1}Concert Day 1: Time-Series Graph}{117}{section.B.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.2}Concert Day 2: Time-Series Graph}{115}{section.B.2}
+\contentsline {section}{\numberline {B.2}Concert Day 2: Time-Series Graph}{117}{section.B.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {B.3}Python Code for Plotting}{122}{section.B.3}
+\contentsline {section}{\numberline {B.3}Python Code for Plotting}{124}{section.B.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {C}Module Template}{125}{appendix.C}
+\contentsline {chapter}{\numberline {C}Module Template}{127}{appendix.C}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C.1}Application Setup}{125}{section.C.1}
+\contentsline {section}{\numberline {C.1}Application Setup}{127}{section.C.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.1.1}Download the Application}{125}{subsection.C.1.1}
+\contentsline {subsection}{\numberline {C.1.1}Download the Application}{127}{subsection.C.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.1.2}Change the Name of the Application}{125}{subsection.C.1.2}
+\contentsline {subsection}{\numberline {C.1.2}Change the Name of the Application}{127}{subsection.C.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.1.3}Rename the Package of the Application}{126}{subsection.C.1.3}
+\contentsline {subsection}{\numberline {C.1.3}Rename the Package of the Application}{128}{subsection.C.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.1.4}Change the Application ID}{126}{subsection.C.1.4}
+\contentsline {subsection}{\numberline {C.1.4}Change the Application ID}{128}{subsection.C.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {C.2}Application Execution}{126}{section.C.2}
+\contentsline {section}{\numberline {C.2}Application Execution}{128}{section.C.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.2.1}Add the Module to Nidra}{126}{subsection.C.2.1}
+\contentsline {subsection}{\numberline {C.2.1}Add the Module to Nidra}{128}{subsection.C.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {C.2.2}Retrieve the Data}{127}{subsection.C.2.2}
+\contentsline {subsection}{\numberline {C.2.2}Retrieve the Data}{129}{subsection.C.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {D}Flow Sensor Wrapper}{129}{appendix.D}
+\contentsline {chapter}{\numberline {D}Flow Sensor Wrapper}{131}{appendix.D}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {D.1}Implementation}{130}{section.D.1}
+\contentsline {section}{\numberline {D.1}Implementation}{132}{section.D.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {D.1.1}Action A: Starting the Data Acquistion}{130}{subsection.D.1.1}
+\contentsline {subsection}{\numberline {D.1.1}Action A: Starting the Data Acquistion}{132}{subsection.D.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {D.1.2}Action B: Handle the Samples from the Sensor}{130}{subsection.D.1.2}
+\contentsline {subsection}{\numberline {D.1.2}Action B: Handle the Samples from the Sensor}{132}{subsection.D.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {D.1.3}Action C: Stopping the Data Acquestion}{131}{subsection.D.1.3}
+\contentsline {subsection}{\numberline {D.1.3}Action C: Stopping the Data Acquestion}{133}{subsection.D.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {D.2}Presentation}{131}{section.D.2}
+\contentsline {section}{\numberline {D.2}Presentation}{133}{section.D.2}
