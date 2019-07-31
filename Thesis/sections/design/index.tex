@@ -1,9 +1,9 @@
 
 \chapter{Analysis and High-Level Design}
 
-It is the goal of this thesis to enable detection of sleep-related disorders with the aid of an Android device and low-cost sensors, and to further analyze and evaluate sleep- and breath-related patterns. We developed an application, called \textit{Nidra}, which attempts to collect, analyze, and share data collected from external sensors, all on a mobile device. Also, Nidra acts as a platform for modules to enrich the data, thus extending the functionality of the application.
+It is the motivation of this thesis to enable early detection of sleep-related disorders with the aid of an Android device and low-cost sensors, and to provide further analysis and evaluation in sleep- and breath-related patterns. We developed an application, called \textit{Nidra}, which attempts to record, share, and analyze data collected from external sensors, all on a mobile device. Also, Nidra acts as a platform for modules to enrich the data, thus extending the functionality of the application.
 
-The motivation behind this application is to provide an interface for patients to potentially run a self-diagnostic from home, and to aid researchers and doctors with analysis of sleep- and breathing-related illnesses (e.g., Obstructive Sleep Apnea). An overview of the Nidra application pipeline is found in Figure \ref{fig:parts}, beginning with data acquired from a sensor, and ending with the data in the Nidra application. As for now, Nidra consists of three main functionalities, each related to the requirements defined in the problem statement: 
+The motive behind this application is to provide an interface for patients to record breathing data from home and to aid researchers and doctors with analysis of sleep-related breathing disorders (e.g., obstructive sleep apnea) in a patient. An overview of the CESAR project is found in Figure \ref{fig:parts}, separating the project into three parts, in which the application part is what we intend to extend the project with, by introducing Nidra. As for now, Nidra consists of three main functionalities, each related to the requirements defined in the problem statement:  
 
 \begin{enumerate}
     \item The application must provide an interface for the patient to (i) record physiological signals (e.g., breathing data); (ii) present the results; and (iii) share the results.
@@ -11,7 +11,7 @@ The motivation behind this application is to provide an interface for patients t
     \item The application must provide an interface for the developers to create modules that integrate with the application.
 \end{enumerate}
 
-This chapter gives a detailed look at the design of Nidra, including the tasks which constitute the structure of the application, the separate concerns in relation to the tasks, and the structure of the data in the application.
+This chapter gives a detailed look at the design of Nidra, including the tasks which are separated into concerns that combined constitute the structure of the application---followed up the structure of the data in the application.
 
 \section{Requirement Analysis}
 
