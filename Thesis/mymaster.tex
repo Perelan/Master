@@ -16,6 +16,7 @@
 \usepackage{enumitem}
 \usepackage{textcomp}
 \usepackage{epigraph}
+\usepackage[page,toc]{appendix}
 
 \setlength{\parindent}{2em}
 \setcounter{secnumdepth}{4}
@@ -118,13 +119,18 @@ Above all, I'm truly grateful for my parents' unconditional love and care. Witho
 
 \include{sections/conclusion/index}
 
-
-\addcontentsline{toc}{part}{Appendix}
-\part*{Appendix}
-
-\appendix{}
-\include{sections/appendix/index}
-
 \backmatter{}
+
 \printbibliography
+
+
+\begin{appendices}
+\include{sections/appendix/index}
+    
+\end{appendices}
+
+
+
+
+
 \end{document}

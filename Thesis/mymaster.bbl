@@ -126,34 +126,6 @@
       \endverb
       \keyw{accelerometers;biomedical telemetry;diseases;geographic information systems;medical computing;microphones;mobile computing;operating systems (computers);patient diagnosis;radiotelemetry;sleep;smart phones;mobile phones;obstructive sleep apnea monitoring;OSA monitoring;airflow repetitive reduction;sleeping disorder;user-friendly mobile application;Windows platform;Android platform;smart phone built-in sensors;sleep specialists;advanced sleep tests;patient records;initial diagnosis;breathing patterns;movement patterns;built-in microphone;built-in accelerometer;patient diagnosis;geographical studies;UAE;doctors;Website;Google maps;Sleep apnea;Servers;Monitoring;Smart phones;Accelerometers}
     \endentry
-    \entry{androidsecurity}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=e84e30b9390cdb64db6db2c9ab87846d}{%
-           family={Android},
-           familyi={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{e84e30b9390cdb64db6db2c9ab87846d}
-      \strng{fullhash}{e84e30b9390cdb64db6db2c9ab87846d}
-      \strng{bibnamehash}{e84e30b9390cdb64db6db2c9ab87846d}
-      \strng{authorbibnamehash}{e84e30b9390cdb64db6db2c9ab87846d}
-      \strng{authornamehash}{e84e30b9390cdb64db6db2c9ab87846d}
-      \strng{authorfullhash}{e84e30b9390cdb64db6db2c9ab87846d}
-      \field{sortinit}{A}
-      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Secure an Android Device}
-      \field{urlday}{30}
-      \field{urlmonth}{5}
-      \field{urlyear}{2019}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://source.android.com/security
-      \endverb
-      \verb{url}
-      \verb https://source.android.com/security
-      \endverb
-    \endentry
     \entry{cesar}{online}{}
       \field{sortinit}{A}
       \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
@@ -290,13 +262,16 @@
       \verb https://developer.android.com/guide/topics/connectivity/bluetooth-le
       \endverb
     \endentry
-    \entry{daniel}{article}{}
+    \entry{daniel}{thesis}{}
       \name{author}{1}{}{%
         {{hash=2da8c0bcbc66527c30d44f2799cf154b}{%
            family={Bugajski},
            familyi={B\bibinitperiod},
            given={Daniel},
            giveni={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Oslo}%
       }
       \strng{namehash}{2da8c0bcbc66527c30d44f2799cf154b}
       \strng{fullhash}{2da8c0bcbc66527c30d44f2799cf154b}
@@ -309,7 +284,14 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Extensible data streams dispatching tool for Android}
-      \field{year}{201}
+      \field{type}{mathesis}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb https://www.duo.uio.no/handle/10852/60350
+      \endverb
+      \verb{url}
+      \verb https://www.duo.uio.no/handle/10852/60350
+      \endverb
     \endentry
     \entry{cesarinfo}{online}{}
       \field{sortinit}{C}
@@ -612,13 +594,16 @@
       \verb https://www.journals.uchicago.edu/doi/pdfplus/10.1086/368480
       \endverb
     \endentry
-    \entry{gjoby}{article}{}
+    \entry{gjoby}{thesis}{}
       \name{author}{1}{}{%
         {{hash=fc84bd950e3913e65633794ac34988e0}{%
            family={Gjøby},
            familyi={G\bibinitperiod},
            given={Svein\bibnamedelima Petter},
            giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Oslo}%
       }
       \strng{namehash}{fc84bd950e3913e65633794ac34988e0}
       \strng{fullhash}{fc84bd950e3913e65633794ac34988e0}
@@ -631,7 +616,14 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Extensible data acquisition tool for Android}
+      \field{type}{mathesis}
       \field{year}{2016}
+      \verb{urlraw}
+      \verb https://www.duo.uio.no/handle/10852/53004
+      \endverb
+      \verb{url}
+      \verb https://www.duo.uio.no/handle/10852/53004
+      \endverb
     \endentry
     \entry{Glass_1995}{article}{}
       \name{author}{1}{}{%
@@ -659,8 +651,12 @@
       \field{month}{1}
       \field{number}{1}
       \field{title}{A structure-based critique of contemporary computing research}
+      \field{urlday}{15}
+      \field{urlmonth}{7}
+      \field{urlyear}{2019}
       \field{volume}{28}
       \field{year}{1995}
+      \field{urldateera}{ce}
       \field{pages}{3\bibrangedash 7}
       \range{pages}{5}
       \verb{doi}
@@ -705,6 +701,50 @@
       \endverb
       \verb{url}
       \verb https://developer.android.com/guide/components/intents-filters
+      \endverb
+    \endentry
+    \entry{pacmad}{article}{}
+      \name{author}{3}{}{%
+        {{hash=1fd7597039163c28110f3764e71b43dd}{%
+           family={Ismail},
+           familyi={I\bibinitperiod},
+           given={Roesnita},
+           giveni={R\bibinitperiod}}}%
+        {{hash=28068a59e4fd715399acb36863aaafa8}{%
+           family={Fabil},
+           familyi={F\bibinitperiod},
+           given={Norasikin},
+           giveni={N\bibinitperiod}}}%
+        {{hash=4a8b37ac67517f49f72291e62880dee6}{%
+           family={Saleh},
+           familyi={S\bibinitperiod},
+           given={Ashraf},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{68113248eefcc226c1335324628f8ccd}
+      \strng{fullhash}{68113248eefcc226c1335324628f8ccd}
+      \strng{bibnamehash}{68113248eefcc226c1335324628f8ccd}
+      \strng{authorbibnamehash}{68113248eefcc226c1335324628f8ccd}
+      \strng{authornamehash}{68113248eefcc226c1335324628f8ccd}
+      \strng{authorfullhash}{68113248eefcc226c1335324628f8ccd}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Theoretical and Applied Information Technology}
+      \field{month}{09}
+      \field{title}{Extension of pacmad model for usability evaluation metrics using goal question metrics (Gqm) approach}
+      \field{urlday}{5}
+      \field{urlmonth}{7}
+      \field{urlyear}{2019}
+      \field{volume}{79}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/325484529_Extension_of_pacmad_model_for_usability_evaluation_metrics_using_goal_question_metrics_Gqm_approach
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/325484529_Extension_of_pacmad_model_for_usability_evaluation_metrics_using_goal_question_metrics_Gqm_approach
       \endverb
     \endentry
     \entry{wakelocks}{online}{}
@@ -795,8 +835,12 @@
       \field{journaltitle}{American journal of preventive medicine}
       \field{number}{2}
       \field{title}{Mobile health technology evaluation: the mHealth evidence workshop}
+      \field{urlday}{9}
+      \field{urlmonth}{7}
+      \field{urlyear}{2019}
       \field{volume}{45}
       \field{year}{2013}
+      \field{urldateera}{ce}
       \field{pages}{228\bibrangedash 236}
       \range{pages}{9}
       \verb{doi}
@@ -1235,6 +1279,23 @@
       \verb https://developer.android.com/training/data-storage/room/index
       \endverb
     \endentry
+    \entry{androidsecurity}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labeltitlesource}{title}
+      \field{title}{Secure an Android Device}
+      \field{titleaddon}{Android}
+      \field{urlday}{30}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://source.android.com/security
+      \endverb
+      \verb{url}
+      \verb https://source.android.com/security
+      \endverb
+    \endentry
     \entry{services}{online}{}
       \field{sortinit}{S}
       \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
@@ -1269,24 +1330,69 @@
       \verb https://www.ncbi.nlm.nih.gov/pubmed/28845957
       \endverb
     \endentry
-    \entry{flow}{book}{}
-      \name{author}{1}{}{%
-        {{hash=a4fc496b999590ea4cc57b5851b3e5b2}{%
-           family={SweetZpot},
-           familyi={S\bibinitperiod}}}%
+    \entry{sumaray_comparison_2012}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=bd2f62aab24a01bc1e198a91e1da9471}{%
+           family={Sumaray},
+           familyi={S\bibinitperiod},
+           given={Audie},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3a1867385df533032eb4351330e721b9}{%
+           family={Makki},
+           familyi={M\bibinitperiod},
+           given={S.\bibnamedelimi Kami},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
       }
-      \strng{namehash}{a4fc496b999590ea4cc57b5851b3e5b2}
-      \strng{fullhash}{a4fc496b999590ea4cc57b5851b3e5b2}
-      \strng{bibnamehash}{a4fc496b999590ea4cc57b5851b3e5b2}
-      \strng{authorbibnamehash}{a4fc496b999590ea4cc57b5851b3e5b2}
-      \strng{authornamehash}{a4fc496b999590ea4cc57b5851b3e5b2}
-      \strng{authorfullhash}{a4fc496b999590ea4cc57b5851b3e5b2}
+      \list{location}{1}{%
+        {Kuala Lumpur, Malaysia}%
+      }
+      \list{publisher}{1}{%
+        {{ACM} Press}%
+      }
+      \strng{namehash}{b4741708ced2899ebfc329475a41268a}
+      \strng{fullhash}{b4741708ced2899ebfc329475a41268a}
+      \strng{bibnamehash}{b4741708ced2899ebfc329475a41268a}
+      \strng{authorbibnamehash}{b4741708ced2899ebfc329475a41268a}
+      \strng{authornamehash}{b4741708ced2899ebfc329475a41268a}
+      \strng{authorfullhash}{b4741708ced2899ebfc329475a41268a}
       \field{sortinit}{S}
       \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{URL: https://www.sweetzpot.com/flow (visited on 28/05/2018)}
+      \field{abstract}{Because of the increase in easily obtainable internet-connected mobile devices and their unique characteristics, choosing the proper data serialization format has become increasingly difficult. These devices are resource scarce and bandwidth limited. In this paper, we compare four different data serialization formats with an emphasis on serialization speed, data size, and usability. The selected serialization formats include {XML}, {JSON}, Thrift, and {ProtoBuf}. {XML} and {JSON} are the most well known text-based data formats, while {ProtoBuf} and Thrift are relatively new binary serialization formats. These data serialization formats are tested on an Android device using both text-heavy and number-heavy objects.}
+      \field{booktitle}{Proceedings of the 6th International Conference on Ubiquitous Information Management and Communication - {ICUIMC} '12}
+      \field{eventtitle}{the 6th International Conference}
+      \field{isbn}{978-1-4503-1172-4}
+      \field{langid}{english}
+      \field{title}{A comparison of data serialization formats for optimal efficiency on a mobile platform}
+      \field{urlday}{26}
+      \field{urlmonth}{5}
+      \field{urlyear}{2019}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1145/2184751.2184810
+      \endverb
+      \verb{urlraw}
+      \verb http://dl.acm.org/citation.cfm?doid=2184751.2184810
+      \endverb
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?doid=2184751.2184810
+      \endverb
+    \endentry
+    \entry{flow}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labeltitlesource}{title}
       \field{title}{SweetZpot FlowTM Sensor}
+      \field{titleaddon}{SweetZpot}
+      \field{urlday}{28}
+      \field{urlmonth}{5}
+      \field{urlyear}{2018}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://www.sweetzpot.com/flow
       \endverb

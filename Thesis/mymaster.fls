@@ -261,6 +261,8 @@ INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/epigraph/epigraph.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/epigraph/epigraph.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/appendix/appendix.sty
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/appendix/appendix.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/biblatex/lbx/UKenglish.lbx
@@ -606,6 +608,9 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/vf/adobe/palatino/pplr7t.vf
 OUTPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/conclusion/index.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/conclusion/index.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/conclusion/index.tex
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplrc8t.tfm
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/vf/adobe/palatino/pplrc8t.vf
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 OUTPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/appendix/index.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/appendix/index.tex
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/appendix/index.tex
@@ -651,9 +656,6 @@ INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/Flow_Imp.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/flow_app.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/flow_app.pdf
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/images/flow_app.pdf
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplrc8t.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/vf/adobe/palatino/pplrc8t.vf
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/mymaster.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/introduction/index.aux
 INPUT /Users/deep/Documents/Master/Project/Master/Thesis/sections/introduction/index.aux

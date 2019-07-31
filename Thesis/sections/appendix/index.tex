@@ -1,24 +1,24 @@
 \chapter{Source Code}
-The source code for the various applications in context of this thesis is found at following Github repository: \textit{https://github.com/perelan/master}
+The source code for the various applications in the context of this thesis is found at following Github repository: \textit{https://github.com/perelan/master}
 
 \section{File and Folder Structure}
 \begin{description}
-    \item[Nidra] encompasses the implementation performed in the Chapther 5. The application follows the MVVM architecture pattern, thus the naming scheme of the folders advertently follows the seperation of the components in the architecture pattern. The folder structure for the application code is seperated into:
+    \item[Nidra] encompasses the implementation performed in Chapter 5. The application follows the MVVM architecture pattern; thus, the naming scheme of the folders advertently follows the separation of the components in the architecture pattern. The folder structure for the application code is separated into:
     \begin{itemize}
-        \item \textbf{Dispatcher}: contains the code for communication with the DataStreamDispatchingModule including the service for data acquisition, and the code for reconnectivity with the sensor sources on sensor disconnect or human disruption.
-        \item \textbf{Model}: contains the model for data entities, structure for the sensor data and Flow payload data, and the interface for establishing connection with SQLite (with Android Room).
-        \item \textbf{Utils}: comprise of miscellaneous code ranging from functionality to extract Flow payload to logic behind the export functionality. 
-        \item \textbf{View}: include the activities (discussed in Chapther 5) with seperation of various views (e.g., feed, module and recording). 
+        \item \textbf{Dispatcher}: contains the code for communication with the DataStreamsDispatchingModule, including the service for data acquisition, and the code for re-connectivity with the sensor sources on sensor disconnect or human disruption.
+        \item \textbf{Model}: contains the model for data entities, structure for the sensor data and Flow payload data, and the interface for establishing a connection with SQLite (with Android Room).
+        \item \textbf{Utils}: comprises of miscellaneous code ranging from functionality to extract Flow payload to the logic behind the export functionality. 
+        \item \textbf{View}: include the activities with separation of various views (e.g., feed, module, and recording). 
         \item \textbf{ViewModel}: exposes the operations that can be performed on the data entities. 
     \end{itemize}
 
-    \item[DataStreamDispatchingModule] encompasses the implemention made by Bugasjki. However, the application was extended during the course of this thesis and can be reflected into the following files: 
+    \item[DataStreamsDispatchingModule] encompasses the implementation made by Bugasjki. However, the application was extended during the course of this thesis and can be reflected in the following files: 
     \begin{itemize}
-        \item \textbf{SensorDiscovery} listens for broadcasts sent by the sensor wrappers on start. The data passed alongside the broadcasts is extracted of name and packagename, and stored in a \verb|SharedPreferences| if it does not exists. 
-        \item \textbf{Sensor} is the sensor objective that is stored into the \verb|SharedPreferences| mentioned above, with the name and the packagename of the sensor wrapper. 
+        \item \textbf{SensorDiscovery} listens for broadcasts sent by the sensor wrappers on start. The data passed alongside the broadcasts is extracted of name and package name, and stored in a \verb|SharedPreferences| if it does not exists. 
+        \item \textbf{Sensor} is the sensor object that is stored into the a SharedPreferences, with the name and the package name of the sensor wrapper. 
     \end{itemize}
 
-    \item[Flow] encompasses the driver for creating a sensor wrapper made by Gjøby. The sensor wrapper adds the support for Flow sensor, and the extention made to enable the sensor wrapper (besides the components introduced by Gjøby) are the following:
+    \item[Flow] encompasses the driver for creating a sensor wrapper made by Gjøby \cite{gjoby}. The sensor wrapper adds the support for Flow sensor, and the extension made to enable the sensor wrapper (besides the components introduced by Gjøby) are the following:
     \begin{itemize}
         \item \textbf{Bluetooth} include the code for connecting with the Flow sensor with Bluetooth LE. Most of the logic is in the file \verb|BluetoothHandler|, and the code is inspired by the application \textit{RawDataMonitor} sent to us from Sagar Sen at SweetZpot Inc. 
         \item \textbf{View} contains the activity for listing the available sensors on the screen. 
@@ -26,11 +26,11 @@ The source code for the various applications in context of this thesis is found 
 
     \item[TestModule] encompasses a boilerplate code for creating a new module (further discussed in Appendix C).
     \item[Thesis] encompasses the LaTeX for this thesis, including figures and UiO master's thesis format.
-    \item[Graph] encompasses the data acquired from the various mobile devices during the two concert dates including a Python script for plotting it in a time-series graph.
+    \item[Graph] encompasses the data acquired from the various mobile devices during the two concert dates, including a Python script for plotting it in a time-series graph.
 
 \end{description}
 
-\chapter{Expatiate on Concert Experiement}
+\chapter{Experiment A: Remaining Graphs}
 
 \section{Concert Day 1: Time-Series Graph}
 This Section illustrates the samples collected during the concert the concert on third April of 2019, which lasted 

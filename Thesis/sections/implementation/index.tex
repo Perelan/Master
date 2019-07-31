@@ -14,7 +14,7 @@ In this thesis, we operate with three individual applications: Nidra, data strea
 
 
 \subsection{Flow Sensor Wrapper}\label{imp:flowsensor}
-As part of the thesis, the goal is to integrate the support for the Flow sensor. We developed a sensor wrapper that connects with the sensor source by using the BlueTooth LE protocol. To create a sensor wrapper, we followed the instructions provided by Gjøby in order to create a new driver application that connects with the data streams dispatching module (DSDM). Below, a brief overview of the main components of the driver is discussed.
+As part of the thesis, the goal is to integrate the support for the Flow sensor. We developed a sensor wrapper that connects with the sensor source by using the BlueTooth LE protocol. To create a sensor wrapper, we followed the instructions provided by Gjøby \cite{gjoby} in order to create a new driver application that connects with the data streams dispatching module (DSDM). Below, a brief overview of the main components of the driver is discussed.
 
 \begin{description}[font=\normalfont\itshape]
     \item[WrapperService:] Is instantiated by the DSDM during the sensor discovery phase (described in Section \ref{imp:dsdm}). This component is responsible for handling starting and stopping of the data acquisition (event sent as broadcasts from DSDM), as well as establish an IPC connection using a binder with the DSDM application. 
@@ -47,7 +47,7 @@ To summarize, the \verb|BluetoothHandler| connects with the selected Flow sensor
 
 
 \subsection{Data Streams Dispatching Module}\label{imp:dsdm}
-The data streams dispatching module developed by Bugajski provides an interface for application instances to subscribe to data packets from supported and available sensor sources. The modularity this application provides towards managing and supporting various sensor source allows for faster development time. Also, it provides a common interface for communication with sensor sources that have different Link Layer technology (e.g., BlueTooth) and low-level communcation protocols (e.g., vensors that provides sensor spesific SDK). 
+The data streams dispatching module developed by Bugajski \cite{daniel} provides an interface for application instances to subscribe to data packets from supported and available sensor sources. The modularity this application provides towards managing and supporting various sensor source allows for faster development time. Also, it provides a common interface for communication with sensor sources that have different Link Layer technology (e.g., BlueTooth) and low-level communcation protocols (e.g., vensors that provides sensor spesific SDK). 
 
 This application discovers available sensor wrappers installed on the user's mobile device, establishes connection with the sensor source on requests, and forwards data packets from the sensors to the subscribed applications (all in the \verb|DataStreamDispatchingService| component). Below, we briefly introduce the components and their mechanism in the application.
 
@@ -122,7 +122,7 @@ In the design chapter of this thesis, we conceptualized the tasks by decomposing
 In Android, applications which are idle in the background or not visible to the user can be killed in order to reclaim resources for other applications or preserve battery time. However, this mechanism is not viable for collecting data over an extended time, because it can kill our applications during recording. To overcome this, there are several methods to prevent the Android system from killing our applications, which is presented in the subsequent sections.
 
 \subsubsection{Keep the CPU Alive}
-The Android system provides a wake lock mechanism to keep the CPU running in order to complete work. As long as we keep the CPU alive, we can collect the data over an extended period. Any applications can utilize wake-locks in their application; albeit, the documentation states that holding onto a wake lock for a longer period, shortens the device's battery time. Therefore, it is crucial to release the lock when the recording has terminated. Also, to use wake-locks the permission has to be added in the application's manifest file (see: \ref{impl:manifest}). Nidra utilizes the wake lock when the recording has started (inside of the \verb|RecordingFragment|) and are seen in following listing:
+The Android system provides a wake lock mechanism to keep the CPU running in order to complete work. As long as we keep the CPU alive, we can collect the data over an extended period. Any applications can utilize wake-locks in their application; albeit, the documentation states that holding onto a wake lock for a longer period, shortens the device's battery time. Therefore, it is crucial to release the lock when the recording has terminated. Also, to use wake-locks the permission has to be added in the application's manifest file (see: Section \ref{impl:manifest}). Nidra utilizes the wake lock when the recording has started (inside of the \verb|RecordingFragment|) and are seen in following listing:
 
 \begin{lstlisting}[language=json, caption={}, captionpos=b]
 powerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
@@ -168,7 +168,7 @@ public void toForeground() {
 \end{lstlisting}
 
 \subsection{Android Manifest} \label{impl:manifest}
-The Android Manifest describes the essential information about our application, such as the application components, permissions, and the package name. The application is constituted by application components (e.g., activity, provider, broadcast receiver, and service), and each component contains metadata describing the application component. Also, all of the components have must be declared in the manifest with reference to the component by name  (\verb|android:name|). The application components were presented in Section \ref{impl:appcomp}. Below, we describe the some of permissions and a few application components of Nidra and the Flow sensor wrapper.
+The Android Manifest describes the essential information about our application, such as the application components, permissions, and the package name. The application is constituted by application components, and each component contains metadata describing the application component. Below, we describe the some of permissions and a few application components of Nidra and the Flow sensor wrapper.
 
 \subsubsection{Nidra}
 
@@ -196,7 +196,7 @@ The permissions for Nidra are presented in the listing below, which includes the
 
 \subsubsection{Flow Sensor Wrapper}
 
-As for the Flow sensor wrapper, the application components structure are based on the driver created by Gjøby. With an expectation of the activities and the BlueTooth service. In the listing below, the permissions of the application are shown. In order to leverage the Bluetooth LE protocol, we need the permissions of \textit{BLUETOOTH}, \textit{BLUETOOTH\_ADMIN}, \textit{ACCESS\_FINE\_LOCATION}. The latter permission is obligatory because it is used to list the available sensor source in the area. Without permission, Android does not present any list of available sensor sources. 
+As for the Flow sensor wrapper, the application components structure are based on the driver created by Gjøby \cite{gjoby}. With an expectation of the activities and the BlueTooth service. In the listing below, the permissions of the application are shown. In order to leverage the Bluetooth LE protocol, we need the permissions of \textit{BLUETOOTH}, \textit{BLUETOOTH\_ADMIN}, \textit{ACCESS\_FINE\_LOCATION}. The latter permission is obligatory because it is used to list the available sensor source in the area. Without permission, Android does not present any list of available sensor sources. 
 
 \begin{lstlisting}[language=json, caption={}, captionpos=b]
 <uses-permission android:name="android.permission.BLUETOOTH"/>

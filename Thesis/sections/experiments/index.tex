@@ -230,7 +230,7 @@ The process of this experiment consisted of three parts: a presentation of the a
 \begin{description}
     \item[Presentation] We described the functionality of the application to the participants simply and intuitively---without showing the application. That included the explanation of the recording functionality, possibilities of viewing the data in a graph, and the methods of sharing the recording across applications. The presentation took approximately 10 minutes, including questions and clarifications.  
     \item[Tests] The tests were mainly designed to evaluate \textit{comprehensibility} and \textit{usability} in the application. Comprehensibility is to evaluate the participants' ability to understand the functionality of the application, while usability to measure ease of use of the application.
-    \item[Survey] The participants were instructed to fill out a questionnaire after these tests were conducted---such that the participant had their feedback fresh in memory. We structured the questions in the questionnaire accordingly to the PACMAD methodology. 
+    \item[Survey] The participants were instructed to fill out a questionnaire after these tests were conducted---such that the participant had their feedback fresh in memory. We structured the questions in the questionnaire accordingly to the PACMAD model \cite{pacmad}. 
 \end{description}
 
 \subsection{Testing}
@@ -253,7 +253,7 @@ Participants \verb|A|---less technical---had to familiarize with the setting of 
 Participants \verb|B| outperformed participant \verb|A|, due to the participant was more familiar with technical systems. The participant managed to start the recording quickly, however, was unsure whether the recording had started (clicking around on the interface for feedback) until the ripple effects appeared on the screen. Similar to participant A, participant B clicked on the interface for statistics, rather than swiping, and had a hard time to interact with the graph due to the interface moving. The participant B managed to perform T3--T6 with ease and without any interrupts or objections. 
 
 \subsection{Survey}
-A questionnaire was filled out by the patients after the tests. The questions followed a PACMAD survey structure, which is a model to identify the usability attributes and are structured into: effectiveness, efficiency, satisfaction, learnability, memorability, errors, and cognitive load. We created a survey based on some of the structure, as we were unable to perform any cognitive load or memorability tasks during the testing. Below, the questions from the patients are listed---where 1 is very-hard/very-bad/not-satisfied, and 5 is very-good/very-easy/very-satisfied: 
+A questionnaire was filled out by the patients after the tests. The questions followed the PACMAD model \cite{pacmad}, which is a model to identify the usability attributes and are structured into: effectiveness, efficiency, satisfaction, learnability, memorability, errors, and cognitive load. We created a survey based on some of the structure, as we were unable to perform any cognitive load or memorability tasks during the testing. Below, the questions from the patients are listed---where 1 is very-hard/very-bad/not-satisfied, and 5 is very-good/very-easy/very-satisfied: 
 
 \noindent \textbf{Effectiveness \& Efficency}
 \begin{itemize}
@@ -383,7 +383,7 @@ At the time of the experiment, there were five records on the mobile device, and
 
 The participant managed to create a module with some hurdles in the way. The first noticeable occurrence was after compiling the application, the participant had to open its module through Nidra in order to get the data. To overcome this, there are two ways to improve the relationship between Nidra and a module. One way is to establish an IPC connection (discussed in the design chapter) with the use of a binder, and send the data from Nidra to the application through the IPC connection. The second way is to cache the data in the module-application for the temporary storage of the data. However, both methods increase the complexity of module-application and Nidra. 
 
-The second noticeable occurrence was the parsing of the JSON data, as JSON is a bit tedious to work with in Java. As of now, there is no direct support for parsing JSON in Java; hence, third-party libraries have to be used in order to do so. Hence, we included a template (in Appendix C), to reduce the setup time for new modules.
+The second noticeable occurrence was the parsing of the JSON data, as JSON is a bit tedious to work with in Java. As of now, there is no direct support for parsing JSON in Java; hence, third-party libraries have to be used in order to do so. 
 
 \subsection{Conclusion}
 

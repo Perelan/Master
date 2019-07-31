@@ -3,7 +3,7 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Nidra: operating with multiple modules that extends the functionality or provide data enrichiment, and integrating support for multiple sensor source (with the use of the data streams dispatching tool).\relax }}{7}{figure.caption.6}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Nidra with the possibility of adding multiple modules that extends the functionality or provide data enrichiment, and integrating support for multiple sensor source (with the use of the data streams dispatching tool).\relax }}{7}{figure.caption.6}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -15,11 +15,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Android architecture stack, containing six major components.\relax }}{17}{figure.caption.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Android activity lifecycle.\relax }}{20}{figure.caption.11}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Android activity lifecycle \cite {activities}.\relax }}{20}{figure.caption.11}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {2.6}{\ignorespaces Structure of the Model-View-ViewModel architectural pattern.\relax }}{24}{figure.caption.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.7}{\ignorespaces The structure of BlueTooth Low Energy; illustrating the GATT Server with a service contains many characteristics, and the GATT client connecting with the GATT server.\relax }}{26}{figure.caption.13}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces The structure of BlueTooth Low Energy; illustrating the GATT Server with a service containing many characteristics and its value, and the GATT client connecting with the GATT server.\relax }}{26}{figure.caption.13}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -85,34 +85,34 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Concert Day 1: Device Model A.\relax }}{118}{figure.caption.47}
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Concert Day 1: Device Model A.\relax }}{124}{figure.caption.48}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Concert Day 1: Device Model B.\relax }}{118}{figure.caption.48}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Concert Day 1: Device Model B.\relax }}{124}{figure.caption.49}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Concert Day 1: Device Model C.\relax }}{119}{figure.caption.49}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Concert Day 1: Device Model C.\relax }}{125}{figure.caption.50}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.4}{\ignorespaces Concert Day 1: Device Model D.\relax }}{119}{figure.caption.50}
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Concert Day 1: Device Model D.\relax }}{125}{figure.caption.51}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.5}{\ignorespaces Concert Day 1: Device Model E.\relax }}{120}{figure.caption.51}
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Concert Day 1: Device Model E.\relax }}{126}{figure.caption.52}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.6}{\ignorespaces Concert Day 1: Device Model F.\relax }}{120}{figure.caption.52}
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Concert Day 1: Device Model F.\relax }}{126}{figure.caption.53}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.7}{\ignorespaces Concert Day 2: Device Model A.\relax }}{121}{figure.caption.53}
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Concert Day 2: Device Model A.\relax }}{127}{figure.caption.54}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.8}{\ignorespaces Concert Day 2: Device Model B.\relax }}{121}{figure.caption.54}
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Concert Day 2: Device Model B.\relax }}{127}{figure.caption.55}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Concert Day 2: Device Model C.\relax }}{122}{figure.caption.55}
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Concert Day 2: Device Model C.\relax }}{128}{figure.caption.56}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Concert Day 2: Device Model D.\relax }}{122}{figure.caption.56}
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Concert Day 2: Device Model D.\relax }}{128}{figure.caption.57}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.11}{\ignorespaces Concert Day 2: Device Model E.\relax }}{123}{figure.caption.57}
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Concert Day 2: Device Model E.\relax }}{129}{figure.caption.58}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {B.12}{\ignorespaces Concert Day 2: Device Model F.\relax }}{123}{figure.caption.58}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Concert Day 2: Device Model F.\relax }}{129}{figure.caption.59}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {D.1}{\ignorespaces Implementation of Flow sensor wrapper.\relax }}{131}{figure.caption.59}
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {D.2}{\ignorespaces The Flow sensor wrapper screen to the user: (A) main screen, and (B) selecting a sensor source.\relax }}{133}{figure.caption.60}
+\contentsline {figure}{\numberline {D.1}{\ignorespaces Implementation of Flow sensor wrapper.\relax }}{137}{figure.caption.60}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {D.2}{\ignorespaces The Flow sensor wrapper screen to the user: (A) main screen, and (B) selecting a sensor source.\relax }}{139}{figure.caption.61}
