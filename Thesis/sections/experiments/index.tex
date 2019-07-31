@@ -8,7 +8,7 @@ In this chapter, experiments are conducted in order to evaluate the application 
     \item The application must provide an interface for the developers to create modules that integrate with the application.
 \end{enumerate}
 
-The experiments are designed to test the application in (A) a crowded environment with multiple Flow sensors and without different Android OS versions; (B) recording over an extended period to measure battery consumption; (C) user-friendliness on participants; and (D) creating a simple module. When evaluating the experiments, the observations and the results are the most interesting metric as it provides a better perception of whether the design choices (Chapter 4) and implementation (Chapter 5) suffice towards the goal of this thesis. Moreover, the observations and results allow for discussion on improvements which can be made in future work.  
+The experiments are designed to test the application in (A) a crowded environment with multiple Flow sensors and with different Android OS versions running the application; (B) recording over an extended period to measure battery consumption; (C) user-friendliness on participants; and (D) creating a simple module. When evaluating the experiments, the observations and the results are the most interesting metric as it provides a better perception of whether the design choices (Chapter 4) and implementation (Chapter 5) suffice towards the goal of this thesis. Moreover, the observations and results allow for discussion on improvements which can be made in future work.  
 
 \newpage
 \section{Experiment A: Orchestral Concert to Analyze Musical Absorption using Nidra to Collect Breathing Data}
@@ -158,7 +158,9 @@ The device models A, E, and F are noticeably accurate (with some noises which pr
 
 \subsection{Discussion}
 
-Based on the analysis, we can see a variety of behavior of disconnections on the mobile devices for the two dates. An assumption is that the mobile device or Flow sensor is malfunctioned; however, we have no data that indicates whether a sensor was connected with the same mobile device for the both dates---we had the data for the first date, however, the sensors and mobile devices were switched at the second date because of unforeseen events---therefore, this assumption is debunked. Moreover, we see that model D (Google Pixel XL, version 9.0) is unstable for both of the days, in contrast to the other device models which ran a lower Android version. However, yet again, we have no accurate data that can prove that the Android version, mobile device, or the Flow sensor is causing the disconnects---albeit, this can be further tested in the lab. Moreover, the ability of reconnecting with the sensor source on disconnects, shows that data obtained from the recording is more meaningful (worst-case 40\% of the data was lossed) on analysis.
+Based on the analysis, we can see a variety of behavior of disconnections on the mobile devices for the two dates. An assumption is that the mobile device or Flow sensor is malfunctioned; however, we have no data that indicates whether a sensor was connected with the same mobile device for the both dates---we had the data for the first date, however, the sensors and mobile devices were switched at the second date because of unforeseen events---therefore, this assumption is debunked. Moreover, we see that model D (Google Pixel XL, version 9.0) is unstable for both of the days, in contrast to the other device models which ran a lower Android version. However, yet again, we have no accurate data that can prove that the Android version, mobile device, or the Flow sensor is causing the disconnects---albeit, this can be further tested in the lab. 
+
+Moreover, the ability of reconnecting with the sensor source on disconnects, shows that data obtained from the recording is more meaningful (worst-case 40\% of the data was lossed) on analysis.
 
 
 \subsection{Conclusion}
@@ -189,7 +191,7 @@ To conclude, we evaluate whether the tests sufficed the motivation of the experi
 As part of this thesis is to collect breathing data over en extended period (e.g., during sleep), it is essential to test for battery usage during this period. In most cases, a user connects their device to a power source to charge the device battery. However, in the cases where that is not viable, the battery consumption of the applications might affect the user's perception of Nidra. Therefore, in this experiment, we are checking for the battery consumption on the mobile device, as well as the Flow sensor, to demonstrate that the application is suited for collecting data overnight.
 
 \subsection{Description}
-The experiment was conducted on OnePlus 3T device (specifications in Table 6.1), and we started of by configuring the Flow sensor wrapper to connect with the Flow sensor and pressing the "record" button in Nidra. The device and sensor started with 100\%. Also, the device was disconnected from WiFi and left stationary and unattended during the period of recording.  
+The experiment was conducted on the OnePlus 3T device (specifications in Table 6.1), and we started of by configuring the Flow sensor wrapper to connect with the Flow sensor and pressing the "record" button in Nidra. Both the device and sensor started with 100\% battery level. Also, the device was disconnected from WiFi and left stationary and unattended during the period of recording.  
 
 A technical description of collecting, the data from the Flow sensor collects data on 10Hz; however, it sends a packet of data at approximately 1.5 Hz. The data packet is processed by the Flow sensor wrapper and sent to the data streams dispatching module (DSDM). The DSDM has a list of subscribing applications, and distribute the data packet to all of the subscribing application. In our case, the Nidra application has subscribed for the Flow sensor packets. In Nidra, the packet is received, unpacked and immediately stored in a database as a sample entity, with an identifier of the recording session. This process continues until the recording has terminated based on the user's actions.
 
@@ -248,7 +250,7 @@ For this test to be successful, the participants must for all of the tasks be ab
 
 
 \subsection{Observations}
-Participants \verb|A|---less technical---had to familiarize with the setting of the application, thus had a hard start. It took the participant longer than expected to perform T1, however, managed to proceed on the recording. The participant was a bit uncertain whether the recording had started or not. However, the participant was flabbergasted by the rippling effect the recording screen presented. The T2 was somewhat tedious to perform because the participant tried to click on the interface where it says it should be expanded (by swiping). Also, the graph was a bit hard to interact with because the interface above the graph kept moving while performing interactions with the graph. T3 and T4 went fine, the participant filled out the title, description, and a rating and saved the recording, and found the recording on the feed screen. However, T5 and T6 were a bit unclear to the participant, because the records in the list are collaped, and in order to find the actions you have to press the record to expand the information. However, after that figuring out how to expand the records, the participant managed to perform both tasks sufficiently.
+Participants \verb|A|---less technical---had to familiarize with the setting of the application, thus had a difficult start. It took the participant longer than expected to perform T1, however, managed to proceed on the recording. The participant was a bit uncertain whether the recording had started or not. However, the participant was flabbergasted by the rippling effect the recording screen presented. The T2 was somewhat tedious to perform because the participant tried to click on the interface where it says it should be expanded (by swiping). Also, the graph was a bit hard to interact with because the interface above the graph kept moving while performing interactions with the graph. T3 and T4 went fine, the participant filled out the title, description, and a rating and saved the recording, and found the recording on the feed screen. However, T5 and T6 were a bit unclear to the participant, because the records in the list are collaped, and in order to find the actions you have to press the record to expand the information. However, after figuring out how to expand the records, the participant managed to perform both tasks sufficiently.
 
 Participants \verb|B| outperformed participant \verb|A|, due to the participant was more familiar with technical systems. The participant managed to start the recording quickly, however, was unsure whether the recording had started (clicking around on the interface for feedback) until the ripple effects appeared on the screen. Similar to participant A, participant B clicked on the interface for statistics, rather than swiping, and had a hard time to interact with the graph due to the interface moving. The participant B managed to perform T3--T6 with ease and without any interrupts or objections. 
 
@@ -284,7 +286,7 @@ A questionnaire was filled out by the patients after the tests. The questions fo
     \end{description}
     \item How difficult was it to browse/find previous recordings? 
     \begin{description}[font=\normalfont\itshape]
-        \item[Participent A:] 3
+        \item[Participent A:] 4
         \item[Participent B:] 5
     \end{description}
     \item Did you have any encounters were the application did not supply you with enough information?
@@ -304,7 +306,7 @@ A questionnaire was filled out by the patients after the tests. The questions fo
     \end{description}
     \item How satisfied were you with this application overall?
     \begin{description}[font=\normalfont\itshape]
-        \item[Participent A:] 5
+        \item[Participent A:] 4
         \item[Participent B:] 4 
     \end{description}
 \end{itemize}
@@ -351,7 +353,7 @@ As for the observations, the participant managed to perform most of the tasks, a
 
 As for the survey, the observations reflect the answers in the questionnaire. Most of the poor feedback was directed towards the recording screen being less informative than expected. They found the color scheme of the application to be smooth and fitting, and the application to be modern. Also, they found the general layout to be well organized and overall the application to be user-friendly.
 
-A proposition is to enlargen the recording button and provide more informative text on the recording screen. As briefly discussed, a possibility is to create an introduction screen, that showcases the functionality of Nidra, the first time the user starts the application. Moreover, the statistics interface can be moved into a separate screen, to preventing the interface from moving while interacting with the graph.
+A proposition to the complains of the recording screen is to enlargen the recording button and provide more informative text on the recording screen. As briefly discussed, a possibility is to create an introduction screen, that showcases the functionality of Nidra, the first time the user starts the application. Moreover, the statistics interface can be moved into a separate screen, to preventing the interface from moving while interacting with the graph.
 
 \subsection{Conlusion}
 
@@ -361,7 +363,7 @@ To conclude, the tests were created to measure the comprehensibility and the use
 
 
 \section{Experiment D: Creating a Simple Module}
-One of the requirements in this thesis is to provide an interface for the developers to create modules, which allows for data enrichment and extended functionality. In order to test for this, we found one participant that had experience in software development, and with some experience in Android development.
+One of the requirements in this thesis is to provide an interface for the developers to create modules, which allows for data enrichment and extended functionality in Nidra. In order to test for this, we found one participant that had experience in software development, and with some experience in Android development.
 
  The tests consisted of creating a new module that utilizes the records from Nidra, and of finding the record with the highest number of samples---it was sufficient to display the correct answer on the screen (the development of a user-interface was not evaluated). Based on these tests, we evaluate the procedure and the difficulties of creating a new module. 
 
@@ -369,9 +371,9 @@ Before the participant started on creating a new module, we introduced the conce
 
 
 \subsection{Observations}
-Although the first task seems intuitive, the participant had a rough start. The participant was aware that module-application received data in a bundle, and the data extraction could be performed by specifying the key. However, for each time the participant compiled, the module-application crashed---that is because the bundle is empty if the module-application is launched directly, and not through the Nidra application (which supplies the module with the data). However, that was corrected quite quickly. 
+Although the first task seems intuitive, the participant had a rough start. The participant was aware that module-application received data in a bundle, and the data extraction could be performed by specifying the key. However, for each time the participant compiled the module-application crashed---that is because the bundle is empty if the module-application is launched directly, and not through the Nidra application (which supplies the module with the data). However, that was corrected quite quickly. 
 
-The next challenge for the participant was to understand how to decode the JSON string into valid objects in Java. The participant studied the structure of the string received on the launch and managed to come up with a solution. First, the participant created an object which encapsulates the record and a list of samples. Then, three separate objects (i.e., record, sample, and user) that were identical to the data structure. In the end, the participant could decode the JSON string into a list and retrieve the necessary data.
+The next challenge for the participant was to understand how to decode the JSON string into valid objects in Java. The participant studied the structure of the string received on the launch and managed to come up with a solution. First, the participant created an object which encapsulates the record and a list of samples. Then, creating three separate objects (i.e., record, sample, and user) that were identical to the data structure. In the end, the participant could decode the JSON string into a list and retrieve the necessary data.
 
 Once the participant had all of the data, the final task was easily accomplished. The participant iterated through the list of records, and found the one with the highest sample count, and displayed it on the screen. 
 
@@ -397,11 +399,11 @@ Moreover, as a result of the observation of the time spent initializing a module
 
 \section{Summary of Results}
 
-In this chapter, we conducted various experiments with the application (Nidra). The experiments consisted of testing the application in a real-life and crowded environment; recording over an extended period to measure the battery consumption; user-testing of the application; and creating a simple module. Also, the experiments were constructed in order to evaluate the system requirements, which we discuss in Section \ref{eval:conc}; however, in this section, we reinstate the main findings from the results of the experiments.
+In this chapter, we conducted various experiments with the application (Nidra). The experiments consisted of testing the application in a (A) real-life and crowded environment, installing the application on various device models running different Android OS versions, and checking whether the application managed to reconnect upon disconnections; (B) recording over an extended period to measure the battery consumption; (C) user-testing of the application; and (D) creating a simple module. Moreover, the experiments were constructed in order to evaluate the system requirements, which we discuss in Section \ref{eval:conc}; however, in this section, we reinstate the main findings from the results of the experiments.
 
 As for experiment A, we were able to test the application in a real-life and crowded environment with the opportunity of attending a concert that had approximately 800 attendees the first day 1500 attendees the second day. As for the result of the experiment, we were able to test the application on various mobile devices running different Android version. Some of the mobile devices were able to collect all of the breathing data throughout the concert, while others disconnected during recording. However, Nidra was able to reconnect with the disconnected sensor sources, resulting in that the worst-case of sample loss was no more than 40\%. As such, the functionality of reconnection with the sensor source on disconnects allows for more meaningful analysis of the data.
 
-As for experiment B, the application was tested for battery consumption over the period of 9-hours of recording. To enable the recording functionality, the application (Nidra) operates with two other applications (DSDM and Flow Sensor Wrapper) that run in the background, in which the Flow sensor transmits data over BlueTooth. As for the results of the experiment, the recording process consumes approximately \textit{155 mAh}; thus, after 9-hours of recording the mobile device has consumed \textit{1395 mAh} of its battery. Moreover, the average battery capacity of low-end mobile devices is approximately 2000 mAh. As such, the user has enough battery to operate the mobile device after the recording has stopped. 
+As for experiment B, the application was tested for battery consumption over the period of 9-hours of recording. To enable the recording functionality, the application (Nidra) operates with two other applications (DSDM and Flow Sensor Wrapper) that run in the background, in which the Flow sensor transmits data over BlueTooth. As for the results of the experiment, the recording process consumes approximately \textit{155 mAh}; thus, after 9-hours of recording the mobile device has consumed \textit{1395 mAh} of its battery capacity. The average battery capacity of low-end mobile devices is approximately 2000 mAh. As such, the user has enough battery to operate the mobile device after 9-hours of recording. 
 
 As for experiment C, we evaluated the user-friendliness of the application based on comprehensibility and usability. In the experiment, we had two participants with different knowledge and perspective of technology, that tested the application while we observed the interactions. As for the results of the experiment, the participants managed to complete all of the tasks that were defined, sufficiently; however, some minuscule complications made some of the tasks harder to comprehend. Overall, the participants found the application to be user-friendly and easy to use. 
 
@@ -414,11 +416,11 @@ In this chapter, we conducted experiments to evaluate the system requirements, w
 \begin{enumerate}
     \item \textit{The application must provide an interface for the patient to (i) record physiological signals (e.g., breathing data); (ii) present the results; and (iii) share the results.}
     
-    This requirement is supported by experiments A, B, and C that proves that the application is capable of (i) recording breathing data over an extended period of time using the Flow sensor; also, reconnecting with the sensor source upon disconnects; (ii) present the results in a time-series graph that allows analysis of the records; (iii) sharing the records from various mobile devices over a media (i.e., e-mail).
+    This requirement is supported by experiments A, B, and C that proves that the application is capable of (i) recording breathing data over an extended period of time using the Flow sensor; (ii) present the results in a time-series graph that allows analysis of the records; (iii) sharing the records from various mobile devices over a media (i.e., e-mail).
 
     \item \textit{The application must ensure that upon sensor disconnections, the connectivity is reinstated to minimize the data loss and its effects on the data analysis.}
     
-    This requirement is supported by experiment A that proves that the application managed to reconnect with the sensor source upon disconnections. As a result, the analysis performed on the records allowed for a deeper and richer understanding of the breathing patterns of a user. 
+    This requirement is supported by experiment A that proves that the application managed to reconnect with the sensor source upon disconnections. As a result, the analysis performed on the records allowed for a deeper understanding of the breathing patterns of a user. 
 
     \item \textit{The application must provide an interface for the developers to create modules that integrate with the application.}
     

@@ -45,7 +45,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Applications components for the three individual Android applications in the project and IPC connection between them.\relax }}{58}{figure.caption.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Legend for the figures in implementation of concerns: (A) application components with integration of our logic; (B) objects that contains specifics of our logic; (C) an interface for callbacks or listeners; (D) Android-specific objects and components; (E) other installed applications; (F) steps direction; and (G) reference or data flow direction.\relax }}{65}{figure.caption.27}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Legend for the figures in implementation of concerns: (A) application components with integration of our logic; (B) objects that contains specifics of our logic; (C) an interface for callbacks or listeners; (D) Android-specific objects and components; (E) other installed applications; (F) step direction; and (G) reference or data flow direction.\relax }}{65}{figure.caption.27}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Implementation of the recording action (A): start recording.\relax }}{66}{figure.caption.28}
 \defcounter {refsection}{0}\relax 

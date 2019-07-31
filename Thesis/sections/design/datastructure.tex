@@ -37,10 +37,9 @@ Moreover, a few benchmarks were conducted to measure memory footprint and parsin
 \end{figure}
 
 \subsection{Data Entities}\label{des:dataentity}
-Data entities are objects (e.g., things, persons, or places) that the system models and stores information about. In Section \ref{soc:storage}, we introduced four data entities in the application (i.e., record, sample, module, and user). In Figure \ref{fig:dataentries}, the relations between the data entities are shown. The record entity and sample entity store information about the recording session\footnote{the ongoing process of collecting data from the sensor sources and storing the samples (data packets) in the database.} and are separated into two individual entities in order to reduce data redundancy and improve data integrity. The sample entity has a reference to its record entity so they can be associated with each other. The user entity store biometrical information related to the user (i.e., patients). Also, a record entity contains the state of the user's biometrical information at the time of the recording. In other words, the user's biometrical information can change over time (e.g.,  weight changes); therefore, capturing the exact biometrical information at the time of the recording is essential in the context of detecting sleeping illnesses with relation to the biometrical information.  A module entity is independent of the other data entities and stores information about the name and the package name of the module-application. The package name is used to locate and launch the module-application. 
+Data entities are objects (e.g., things, persons, or places) that the system models and stores information about. In Section \ref{soc:storage}, we introduced four data entities in the application (i.e., record, sample, module, and user). In Figure \ref{fig:dataentries}, the relations between the data entities are shown. The record entity and sample entity store information about the recording session\footnote{the ongoing process of collecting data from the sensor sources and storing the samples (data packets) in the database.} and are separated into two individual entities in order to reduce data redundancy and improve data integrity. The sample entity has a reference to its record entity so they can be associated with each other. The user entity store biometrical information related to the user (i.e., patients). Also, a record entity contains the state of the user's biometrical information at the time of the recording. In other words, the user's biometrical information can change over time (e.g.,  weight changes); therefore, capturing the exact biometrical information at the time of the recording is essential in the context of detecting sleeping disorders with relation to the biometrical information.  A module entity is independent of the other data entities and stores information about the name and the package name of the module-application. The package name is used to locate and launch the module-application. 
 
-In the following sections, we present the properties of each data entity in Nidra; storage structure of the entities, and illustration of the data structure for each entity.  
-
+In the following sections, we present the properties of each data entity in Nidra, and an example of the data structure for each entity.  
 
 
 \subsubsection{Record Entity} \label{ssec:record}
@@ -51,8 +50,8 @@ The table for the record entity in the database stores metadata (e.g., elapsed t
     \item \verb|Name|: A name of the record to easily recognize the recording.
     \item \verb|Description|: A summary of the recording session provided by the user. It can be used to briefly describe how the recording session felt (e.g., any abnormalities during the sleep).
     \item \verb|MonitorTime|: The recording session duration in milliseconds.
-    \item \verb|Rating|: Giving a rating on how the sleeping session felt, in a range between 0-5. 
-    \item \verb|User|: User's biometrical information encoded into a JSON string format, in order to capture the state of the user at recording. 
+    \item \verb|Rating|: User defined rating on how the sleeping session felt, in a range between 0--5. 
+    \item \verb|User|: User's biometrical information encoded into a JSON string format, in order to capture the state of the user at the time of recording. 
     \item \verb|CreatedAt|: Date of creation of the recording in milliseconds (since January 1, 1970, 00:00:00 GMT).
     \item \verb|UpdatedAt|: Date of update of the recording in milliseconds (since January 1, 1970, 00:00:00 GMT).
 \end{itemize}
@@ -154,7 +153,7 @@ In the listing below, we present the structure of the user entity. In Nidra, the
 
 
 \subsection{Data Packets}\label{design:datapackets}
-Data packets are parcels of data that Nidra receives from external applications (e.g., data streams dispatching module) or send to other application (e.g., by sharing the records on the device). This section presents the format of the records and corresponding samples that are sent across applications (e.g., the data is encoded into a file, and the user can select preferred media, such as e-mail), and presents the data packets forwarded by the data streams dispatching module upon data acquisition from the Flow sensor.
+Data packets are parcels of data that Nidra receives from external applications (e.g., data streams dispatching module) or send to other application (e.g., by sharing the records on the device). This section presents the format of the records and corresponding samples that are sent across applications (e.g., the data is encoded into a file, and the user can select preferred media, such as e-mail). Also, this section presents the data packets forwarded by the data streams dispatching module upon data acquisition from the Flow sensor.
 
 \subsubsection{Sharing}
 
@@ -194,9 +193,9 @@ In \Cref{sec:design_sharing}, a proposal for the structure of exporting and impo
 
 \subsubsection{Single Sensor Reading}
 
-Listing 4.2 presents a single sensor reading from the Flow sensor sent from the data streams dispatching module. The \verb|id| is assigned by the data streams dispatching module to identify the subscriber application with the corresponding sensor source. Moreover, the \verb|time| is assigned by the internal timer of the Flow sensor. Also, the \verb|value| is the data sent from the Flow sensor, which encompasses time, delta, and data. However, we are most interested in extracting the data values from the reading. 
+Listing 4.2 presents a single sensor reading from the Flow sensor sent from the data streams dispatching module. The \verb|id| is assigned by the data streams dispatching module to identify the subscriber application with the corresponding sensor source. Moreover, the \verb|time| is assigned by the internal timer of the Flow sensor. Finally, the \verb|value| is the data sent from the Flow sensor, which contains time, delta, and data. However, we are most interested in extracting the data values from the reading. 
 
-\begin{lstlisting}[language=json, caption={Encompasses a single sample received from the Flow sensor.}, captionpos=b]
+\begin{lstlisting}[language=json, caption={Contains a single sample received from the Flow sensor.}, captionpos=b]
 {
     "id":"1-0",
     "value":"Time=2100ms, deltaT=100, data=1869,1873,1883,1864,1871,1870,1870",

@@ -68,7 +68,7 @@ While the first option might be favorable in terms of practicality, this solutio
 
 \subsection{Modules}\label{soc:modules}
 
-Modules are independent applications that provide extended functionality and data enrichment to Nidra. The components for locating and launching a module is given by the Android design; however, the component for data exchange between a module and Nidra can be independently designed.  In Figure \ref{fig:hta_modules}, a proposition of the structure for modules with components and their dependencies is illustrated, and the components are described as:
+Modules are independent applications that provide extended functionality or data enrichment to Nidra. The components for locating and launching a module is given by the Android design; however, the component for data exchange between a module and Nidra can be independently designed.  In Figure \ref{fig:hta_modules}, a proposition of the structure for modules with components and their dependencies is illustrated, and the components are described as:
 
 \begin{itemize}
     \item[3.1.1] \verb|Install Modules|: Is the process of locating the application on the device, and storing the reference of the application package name in the storage.  
@@ -124,14 +124,14 @@ In Nidra, a time series graph is used to represent the data of a record. The tim
     \label{fig:hta_storage}
 \end{figure}
 
-Storage is the objective of achieving persistent data; data that is available after application termination. The data is characterized into four data entities (i.e., record, sample, module, and user) that contain individual properties.  The components in the storage structure are constructed to be extensible and scalable in terms of future data, restructure of data, and removal of data.  In Figure \ref{fig:hta_storage}, a proposition of the structure for storage with components and their dependencies is illustrated, and the components are described as:
+Storage is the objective of achieving persistent data; data remain available after application termination. The data is characterized into four data entities (i.e., record, sample, module, and user) that contain individual properties.  The components in the storage structure are constructed to be extensible and scalable in terms of future data, restructure of data, and removal of data.  In Figure \ref{fig:hta_storage}, a proposition of the structure for storage with components and their dependencies is illustrated, and the components are described as:
 
 \begin{itemize}
     \item[5.1] \verb|Data Access Layer|: It exposes specific operations (such as insertion of a record) without revealing the database logic. This component is also known as a data access object (DAO), that provides an abstract interface to a database. The advantage of this interface is to have a single entry point for each database operation and to extend and modify the operation for future data easily. 
     \item[5.2] \verb|Database|: Is the storage of all the data (see Section \ref{des:dc}).
     \item[5.2.1] \verb|Record|: Is a table in the database, which contains fields appropriately to the record structure. A record contains meta-data about a recording (e.g., name, recording time, user). The design decision and an example of a recording record are illustrated in \Cref{ssec:record}.
     \item[5.2.2] \verb|Sample|: Is a table in the database, which contains fields appropriately to a single sample from a sensor. A sample contains data received from a sensor during a recording. The design decision and an example of a sample record are illustrated in \Cref{ssec:sample}.
-    \item[5.2.3] \verb|Module|: Is a table in the database, which contains fields appropriately to the module structure. A sample contains the name of the module and a reference to the application package. The design decision and an example of a module record are illustrated in \Cref{ssec:module}.
+    \item[5.2.3] \verb|Module|: Is a table in the database, which contains fields appropriately to the module structure. A module contains the name of the module-application and a reference to the application package. The design decision and an example of a module record are illustrated in \Cref{ssec:module}.
     \item[5.2.4] \verb|User|: Is an object stored on the device, which contains fields appropriately to the user structure. A user contains the patient's biometrical information (e.g., name, weight, height). The design decision and an example of a user are illustrated in \Cref{ssec:user}.
 \end{itemize}
 
@@ -143,7 +143,7 @@ Flat files database encode a database model (e.g., table) as a collection of rec
 
 SQLite is a relational database management system, which is embedded and supported in Android. A relational database management system (RDBMS) provides data storage in fields and record, represented as columns (fields) and rows (records), in a table. The advantage is the ability to index records, relations between data stored in tables, and support querying of complex data with a query language (e.g., SQL). Also, RDBMS provides data integrity between transactions, improved security, and backup and recovery controls \cite{flatfilerdbms}. 
 
-While a flat-file database is applicable to store small and unchangeable data, it is not suitable for scalable and invasive data change. The samples acquisition during recording makes it unreasonable to use a flat-file database. As such, SQLite is a preferable solution for storing sample entities. As a result, the record entity should also be stored in an SQLite database, in order to associate it with the sample entity (with a foreign key). As for the module entity, it is more convenient to store and update a list of records inside a database; therefore, we prefer the SQLite database for the module entity. Finally, the user entity is stored in the flat file, that is because there only is one user in the application at the time; hence, it is more convenient to use a flat-file (e.g., JSON) to store this type of information.
+While a flat-file database is applicable to store small and unchangeable data, it is not suitable for scalable and invasive data change. The samples acquisition during recording makes it unreasonable to use a flat-file database. In the design of Nidra, SQLite is a preferable solution for storing sample entities. As a result, the record entity is be stored in an SQLite database, in order to associate it with the sample entity (with a foreign key). As for the module entity, it is more convenient to store and update a list of records inside a database; therefore, we use the SQLite database for the module entity. Finally, the user entity is stored in the flat file, that is because there only is one user in the application a time; hence, it is more convenient to use a flat-file (e.g., JSON) to store this type of information.
 
 \subsection{Presentation}\label{soc:presentation}
 \begin{figure}
@@ -153,14 +153,14 @@ While a flat-file database is applicable to store small and unchangeable data, i
     \label{fig:hta_presentation}
 \end{figure}
 
-Presentation facilitates the user interface of the application, in terms of visualizing the functionality of the application to the user. The user interface design is guided by the the functionality (concerns discussed) in the application and itertive work on the topic. In Figure \ref{fig:hta_presentation}, a proposition of the structure for presentation with components and their dependencies is illustrated, and the components are described as:
+Presentation facilitates the user interface of the application, in terms of visualizing the functionality of the application to the user. The user interface design is guided by the functionality (concerns discussed) in the application and iterative work on the topic. In Figure \ref{fig:hta_presentation}, a proposition of the structure for presentation with components and their dependencies is illustrated, and the components are described as:
 
 \begin{itemize}
     \item[6.1] \verb|UI|: The user interface where interaction between users and the application occurs. 
     \item[6.1.1] \verb|Navigation|: The navigation is a menu with options to change the screen (e.g., feed, recording, and module). 
-    \item[6.1.2] \verb|Layout|: Is based on the functionality that is exposed to the user. The layout conists of incorporating the color palette and the screen's in the application (the subsequent components). 
-    \item[6.1.3] \verb|Color Palette|: A color pallette is a set of colors that is that persist throughout the application (see Section \ref{des:cpc}).
-    \item[6.1.1.1] \verb|Settings|: Is s screen with user details, permissions and credits, with options to modify permission and user details.
+    \item[6.1.2] \verb|Layout|: Is based on the functionality that is exposed to the user. The layout consists of incorporating the color palette and the screens in the application (the subsequent components). 
+    \item[6.1.3] \verb|Color Palette|: A color palette is a set of colors that persist throughout the application (see Section \ref{des:cpc}).
+    \item[6.1.1.1] \verb|Settings|: Is s screen with user details, permissions, and credits, with options to modify permission and user details.
     \item[6.1.1.2] \verb|Feed|: Is a list of all records for the user, displayed with details specific to the record to make it distinguishable and easily recognizable. 
     \item[6.1.1.3] \verb|Analytics|: A interactive time-series graph for a single record. 
     \item[6.1.1.4] \verb|Recording|: The process of establishing a recording session, in addition to showing the results after a recording session has ended. 
@@ -170,6 +170,6 @@ Presentation facilitates the user interface of the application, in terms of visu
 \end{itemize}
 
 \subsubsection{Color Palette Component}\label{des:cpc}
-The color palette is a component that decides the color scheme in the application. In the proposal of a color system in the design guidelines by Google \cite{colorsystem}, it is essential to pick colors that reflect the style of the application accordingly to: (1) primary colors: the most frequently displayed color in the application; (2) secondary colors: provides an accent and distinguish color in the application; and (3) surface, background, error, typography and iconography colors: colors that reflect the primary and secondary color choices. 
+The color palette is a component that decides the color scheme in the application. In the proposal of a color system in the design guidelines by Google \cite{colorsystem}, it is essential to pick colors that reflect the style of the application accordingly to: (1) \textit{primary colors}: the most frequently displayed color in the application; (2) \textit{secondary colors}: provides an accent and distinguish color in the application; and (3) \textit{surface, background, error, typography and iconography colors}: colors that reflect the primary and secondary color choices. 
 
-Moreover, choosing colors that meet the purpose of the application is critical. Nidra is most likely to be used during the evening and the morning. Also, according to Google \cite{darktheme}, a dark color theme reduces luminance emitted by the device screen, which reduces eye strain, while still meeting the minimum color contrast ratios, and conserving battery power. Therefore, in our design, we chose a dark color theme (with a nuance of dark-blue). 
+Moreover, choosing colors that meet the purpose of the application is critical. Nidra is most likely to be used during the evening and the morning. According to Google \cite{darktheme}, a dark color theme reduces luminance emitted by the device screen, which reduces eye strain, while still meeting the minimum color contrast ratios, and conserving battery power. Therefore, in our design, we chose a dark color theme (more specifically, a nuance of dark-blue). 
