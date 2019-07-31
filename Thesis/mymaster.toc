@@ -21,7 +21,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.4.2}Propositional Phase}{7}{subsection.1.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4.3}Analytical Phase}{7}{subsection.1.4.3}
+\contentsline {subsection}{\numberline {1.4.3}Analytical Phase}{8}{subsection.1.4.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.4.4}Evaluation Phase}{8}{subsection.1.4.4}
 \defcounter {refsection}{0}\relax 
@@ -65,7 +65,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Related Work}{29}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Summary}{30}{section.3.1}
+\contentsline {section}{\numberline {3.1}Summary \& Conclusion}{30}{section.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {part}{II\hspace {1em}Design and Implementation}{31}{part.2}
 \defcounter {refsection}{0}\relax 
