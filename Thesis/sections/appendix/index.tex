@@ -32,9 +32,12 @@ The source code for the various applications in the context of this thesis is fo
 
 \chapter{Experiment A: Remaining Graphs}
 
-\section{Concert Day 1: Time-Series Graph}
-This Section illustrates the samples collected during the concert the concert on third April of 2019, which lasted 
-for one hour. There are six individual records for this day: 
+\section{Concert Day 1 and Day 2: Time-Series Graph}
+The Figures \ref{fig:concert_day1_a}, \ref{fig:concert_day1_b}, \ref{fig:concert_day1_c}, \ref{fig:concert_day1_d}, \ref{fig:concert_day1_e}, \ref{fig:concert_day1_f} illustrates the breathing samples collected during the concert on April 3rd of 2019---with a duration of one hour (between the time 19:00--20:00). 
+
+The Figures \ref{fig:concert_day2_a}, \ref{fig:concert_day2_b}, \ref{fig:concert_day2_c}, \ref{fig:concert_day2_d}, \ref{fig:concert_day2_e}, \ref{fig:concert_day2_f} illustrates the breathing samples collected during the concert on April 4th of 2019---with a duration of 50 minutes (between the time 20:10--21:00). 
+
+The device spesification can be found in Table 6.1, and are mapped as: (A, B, C) Samsung Galaxy S9; (D) Google Pixel XL (version: 9.0); (E) Google Pixel XL (version: 7.1.2); and (F) OnePlus 3T.
 
 \begin{figure}
     \centering
@@ -77,8 +80,6 @@ for one hour. There are six individual records for this day:
     \caption{Concert Day 1: Device Model F.}
     \label{fig:concert_day1_f}
 \end{figure}
-
-\section{Concert Day 2: Time-Series Graph}
 
 
 \begin{figure}
@@ -189,14 +190,13 @@ if __name__ == "__main__":
 
 
 \chapter{Module Template}
-To expedite the creation of a new module a template with pre-code is provided. The pre-code contains a blank Android project with the latest Gradle version 3.4.0 and support for Android 9 (API level 28). In the subsequent Sections, the instructions of duplicating the template is presented. 
-
+To expedite the creation of a new module, a template with pre-code is provided. The pre-code contains a blank Android project with the Gradle version 3.4.0 and support for Android 9 (API level 28). In the subsequent sections, the instructions of duplicating the template are presented. 
 
 
 \section{Application Setup}
 
 \subsection{Download the Application}
-Start by locating the \textit{ModuleTemplate} application in the Github repository for this thesis. Download the application folder, rename it with desired name, and move it to the \verb|Android Studio| project folder. The listing below presents the commands to accomidate for the actions. Next, import the project in Android Studio by pressing \verb|File --> Open --> (Name of Application)|
+Start by locating the \textit{ModuleTemplate} application in the Github repository for this thesis. Download the application folder, rename it with the desired name, and move it to the \verb|Android Studio| project folder. The listing below presents the commands to accommodate for these actions. Next, import the project in Android Studio by pressing \verb|File --> Open --> (Name of Application)|
 
 \begin{lstlisting}[language=json, caption={}, captionpos=b]
 git clone https://github.com/Perelan/Master.git
@@ -205,7 +205,7 @@ mv ModuleTemplate <Path to Android Studio Project>/<Desired Name>
 \end{lstlisting}
 
 \subsection{Change the Name of the Application}
-Change the name of the application such that the user can locate the application in the app drawer, also the name is used as the module-name when listed in Nidra. The name change is performed by locating the \verb|app_name| inside of \verb|strings.xml| which is to be found in \verb|res/value|, see Listing below. 
+Change the name of the application such that the user can locate the application in the app drawer; also, the name is used as the module-name when listed in Nidra. The name change is performed by locating the \verb|app_name| inside of \verb|strings.xml| which is to be found in \verb|res/value|, see Listing below. 
 
 \begin{lstlisting}[language=json, caption={}, captionpos=b]
 <resources>
@@ -214,7 +214,7 @@ Change the name of the application such that the user can locate the application
 \end{lstlisting}
 
 \subsection{Rename the Package of the Application}
-Change the package name of the application by following the listing below. It is incentivized to keep the prefix of \textit{com.cesar.X} to group future modules by the package name. 
+Change the package name of the application by following the listing below. It is incentivized to keep the prefix of \textit{com.cesar.X} to group Nidra-specific modules by the package name. 
 
 \begin{lstlisting}[language=json, caption={}, captionpos=b]
 Right Click => Refactor => Rename => Rename Package => *new package name* => Refactor
@@ -238,7 +238,7 @@ android {
 In order to retrieve the records data, the module-application has to be added to Nidra. Therefore, launch the Nidra application on the device and navigate to the modules screen. Press the \textit{Add new Module} button, find the module by name in the list and click to add. 
 
 \subsection{Retrieve the Data}
-The data is sent as a JSON string to the module when it is launched within Nidra. The pre-code is seperated into following files and folder:
+The data is sent as a JSON string to the module when it is launched within Nidra. The pre-code is separated into the following files and folder:
 
 \begin{description}
     \item[MainActivity] On creation of the module-application, the bundle of data that is sent as an Intent is passed to the \verb|Extract| method in \verb|DataExtraction|.
@@ -249,43 +249,59 @@ The data is sent as a JSON string to the module when it is launched within Nidra
     \item[Payload/User] contains the state of the user information at the given time of recording (see Section \ref{des:dataentity}).
 \end{description}
 
-As part of the discussion of the module design, the records is sent to the module-application only when it is launched within Nidra. This might become cumbersome in the long run, therefore, it is highly incentivized to temporarly cache the data under development. 
+As part of the discussion of the module design, the records are sent to the module-application only when it is launched within Nidra. This might become cumbersome in the long run. Therefore, it is highly incentivized to temporarily cache the data under development. 
 
 
 \chapter{Flow Sensor Wrapper}
 
 \begin{figure}[!h]
     \centering
+    \includegraphics[scale=0.25]{images/flow_app.pdf}
+    \caption{The Flow sensor wrapper application presented to the user with following screens: (A) main screen, and (B) selecting a sensor source.}
+    \label{fig:flowapp}
+\end{figure}
+
+
+
+\section{Implementation \& Presentation}
+
+The Flow sensor wrapper was introduced in Section \ref{imp:flowsensor}. The following sections describe the functionality of the sensor wrapper by separating them into following actions: (A) starting the data acquisition; (B) handle the samples from the sensor; and (C) stopping the data acquisition. The flow for the actions is presented in Figure \ref{fig:impl_flowsensor}.
+
+Moreover, Figure D.1 presents the Flow sensor wrapper application (called Flow), and the screens can be described as: 
+
+\begin{itemize}
+    \item[A] The main screen that shows the state of the Flow sensor (e.g., battery level, MAC address, firmware version), including the button actions to either remove the sensor or change to another Flow sensor. 
+    \item[B] In the cases where there is no Flow sensor configured for the mobile device or the action to change the sensor, the device list screen display all available sensor or devices within range of BlueTooth connectivity to the user. The Flow sensors are distinctly from the other BlueTooth devices in order to make it easier to select.
+\end{itemize}
+
+\begin{figure}
+    \centering
     \includegraphics[scale=0.7]{images/Flow_Imp.pdf}
-    \caption{Implementation of Flow sensor wrapper.}
+    \caption{Implementation of Flow sensor wrapper with the actions of: (A) starting the data acacquisition, (B) handle the samples from the sensor; (C) stopping the data acquisition.}
     \label{fig:impl_flowsensor}
 \end{figure}
 
-A description of flow sensor wrapper is described in Section \ref{imp:flowsensor}. The following sections describes the functionality of the sensor wrapper by separating them into following actions: (A) starting the data acquisition; (B) handle the samples from the sensor; and (C) stopping the data acquistion. The flow for the actions is presented in Figure \ref{fig:impl_flowsensor}.
-
-\section{Implementation}
-
-
 \subsection{Action A: Starting the Data Acquistion}
-Action A is to start the data acquestion based on the command sent by 
+Action A is to start the data acquisition based on the command sent by the data streams dispatching module with a broadcast containing the \textit{Start} message. The steps for this action can be narrowed down to:
 
 \begin{itemize}
-    \item[A.1] A broadcast from the DSDM with a Intent of \textit{Start} is sent to the \verb|WrapperService|.
+    \item[A.1] A broadcast from the DSDM with an Intent of \textit{Start} is sent to the \verb|WrapperService|.
     \item[A.2] Within the \verb|WrapperService|, a binder between the between this service component and the DSDM is created (which will be used for sending data by the Flow sensor). Moreover, a new thread for the \verb|CommuncationHandler| is created and started.
-    \item[A.3] This component initalizes the connectivity with the \verb|BluetoothHandler| service, and listens for data packets from that component.
+    \item[A.3] This component initializes the connectivity with the \verb|BluetoothHandler| service and listens for data packets from that component.
     \item[A.4] A reference to the \verb|BlueToothHandler| with a binder is created, in order to communicate with the service. 
-    \item[A.5] Moreover, the request to connect and start the acquesition is sent to the \verb|BluetoothHandler|. 
-    \item[A.6] \verb|BluetootHandler| creates an object of the \verb|BluetoothHandler|, which contains the state of the sensor source (e.g., battery level, breathing data enabled, and manufacturer name). 
-    \item[A.7] The \verb|BluetootHandler| connects with the GATT server (the Flow sensor), and once the connectivity is established (using the Android provided API's for connecting with the Bluetooth LE devices), we can ask the sensor source for available services. 
-    \item[A.8] The sensor source responds with all of the avaiable services and characterstics, and we can proceed to notify the sensor source to enable the breathing data and the battery level service.  
+    \item[A.5] Moreover, the request to connect and start the acquisition is sent to the \verb|BluetoothHandler|. 
+    \item[A.6] \verb|BluetootHandler| creates an object of the \verb|BluetoothService|, which contains the state of the Flow sensor (e.g., battery level, breathing data-enabled, and manufacturer name). 
+    \item[A.7] The \verb|BluetootHandler| connects with the GATT server (the Flow sensor), and once the connectivity is established (using the Android provided API's for connecting with the Bluetooth LE devices), we can send a request to the sensor source for available services. 
+    \item[A.8] The sensor source responds with all of the available services and characteristics, and we can proceed to notify the sensor source to enable the breathing data and the battery level service.  
 \end{itemize}
 
 
 \subsection{Action B: Handle the Samples from the Sensor}
+The Flow sensor sends data with a frequency of approximately 1.5Hz. As such, Action B is to handle the data and forward it to the data streams dispatching module. The steps for this action can be narrowed down to:
 
 \begin{itemize}
-    \item[B.1] Peridocally, the Flow sensor sends data to the connected mobile device, based on the activated service (i.e., breathing data and battery level). These samples are sent to the connectivity established earlier. 
-    \item[B.2]  The BlueToothHandler handles these data packets (by filtering them out on GattAttributes) and reads the value from the characterstics that is encompassed in the service.
+    \item[B.1] Periodically, the Flow sensor sends data to the connected mobile device, based on the activated service (i.e., breathing data and battery level). These data are sent to \verb|BlueToothHandler|. 
+    \item[B.2]  The \verb|BluetoothHandler| handles the data received from the flow sensor (by filtering them out on GattAttributes) and reads the value from the characteristics that is encompassed in the service.
     \item[B.3] The values are sent as a callback to the \verb|CommunicationHandler|. 
     \item[B.4] Which further sends it to the \verb|DataHandler|.
     \item[B.5] The \verb|DataHandler| creates a JSON string that contains meta-data (e.g., the ID of the sensor wrapper) together with the data, and sends the data to the DSDM for further processing.    
@@ -293,24 +309,12 @@ Action A is to start the data acquestion based on the command sent by
 
 
 \subsection{Action C: Stopping the Data Acquestion}
+Action C is to stop the data acquisition based on the command sent by the data streams dispatching module with a broadcast containing the \textit{Stop} message. The steps for this action can be narrowed down to:
+
 
 \begin{itemize}
-    \item[C.1] A broadcast from the DSDM with a Intent of \textit{Stop} is sent to the \verb|WrapperService|. The \verb|WrapperService| disconnect with the binder that was created between this component service and DSDM. As a result, the \verb|CommunicationHandler| thread is interrupted.
+    \item[C.1] A broadcast from the DSDM with an Intent of \textit{Stop} is sent to the \verb|WrapperService|. The \verb|WrapperService| disconnect with the binder that was created between this component service and DSDM. As a result, the \verb|CommunicationHandler| thread is interrupted.
     \item[C.2] The \verb|CommunicationHandler| notifies the \verb|BluetootHandler| to disconnect with the GATT server and terminate.
-    \item[C.3] The \verb|BluetootHandler| disconnects the connectivity with the Flow sensor wrapper, and further notifies the components that the communication is closed (e.g., the main screen can change the state displaying that it is connected to disconnected) 
+    \item[C.3] The \verb|BluetootHandler| disconnects the connectivity with the Flow sensor wrapper, and further notifies the components that the communication is closed (e.g., the main screen changes the state from connected to disconnected on the main screen). 
 \end{itemize}
 
-
-
-\section{Presentation}
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.3]{images/flow_app.pdf}
-    \caption{The Flow sensor wrapper screen to the user: (A) main screen, and (B) selecting a sensor source.}
-    \label{fig:flowapp}
-\end{figure}
-
-\begin{itemize}
-    \item[A] Is the main screen, that shows the state of the Flow sensor (e.g., battery level, MAC address, firmware version), including the button actions to either remove the sensor or change to another Flow sensor. 
-    \item[B] In the cases, where there is no Flow sensor configured for the mobile device or the action to change the sensor, the device list screen display all available sensor or devices within range of BlueTooth connectivity to the user. The Flow sensors are distincitly from the other bluetooth devices, in order to make it easier to select.
-\end{itemize}
