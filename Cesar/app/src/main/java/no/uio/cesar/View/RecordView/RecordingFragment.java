@@ -1,6 +1,10 @@
-package no.uio.cesar.View.MonitorView;
+package no.uio.cesar.View.RecordView;
 
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +15,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.PowerManager;
@@ -45,11 +50,12 @@ import no.uio.cesar.Model.Sample;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Graph;
 import no.uio.cesar.Utils.Uti;
+import no.uio.cesar.View.MonitorActivity;
 import no.uio.cesar.ViewModel.RecordViewModel;
 import no.uio.cesar.ViewModel.SampleViewModel;
 import no.uio.ripple.RippleEffect;
 
-public class MonitorFragment extends Fragment implements DatabaseCallback, ConnectionCallback {
+public class RecordingFragment extends Fragment implements DatabaseCallback, ConnectionCallback {
     private static final String TAG = "Monitor";
 
     private FragmentActivity mContext;
@@ -78,7 +84,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback, Conne
     private ConnectionHandler conHandler;
     private ConnectivityHandler conObserver;
 
-    public MonitorFragment() {
+    public RecordingFragment() {
         // Required empty public constructor
     }
 
@@ -155,7 +161,7 @@ public class MonitorFragment extends Fragment implements DatabaseCallback, Conne
 
     @Override
     public void connected(List<String> publishers) {
-        tvTitle.setText("Connection Established!");
+        tvTitle.setText("Recording!");
 
         cm.setBase(SystemClock.elapsedRealtime());
         cm.start();

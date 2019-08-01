@@ -1,4 +1,4 @@
-package no.uio.cesar.View.MonitorView;
+package no.uio.cesar.View.RecordView;
 
 import android.view.LayoutInflater;
 import android.view.View;

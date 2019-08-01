@@ -1,4 +1,4 @@
-package no.uio.cesar.View.MonitorView;
+package no.uio.cesar.View.RecordView;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -15,10 +15,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import no.uio.cesar.Model.Record;
-import no.uio.cesar.Model.Sample;
 import no.uio.cesar.R;
 import no.uio.cesar.ViewModel.RecordViewModel;
 import no.uio.cesar.ViewModel.SampleViewModel;

@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Constant;
 import no.uio.cesar.Utils.Uti;
-import no.uio.cesar.View.ProfileView.ProfileFragment;
 import no.uio.cesar.View.ModuleView.ModuleFragment;
 import no.uio.cesar.View.FeedView.FeedFragment;
 import no.uio.cesar.ViewModel.RecordViewModel;
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     private FeedFragment feedFragment;
     private ModuleFragment moduleFragment;
-    private ProfileFragment profileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

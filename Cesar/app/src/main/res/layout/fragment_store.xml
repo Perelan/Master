@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.MonitorView.StoreFragment">
+    tools:context=".View.RecordView.StoreFragment">
 
     <TextView
         android:id="@+id/store_info_title"

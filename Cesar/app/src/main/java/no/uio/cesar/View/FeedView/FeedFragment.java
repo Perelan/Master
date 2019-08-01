@@ -28,7 +28,6 @@ import no.uio.cesar.Model.Sample;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Export;
 import no.uio.cesar.Utils.Uti;
-import no.uio.cesar.View.ProfileView.ProfileFragment;
 import no.uio.cesar.View.SettingsActivity;
 import no.uio.cesar.ViewModel.RecordViewModel;
 import no.uio.cesar.ViewModel.SampleViewModel;

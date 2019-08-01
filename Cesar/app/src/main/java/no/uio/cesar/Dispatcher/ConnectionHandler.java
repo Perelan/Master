@@ -82,6 +82,10 @@ public class ConnectionHandler {
         }, 1_000);
     }
 
+
+    /* TODO: Currently, it only connects with the first sensor available. For future work,
+    manage to select a specific sensor or connect with all sensors.
+     */
     private void connect() {
         Log.d(TAG, "connect");
 

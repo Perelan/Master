@@ -15,14 +15,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+
 import no.uio.cesar.Model.Module;
 import no.uio.cesar.R;
+import no.uio.cesar.Utils.ExportObject;
+import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.ViewModel.ModuleViewModel;
+import no.uio.cesar.ViewModel.RecordViewModel;
+import no.uio.cesar.ViewModel.SampleViewModel;
 
 public class ModuleFragment extends Fragment implements AppsClickListener, ModuleClickListener {
 
@@ -82,12 +91,44 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
 
     @Override
     public void onLaunchModuleClick(String packageName) {
-        Intent launch = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        formatAllRecordsToJSON(packageName);
+    }
 
-        // TODO: Send bundle with all data
+    public void send(String packageName, String exportString) {
+        Intent launch = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        if (launch == null) return;
+
+        Bundle bundle = new Bundle();
+
+        bundle.putString("data", exportString);
+
+        launch.putExtras(bundle);
 
         startActivity(launch);
     }
+
+    private void formatAllRecordsToJSON(String packageName) {
+        RecordViewModel recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
+        SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);
+
+        recordViewModel.getAllRecords().observe(this, records -> {
+
+            ArrayList<ExportObject> listOfExportObjects = new ArrayList<>();
+
+            for (int i = 0; i < records.size(); i++) {
+                int finalI = i;
+                sampleViewModel.getSamplesForRecord(records.get(i).getId()).observe(this, samples -> {
+                    listOfExportObjects.add(new ExportObject(records.get(finalI), samples));
+
+                    if (finalI == records.size() - 1) {
+                        String exportString = new Gson().toJson(listOfExportObjects);
+                        send(packageName, exportString);
+                    }
+                });
+            }
+        });
+    }
+
 
     @Override
     public void onNewModuleClick() {
