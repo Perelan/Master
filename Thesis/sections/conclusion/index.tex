@@ -12,16 +12,16 @@ To evaluate the application, we performed various experiments including recordin
  As defined in our problem statement we set three research goals, the following section reinstate and describe how this thesis contributes to them.
 
 \begin{description}
-    \item[Goal 1] \textit{Integrate the support for Flow sensor with the extensible data streams dispatching tool.}
+    \item[Goal 1] \textit{Integrate the support for Flow sensor by creating a sensor wrapper that connects with the extensible data streams dispatching tool.}
 
     This goal is supported by the development of the Flow sensor wrapper, which integrates with the data streams dispatching tool. The Flow sensor uses BlueTooth LE as a communication protocol. As such, we used the APIs provided by Android to connect with the sensor, and focused on extracting the flow (breathing) data and battery level, as well as the MAC address and firmware level. By creating a sensor wrapper for the Flow sensor and integrating with the data streams dispatching tool, we extend the tool for integration of the Flow sensor. That allows future developers to operate with the Flow sensor in their analysis.
 
 
-    \item[Goal 2] \textit{Research and develop a user-friendly application which facilitates collection of breathing data with the use of the extensible data streams dispatching tool.}
+    \item[Goal 2] \textit{Research and develop a user-friendly application which facilitates collection of breathing data with the Flow sensor, sharing of the data, and analysis of the data with the use of the extensible data streams dispatching tool.}
 
     This goal is supported by the development of the Nidra, which provides an interface for recording, sharing, analyzing breathing data collected with the Flow sensor using the data streams dispatching tool on a mobile device. With this application, we allow patients to record their breathing data over an extended period, and to analyze the data within the application. Also, we allow the patients to send their record---e.g., over e-mail---to their researchers/doctors for further analysis. As such, we provide an interface to the patients to monitor their breathing from home. However, this application can also be used in other fields of study (e.g., physical activity), as shown in the experiements we collected breathing data in order to analyze the effects of music absorption on indivuals.
     
-    \item[Goal 3] \textit{Create an extensible solution such that the developers can integrate stand-alone applications in our application.}
+    \item[Goal 3] \textit{Create an extensible solution such that the developers can create standalone applications that integrate with Nidra.}
 
     This goal is supported by the integration of modules in the Nidra application. We allow future developers to create and integrate their applications functionality into Nidra, without having to understand how Nidra operates, and leverge the data Nidra provides. This allows future developers to enrich the data or extend the functionality in Nidra, resulting in patients only having one application for the detection, analysis, examination of sleep apnea. 
 \end{description}
