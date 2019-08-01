@@ -96,8 +96,8 @@ In Figure \ref{fig:impl_sharingA}, an illustration of the steps to export one si
 \begin{itemize}
     \item[A.1] Upon an event for exporting a selected record in \verb|FeedAdapter|, the record information is sent to the \verb|FeedFragment| through the callback reference (\verb|onRecordAnalyticsClick|) between these components. The record information will be used to determine the corresponding samples for the record.
     \item[A.2] The \verb|FeedFragment| sends the record information to the \verb|export| method inside of the \verb|Export| object, which is responsible for enabling the export. 
-    \item[A.3] An operation to retrieve all samples related to the record (see: Section \ref{ioc:storage}) is done. 
-    \item[A.4] The \verb|export| method retrieves all of the samples related to the record. Next, the record and the samples are encoded into an exportable JSON format (see: Section \ref{design:datapackets}). In order to share files between applications, the content has to be stored on the device. Thus, the encoded data is written into a file on the device, with a filename of \verb|record_(current_date).json|, and the next step uses the reference to the file location. 
+    \item[A.3] An operation to retrieve all samples related to the record (see Section \ref{ioc:storage}) is done. 
+    \item[A.4] The \verb|export| method retrieves all of the samples related to the record. Next, the record and the samples are encoded into an exportable JSON format (see Section \ref{design:datapackets}). In order to share files between applications, the content has to be stored on the device. Thus, the encoded data is written into a file on the device, with a filename of \verb|record_(current_date).json|, and the next step uses the reference to the file location. 
     \item[A.5] The encoded file URI is retrieved with the use of \verb|FileProvider| (facilitates secure sharing of files across applications). The code snippet for this step is shown in the following listing: 
 \begin{lstlisting}[language=json, caption={}, captionpos=b]
 static void shareFileIntent(Activity a, File file) {
