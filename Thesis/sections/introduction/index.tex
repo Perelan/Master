@@ -18,12 +18,12 @@ The work in this thesis is classified as \textit{computing research} with a prin
 \subsection{Informational Phase}
 The informational phase according to the report is to \textit{"gather or aggregate information via reflection, literature survey, people/organization survey, or poll"}
 
-In this thesis, we survey previous related work in the field of detecting, analyzing, and diagnosing sleep related-breathing disorders on a mobile device. Based on this, we derive that the application created in this thesis has the same motivation; however, the related work operates with different kind measure and instrument for solutions (e.g., using microphone and accelerometers to provide early-detection of sleep apnea). As such, we focused on creating an extensible application that allows future developers to create modules on top of our solution (as illustrated in Figure \ref{fig:nidra_modules}). By allowing this, future developers can expedite the innovation in the research and study of sleep-related breathing disorders, as well as allowing the patients to operate with one application. 
+In this thesis, we survey previous related work in the field of detecting, analyzing, and diagnosing sleep related-breathing disorders on a mobile device. Based on this, we derive that the application created in this thesis has the same motivation; however, the related work operates with different of kind measure and instrument for solutions (e.g., using microphone and accelerometers to provide early-detection of sleep apnea). As such, we focused on creating an extensible application that allows future developers to create modules on top of our solution (as illustrated in Figure \ref{fig:nidra_modules}). By allowing this, future developers can expedite the innovation in the research and study of sleep-related breathing disorders, as well as allowing the patients to operate with one application. 
 
 \begin{figure}
     \centering
     \includegraphics[scale=0.9]{images/Nidram2.pdf}
-    \caption{Nidra with the possibility of adding multiple modules that extends the functionality or provide data enrichiment, and integrating support for multiple sensor source (with the use of the data streams dispatching tool).}
+    \caption{Nidra with the possibility of adding multiple modules that extends the functionality or provide data enrichiment, and integrating support for multiple sensor sources (with the use of the data streams dispatching tool).}
     \label{fig:nidra_modules}
 \end{figure}
 
@@ -54,7 +54,7 @@ The thesis is divided into three parts, which the following list presents a gene
 
     \item Part 2: \textbf{Design \& Implementation}
     \begin{description}[font=\normalfont\itshape]
-        \item[Chapter 4: Analysis and High-Level Design] presents the functional requirements of the application, the tasks derived based on the requirements and goals of the thesis, and the tasks separated into concerns, where we propose a structure of implementation which encompasses component with functionality and design choices. In the end, we discuss the data structure, namely the data entities (i.e., record, sample, module, and user), the data format (JSON versus XML), and the structure of the data packets sent from the sensor sources as well as the data packets sent on sharing. 
+        \item[Chapter 4: Analysis and High-Level Design] presents the functional requirements of the application, the tasks derived based on the requirements and goals of the thesis, and the tasks separated into concerns, where we propose a structure of implementation which contains component with various functionalities and design choices. In the end, we discuss the data structure, namely the data entities (i.e., record, sample, module, and user), the data format (JSON versus XML), and the structure of the data packets sent from the sensor sources as well as the data packets sent on sharing. 
         \item[Chapter 5: Implementation] presents the application components of the project (i.e., Nidra, data streams dispatching module, and the Flow sensor wrapper) with the interface of IPC connectivity. Moreover, it presents the steps and flows taken in order to implement the concerns (i.e., recording, sharing, analyzing, modules, storage, and presentation) by separating the actions and showing how the components in the application interact.
     \end{description}
 
