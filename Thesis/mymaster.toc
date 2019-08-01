@@ -295,8 +295,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {D.1}Implementation \& Presentation}{137}{section.1.D.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {D.1.1}Action A: Starting the Data Acquistion}{138}{subsection.1.D.1.1}
+\contentsline {subsection}{\numberline {D.1.1}Action A: Start the Data Acquistion}{138}{subsection.1.D.1.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {D.1.2}Action B: Handle the Samples from the Sensor}{139}{subsection.1.D.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {D.1.3}Action C: Stopping the Data Acquestion}{139}{subsection.1.D.1.3}
+\contentsline {subsection}{\numberline {D.1.3}Action C: Stop the Data Acquestion}{139}{subsection.1.D.1.3}

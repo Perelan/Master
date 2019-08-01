@@ -115,4 +115,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {D.1}{\ignorespaces The Flow sensor wrapper application presented to the user with following screens: (A) main screen, and (B) selecting a sensor source.\relax }}{137}{figure.caption.60}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {D.2}{\ignorespaces Implementation of Flow sensor wrapper with the actions of: (A) starting the data acacquisition, (B) handle the samples from the sensor; (C) stopping the data acquisition.\relax }}{138}{figure.caption.61}
+\contentsline {figure}{\numberline {D.2}{\ignorespaces Implementation of Flow sensor wrapper with the actions of: (A) start the data acacquisition, (B) handle the samples from the sensor; (C) stop the data acquisition.\relax }}{138}{figure.caption.61}

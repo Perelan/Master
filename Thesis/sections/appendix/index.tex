@@ -265,7 +265,7 @@ As part of the discussion of the module design, the records are sent to the modu
 
 \section{Implementation \& Presentation}
 
-The Flow sensor wrapper was introduced in Section \ref{imp:flowsensor}. The following sections describe the functionality of the sensor wrapper by separating them into following actions: (A) starting the data acquisition; (B) handle the samples from the sensor; and (C) stopping the data acquisition. The flow for the actions is presented in Figure \ref{fig:impl_flowsensor}.
+The Flow sensor wrapper was introduced in Section \ref{imp:flowsensor}. The following sections describe the functionality of the sensor wrapper by separating them into following actions: (A) start the data acquisition; (B) handle the samples from the sensor; and (C) stop the data acquisition. The steps for the actions is presented in Figure \ref{fig:impl_flowsensor}.
 
 Moreover, Figure D.1 presents the Flow sensor wrapper application (called Flow), and the screens can be described as: 
 
@@ -277,11 +277,11 @@ Moreover, Figure D.1 presents the Flow sensor wrapper application (called Flow),
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{images/Flow_Imp.pdf}
-    \caption{Implementation of Flow sensor wrapper with the actions of: (A) starting the data acacquisition, (B) handle the samples from the sensor; (C) stopping the data acquisition.}
+    \caption{Implementation of Flow sensor wrapper with the actions of: (A) start the data acacquisition, (B) handle the samples from the sensor; (C) stop the data acquisition.}
     \label{fig:impl_flowsensor}
 \end{figure}
 
-\subsection{Action A: Starting the Data Acquistion}
+\subsection{Action A: Start the Data Acquistion}
 Action A is to start the data acquisition based on the command sent by the data streams dispatching module with a broadcast containing the \textit{Start} message. The steps for this action can be narrowed down to:
 
 \begin{itemize}
@@ -308,7 +308,7 @@ The Flow sensor sends data with a frequency of approximately 1.5Hz. As such, Act
 \end{itemize}
 
 
-\subsection{Action C: Stopping the Data Acquestion}
+\subsection{Action C: Stop the Data Acquestion}
 Action C is to stop the data acquisition based on the command sent by the data streams dispatching module with a broadcast containing the \textit{Stop} message. The steps for this action can be narrowed down to:
 
 
