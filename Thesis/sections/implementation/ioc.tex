@@ -151,15 +151,17 @@ The design choices for this concern is described in Section \ref{soc:modules}. T
 
 The functionality of modules are separated into two actions: (A) add a module; and (B) launch a module.  The following sections review the steps that enable these actions. 
 
-\subsubsection{Action A: Add a Module}
-In order to add a new module, the user has to install the module-application on the device beforehand. By listing through the installed application on the device, the user can select the desired module to be added in Nidra. In Figure \ref{fig:impl_modulesA}, an illustration of adding a module is shown, and the steps are narrowed down to:
-
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{images/Module_ImpA.pdf}
     \caption{Implementation of the module action (A): add a module.}
     \label{fig:impl_modulesA}
 \end{figure}
+
+\subsubsection{Action A: Add a Module}
+In order to add a new module, the user has to install the module-application on the device beforehand. By listing through the installed application on the device, the user can select the desired module to be added in Nidra. In Figure \ref{fig:impl_modulesA}, an illustration of adding a module is shown, and the steps are narrowed down to:
+
+
 
 \begin{itemize}
     \item[A.1] Upon an event for adding a new module in \verb|ModulesAdapter|, the \verb|ModulesFragment| is notified through the callback reference (\verb|onNewModuleClick()|) between these components.

@@ -5,13 +5,13 @@ This chapter starts with a brief overview of application components for the thre
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.95]{images/Android_Components.pdf}
+    \includegraphics[scale=0.95]{images/AndroidComponents.pdf}
     \caption{Applications components for the three individual Android applications in the project and IPC connection between them.}
     \label{fig:app_components}
 \end{figure}
 
 
-In this thesis, we operate with three individual applications: Nidra, data streams dispatching module, and the sensor wrapper for the Flow sensor. Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service, and broadcast receiver) for each application, which run in a separate process on the user's mobile device. The subsequent sections present a brief overview of the applications structure and components.
+In this thesis, we operate with three individual applications: Nidra, data streams dispatching module, and the sensor wrapper for the Flow sensor. Figure \ref{fig:app_components} illustrates the Android components (i.e., activity, service, provider, and broadcast receiver) for each application, which run in a separate process on the user's mobile device. The subsequent sections present a brief overview of the applications structure and components.
 
 
 \subsection{Flow Sensor Wrapper}\label{imp:flowsensor}
@@ -69,13 +69,14 @@ To summarize, this application acts as a data distributor for supported sensor s
 In this thesis, we focus on creating an interface that can record, share, and analyze breathing data of a patient over an extended period using the Flow sensor. In order to provide an interface, we developed an Android application called Nidra. This section describes the components that Nidra constitute of, while in Section \ref{impl:ioc} we discuss the implementation of Nidra. Below, we describe the main components of the application:
  
 \begin{description}[font=\normalfont\itshape]
-    \item[MainActivity:] Encompasses most of the functionality in the application, besides recording, by using fragments as a modular approach to seperate functionality. The fragments lie on top of this host activity, and a transition amongst the fragments is triggered based on user interactions. 
+    \item[MainActivity:] Encompasses most of the functionality (expect recording) in the application, by using fragments as a modular approach to seperate functionality. The fragments lie on top of this host activity, and a transition amongst the fragments is triggered based on user interactions. 
     \item[RecordingActivity:] This activity manages the recording part of the application by invoking the \verb|RecordingFragment|. However, the fragment handles the connectivity with the data streams dispatching module, handles the data packets from the sensor sources, and assuring for reconnecting with the sensor on human disruptions and sensor disconnections. Also, it manages the interactions that can be performed on the recording screen (e.g., real-time graph).
     \item[LandingActivity:] When launching the application for the first time, a screen with an introduction to the application is shown to the user. Further, the user is prompted to type in biometrical data (i.e., name, gender, age, height, weight), which will be used to enrich the recording of the patient. 
 \end{description}
 
 Moreover, Nidra leverages the functionality that the data streams dispatching module provides. To use the functionality, the recording activity connects with the data streams dispatching module, and the reference that will be used to receive data packets are sent to the service of \textit{DSDService}. This service implements the interface provided by the data streams dispatching module, and the data obtained within this service are directly sent to the \verb|RecordingActivity| for processing. 
 
+Also, it uses the \verb|FileProvider| to securily share files with other applications. That part is used during exporting of records, and the content of the component is found Section \ref{impl:manifest}.
 
 To summarize, the components discussed in this section constitute an application that enables recording, sharing, and analysis of breathing data obtained from the Flow sensor. Further, we elaborate on the actions and functionality of Nidra in Section \ref{impl:ioc}.  
 
