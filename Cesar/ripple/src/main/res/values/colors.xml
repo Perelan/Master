@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="breath">#0099cc</color>
-    <color name="battery">#1fb40f</color>
-    <color name="hr">#ff2837</color>
-    <color name="idle">#a7a7a7</color>
-</resources>
