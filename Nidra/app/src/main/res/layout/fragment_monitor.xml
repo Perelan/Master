@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".View.MonitorActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/monitor_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="Establish connection..."
+            android:textColor="@color/title"
+            android:textSize="32sp" />
+
+        <no.uio.ripple.RippleEffect
+            android:id="@+id/ripple"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:clickable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rb_radius="32dp">
+
+            <ImageView
+                android:id="@+id/test"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:src="@drawable/bluetooth"
+                android:text="--\n--" />
+
+        </no.uio.ripple.RippleEffect>
+
+        <Chronometer
+            android:id="@+id/monitor_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@id/ripple"
+
+            android:text="01 h 30 m 02 s"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/monitor_stop"
+            android:layout_width="200dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardBackgroundColor="@android:color/holo_red_dark"
+            card_view:cardCornerRadius="30dp"
+            card_view:cardElevation="5dp"
+            android:layout_below="@id/monitor_time"
+            >
+
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="STOP MONITOR"
+                android:textColor="@android:color/background_light" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@color/colorAccent"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="55dp"
+        app:layout_insetEdge="bottom"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/bottom_sheet_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Expand for Statistics"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/bottom_sheet_text"
+                android:id="@+id/sensor_container"
+                android:layout_width="match_parent"
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:layout_height="200dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/available_sensors_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:textColor="@color/title"
+                        android:text="Sensors"
+                        android:textSize="24sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+
+                        android:id="@+id/available_sensors"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_below="@id/available_sensors_title"
+                        tools:listitem="@layout/item_sensor" />
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/sensor_container"
+                android:id="@+id/graph_container"
+                android:layout_width="match_parent"
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:layout_height="300dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/graph_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:textColor="@color/title"
+                        android:text="Graph"
+                        android:textSize="24sp" />
+
+                    <com.jjoe64.graphview.GraphView
+                        android:layout_below="@+id/graph_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dip"
+                        android:id="@+id/resp_graph" />
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
