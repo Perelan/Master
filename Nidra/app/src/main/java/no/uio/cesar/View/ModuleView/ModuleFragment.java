@@ -107,6 +107,7 @@ public class ModuleFragment extends Fragment implements AppsClickListener, Modul
         startActivity(launch);
     }
 
+    // TODO: As the other todo in the project, find a nicer way of handling async events.
     private void formatAllRecordsToJSON(String packageName) {
         RecordViewModel recordViewModel = ViewModelProviders.of(this).get(RecordViewModel.class);
         SampleViewModel sampleViewModel = ViewModelProviders.of(this).get(SampleViewModel.class);

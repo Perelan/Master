@@ -12,9 +12,11 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
+
+// Created by: Jagat Deep Singh (2018-2019).
+// See section 5.1.2 in thesis from Jagat Deep Singh for further elaboration.
 public class SensorDiscovery extends BroadcastReceiver {
     private static final String TAG = "DSDService-Sensor";
-
 
     @Override
     public void onReceive(Context context, Intent intent) {

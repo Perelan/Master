@@ -161,7 +161,6 @@ public class LandingActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    // TODO: switch to user model
     public void storeUserData() {
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(Constant.STORAGE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

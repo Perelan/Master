@@ -17,7 +17,7 @@ import no.uio.cesar.R;
 import no.uio.cesar.Utils.Uti;
 import no.uio.cesar.View.RecordView.RecordingFragment;
 
-public class MonitorActivity extends AppCompatActivity {
+public class RecordingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

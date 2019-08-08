@@ -6,6 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:id="@+id/fragment_container"
-    tools:context=".View.MonitorActivity">
+    tools:context=".View.RecordingActivity">
 
 </FrameLayout>

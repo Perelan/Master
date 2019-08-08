@@ -1,5 +1,7 @@
 package com.sensordroid;
 
+// Created by: Jagat Deep Singh (2018-2019).
+// See section 5.1.2 in thesis from Jagat Deep Singh for further elaboration.
 public class Sensor {
     private String name, packageName;
 

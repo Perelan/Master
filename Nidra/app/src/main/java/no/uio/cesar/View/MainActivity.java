@@ -3,16 +3,11 @@ package no.uio.cesar.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Constant;
@@ -23,8 +18,6 @@ import no.uio.cesar.ViewModel.RecordViewModel;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    private RecordViewModel recordViewModel;
 
     private FeedFragment feedFragment;
     private ModuleFragment moduleFragment;
@@ -58,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     Uti.commitFragmentTransaction(this, selectedFragment);
                     break;
                 case R.id.navigation_record:
-                    startActivity(new Intent(this, MonitorActivity.class));
+                    startActivity(new Intent(this, RecordingActivity.class));
                     return false;
                 case R.id.navigation_notifications:
                     if (moduleFragment == null) moduleFragment = new ModuleFragment();

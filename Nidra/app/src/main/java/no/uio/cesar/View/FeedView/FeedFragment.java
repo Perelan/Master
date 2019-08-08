@@ -146,6 +146,9 @@ public class FeedFragment extends Fragment implements FeedViewClickListener, Too
         Export.export(this, record);
     }
 
+
+    // Note: Turn on permission for storage on the application (Nidra) - future work: add a dialog asking for permission
+    // A bug: For some reason, when you import the sharing interface pops up (no clue why); however, the importing works as intended.
     private void importRecords() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");

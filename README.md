@@ -11,7 +11,6 @@ A module created during experiment (D); finds the record with the highest sample
 ## Nidra
 The application allows for collecting breathing data collected with the Flow sensor (using the DSDM). Also, the support for integrating modules (e.g., TestModule).
 
-
 ## DataStreamsDispatchcingModule - [Code by Bugajski](https://github.com/prezemyb/DMMS)
 Module responsible for dispatching of data packets, providing sensor-capability model, publish-subscribe interface and controll of collection frequency. 
 

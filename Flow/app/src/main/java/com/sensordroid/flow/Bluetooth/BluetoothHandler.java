@@ -51,6 +51,9 @@ public class BluetoothHandler extends Service implements BluetoothService {
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
     }
 
+    // Step 3: Discover all of the services
+    // Step 4: Get the services, and enable to the Flow service (breathing) and get meta-data (battery, etc...).
+    // Step 5: Listen for events from the sensor on onCharacteristicRead
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
@@ -133,6 +136,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
         return super.onUnbind(intent);
     }
 
+    // Step 1: Initialize (called by CommunicationHandler)
     public boolean init() {
         Log.d(TAG, "initialize");
 
@@ -158,6 +162,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
         return true;
     }
 
+    // Step 2: Connect with the sensor (based on the MAC address selected by the user).
     public boolean connect() {
         if (mBluetoothAdapter == null) {
             Log.w(TAG, "connect: BluetoothAdapter not initalized");
@@ -178,7 +183,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
 
         Log.i(TAG, "connect: Connecting to a device: " + selectedFlowSensor);
 
-        mBluetoothGatt = selectedFlowSensor.connectGatt(this, true, mGattCallback);
+        mBluetoothGatt = selectedFlowSensor.connectGatt(this, false, mGattCallback);
 
         if (mBluetoothGatt == null) {
             Log.e(TAG, "connect: Device not connected");
@@ -242,6 +247,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
         }
     }
 
+    // Step 6: Find the right characteristic sent from the sensor.
     private void decodeCharacteristic(final BluetoothGattCharacteristic characteristic) {
         if (GattAttributes.HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {
             Log.i(TAG, "decodeCharacteristic: >>> Heart Rate Measurement");
@@ -313,6 +319,8 @@ public class BluetoothHandler extends Service implements BluetoothService {
         }
     }
 
+
+    // Parse the data from the Flow (breathing) data (code inspired by RawDataMonitor).
     private void flowDataReceived(BluetoothGattCharacteristic characteristic) {
         byte[] values = characteristic.getValue();
 
@@ -366,6 +374,7 @@ public class BluetoothHandler extends Service implements BluetoothService {
         }
     }
 
+    // Parse the data from the heartrate  data (code inspired by RawDataMonitor).
     private void heartRateDataReceived(BluetoothGattCharacteristic characteristic) {
         int flags = characteristic.getProperties();
         int format = (flags & 0x01) != 0 ? BluetoothGattCharacteristic.FORMAT_UINT16 : BluetoothGattCharacteristic.FORMAT_UINT8;

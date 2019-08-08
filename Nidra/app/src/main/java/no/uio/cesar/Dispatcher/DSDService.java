@@ -59,6 +59,7 @@ public class DSDService extends Service {
 
             localIntent.putExtras(b);
 
+            // handled by the recordingfragment.
             localBroadcastManager.sendBroadcast(localIntent);
         }
 

@@ -112,7 +112,6 @@ public class Uti {
                 }
             }
         } else if (uriString.startsWith("file://")) {
-            // Todo: check if implementation is needed
         }
 
         return null;

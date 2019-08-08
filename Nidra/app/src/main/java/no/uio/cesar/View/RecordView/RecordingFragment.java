@@ -1,10 +1,6 @@
 package no.uio.cesar.View.RecordView;
 
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,7 +11,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.PowerManager;
@@ -50,7 +45,6 @@ import no.uio.cesar.Model.Sample;
 import no.uio.cesar.R;
 import no.uio.cesar.Utils.Graph;
 import no.uio.cesar.Utils.Uti;
-import no.uio.cesar.View.MonitorActivity;
 import no.uio.cesar.ViewModel.RecordViewModel;
 import no.uio.cesar.ViewModel.SampleViewModel;
 import no.uio.ripple.RippleEffect;
@@ -88,6 +82,7 @@ public class RecordingFragment extends Fragment implements DatabaseCallback, Con
         // Required empty public constructor
     }
 
+    // Connectivity checker.
     private Runnable runnable = () -> {
         Log.d(TAG, ": Restarted");
         if (powerManager.isInteractive()) rp.pulse(rp.IDLE);
@@ -171,6 +166,8 @@ public class RecordingFragment extends Fragment implements DatabaseCallback, Con
         conObserver.start();
     }
 
+
+    // New data from the sensor! Sent from DSDService.
     private BroadcastReceiver listener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -204,7 +201,7 @@ public class RecordingFragment extends Fragment implements DatabaseCallback, Con
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy: CALLED");
+        Log.d(TAG, "onDestroy: called");
         super.onDestroy();
 
         if (wakeLock.isHeld()) wakeLock.release();

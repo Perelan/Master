@@ -189,10 +189,8 @@ public class Capability {
             if(subscribers.get(i).contains(binder)){
                 if(subscribers.get(i).size() == 1){
                     subscribers.remove(i);
-                    Log.d(TAG, "removeSubscriber: Wtf?");
                     return 0;
                 }else{
-                    Log.d(TAG, "removeSubscriber: lmao");
                     subscribers.get(i).remove(binder);
                     return 1;
                 }
@@ -217,9 +215,6 @@ public class Capability {
         }else{
             highestRequestedFrequency = Collections.max(subscribers.keySet());
         }
-
-        Log.d(TAG, "updateCurrentCapabilityFreq: highestreq " + highestRequestedFrequency);
-        Log.d(TAG, "updateCurrentCapabilityFreq: currentfrq " + this.currentCapabilityFreq);
         if(this.currentCapabilityFreq != highestRequestedFrequency){
             this.currentCapabilityFreq = highestRequestedFrequency;
             return 0;
@@ -238,7 +233,7 @@ public class Capability {
      *                            the binder of a subscriber goes wrong
      */
     public void sendJson(String json) {
-        Log.d(TAG, "sendJson: SENDING PAYLOAD");
+        Log.d(TAG, "sendJson: Sending Payload");
         packCounter++;
         for(Integer i:subscribers.keySet()){
             if(((int)((double)packCounter % ((double)wrapper.getCurrentFreq()/(double)i))) == 0){

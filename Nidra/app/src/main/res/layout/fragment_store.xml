@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
-        android:text="Store Montitored Session"
+        android:text="Store Monitored Session"
         android:textColor="@android:color/white"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,34 +23,20 @@
 
     <TextView
         android:id="@+id/store_time"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/store_info_title"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Monitoring lasted for x hours and x minutes"
+        android:text="Monitoring has terminated, please fill in the information below."
+        android:textAlignment="center"
         android:textColor="@color/subtitle"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/store_info_title" />
-
-    <TextView
-        android:id="@+id/store_samples"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/store_time"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="x samples gathered"
-        android:textColor="@color/subtitle"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/store_time" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -63,7 +49,7 @@
         app:layout_constraintBottom_toTopOf="@+id/store_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/store_samples">
+        app:layout_constraintTop_toBottomOf="@+id/store_time">
 
         <EditText
             android:id="@+id/store_title"
@@ -106,10 +92,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/store_rating"
-            android:textSize="12sp"
             android:layout_centerHorizontal="true"
+            android:text="Give a rating from (bad) 1 - 5 (good) on your session!"
             android:textColor="@color/subtitle"
-            android:text="Give a rating from (bad) 1 - 5 (good) on your sleep!" />
+            android:textSize="12sp" />
     </RelativeLayout>
 
 

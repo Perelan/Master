@@ -73,7 +73,7 @@ public class StoreFragment extends Fragment {
         rb = v.findViewById(R.id.store_rating);
         tvDiscard = v.findViewById(R.id.store_discard);
         tvStoreTime = v.findViewById(R.id.store_time);
-        tvStoreSample = v.findViewById(R.id.store_samples);
+        //tvStoreSample = v.findViewById(R.id.store_samples);
 
         tvDiscard.setOnClickListener(l -> discardSession(primaryKey));
 
@@ -132,7 +132,6 @@ public class StoreFragment extends Fragment {
 
     }
 
-    // Todo: rewrite this logic
     private void getNumberSamples(long primaryKey) {
 
         sampleViewModel.getSamplesForRecord(primaryKey).observe(this, samples -> {

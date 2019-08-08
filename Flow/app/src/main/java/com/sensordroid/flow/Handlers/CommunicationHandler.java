@@ -171,10 +171,10 @@ public class CommunicationHandler implements Runnable, BluetoothCallback {
                 break;
             case BluetoothHandler.ACTION_DEVICE_METADATA_COMPLETE:
 
-                System.out.println(">>> Updated");
-                System.out.println(">>> " + bluetoothHandler.mSensorMetadata.batteryLevel);
-                System.out.println(">>> " + bluetoothHandler.mSensorMetadata.firmwareRevision);
-                System.out.println(">>> " + bluetoothHandler.mSensorMetadata.manufacturerName);
+                Log.d(TAG,">>> Updated");
+                Log.d(TAG,">>> " + bluetoothHandler.mSensorMetadata.batteryLevel);
+                Log.d(TAG,">>> " + bluetoothHandler.mSensorMetadata.firmwareRevision);
+                Log.d(TAG,">>> " + bluetoothHandler.mSensorMetadata.manufacturerName);
                 break;
             case BluetoothHandler.ACTION_DEVICE_METADATA_UPDATED:
 

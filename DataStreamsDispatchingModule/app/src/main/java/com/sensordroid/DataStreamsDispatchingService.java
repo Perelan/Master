@@ -45,6 +45,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * running the Worker class dispatch all packets from the packetQueue.
  *
  * @author Daniel Bugajski
+ * editied by: Jagat Deep Singh (2018-2019).
  */
 public class DataStreamsDispatchingService extends Service {
 
@@ -109,8 +110,6 @@ public class DataStreamsDispatchingService extends Service {
         if (data == null) return;
 
         ArrayList<Sensor> sensors = new Gson().fromJson(data, new TypeToken<ArrayList<Sensor>>(){}.getType());
-
-        Log.d(TAG, "sendBroadcastToSensors: Size of data " + sensors.size());
 
         Intent i = new Intent(HELLO_ACTION);
         for (Sensor s : sensors) {
@@ -210,8 +209,6 @@ public class DataStreamsDispatchingService extends Service {
         @Override
         public void run() {
             Intent intent = new Intent();
-            Log.d(TAG, "run: HERER " + componentPackageName);
-            Log.d(TAG, "run: HERER " + componentClassName);
             intent.setClassName(componentPackageName, componentClassName);
             if(!connections.containsKey(componentClassName)){
                 bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
@@ -259,7 +256,7 @@ public class DataStreamsDispatchingService extends Service {
     BroadcastReceiver wrapperReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "onReceive Broadcast: recieved!");
+            Log.d(TAG, "onReceive Broadcast: received!");
             String wrapperId = intent.getStringExtra("ID");
             String wrapperName = intent.getStringExtra("NAME");
             ArrayList<Integer> frequencies = intent.getIntegerArrayListExtra("FREQUENCIES");
@@ -283,10 +280,7 @@ public class DataStreamsDispatchingService extends Service {
 
             ArrayList<String> supported_types = intent.getStringArrayListExtra("SUPPORTED_TYPES");
 
-            Log.d(TAG, "onReceive: HAHAHAH " +supported_types);
             if (supported_types != null) {
-                Log.d(TAG, "onReceive: HAHAHAH inside");
-
                 for(String s : supported_types){
                     String channel[] = s.split(",");
                     Capability c = new Capability(channel[0], channel[1], channel[2], channel[3], wrapper);
@@ -315,7 +309,7 @@ public class DataStreamsDispatchingService extends Service {
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Log.d(TAG, "RECEIVED CONNECTION from "+componentName.getClassName());
+            Log.d(TAG, "Received connection from "+componentName.getClassName());
             connections.put(componentName.getClassName(), MainServiceConnection.Stub.asInterface(iBinder));
         }
 
@@ -362,7 +356,7 @@ public class DataStreamsDispatchingService extends Service {
          *                       1  if this is the first subscription from this client and a new connection has to be estabilished
          */
         public int Subscribe(String capabilityId, int frequency, String componentPackageName, String componentClassName){
-            Log.d(TAG, "Subscriprion from "+componentClassName+", to "+capabilityId);
+            Log.d(TAG, "Subscription from "+componentClassName+", to "+capabilityId);
 
             String key = componentClassName;
             if(!connections.containsKey(key)){
@@ -387,7 +381,6 @@ public class DataStreamsDispatchingService extends Service {
                 int capabilityIdInteger = Integer.parseInt(wrapperAndCapabilityId[1]);
 
                 int statusCode = wrapper.addSubscriber(capabilityIdInteger, frequency, connections.get(key));
-                Log.d(TAG, "Subscribe: AHAHAHHA " + statusCode);
 
                 if(statusCode == 0){
                     Log.d(TAG, "Subscribe: Start collection");
@@ -499,7 +492,7 @@ public class DataStreamsDispatchingService extends Service {
                     tmp.add(c.getInfo());
                 }
             }
-            Log.d(TAG, "Lengde på publishers: "+tmp.size());
+            Log.d(TAG, "Size on publishers: "+tmp.size());
             return tmp;
         }
     };

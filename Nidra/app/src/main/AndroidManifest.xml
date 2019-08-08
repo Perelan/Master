@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View.MonitorActivity"
+            android:name=".View.RecordingActivity"
             android:label="@string/title_activity_monitor"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"

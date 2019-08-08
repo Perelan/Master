@@ -59,7 +59,7 @@ public class Export {
         });
     }
 
-    // Todo: fix this logic
+    // Todo: fix this logic - find a proper way of handling async events in java (why is there no promises :( )
     public static void exportAll(Fragment f) {
         UserViewModel userViewModel = new UserViewModel(f.getContext());
         RecordViewModel recordViewModel = ViewModelProviders.of(f).get(RecordViewModel.class);

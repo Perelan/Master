@@ -192,8 +192,6 @@ public class WrapperService extends Service {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             binder = MainServiceConnection.Stub.asInterface(iBinder);
-            Log.d(TAG, "onServiceConnected: In here");
-
             connectionThread = new Thread(
                     new CommunicationHandler(binder, name, driverId, getApplicationContext()));
             connectionThread.start();
@@ -209,7 +207,6 @@ public class WrapperService extends Service {
          */
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
-            Log.d(TAG, "onServiceDisconnected: DISCONNECTED");
             Log.w(TAG, "Service disconnected!");
              if (wakeLock.isHeld()){
                 Log.w(TAG, "WakeLock released");
